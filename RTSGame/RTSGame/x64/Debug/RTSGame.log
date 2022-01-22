@@ -1,0 +1,3 @@
+﻿  FPSCounter.cpp
+D:\Programming\C++\RTSGame\RTSGame\RTSGame\src\entities\FPSCounter.cpp(28,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  RTSGame.vcxproj -> D:\Programming\C++\RTSGame\RTSGame\x64\Debug\RTSGame.exe

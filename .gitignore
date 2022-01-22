@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+/.vs
+/RTSGame/.vs/RTSGame/v16
+/RTSGame/x64/Debug
