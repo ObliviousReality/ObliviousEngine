@@ -23,20 +23,20 @@ void Object::update()
 
 int Object::getX()
 {
-	return 0;
+	return x;
 }
 
 int Object::getY()
 {
-	return 0;
+	return y;
 }
 
 int Object::getWidth()
 {
-	return 0;
+	return w;
 }
 
 int Object::getHeight()
 {
-	return 0;
+	return h;
 }

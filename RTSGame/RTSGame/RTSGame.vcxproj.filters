@@ -39,6 +39,12 @@
     <ClCompile Include="src\entities\Object.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\ObjectList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\entities\DebugBox.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\Timer.h">
@@ -62,8 +68,19 @@
     <ClInclude Include="src\header\Object.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\header\ObjectList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\DebugBox.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\font.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\debug.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

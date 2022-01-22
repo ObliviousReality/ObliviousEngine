@@ -32,23 +32,3 @@ void Entity::draw()
 void Entity::update()
 {
 }
-
-int Entity::getX()
-{
-	return x;
-}
-
-int Entity::getY()
-{
-	return y;
-}
-
-int Entity::getWidth()
-{
-	return w;
-}
-
-int Entity::getHeight()
-{
-	return h;
-}

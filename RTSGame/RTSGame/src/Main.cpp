@@ -7,6 +7,8 @@
 #include <SDL_image.h>
 #include "header/Text.h"
 #include "header/FPSCounter.h"
+#include "header/ObjectList.h"
+#include "header/DebugBox.h"
 
 
 SDL_Window* window = NULL;
@@ -62,14 +64,17 @@ void loop() {
 
 	bool crashed = false;
 	SDL_Event e;
-	//EntityList::EntityNode* list = EntityList::create();
-	TTF_Font* font = TTF_OpenFont("assets/font.ttf", 20);
+	ObjectList::ObjectNode* list = ObjectList::create();
+	/*TTF_Font* font = TTF_OpenFont("assets/font.ttf", 20);
 	if (font == NULL)
 	{
 		printf("Font failed to load\n");
-	}
+	}*/
 	FPSCounter* fc = new FPSCounter(100, 100, renderer);
-	SDL_Rect fillRect = { SCREEN_WIDTH / 20, SCREEN_HEIGHT / 20, 100, 100 };
+	DebugBox* db = new DebugBox(200, 200, renderer);
+	ObjectList::addItem(list, fc);
+	ObjectList::addItem(list, db);
+	//SDL_Rect fillRect = { SCREEN_WIDTH / 20, SCREEN_HEIGHT / 20, 100, 100 };
 	while (!crashed) {
 
 		while (SDL_PollEvent(&e) != 0)
@@ -93,10 +98,9 @@ void loop() {
 		SDL_SetRenderDrawColor(renderer, 0x21, 0x00, 0x7F, 0xFF);
 		SDL_RenderClear(renderer);
 		SDL_SetRenderDrawColor(renderer, 0xBB, 0x00, 0x00, 0xFF);
-		fillRect.x++;
-		SDL_RenderFillRect(renderer, &fillRect);
-		fc->update();
-		fc->draw();
+		//fillRect.x++;
+		//SDL_RenderFillRect(renderer, &fillRect);
+		ObjectList::render(list);
 		//level->draw();
 		SDL_RenderPresent(renderer);
 	}

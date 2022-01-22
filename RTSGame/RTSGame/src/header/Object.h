@@ -1,10 +1,9 @@
 #pragma once
 class Object
 {
-protected:
+public:
 	Object();
 	~Object();
-
 	virtual void draw();
 	virtual void update();
 

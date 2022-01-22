@@ -32,23 +32,3 @@ void TextEntity::draw()
 void TextEntity::update()
 {
 }
-
-int TextEntity::getX()
-{
-	return x;
-}
-
-int TextEntity::getY()
-{
-	return y;
-}
-
-int TextEntity::getWidth()
-{
-	return w;
-}
-
-int TextEntity::getHeight()
-{
-	return h;
-}
