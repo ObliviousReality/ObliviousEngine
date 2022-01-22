@@ -1,7 +1,8 @@
 #pragma once
 #include <SDL.h>
 #include "Texture.h"
-class Entity
+#include "Object.h"
+class Entity : public Object
 {
 public:
 	Entity(int x, int y, SDL_Renderer* renderer);

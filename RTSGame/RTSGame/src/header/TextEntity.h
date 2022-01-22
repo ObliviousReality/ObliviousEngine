@@ -1,6 +1,7 @@
 #pragma once
 #include "Text.h"
-class TextEntity
+#include "Object.h"
+class TextEntity : public Object
 {
 public:
 	TextEntity(int x, int y, SDL_Renderer* renderer);
