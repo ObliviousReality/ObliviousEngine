@@ -12,4 +12,8 @@ DebugBox::~DebugBox()
 void DebugBox::update()
 {
 	x = x + 1;
+	if (x > 2560)
+	{
+		x = -100;
+	}
 }

@@ -1,4 +1,5 @@
 #include <SDL.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <sstream>
 #include "header/Timer.h"
@@ -9,6 +10,8 @@
 #include "header/FPSCounter.h"
 #include "header/ObjectList.h"
 #include "header/DebugBox.h"
+#include "header/MediaPlayer.h"
+#include "header/Music.h"
 
 
 SDL_Window* window = NULL;
@@ -20,13 +23,15 @@ const int SCREEN_HEIGHT = 1440;
 
 void quit() {
 	SDL_DestroyWindow(window);
+	Mix_Quit();
+	IMG_Quit();
 	TTF_Quit();
 	SDL_Quit();
 }
 
 
 void init() {
-	if (SDL_Init(SDL_INIT_VIDEO) < 0)
+	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
 	{
 		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
 	}
@@ -41,9 +46,13 @@ void init() {
 		else
 		{
 			int imgFlags = IMG_INIT_PNG;
-			if (!(IMG_Init(imgFlags)) & imgFlags)
+			if (!(IMG_Init(imgFlags) & imgFlags))
 			{
 				printf("Image library couldn't load :( \n");
+				quit();
+			}
+			if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+				printf("SDL_Mixer could not initialise \n");
 				quit();
 			}
 			if (TTF_Init() == -1)
@@ -74,6 +83,17 @@ void loop() {
 	DebugBox* db = new DebugBox(200, 200, renderer);
 	ObjectList::addItem(list, fc);
 	ObjectList::addItem(list, db);
+	Mix_AllocateChannels(16);
+	printf("Channels allocated: %i\n", Mix_AllocateChannels(-1));
+	Music* music = new Music("assets/ritn.mp3");
+	SoundEffect* effect = new SoundEffect("assets/pistol.ogg");
+	//Mix_Chunk* effect = Mix_LoadWAV("assets/pistol.ogg");
+	MediaPlayer::setGlobalVolume(16);
+
+	if (effect == NULL) {
+		printf("Failed to load effect: %s", Mix_GetError());
+		quit();
+	}
 	//SDL_Rect fillRect = { SCREEN_WIDTH / 20, SCREEN_HEIGHT / 20, 100, 100 };
 	while (!crashed) {
 
@@ -88,27 +108,27 @@ void loop() {
 				case SDLK_p:
 					crashed = true;
 					break;
-					{
+				case SDLK_k:
+					MediaPlayer::playMusic(music, 0);
+					break;
+				case SDLK_h:
+					MediaPlayer::playEffect(effect, 0);
+					break;
 				default:
 					break;
-					}
 				}
 			}
 		}
 		SDL_SetRenderDrawColor(renderer, 0x21, 0x00, 0x7F, 0xFF);
 		SDL_RenderClear(renderer);
-		SDL_SetRenderDrawColor(renderer, 0xBB, 0x00, 0x00, 0xFF);
-		//fillRect.x++;
-		//SDL_RenderFillRect(renderer, &fillRect);
 		ObjectList::render(list);
-		//level->draw();
 		SDL_RenderPresent(renderer);
 	}
 }
 
 int main(int argc, char* args[])
 {
-	printf("Hello World!\n");
+	//printf("Hello World!\n");
 
 	init();
 

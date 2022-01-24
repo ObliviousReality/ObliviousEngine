@@ -45,6 +45,15 @@
     <ClCompile Include="src\entities\DebugBox.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\global\MediaPlayer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\audio\SoundEffect.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\audio\Music.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\header\Timer.h">
@@ -74,6 +83,15 @@
     <ClInclude Include="src\header\DebugBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\header\MediaPlayer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\SoundEffect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\header\Music.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Font Include="assets\font.ttf" />
@@ -82,5 +100,11 @@
     <Image Include="assets\debug.png">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\ritn.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\pistol.ogg" />
   </ItemGroup>
 </Project>

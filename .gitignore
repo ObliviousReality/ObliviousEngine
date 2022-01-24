@@ -33,3 +33,6 @@
 /.vs
 /RTSGame/.vs/RTSGame/v16
 /RTSGame/x64/Debug
+/RTSGame/RTSGame/x64
+
+*.tlog

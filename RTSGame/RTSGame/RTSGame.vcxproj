@@ -78,13 +78,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\vclibs\SDL2_image-2.0.5\include;C:\vclibs\SDL2-2.0.14\include;C:\vclibs\SDL2_ttf-2.0.15\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vclibs\SDL2_image-2.0.5\lib\x64;C:\vclibs\SDL2-2.0.14\lib\x64;C:\vclibs\SDL2_ttf-2.0.15\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\vclibs\SDL2_mixer-2.0.4\include;C:\vclibs\SDL2_image-2.0.5\include;C:\vclibs\SDL2-2.0.14\include;C:\vclibs\SDL2_ttf-2.0.15\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\vclibs\SDL2_mixer-2.0.4\lib\x64;C:\vclibs\SDL2_image-2.0.5\lib\x64;C:\vclibs\SDL2-2.0.14\lib\x64;C:\vclibs\SDL2_ttf-2.0.15\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\vclibs\SDL2_image-2.0.5\include;C:\vclibs\SDL2-2.0.14\include;C:\vclibs\SDL2_ttf-2.0.15\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vclibs\SDL2_image-2.0.5\lib\x64;C:\vclibs\SDL2-2.0.14\lib\x64;C:\vclibs\SDL2_ttf-2.0.15\lib\x64;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\vclibs\SDL2_mixer-2.0.4\include;C:\vclibs\SDL2_image-2.0.5\include;C:\vclibs\SDL2-2.0.14\include;C:\vclibs\SDL2_ttf-2.0.15\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\vclibs\SDL2_mixer-2.0.4\lib\x64;C:\vclibs\SDL2_image-2.0.5\lib\x64;C:\vclibs\SDL2-2.0.14\lib\x64;C:\vclibs\SDL2_ttf-2.0.15\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -124,7 +124,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,10 +141,13 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_image.lib;SDL2_ttf.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\audio\Music.cpp" />
+    <ClCompile Include="src\core\audio\SoundEffect.cpp" />
+    <ClCompile Include="src\global\MediaPlayer.cpp" />
     <ClCompile Include="src\entities\DebugBox.cpp" />
     <ClCompile Include="src\core\ObjectList.cpp" />
     <ClCompile Include="src\entities\Object.cpp" />
@@ -157,6 +160,9 @@
     <ClCompile Include="src\entities\TextEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\header\Music.h" />
+    <ClInclude Include="src\header\SoundEffect.h" />
+    <ClInclude Include="src\header\MediaPlayer.h" />
     <ClInclude Include="src\header\DebugBox.h" />
     <ClInclude Include="src\header\ObjectList.h" />
     <ClInclude Include="src\header\Object.h" />
@@ -172,6 +178,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\debug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\ritn.mp3" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\pistol.ogg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
