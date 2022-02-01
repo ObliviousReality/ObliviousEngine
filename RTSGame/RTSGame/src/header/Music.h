@@ -7,7 +7,10 @@ public:
 	~Music();
 
 	Mix_Music* getMusic();
+	bool getPlaying();
+	void setPlaying(bool b);
 private:
 	Mix_Music* music;
+	bool playing;
 };
 

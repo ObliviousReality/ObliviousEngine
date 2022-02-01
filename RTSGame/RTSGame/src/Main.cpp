@@ -84,9 +84,13 @@ void loop() {
 	ObjectList::addItem(list, fc);
 	ObjectList::addItem(list, db);
 	Mix_AllocateChannels(16);
-	printf("Channels allocated: %i\n", Mix_AllocateChannels(-1));
+	//printf("Channels allocated: %i\n", Mix_AllocateChannels(-1));
 	Music* music = new Music("assets/ritn.mp3");
 	SoundEffect* effect = new SoundEffect("assets/pistol.ogg");
+	if (effect->getEffect() == NULL)
+	{
+		printf("Error: %s\n", Mix_GetError());
+	}
 	//Mix_Chunk* effect = Mix_LoadWAV("assets/pistol.ogg");
 	MediaPlayer::setGlobalVolume(16);
 
@@ -112,6 +116,7 @@ void loop() {
 					MediaPlayer::playMusic(music, 0);
 					break;
 				case SDLK_h:
+					printf("H pressed\n");
 					MediaPlayer::playEffect(effect, 0);
 					break;
 				default:

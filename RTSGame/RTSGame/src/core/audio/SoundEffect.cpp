@@ -1,9 +1,16 @@
 #include "..\..\header\SoundEffect.h"
+#include <stdio.h>
 
 SoundEffect::SoundEffect(const char* fileName)
 {
 	effect = Mix_LoadWAV(fileName);
+	if (effect == NULL)
+	{
+		printf("Error: %s\n", Mix_GetError());
+	}
 	channel = -1;
+	playing = false;
+	hook = &SoundEffect::end;
 }
 
 SoundEffect::~SoundEffect()
@@ -24,5 +31,24 @@ void SoundEffect::setChannel(int channel)
 int SoundEffect::getChannel()
 {
 	return channel;
+}
+
+bool SoundEffect::isPlaying()
+{
+	return playing;
+}
+
+void SoundEffect::setPlaying(bool b)
+{
+	playing = b;
+}
+
+void SoundEffect::end()
+{
+}
+
+SoundEffect* SoundEffect::getHook()
+{
+	return hook;
 }
 

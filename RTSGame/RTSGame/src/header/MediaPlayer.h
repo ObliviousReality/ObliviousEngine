@@ -20,5 +20,9 @@ public:
 	static void stopEffect(SoundEffect* effect);
 	static void setEffectVolume(SoundEffect* effect, int volume);
 
+private:
+	static void effectEnded(int channel);
+	static void musicEnded();
+
 };
 
