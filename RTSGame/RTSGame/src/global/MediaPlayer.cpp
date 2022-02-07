@@ -23,7 +23,6 @@ void MediaPlayer::playEffect(SoundEffect* effect, int loops)
 	{
 		printf("Error: %s\n", Mix_GetError());
 	}
-	Mix_ChannelFinished(MediaPlayer::effectEnded);
 }
 
 void MediaPlayer::playMusic(Music* music, int loops)

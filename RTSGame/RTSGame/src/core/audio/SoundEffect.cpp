@@ -1,5 +1,6 @@
 #include "..\..\header\SoundEffect.h"
 #include <stdio.h>
+#include <functional>
 
 SoundEffect::SoundEffect(const char* fileName)
 {
@@ -10,7 +11,7 @@ SoundEffect::SoundEffect(const char* fileName)
 	}
 	channel = -1;
 	playing = false;
-	hook = &SoundEffect::end;
+	//hook = &SoundEffect::end;
 }
 
 SoundEffect::~SoundEffect()
@@ -45,10 +46,5 @@ void SoundEffect::setPlaying(bool b)
 
 void SoundEffect::end()
 {
-}
-
-SoundEffect* SoundEffect::getHook()
-{
-	return hook;
 }
 
