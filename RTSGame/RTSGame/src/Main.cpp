@@ -6,12 +6,9 @@
 #include <iostream>
 #include <SDL_ttf.h>
 #include <SDL_image.h>
-#include "header/Text.h"
-#include "header/FPSCounter.h"
-#include "header/ObjectList.h"
-#include "header/DebugBox.h"
 #include "header/MediaPlayer.h"
 #include "header/Music.h"
+#include "header/Scene.h"
 
 
 SDL_Window* window = NULL;
@@ -73,16 +70,14 @@ void loop() {
 
 	bool crashed = false;
 	SDL_Event e;
-	ObjectList::ObjectNode* list = ObjectList::create();
 	/*TTF_Font* font = TTF_OpenFont("assets/font.ttf", 20);
 	if (font == NULL)
 	{
 		printf("Font failed to load\n");
 	}*/
-	FPSCounter* fc = new FPSCounter(100, 100, renderer);
-	DebugBox* db = new DebugBox(200, 200, renderer);
-	ObjectList::addItem(list, fc);
-	ObjectList::addItem(list, db);
+
+	Scene* s = new Scene(renderer);
+	
 	Mix_AllocateChannels(16);
 	//printf("Channels allocated: %i\n", Mix_AllocateChannels(-1));
 	Music* music = new Music("assets/ritn.mp3");
@@ -126,7 +121,8 @@ void loop() {
 		}
 		SDL_SetRenderDrawColor(renderer, 0x21, 0x00, 0x7F, 0xFF);
 		SDL_RenderClear(renderer);
-		ObjectList::render(list);
+		//ObjectList::render(list);
+		s->update();
 		SDL_RenderPresent(renderer);
 	}
 }

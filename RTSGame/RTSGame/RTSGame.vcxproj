@@ -145,6 +145,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Scene.cpp" />
     <ClCompile Include="src\core\audio\Music.cpp" />
     <ClCompile Include="src\core\audio\SoundEffect.cpp" />
     <ClCompile Include="src\global\MediaPlayer.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="src\entities\TextEntity.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\header\Scene.h" />
     <ClInclude Include="src\header\Music.h" />
     <ClInclude Include="src\header\SoundEffect.h" />
     <ClInclude Include="src\header\MediaPlayer.h" />
