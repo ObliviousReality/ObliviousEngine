@@ -114,6 +114,9 @@ void loop() {
 					printf("H pressed\n");
 					MediaPlayer::playEffect(effect, 0);
 					break;
+				case SDLK_j:
+					MediaPlayer::stop();
+					break;
 				default:
 					break;
 				}
