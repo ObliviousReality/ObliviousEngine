@@ -130,7 +130,7 @@ void loop() {
 	}
 }
 
-int main(int argc, char* args[])
+int wmain(int argc, char* args[])
 {
 	//printf("Hello World!\n");
 
