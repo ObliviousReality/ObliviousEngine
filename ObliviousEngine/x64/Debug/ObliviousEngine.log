@@ -1,0 +1,22 @@
+﻿  pch.cpp
+  dllmain.cpp
+  ObliviousEngine.cpp
+  Music.cpp
+  SoundEffect.cpp
+  ObjectList.cpp
+  Renderer.cpp
+  Scene.cpp
+  Text.cpp
+  Texture.cpp
+  Timer.cpp
+  Window.cpp
+  DebugBox.cpp
+  Entity.cpp
+  FPSCounter.cpp
+D:\Programming\C++\ObliviousEngine\ObliviousEngine\src\entities\FPSCounter.cpp(29,25): warning C4244: '=': conversion from 'float' to 'int', possible loss of data
+  Object.cpp
+  TextEntity.cpp
+  MediaPlayer.cpp
+  OE.cpp
+  Generating Code...
+  ObliviousEngine.vcxproj -> D:\Programming\C++\ObliviousEngine\x64\Debug\ObliviousEngine.lib
