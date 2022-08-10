@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\OE.cpp" />
     <ClCompile Include="src\core\Renderer.cpp" />
     <ClCompile Include="src\core\audio\Music.cpp" />
     <ClCompile Include="src\core\audio\SoundEffect.cpp" />
@@ -134,6 +135,7 @@
     <ClCompile Include="src\core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\header\Renderer.h" />
     <ClInclude Include="src\header\DebugBox.h" />
     <ClInclude Include="src\header\Entity.h" />

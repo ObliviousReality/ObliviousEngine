@@ -1,4 +1,4 @@
-﻿  Renderer.cpp
-  Window.cpp
+﻿  Main.cpp
+  OE.cpp
   Generating Code...
   ObliviousEngine.vcxproj -> D:\Programming\C++\ObliviousEngine\x64\Debug\ObliviousEngine.exe

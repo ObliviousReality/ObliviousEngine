@@ -1,18 +1,12 @@
-#include <SDL.h>
-#include <SDL_mixer.h>
-#include <stdio.h>
-#include <sstream>
 #include "header/Timer.h"
-#include <iostream>
-#include <SDL_ttf.h>
-#include <SDL_image.h>
 #include "header/MediaPlayer.h"
 #include "header/Music.h"
 #include "header/Scene.h"
 #include "header/Window.h"
 #include "header/Renderer.h"
+#include "OE.h"
 
-
+OE* engine = new OE();
 Window* window = new Window();
 Renderer* renderer = NULL;
 
@@ -22,27 +16,18 @@ const int SCREEN_HEIGHT = 1440;
 
 void quit() {
 	window->destroy();
-	Mix_Quit();
-	IMG_Quit();
-	TTF_Quit();
-	SDL_Quit();
+	engine->exit();
 }
 
 
 void init() {
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0)
-	{
-		printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+	engine->init();
+	//Create window
+	window->create("EPIC WINDOW", SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+	if (window->getWindow() == NULL) {
+		quit();
 	}
-	else
-	{
-		//Create window
-		window->create("EPIC WINDOW", SCREEN_WIDTH, SCREEN_HEIGHT, 1);
-		if (window->getWindow() == NULL) {
-			quit();
-		}
-		renderer = new Renderer(window, false, true, true, false);
-	}
+	renderer = new Renderer(window, false, true, true, false);
 }
 
 void loop() {

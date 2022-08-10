@@ -12,7 +12,22 @@ Window::~Window()
 
 SDL_Window* Window::create(char* name, int w, int h, int size)
 {
-	window = SDL_CreateWindow(name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, SDL_WINDOW_FULLSCREEN_DESKTOP);
+	int flag = 0;
+	switch (size)
+	{
+	case 0:
+		flag = SDL_WINDOW_FULLSCREEN;
+		break;
+	case 1:
+		flag = SDL_WINDOW_FULLSCREEN_DESKTOP;
+		break;
+	case 2:
+		flag = SDL_WINDOW_MAXIMIZED;
+		break;
+	default:
+		break;
+	}
+	window = SDL_CreateWindow(name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flag);
 	bool s = initFeat();
 	if (s) {
 		return window;
