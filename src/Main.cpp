@@ -9,17 +9,19 @@
 #include "header/MediaPlayer.h"
 #include "header/Music.h"
 #include "header/Scene.h"
+#include "header/Window.h"
+#include "header/Renderer.h"
 
 
-SDL_Window* window = NULL;
-SDL_Renderer* renderer = NULL;
+Window* window = new Window();
+Renderer* renderer = NULL;
 
 //Screen dimension constants
 const int SCREEN_WIDTH = 2560;
 const int SCREEN_HEIGHT = 1440;
 
 void quit() {
-	SDL_DestroyWindow(window);
+	window->destroy();
 	Mix_Quit();
 	IMG_Quit();
 	TTF_Quit();
@@ -35,34 +37,11 @@ void init() {
 	else
 	{
 		//Create window
-		window = SDL_CreateWindow("SDL Tutorial", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_FULLSCREEN_DESKTOP);
-		if (window == NULL)
-		{
-			printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+		window->create("EPIC WINDOW", SCREEN_WIDTH, SCREEN_HEIGHT, 1);
+		if (window->getWindow() == NULL) {
+			quit();
 		}
-		else
-		{
-			int imgFlags = IMG_INIT_PNG;
-			if (!(IMG_Init(imgFlags) & imgFlags))
-			{
-				printf("Image library couldn't load :( \n");
-				quit();
-			}
-			if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-				printf("SDL_Mixer could not initialise \n");
-				quit();
-			}
-			if (TTF_Init() == -1)
-			{
-				printf("Could not load SDL_ttf\n");
-				quit();
-			}
-			renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-			if (renderer == NULL)
-			{
-				printf("Renderer could not be created :(\n");
-			}
-		}
+		renderer = new Renderer(window, false, true, true, false);
 	}
 }
 
@@ -76,8 +55,8 @@ void loop() {
 		printf("Font failed to load\n");
 	}*/
 
-	Scene* s = new Scene(renderer);
-	
+	Scene* s = new Scene(renderer->getRenderer());
+
 	Mix_AllocateChannels(16);
 	//printf("Channels allocated: %i\n", Mix_AllocateChannels(-1));
 	Music* music = new Music("assets/ritn.mp3");
@@ -122,11 +101,11 @@ void loop() {
 				}
 			}
 		}
-		SDL_SetRenderDrawColor(renderer, 0x21, 0x00, 0x7F, 0xFF);
-		SDL_RenderClear(renderer);
+		renderer->setDrawColour(0x21, 0x00, 0x7F, 0xFF);
+		renderer->clear();
 		//ObjectList::render(list);
 		s->update();
-		SDL_RenderPresent(renderer);
+		renderer->render();
 	}
 }
 

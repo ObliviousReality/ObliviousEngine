@@ -116,6 +116,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Renderer.cpp" />
     <ClCompile Include="src\core\audio\Music.cpp" />
     <ClCompile Include="src\core\audio\SoundEffect.cpp" />
     <ClCompile Include="src\core\ObjectList.cpp" />
@@ -130,8 +131,10 @@
     <ClCompile Include="src\entities\TextEntity.cpp" />
     <ClCompile Include="src\global\MediaPlayer.cpp" />
     <ClCompile Include="src\Main.cpp" />
+    <ClCompile Include="src\core\Window.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\header\Renderer.h" />
     <ClInclude Include="src\header\DebugBox.h" />
     <ClInclude Include="src\header\Entity.h" />
     <ClInclude Include="src\header\FPSCounter.h" />
@@ -145,6 +148,7 @@
     <ClInclude Include="src\header\TextEntity.h" />
     <ClInclude Include="src\header\Texture.h" />
     <ClInclude Include="src\header\Timer.h" />
+    <ClInclude Include="src\header\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\debug.png" />
