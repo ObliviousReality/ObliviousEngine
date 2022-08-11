@@ -165,7 +165,10 @@
     </ProjectReference>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\header\Colour.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="src\header\KeyInput.h" />
+    <ClInclude Include="src\header\EventHandler.h" />
     <ClInclude Include="ObliviousEngine.h" />
     <ClInclude Include="src\header\DebugBox.h" />
     <ClInclude Include="src\header\Entity.h" />
@@ -186,7 +189,10 @@
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\core\Colour.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="src\core\KeyInput.cpp" />
+    <ClCompile Include="src\core\EventHandler.cpp" />
     <ClCompile Include="ObliviousEngine.cpp" />
     <ClCompile Include="src\core\audio\Music.cpp" />
     <ClCompile Include="src\core\audio\SoundEffect.cpp" />

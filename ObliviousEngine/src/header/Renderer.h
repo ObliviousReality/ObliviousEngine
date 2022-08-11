@@ -1,5 +1,6 @@
 #pragma once
 #include "Window.h"
+#include "Colour.h"
 class Renderer
 {
 public:
@@ -7,6 +8,7 @@ public:
 	~Renderer();
 	SDL_Renderer* getRenderer();
 	void setDrawColour(int r, int g, int b, int a = 0);
+	void setDrawColour(Colour c);
 	void clear();
 	void render();
 private:

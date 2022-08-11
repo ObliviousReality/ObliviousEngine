@@ -1,5 +1,8 @@
 ﻿  pch.cpp
+  Colour.cpp
   dllmain.cpp
+  KeyInput.cpp
+  EventHandler.cpp
   ObliviousEngine.cpp
   Music.cpp
   SoundEffect.cpp
@@ -17,10 +20,11 @@ D:\Programming\C++\ObliviousEngine\ObliviousEngine\src\entities\FPSCounter.cpp(2
   Object.cpp
   TextEntity.cpp
   MediaPlayer.cpp
+  Compiling...
   OE.cpp
   Generating code
-  0 of 49 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+  3 of 49 functions ( 6.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    2 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   ObliviousEngine.vcxproj -> D:\Programming\C++\ObliviousEngine\x64\Release\ObliviousEngine.dll

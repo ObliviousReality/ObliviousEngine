@@ -25,6 +25,11 @@ void Renderer::setDrawColour(int r, int g, int b, int a)
 	SDL_SetRenderDrawColor(renderer, r, g, b, a);
 }
 
+void Renderer::setDrawColour(Colour c)
+{
+	SDL_SetRenderDrawColor(renderer, c.getR(), c.getG(), c.getB(), c.getA());
+}
+
 void Renderer::clear()
 {
 	SDL_RenderClear(renderer);
