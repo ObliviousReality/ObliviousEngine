@@ -59,8 +59,6 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\ObliviousEngine\</IntDir>
     <TargetName>ObliviousEngine</TargetName>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>C:\vclibs\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vclibs\SDL2-2.0.14\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -68,8 +66,6 @@
     <IntDir>..\bin-int\Release-windows-x86_64\ObliviousEngine\</IntDir>
     <TargetName>ObliviousEngine</TargetName>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>C:\vclibs\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vclibs\SDL2-2.0.14\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -77,15 +73,14 @@
     <IntDir>..\bin-int\Dist-windows-x86_64\ObliviousEngine\</IntDir>
     <TargetName>ObliviousEngine</TargetName>
     <TargetExt>.dll</TargetExt>
-    <IncludePath>C:\vclibs\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\vclibs\SDL2-2.0.14\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -94,8 +89,9 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
@@ -103,10 +99,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -119,8 +116,9 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
@@ -128,10 +126,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -144,24 +143,25 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
       <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <ImportLibrary>..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\ObliviousEngine\Colour.h" />
-    <ClInclude Include="src\ObliviousEngine\EventHandler.h" />
-    <ClInclude Include="src\ObliviousEngine\KeyInput.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer.h" />
-    <ClInclude Include="src\ObliviousEngine\Window.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Application.h" />
+    <ClInclude Include="src\ObliviousEngine\Colour.h" />
     <ClInclude Include="src\ObliviousEngine\Core.h" />
     <ClInclude Include="src\ObliviousEngine\EntryPoint.h" />
+    <ClInclude Include="src\ObliviousEngine\EventHandler.h" />
+    <ClInclude Include="src\ObliviousEngine\KeyInput.h" />
     <ClInclude Include="src\ObliviousEngine\Log.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer.h" />
+    <ClInclude Include="src\ObliviousEngine\Window.h" />
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -172,7 +172,9 @@
     <ClCompile Include="src\ObliviousEngine\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Window.cpp" />
-    <ClCompile Include="src\oepch.cpp" />
+    <ClCompile Include="src\oepch.cpp">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

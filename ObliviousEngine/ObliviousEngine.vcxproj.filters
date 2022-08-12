@@ -10,34 +10,54 @@
     <ClInclude Include="src\ObliviousEngine\Application.h">
       <Filter>ObliviousEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Colour.h">
+      <Filter>ObliviousEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core.h">
       <Filter>ObliviousEngine</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\EntryPoint.h">
       <Filter>ObliviousEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\EventHandler.h">
+      <Filter>ObliviousEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\KeyInput.h">
+      <Filter>ObliviousEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Log.h">
       <Filter>ObliviousEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Renderer.h">
+      <Filter>ObliviousEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Window.h">
+      <Filter>ObliviousEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\oepch.h" />
-    <ClInclude Include="src\ObliviousEngine\Colour.h" />
-    <ClInclude Include="src\ObliviousEngine\EventHandler.h" />
-    <ClInclude Include="src\ObliviousEngine\KeyInput.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer.h" />
-    <ClInclude Include="src\ObliviousEngine\Window.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Application.cpp">
       <Filter>ObliviousEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Colour.cpp">
+      <Filter>ObliviousEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\EventHandler.cpp">
+      <Filter>ObliviousEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\KeyInput.cpp">
+      <Filter>ObliviousEngine</Filter>
+    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Log.cpp">
       <Filter>ObliviousEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Renderer.cpp">
+      <Filter>ObliviousEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Window.cpp">
+      <Filter>ObliviousEngine</Filter>
+    </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Colour.cpp" />
-    <ClCompile Include="src\ObliviousEngine\EventHandler.cpp" />
-    <ClCompile Include="src\ObliviousEngine\KeyInput.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Window.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer.cpp" />
   </ItemGroup>
 </Project>

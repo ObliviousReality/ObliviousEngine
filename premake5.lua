@@ -18,6 +18,9 @@ project "ObliviousEngine"
 	targetdir  ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir .. "/%{prj.name}")
 
+	pchheader "oepch.h"
+	pchsource "ObliviousEngine/src/oepch.cpp"
+
 	files
 	{
 		"%{prj.name}/src/**.h",
@@ -27,7 +30,19 @@ project "ObliviousEngine"
 	includedirs
 	{
 		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/vendor/spdlog/include",
+		"%{prj.name}/vendor/SDL/include"
+	}
+
+	libdirs
+	{
+		"%{prj.name}/vendor/SDL/lib/x64"
+	}
+
+	links
+	{
+		"SDL2",
+		"SDL2main"
 	}
 
 	filter "system:windows"
@@ -77,12 +92,20 @@ project "Sandbox"
 	includedirs
 	{
 		"ObliviousEngine/vendor/spdlog/include",
+		"ObliviousEngine/vendor/SDL/include",
 		"ObliviousEngine/src"
+	}
+
+	libdirs
+	{
+		"ObliviousEngine/vendor/SDL/lib/x64"
 	}
 
 	links
 	{
-		"ObliviousEngine"
+		"ObliviousEngine",
+		"SDL2",
+		"SDL2main"
 	}
 
 	filter "system:windows"
