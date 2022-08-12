@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -89,8 +89,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;vendor\SDLTTF\lib\x64;vendor\SDLImage\lib\x64;vendor\SDLMixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -103,7 +103,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -116,8 +116,8 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;vendor\SDLTTF\lib\x64;vendor\SDLImage\lib\x64;vendor\SDLMixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -130,7 +130,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -143,8 +143,8 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;vendor\SDLTTF\lib\x64;vendor\SDLImage\lib\x64;vendor\SDLMixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ImportLibrary>..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
@@ -152,26 +152,52 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\OE.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h" />
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\OE.h" />
+    <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h" />
+    <ClInclude Include="src\ObliviousEngine\Audio\Music.h" />
+    <ClInclude Include="src\ObliviousEngine\Audio\SoundEffect.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EventHandler.h" />
     <ClInclude Include="src\ObliviousEngine\Core\KeyInput.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Log.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Timer.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\DebugBox.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\Entity.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\FPSCounter.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\Object.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\ObjectList.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\TextEntity.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Scene.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Text.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Texture.h" />
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Audio\Music.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Audio\SoundEffect.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\EventHandler.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\KeyInput.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Window.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\DebugBox.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\Entity.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\FPSCounter.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\Object.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\ObjectList.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\TextEntity.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Scene.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\oepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

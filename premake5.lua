@@ -31,18 +31,27 @@ project "ObliviousEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/vendor/SDL/include"
+		"%{prj.name}/vendor/SDL/include",
+		"%{prj.name}/vendor/SDLTTF/include",
+		"%{prj.name}/vendor/SDLImage/include",
+		"%{prj.name}/vendor/SDLMixer/include"
 	}
 
 	libdirs
 	{
-		"%{prj.name}/vendor/SDL/lib/x64"
+		"%{prj.name}/vendor/SDL/lib/x64",
+		"%{prj.name}/vendor/SDLTTF/lib/x64",
+		"%{prj.name}/vendor/SDLImage/lib/x64",
+		"%{prj.name}/vendor/SDLMixer/lib/x64"
 	}
 
 	links
 	{
 		"SDL2",
-		"SDL2main"
+		"SDL2main",
+		"SDL2_ttf",
+		"SDL2_image",
+		"SDL2_mixer"
 	}
 
 	filter "system:windows"
@@ -93,19 +102,28 @@ project "Sandbox"
 	{
 		"ObliviousEngine/vendor/spdlog/include",
 		"ObliviousEngine/vendor/SDL/include",
+		"ObliviousEngine/vendor/SDLTTF/include",
+		"ObliviousEngine/vendor/SDLImage/include",
+		"ObliviousEngine/vendor/SDLMixer/include",
 		"ObliviousEngine/src"
 	}
 
 	libdirs
 	{
-		"ObliviousEngine/vendor/SDL/lib/x64"
+		"ObliviousEngine/vendor/SDL/lib/x64",
+		"ObliviousEngine/vendor/SDLTTF/lib/x64",
+		"ObliviousEngine/vendor/SDLImage/lib/x64",
+		"ObliviousEngine/vendor/SDLMixer/lib/x64"
 	}
 
 	links
 	{
 		"ObliviousEngine",
 		"SDL2",
-		"SDL2main"
+		"SDL2main",
+		"SDL2_ttf",
+		"SDL2_image",
+		"SDL2_mixer"
 	}
 
 	filter "system:windows"

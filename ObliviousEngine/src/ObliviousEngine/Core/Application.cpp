@@ -2,7 +2,9 @@
 #include "Application.h"
 #include "Log.h"
 //#define SDL_MAIN_HANDLED
+#pragma warning(push, 0)
 #include <SDL.h>
+#pragma warning(pop)
 //#include "EventHandler.cpp"
 //#include "KeyInput.cpp"
 
@@ -10,7 +12,6 @@
 namespace OE {
 
 	Application::Application() {
-
 	}
 
 	Application::~Application() {
@@ -21,10 +22,12 @@ namespace OE {
 	{
 		loop();
 	}
+
 	void Application::loop()
 	{
 		OE_CORE_WARN("This should not be visible - Application::loop() should be overrridden.");
 	}
+
 	void Application::init()
 	{
 		OE_CORE_TRACE("SDL2 Initialising:");
@@ -34,6 +37,7 @@ namespace OE {
 		}
 		OE_CORE_INFO("SDL Launched succesfully.");
 	}
+
 	void Application::quit()
 	{
 		OE_CORE_TRACE("Quitting SDL:");
