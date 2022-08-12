@@ -59,6 +59,8 @@
     <IntDir>..\bin-int\Debug-windows-x86_64\ObliviousEngine\</IntDir>
     <TargetName>ObliviousEngine</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>C:\vclibs\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\vclibs\SDL2-2.0.14\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -66,6 +68,8 @@
     <IntDir>..\bin-int\Release-windows-x86_64\ObliviousEngine\</IntDir>
     <TargetName>ObliviousEngine</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>C:\vclibs\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\vclibs\SDL2-2.0.14\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -73,6 +77,8 @@
     <IntDir>..\bin-int\Dist-windows-x86_64\ObliviousEngine\</IntDir>
     <TargetName>ObliviousEngine</TargetName>
     <TargetExt>.dll</TargetExt>
+    <IncludePath>C:\vclibs\SDL2-2.0.14\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\vclibs\SDL2-2.0.14\lib\x64;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -89,6 +95,7 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Debug-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Debug-windows-x86_64\Sandbox &gt; nul)</Command>
@@ -113,6 +120,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Release-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Release-windows-x86_64\Sandbox &gt; nul)</Command>
@@ -137,12 +145,18 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <ImportLibrary>..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.lib</ImportLibrary>
+      <AdditionalDependencies>SDL2.lib;SDL2main.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
       <Command>IF EXIST ..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.dll\ (xcopy /Q /E /Y /I ..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul) ELSE (xcopy /Q /Y /I ..\bin\Dist-windows-x86_64\ObliviousEngine\ObliviousEngine.dll ..\bin\Dist-windows-x86_64\Sandbox &gt; nul)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ObliviousEngine\Colour.h" />
+    <ClInclude Include="src\ObliviousEngine\EventHandler.h" />
+    <ClInclude Include="src\ObliviousEngine\KeyInput.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer.h" />
+    <ClInclude Include="src\ObliviousEngine\Window.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core.h" />
@@ -152,7 +166,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Application.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Colour.cpp" />
+    <ClCompile Include="src\ObliviousEngine\EventHandler.cpp" />
+    <ClCompile Include="src\ObliviousEngine\KeyInput.cpp" />
     <ClCompile Include="src\ObliviousEngine\Log.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Window.cpp" />
     <ClCompile Include="src\oepch.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -1,4 +1,7 @@
 #pragma once
+#ifndef APPLICATION_H
+#define APPLICATION_H
+
 
 #include "Core.h"
 
@@ -9,8 +12,11 @@ namespace OE {
 	public:
 		Application();
 		virtual ~Application();
-
+		void init();
+		void quit();
 		void run();
+	private:
+		
 	};
 
 	//Client side
@@ -18,3 +24,4 @@ namespace OE {
 
 }
 
+#endif // !APPLICATION_H
