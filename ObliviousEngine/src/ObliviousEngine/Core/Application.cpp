@@ -19,12 +19,15 @@ namespace OE {
 
 	void Application::run()
 	{
-		OE_TRACE("Application Started");
+		loop();
+	}
+	void Application::loop()
+	{
+		OE_CORE_WARN("This should not be visible - Application::loop() should be overrridden.");
 	}
 	void Application::init()
 	{
 		OE_CORE_TRACE("SDL2 Initialising:");
-		SDL_SetMainReady();
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
 			OE_CORE_ERROR("SDL Failed to launch. Terminating.");
@@ -33,7 +36,7 @@ namespace OE {
 	}
 	void Application::quit()
 	{
-		OE_CORE_TRACE("Quitting SDL.");
+		OE_CORE_TRACE("Quitting SDL:");
 		SDL_Quit();
 		OE_CORE_ERROR("SDL Quit.");
 	}

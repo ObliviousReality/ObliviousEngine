@@ -12,6 +12,13 @@
 
 namespace OE {
 
+	const typedef enum {
+		NONE,
+		FULLSCREEN,
+		FULLSCREEN_DESKTOP,
+		MAXIMISED,
+	} OEResolution;
+
 	class OBLIVIOUSENGINE_API Window
 	{
 	public:

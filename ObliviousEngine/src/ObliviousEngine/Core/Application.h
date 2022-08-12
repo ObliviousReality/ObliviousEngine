@@ -12,9 +12,10 @@ namespace OE {
 	public:
 		Application();
 		virtual ~Application();
-		void init();
-		void quit();
+		static void init();
+		static void quit();
 		void run();
+		virtual void loop();
 	private:
 		
 	};

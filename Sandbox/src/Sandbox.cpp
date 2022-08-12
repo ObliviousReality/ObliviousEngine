@@ -1,16 +1,26 @@
 #include <OE.h>
-#include <ObliviousEngine/EntryPoint.h>
-#include <ObliviousEngine/Window.cpp>
+#include <ObliviousEngine/Core/EntryPoint.h>
+#include <ObliviousEngine/Core/Window.h>
 //#include <ObliviousEngine/EventHandler.cpp>
-#include <ObliviousEngine/KeyInput.cpp>
+#include <ObliviousEngine/Core/KeyInput.h>
 
 class Sandbox : public OE::Application {
 public:
 	Sandbox() {
+		OE_TRACE("Sandbox Started");
+		
+		
+	}
+	~Sandbox() {
+		OE_TRACE("Sandbox ended.");
+	}
+
+	void loop()
+	{
+		OE_INFO("In loop function of Application");
 		OE::Window* window = new OE::Window();
-		window->create("Test", 200, 200, 3);
+		window->create("Test", 2560, 1440, OE::MAXIMISED);
 		OE::Renderer* renderer = new OE::Renderer(window);
-		OE::Application::init();
 		bool crashed = false;
 		OE::EventHandler* handler = new OE::EventHandler();
 		OE::KeyInput* quitEvent = new OE::KeyInput(handler);
@@ -25,14 +35,11 @@ public:
 			renderer->clear();
 			renderer->render();
 		}
-		quit();
-	}
-	~Sandbox() {
-
 	}
 };
 
 OE::Application* OE::CreateApplication() {
+	OE_INFO("App created.");
 	return new Sandbox();
 }
 

@@ -3,13 +3,13 @@
 // FOR APPLICATION USE ONLY.
 
 
-#include "ObliviousEngine/Log.h"
-#include "ObliviousEngine/Renderer.h"
-#include "ObliviousEngine/Colour.h"
-#include "ObliviousEngine/EventHandler.h"
-#include "ObliviousEngine/KeyInput.h"
-#include "ObliviousEngine/Window.h"
-#include "ObliviousEngine/Application.h"
+#include "ObliviousEngine/Core/Log.h"
+#include "ObliviousEngine/Renderer/Renderer.h"
+#include "ObliviousEngine/Renderer/Colour.h"
+#include "ObliviousEngine/Core/EventHandler.h"
+#include "ObliviousEngine/Core/KeyInput.h"
+#include "ObliviousEngine/Core/Window.h"
+#include "ObliviousEngine/Core/Application.h"
 
 // ENTRY POINT:
-#include "ObliviousEngine/EntryPoint.h"
+#include "ObliviousEngine/Core/EntryPoint.h"

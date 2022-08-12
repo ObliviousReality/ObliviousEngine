@@ -4,8 +4,8 @@
 
 
 #include "Core.h"
-#include "Window.h"
 #include "Colour.h"
+#include <ObliviousEngine/Core/Window.h>
 
 namespace OE {
 
