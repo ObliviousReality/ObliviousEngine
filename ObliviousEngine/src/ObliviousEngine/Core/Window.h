@@ -2,13 +2,12 @@
 #ifndef WINDOW_H
 #define WINDOW_H
 #include "Core.h"
-//#define SDL_MAIN_HANDLED
 #pragma warning(push, 0)
 #include <SDL.h>
 #pragma warning(pop)
-//#include <SDL_ttf.h>
-//#include <SDL_image.h>
-//#include <SDL_mixer.h>
+#include <SDL_ttf.h>
+#include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <stdio.h>
 #include <sstream>
 

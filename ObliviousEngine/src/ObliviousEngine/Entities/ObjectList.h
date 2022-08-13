@@ -4,7 +4,7 @@
 
 namespace OE {
 
-	class ObjectList
+	class OBLIVIOUSENGINE_API ObjectList
 	{
 	public:
 		struct ObjectNode

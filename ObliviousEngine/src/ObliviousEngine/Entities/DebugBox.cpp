@@ -6,7 +6,7 @@ namespace OE {
 	DebugBox::DebugBox(int x, int y, SDL_Renderer* renderer, EventHandler* handler) : Entity(x, y, renderer)
 	{
 		texture.loadFromFile("assets/debug.png");
-		k = new KeyInput(handler);
+		k = new InputEvent(handler);
 		k->addKeyPress(KEY_G);
 	}
 

@@ -1,18 +1,18 @@
 #include "oepch.h"
-#include "KeyInput.h"
+#include "InputEvent.h"
 
 namespace OE {
 
-	KeyInput::KeyInput(EventHandler* handler)
+	InputEvent::InputEvent(EventHandler* handler)
 	{
 		this->handler = handler;
 	}
 
-	KeyInput::~KeyInput()
+	InputEvent::~InputEvent()
 	{
 	}
 
-	void KeyInput::addKeyPress(OEKeys key)
+	void InputEvent::addKeyPress(OEKeys key)
 	{
 		keyPressList[keyPressLength] = key;
 		keyPressLength++;
@@ -21,7 +21,7 @@ namespace OE {
 		}
 	}
 
-	void KeyInput::removeKeyPress(OEKeys key)
+	void InputEvent::removeKeyPress(OEKeys key)
 	{
 		int* tempList = keyPressList;
 		keyPressLength = 0;
@@ -38,7 +38,7 @@ namespace OE {
 		}
 	}
 
-	void KeyInput::addKeyRelease(OEKeys key)
+	void InputEvent::addKeyRelease(OEKeys key)
 	{
 		keyReleaseList[keyReleaseLength] = key;
 		keyReleaseLength++;
@@ -47,7 +47,7 @@ namespace OE {
 		}
 	}
 
-	void KeyInput::removeKeyRelease(OEKeys key)
+	void InputEvent::removeKeyRelease(OEKeys key)
 	{
 		int* tempList = keyReleaseList;
 		keyReleaseLength = 0;
@@ -64,13 +64,21 @@ namespace OE {
 		}
 	}
 
-	void KeyInput::clearKeys()
+	void InputEvent::addMouseClick(OEMouseButtons button)
+	{
+	}
+
+	void InputEvent::removeMouseClick(OEMouseButtons button)
+	{
+	}
+
+	void InputEvent::clearKeys()
 	{
 		keyPressLength = 0;
 		keyReleaseLength = 0;
 	}
 
-	bool KeyInput::testEvent()
+	bool InputEvent::testEvent()
 	{
 		if (keyPressLength > 0) {
 			int pressedKeysLength = handler->getNumPressedKeys();
@@ -85,7 +93,7 @@ namespace OE {
 				}
 			}
 		}
-		else if (keyReleaseLength > 0) {
+		if (keyReleaseLength > 0) {
 			int releasedKeysLength = handler->getNumReleasedKeys();
 			if (releasedKeysLength > 0) {
 				int* releasedKeys = handler->getReleasedKeys();

@@ -5,7 +5,7 @@
 
 namespace OE {
 
-	class TextEntity : public Object
+	class OBLIVIOUSENGINE_API TextEntity : public Object
 	{
 	public:
 		TextEntity(int x, int y, SDL_Renderer* renderer);

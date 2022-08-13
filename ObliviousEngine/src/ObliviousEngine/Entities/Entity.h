@@ -6,7 +6,7 @@
 
 namespace OE {
 
-	class Entity : public Object
+	class OBLIVIOUSENGINE_API Entity : public Object
 	{
 	public:
 		Entity(int x, int y, SDL_Renderer* renderer);

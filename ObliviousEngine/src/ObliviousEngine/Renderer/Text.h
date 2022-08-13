@@ -5,7 +5,7 @@
 
 namespace OE {
 
-    class Text :
+    class OBLIVIOUSENGINE_API Text :
         public Texture
     {
     public:

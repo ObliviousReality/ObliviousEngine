@@ -7,7 +7,7 @@
 
 namespace OE {
 
-	class MediaPlayer
+	class OBLIVIOUSENGINE_API MediaPlayer
 	{
 	public:
 		static void playRawEffect(Mix_Chunk* effect, int loops);

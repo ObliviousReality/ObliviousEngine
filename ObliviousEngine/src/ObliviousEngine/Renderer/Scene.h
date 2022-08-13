@@ -6,7 +6,7 @@
 
 namespace OE {
 
-	class Scene {
+	class OBLIVIOUSENGINE_API Scene {
 	public:
 		Scene(SDL_Renderer* renderer, EventHandler* handler);
 		~Scene();

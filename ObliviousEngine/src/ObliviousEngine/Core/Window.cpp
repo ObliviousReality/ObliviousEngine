@@ -71,7 +71,7 @@ namespace OE {
 		else
 		{
 			OE_CORE_INFO("Window Created Successfully");
-			/*int imgFlags = IMG_INIT_PNG;
+			int imgFlags = IMG_INIT_PNG;
 			if (!(IMG_Init(imgFlags) & imgFlags))
 			{
 				printf("Image library couldn't load :( \n");
@@ -85,7 +85,7 @@ namespace OE {
 			{
 				printf("Could not load SDL_ttf\n");
 				return false;
-			}*/
+			}
 
 		}
 		return true;

@@ -6,7 +6,7 @@
 
 namespace OE {
 
-	class SoundEffect
+	class OBLIVIOUSENGINE_API SoundEffect
 	{
 	public:
 		SoundEffect(const char* fileName);

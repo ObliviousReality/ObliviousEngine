@@ -160,7 +160,7 @@
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EventHandler.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\KeyInput.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\InputEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Log.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Timer.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
@@ -183,7 +183,7 @@
     <ClCompile Include="src\ObliviousEngine\Audio\SoundEffect.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\EventHandler.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\KeyInput.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Core\InputEvent.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Window.cpp" />

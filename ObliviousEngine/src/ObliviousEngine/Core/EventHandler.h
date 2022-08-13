@@ -122,6 +122,15 @@ namespace OE {
 		KEY_ALTGR
 	} OEKeys;
 
+	const typedef enum
+	{
+		LEFTMOUSE,
+		MIDDLEMOUSE,
+		RIGHTMOUSE,
+		MOUSE4,
+		MOUSE5
+	} OEMouseButtons;
+
 
 	class OBLIVIOUSENGINE_API EventHandler
 	{
@@ -132,7 +141,7 @@ namespace OE {
 		bool mouseMovedSinceLastFrame();
 		int* getMouseXY();
 		void resetKeys();
-		int* mouseInput();
+		int* getMouseInput();
 		int* getPressedKeys();
 		int getNumPressedKeys();
 		int* getReleasedKeys();

@@ -3,10 +3,11 @@
 #include "TextEntity.h"
 #include "ObliviousEngine/Core/Timer.h"
 #include <SDL_ttf.h>
+#include <sstream>
 
 namespace OE {
 
-	class FPSCounter : public TextEntity
+	class OBLIVIOUSENGINE_API FPSCounter : public TextEntity
 	{
 	public:
 		FPSCounter(int x, int y, SDL_Renderer* renderer);

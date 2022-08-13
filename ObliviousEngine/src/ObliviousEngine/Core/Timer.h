@@ -4,7 +4,7 @@
 
 namespace OE {
 
-	class Timer
+	class OBLIVIOUSENGINE_API Timer
 	{
 	public:
 		Timer();

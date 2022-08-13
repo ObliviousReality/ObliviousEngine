@@ -6,7 +6,7 @@
 
 namespace OE {
 
-	class Texture
+	class OBLIVIOUSENGINE_API Texture
 	{
 	public:
 		Texture(SDL_Renderer* renderer);

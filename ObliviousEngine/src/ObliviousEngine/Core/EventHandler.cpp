@@ -1,6 +1,7 @@
 #include "oepch.h"
 #include "EventHandler.h"
 #include <stdio.h>
+#include <ObliviousEngine/Core/Log.h>
 
 namespace OE {
 
@@ -9,6 +10,7 @@ namespace OE {
 
 	void EventHandler::detectEvents()
 	{
+		resetKeys();
 		mouseMoved = false;
 		SDL_Event e;
 		while (SDL_PollEvent(&e) != 0) {
@@ -17,10 +19,11 @@ namespace OE {
 				quit = true;
 			}
 			else if (e.type == SDL_KEYDOWN) {
-				printf("Key pressed: %i\n", e.key.keysym.sym);
+				OE_CORE_INFO("Key pressed: {}", e.key.keysym.sym);
 				pressedKeys[keyPressIndex] = e.key.keysym.sym;
 				keyPressIndex++;
 				if (keyPressIndex > 99) {
+					OE_CORE_WARN("Key buffer exceeded, data will be lost.");
 					keyPressIndex = 99;
 				}
 			}
@@ -28,21 +31,23 @@ namespace OE {
 				releasedKeys[keyReleaseIndex] = e.key.keysym.sym;
 				keyReleaseIndex++;
 				if (keyReleaseIndex > 99) {
+					OE_CORE_WARN("Key buffer exceeded, data will be lost.");
 					keyReleaseIndex = 99;
 				}
 			}
 			else if (e.type == SDL_MOUSEMOTION) {
 				mouseMoved = true;
+				SDL_GetMouseState(&mouseX, &mouseY);
 			}
 			else if (e.type == SDL_MOUSEBUTTONDOWN) {
-				printf("MOUSE EVENT! BUTTON + %i has been pressed.\n", e.button.button);
+				OE_CORE_INFO("MOUSE EVENT! BUTTON {} has been pressed.", e.button.button);
 				mouse[e.button.button] = 1;
 			}
 			else if (e.type == SDL_MOUSEBUTTONUP) {
-				printf("MOUSE EVENT! BUTTON + %i has been pressed.\n", e.button.button);
 				mouse[e.button.button] = 0;
 			}
 		}
+		//OE_CORE_INFO("Buffer Size: {}", keyPressIndex);
 	}
 
 	bool EventHandler::quitPressed()
@@ -57,7 +62,10 @@ namespace OE {
 
 	int* EventHandler::getMouseXY()
 	{
-		return nullptr;
+		int* temp = new int[2];
+		temp[0] = mouseX;
+		temp[1] = mouseY;
+		return temp;
 	}
 
 	void EventHandler::resetKeys()
@@ -66,9 +74,9 @@ namespace OE {
 		keyReleaseIndex = 0;
 	}
 
-	int* EventHandler::mouseInput()
+	int* EventHandler::getMouseInput()
 	{
-		return nullptr;
+		return mouse;
 	}
 
 	int* EventHandler::getPressedKeys()

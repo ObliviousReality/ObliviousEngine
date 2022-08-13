@@ -38,7 +38,7 @@
     <ClInclude Include="src\ObliviousEngine\Core\EventHandler.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Core\KeyInput.h">
+    <ClInclude Include="src\ObliviousEngine\Core\InputEvent.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\Log.h">
@@ -101,7 +101,7 @@
     <ClCompile Include="src\ObliviousEngine\Core\EventHandler.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Core\KeyInput.cpp">
+    <ClCompile Include="src\ObliviousEngine\Core\InputEvent.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp">

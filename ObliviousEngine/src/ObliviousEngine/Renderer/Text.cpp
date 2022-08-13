@@ -19,7 +19,7 @@ namespace OE {
 		SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), textColour);
 		if (textSurface == NULL)
 		{
-			printf("Unable to render surface\n");
+			printf("Unable to render surface.\n");
 		}
 		else
 		{

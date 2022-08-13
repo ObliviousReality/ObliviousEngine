@@ -4,7 +4,7 @@
 
 namespace OE {
 
-	class Music
+	class OBLIVIOUSENGINE_API Music
 	{
 	public:
 		Music(const char* filename);

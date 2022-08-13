@@ -3,7 +3,7 @@
 
 namespace OE {
 
-	class Object
+	class OBLIVIOUSENGINE_API Object
 	{
 	public:
 		Object();

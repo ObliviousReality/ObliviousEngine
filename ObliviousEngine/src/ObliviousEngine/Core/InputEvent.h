@@ -8,15 +8,17 @@
 
 namespace OE {
 
-	class OBLIVIOUSENGINE_API KeyInput
+	class OBLIVIOUSENGINE_API InputEvent
 	{
 	public:
-		KeyInput(EventHandler* handler);
-		~KeyInput();
+		InputEvent(EventHandler* handler);
+		~InputEvent();
 		void addKeyPress(OEKeys key);
 		void removeKeyPress(OEKeys key);
 		void addKeyRelease(OEKeys key);
 		void removeKeyRelease(OEKeys key);
+		void addMouseClick(OEMouseButtons button);
+		void removeMouseClick(OEMouseButtons button);
 		void clearKeys();
 		bool testEvent();
 
@@ -26,6 +28,8 @@ namespace OE {
 		int keyPressLength = 0;
 		int* keyReleaseList = new int[32];
 		int keyReleaseLength = 0;
+		int* mouseClickList = new int[5];
+		int mouseClickLength = 0;
 	};
 
 }
