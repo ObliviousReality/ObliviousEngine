@@ -71,22 +71,6 @@ namespace OE {
 		else
 		{
 			OE_CORE_INFO("Window Created Successfully");
-			int imgFlags = IMG_INIT_PNG;
-			if (!(IMG_Init(imgFlags) & imgFlags))
-			{
-				printf("Image library couldn't load :( \n");
-				return false;
-			}
-			if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-				printf("SDL_Mixer could not initialise \n");
-				return false;
-			}
-			if (TTF_Init() == -1)
-			{
-				printf("Could not load SDL_ttf\n");
-				return false;
-			}
-
 		}
 		return true;
 	}

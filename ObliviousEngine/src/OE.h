@@ -4,6 +4,7 @@
 
 #include "ObliviousEngine/Entities/Object.h"
 #include "ObliviousEngine/Entities/DebugBox.h"
+#include "ObliviousEngine/Entities/MovingBox.h"
 #include "ObliviousEngine/Entities/Entity.h"
 #include "ObliviousEngine/Entities/FPSCounter.h"
 #include "ObliviousEngine/Entities/ObjectList.h"

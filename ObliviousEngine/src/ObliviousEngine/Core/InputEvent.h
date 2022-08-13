@@ -19,6 +19,8 @@ namespace OE {
 		void removeKeyRelease(OEKeys key);
 		void addMouseClick(OEMouseButtons button);
 		void removeMouseClick(OEMouseButtons button);
+		void addMouseRelease(OEMouseButtons button);
+		void removeMouseRelease(OEMouseButtons button);
 		void clearKeys();
 		bool testEvent();
 
@@ -29,7 +31,7 @@ namespace OE {
 		int* keyReleaseList = new int[32];
 		int keyReleaseLength = 0;
 		int* mouseClickList = new int[5];
-		int mouseClickLength = 0;
+		int* mouseReleaseList = new int[5];
 	};
 
 }

@@ -1,5 +1,6 @@
 #include "oepch.h"
 #include "MediaPlayer.h"
+#include <ObliviousEngine/Core/Log.h>
 
 namespace OE {
 
@@ -81,12 +82,32 @@ namespace OE {
 		effect->setPlaying(false);
 	}
 
+	void MediaPlayer::globalStop()
+	{
+		MediaPlayer::stop();
+		//for Mix_channels
+	}
+
+	void MediaPlayer::globalPause()
+	{
+	}
+
+	void MediaPlayer::globalPlay()
+	{
+	}
+
 	void MediaPlayer::setEffectVolume(SoundEffect* effect, int volume)
 	{
 		if (effect->isPlaying())
 		{
 			Mix_Volume(effect->getChannel(), volume);
 		}
+	}
+
+	int MediaPlayer::setMixerChannels(int num)
+	{
+		OE_CORE_INFO("{}", MIX_CHANNELS);
+		return Mix_AllocateChannels(16);
 	}
 
 	void MediaPlayer::effectEnded(int channel)

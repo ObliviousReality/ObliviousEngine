@@ -7,8 +7,8 @@ class Sandbox : public OE::Application {
 public:
 	Sandbox() {
 		OE_TRACE("Sandbox Started");
-		
-		
+
+
 	}
 	~Sandbox() {
 		OE_TRACE("Sandbox ended.");
@@ -16,12 +16,11 @@ public:
 
 	void loop()
 	{
-		Mix_AllocateChannels(16);
 		OE_INFO("In loop function of Application");
-		OE_ERROR("{}", std::filesystem::current_path());
+		//OE_INFO("{}", std::filesystem::current_path());
 		OE::Window* window = new OE::Window();
-		window->create("Test", 1000, 800, OE::NONE);
-		OE::Renderer* renderer = new OE::Renderer(window);
+		window->create("Test", 1920, 1080, OE::NONE);
+		OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
 		bool crashed = false;
 		OE::EventHandler* handler = new OE::EventHandler();
 		OE::InputEvent* quitEvent = new OE::InputEvent(handler);
@@ -30,23 +29,31 @@ public:
 		playEvent->addKeyPress(OE::KEY_HOME);
 		playEvent->addKeyPress(OE::KEY_KP_7);
 		playEvent->addKeyRelease(OE::KEY_LEFTSHIFT);
-		OE::Colour* c = new OE::Colour(255, 23, 23, 0);
+		OE::Colour* c = new OE::Colour(255, 255, 23, 0);
 		OE::ObjectList::ObjectNode* ol = OE::ObjectList::create();
 		OE::FPSCounter* fc = new OE::FPSCounter(100, 100, renderer->getRenderer());
+		OE::DebugBox* db = new OE::DebugBox(50, 50, renderer->getRenderer(), handler);
+		OE::MovingBox* mb = new OE::MovingBox(50, 50, renderer->getRenderer(), handler);
+		OE::ObjectList::addItem(ol, db);
+		OE::ObjectList::addItem(ol, mb);
 		OE::ObjectList::addItem(ol, fc);
 		OE::SoundEffect* se = new OE::SoundEffect("assets/pistol.ogg");
 		while (!crashed) {
 			handler->detectEvents();
 			if (handler->quitPressed() || quitEvent->testEvent()) {
+				OE_TRACE("Quit detected. Closing Window");
 				crashed = true;
 			}
 			if (playEvent->testEvent())
 			{
-				OE::MediaPlayer::playEffect(se, 0);
+				if (!se->isPlaying()) {
+					OE::MediaPlayer::playEffect(se, 0);
+				}
 			}
 			renderer->setDrawColour(c);
 			renderer->clear();
 			OE::ObjectList::render(ol);
+			db->update();
 			renderer->render();
 		}
 	}

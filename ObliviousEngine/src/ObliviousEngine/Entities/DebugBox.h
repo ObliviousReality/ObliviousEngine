@@ -2,6 +2,7 @@
 #include "Entity.h"
 #include "Core.h"
 #include <ObliviousEngine/Core/InputEvent.h>
+#include <ObliviousEngine/Audio/SoundEffect.h>
 
 namespace OE {
 
@@ -13,7 +14,14 @@ namespace OE {
 
 		void update() override;
 	private:
-		InputEvent* k;
+		EventHandler* handler;
+		InputEvent* left; 
+		InputEvent* right; 
+		InputEvent* up; 
+		InputEvent* down;
+		InputEvent* reset;
+		InputEvent* click;
+		SoundEffect* flick;
 	};
 
 }

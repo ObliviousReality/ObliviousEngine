@@ -153,6 +153,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\Music.h" />
@@ -190,6 +191,7 @@
     <ClCompile Include="src\ObliviousEngine\Entities\DebugBox.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\Entity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\FPSCounter.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\MovingBox.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\Object.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\ObjectList.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\TextEntity.cpp" />

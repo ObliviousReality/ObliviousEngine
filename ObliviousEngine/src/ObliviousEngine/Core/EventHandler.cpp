@@ -6,6 +6,7 @@
 namespace OE {
 
 	EventHandler::EventHandler() {
+		resetKeys();
 	}
 
 	void EventHandler::detectEvents()
@@ -20,11 +21,20 @@ namespace OE {
 			}
 			else if (e.type == SDL_KEYDOWN) {
 				OE_CORE_INFO("Key pressed: {}", e.key.keysym.sym);
-				pressedKeys[keyPressIndex] = e.key.keysym.sym;
-				keyPressIndex++;
-				if (keyPressIndex > 99) {
-					OE_CORE_WARN("Key buffer exceeded, data will be lost.");
-					keyPressIndex = 99;
+				bool found = false;
+				for (int i = 0; i < keyPressIndex; i++) {
+					if (pressedKeys[i] == e.key.keysym.sym) {
+						found = true;
+					}
+				}
+				if (!found) {
+					pressedKeys[keyPressIndex] = e.key.keysym.sym;
+					keyPressIndex++;
+					if (keyPressIndex > 99) {
+						OE_CORE_WARN("Key buffer exceeded, data will be lost.");
+						keyPressIndex = 99;
+					}
+					break;
 				}
 			}
 			else if (e.type == SDL_KEYUP) {
@@ -34,6 +44,13 @@ namespace OE {
 					OE_CORE_WARN("Key buffer exceeded, data will be lost.");
 					keyReleaseIndex = 99;
 				}
+				for (int i = 0; i < keyPressIndex; i++) {
+					if (pressedKeys[i] == e.key.keysym.sym) {
+						pressedKeys[i] = pressedKeys[keyPressIndex - 1];
+						keyPressIndex--;
+					}
+				}
+
 			}
 			else if (e.type == SDL_MOUSEMOTION) {
 				mouseMoved = true;
@@ -41,10 +58,10 @@ namespace OE {
 			}
 			else if (e.type == SDL_MOUSEBUTTONDOWN) {
 				OE_CORE_INFO("MOUSE EVENT! BUTTON {} has been pressed.", e.button.button);
-				mouse[e.button.button] = 1;
+				mouse[e.button.button - 1] = 1;
 			}
 			else if (e.type == SDL_MOUSEBUTTONUP) {
-				mouse[e.button.button] = 0;
+				mouse[e.button.button - 1] = 2;
 			}
 		}
 		//OE_CORE_INFO("Buffer Size: {}", keyPressIndex);
@@ -70,8 +87,11 @@ namespace OE {
 
 	void EventHandler::resetKeys()
 	{
-		keyPressIndex = 0;
+		//keyPressIndex = 0;
 		keyReleaseIndex = 0;
+		for (int i = 0; i < 5; i++) {
+			mouse[i] = 0;
+		}
 	}
 
 	int* EventHandler::getMouseInput()

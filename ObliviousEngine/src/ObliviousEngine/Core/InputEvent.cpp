@@ -1,5 +1,6 @@
 #include "oepch.h"
 #include "InputEvent.h"
+#include <ObliviousEngine/Core/Log.h>
 
 namespace OE {
 
@@ -66,20 +67,52 @@ namespace OE {
 
 	void InputEvent::addMouseClick(OEMouseButtons button)
 	{
+		mouseClickList[button] = 1;
 	}
 
 	void InputEvent::removeMouseClick(OEMouseButtons button)
 	{
+		mouseClickList[button] = 0;
+	}
+
+	void InputEvent::addMouseRelease(OEMouseButtons button)
+	{
+		mouseReleaseList[button] = 1;
+	}
+
+	void InputEvent::removeMouseRelease(OEMouseButtons button)
+	{
+		mouseReleaseList[button] = 0;
 	}
 
 	void InputEvent::clearKeys()
 	{
 		keyPressLength = 0;
 		keyReleaseLength = 0;
+		for (int i = 0; i < 5; i++) {
+			mouseClickList[i] = 0;
+			mouseReleaseList[i] = 0;
+		}
 	}
 
 	bool InputEvent::testEvent()
 	{
+		int* mouse = handler->getMouseInput();
+		for (int i = 0; i < 5; i++) {
+			if (mouseClickList[i] == 1)
+			{
+				if (mouse[i] == 1) {
+					return true;
+				}
+			}
+			else if (mouseReleaseList[i] == 1)
+			{
+				if (mouse[i] == 2)
+				{
+					return true;
+				}
+			}
+		}
 		if (keyPressLength > 0) {
 			int pressedKeysLength = handler->getNumPressedKeys();
 			if (pressedKeysLength > 0) {

@@ -37,7 +37,13 @@ namespace OE {
 
 	bool SoundEffect::isPlaying()
 	{
-		return playing;
+		if (Mix_Playing(channel) == 1) {
+			return true;
+		}
+		else {
+			playing = false;
+			return false;
+		}
 	}
 
 	void SoundEffect::setPlaying(bool b)

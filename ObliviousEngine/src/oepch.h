@@ -7,11 +7,14 @@
 #include <functional>
 
 #include <iostream>
+#include <random>
 #include <string>
 #include <sstream>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>
+
+#include <ObliviousEngine/Core/Log.h>
 
 
 #ifdef OE_PLATFORM_WINDOWS
