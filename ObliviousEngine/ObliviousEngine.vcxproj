@@ -152,6 +152,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h" />
     <ClInclude Include="src\OE.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Audio\Music.cpp" />
     <ClCompile Include="src\ObliviousEngine\Audio\SoundEffect.cpp" />

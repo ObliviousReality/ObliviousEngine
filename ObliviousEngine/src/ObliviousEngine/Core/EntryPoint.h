@@ -10,6 +10,7 @@ extern OE::Application* OE::CreateApplication();
 int wmain(int argc, char** argv) {
 
 	OE::Log::init();
+	OE::Maths::init();
 	OE::Application::init();
 	OE_CORE_INFO("Main Started");
 	auto app = OE::CreateApplication();

@@ -150,6 +150,12 @@
   <ItemGroup>
     <Font Include="assets\font.ttf" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="assets\debug.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="assets\flick.mp3" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

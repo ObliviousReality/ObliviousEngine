@@ -20,6 +20,7 @@
 #include "ObliviousEngine/Audio/Music.h"
 #include "ObliviousEngine/Audio/SoundEffect.h"
 
+#include "ObliviousEngine/Core/Maths.h"
 #include "ObliviousEngine/Core/Timer.h"
 #include "ObliviousEngine/Core/Log.h"
 #include "ObliviousEngine/Core/EventHandler.h"

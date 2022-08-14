@@ -1,6 +1,7 @@
 #include "oepch.h"
 #include "MovingBox.h"
 #include <ObliviousEngine/Audio/MediaPlayer.h>
+#include <ObliviousEngine/Core/Maths.h>
 
 namespace OE
 {
@@ -43,8 +44,16 @@ namespace OE
 	}
 	void MovingBox::movePosition()
 	{
-		newX = 10 + (std::rand() % (1800 - 10 + 1));
-		newY = 10 + (std::rand() % (900 - 10 + 1));
+		/*newX = 10 + (std::rand() % (1800 - 10 + 1));
+		newY = 10 + (std::rand() % (900 - 10 + 1));*/
+		newX = x;
+		newY = y;
+
+		while (sqrt((pow(newX - x, 2) + pow(newY - y, 2))) < 25) 
+		{
+			newX = Maths::randomIntRange(10, 1800);
+			newY = Maths::randomIntRange(10, 900);
+		}
 		velX = (newX - x) / divisor;
 		velY = (newY - y) / divisor;
 	}

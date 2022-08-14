@@ -7,9 +7,8 @@ class Sandbox : public OE::Application {
 public:
 	Sandbox() {
 		OE_TRACE("Sandbox Started");
-
-
 	}
+
 	~Sandbox() {
 		OE_TRACE("Sandbox ended.");
 	}
@@ -19,7 +18,7 @@ public:
 		OE_INFO("In loop function of Application");
 		//OE_INFO("{}", std::filesystem::current_path());
 		OE::Window* window = new OE::Window();
-		window->create("Test", 1920, 1080, OE::NONE);
+		window->create("Test", 1920, 1080, OE::FULLSCREEN_DESKTOP);
 		OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
 		bool crashed = false;
 		OE::EventHandler* handler = new OE::EventHandler();
