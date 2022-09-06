@@ -37,6 +37,14 @@ public:
 		OE::ObjectList::addItem(ol, mb);
 		OE::ObjectList::addItem(ol, fc);
 		OE::SoundEffect* se = new OE::SoundEffect("assets/pistol.ogg");
+		double* output = OE::Maths::quadratic(1, 10, 6);
+		OE_WARN(output[0]);
+		OE_WARN(output[1]);
+		double t = 10.464646;
+		OE_ERROR(OE::Maths::roundtoN(t, 1));
+		OE_ERROR(OE::Maths::roundtoN(t, 2));
+		OE_ERROR(OE::Maths::roundtoN(t, 3));
+		OE_ERROR(OE::Maths::roundtoN(t, 0));
 		while (!crashed) {
 			handler->detectEvents();
 			if (handler->quitPressed() || quitEvent->testEvent()) {

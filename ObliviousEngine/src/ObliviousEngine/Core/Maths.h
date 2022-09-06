@@ -1,18 +1,22 @@
 #pragma once
 #include "core.h"
-#include "math.h"
 
 namespace OE {
-#define _USE_MATH_DEFINES
+
 	class OBLIVIOUSENGINE_API Maths
 	{
 	public:
+		static const double pi;
+		static const double e;
+
 		static void init();
 		static int randomIntRange(int lowerBound, int upperBound);
-		static float randomFloatRange(float lowerBound, float upperBound);
-		static float squareRoot(float x);
-		static float dist(int x1, int y1, int x2, int y2);
-		static const double pi;
+		static double randomFloatRange(double lowerBound, double upperBound);
+		static double squareRoot(double x);
+		static double dist(int x1, int y1, int x2, int y2);
+		static double* midpoint(int x1, int y1, int x2, int y2);
+		static double* quadratic(double a, double b, double c);
+		static double roundtoN(double n, int d);
 	};
 
 }
