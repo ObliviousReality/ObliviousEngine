@@ -1,11 +1,12 @@
 #include "oepch.h"
 #include "Texture.h"
 
+
 namespace OE {
 
-	Texture::Texture(SDL_Renderer* renderer)
+	Texture::Texture(Renderer* renderer)
 	{
-		this->renderer = renderer;
+		this->renderer = renderer->getRenderer();
 		texture = NULL;
 		width = 0;
 		height = 0;

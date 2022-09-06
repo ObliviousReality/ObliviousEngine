@@ -3,7 +3,7 @@
 
 namespace OE {
 
-	FPSCounter::FPSCounter(int x, int y, SDL_Renderer* renderer) : TextEntity(x, y, renderer)
+	FPSCounter::FPSCounter(int x, int y, Renderer* renderer) : TextEntity(x, y, renderer)
 	{
 		this->x = x;
 		this->y = y;

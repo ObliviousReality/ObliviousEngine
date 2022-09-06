@@ -1,15 +1,15 @@
 #pragma once
-#include "Entity.h"
+#include "BoxEntity.h"
 #include "Core.h"
 #include <ObliviousEngine/Core/InputEvent.h>
 #include <ObliviousEngine/Audio/SoundEffect.h>
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API MovingBox : public Entity
+	class OBLIVIOUSENGINE_API MovingBox : public BoxEntity
 	{
 	public:
-		MovingBox(int x, int y, SDL_Renderer* renderer, EventHandler* handler);
+		MovingBox(int x, int y, Renderer* renderer, EventHandler* handler);
 		~MovingBox();
 
 		void update() override;
@@ -20,8 +20,10 @@ namespace OE
 		EventHandler* handler;
 		InputEvent* click;
 		SoundEffect* flick;
-		int newX, newY = 0;
-		int velX, velY = 0;
+		int newX = 0;
+		int newY = 0;
+		int velX = 0;
+		int velY = 0;
 		int divisor = 150;
 		int count = 0;
 	};

@@ -4,7 +4,7 @@
 
 namespace OE {
 
-	DebugBox::DebugBox(int x, int y, SDL_Renderer* renderer, EventHandler* handler) : Entity(x, y, renderer)
+	DebugBox::DebugBox(int x, int y, Renderer* renderer, EventHandler* handler) : Entity(x, y, renderer)
 	{
 		this->handler = handler;
 		this->w = 100;

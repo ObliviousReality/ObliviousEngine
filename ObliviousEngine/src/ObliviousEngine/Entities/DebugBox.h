@@ -9,7 +9,7 @@ namespace OE {
 	class OBLIVIOUSENGINE_API DebugBox : public Entity
 	{
 	public:
-		DebugBox(int x, int y, SDL_Renderer* renderer, EventHandler* handler);
+		DebugBox(int x, int y, Renderer* renderer, EventHandler* handler);
 		~DebugBox();
 
 		void update() override;

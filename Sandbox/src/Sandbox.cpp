@@ -30,9 +30,9 @@ public:
 		playEvent->addKeyRelease(OE::KEY_LEFTSHIFT);
 		OE::Colour* c = new OE::Colour(255, 255, 23, 0);
 		OE::ObjectList::ObjectNode* ol = OE::ObjectList::create();
-		OE::FPSCounter* fc = new OE::FPSCounter(100, 100, renderer->getRenderer());
-		OE::DebugBox* db = new OE::DebugBox(50, 50, renderer->getRenderer(), handler);
-		OE::MovingBox* mb = new OE::MovingBox(50, 50, renderer->getRenderer(), handler);
+		OE::FPSCounter* fc = new OE::FPSCounter(100, 100, renderer);
+		OE::DebugBox* db = new OE::DebugBox(50, 50, renderer, handler);
+		OE::MovingBox* mb = new OE::MovingBox(50, 50, renderer, handler);
 		OE::ObjectList::addItem(ol, db);
 		OE::ObjectList::addItem(ol, mb);
 		OE::ObjectList::addItem(ol, fc);

@@ -86,6 +86,8 @@
     <ClInclude Include="src\oepch.h" />
     <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\BoxEntity.h" />
+    <ClInclude Include="src\ObliviousEngine\Entities\CircleEntity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
@@ -151,5 +153,7 @@
     <ClCompile Include="src\oepch.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\MovingBox.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\BoxEntity.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Entities\CircleEntity.cpp" />
   </ItemGroup>
 </Project>

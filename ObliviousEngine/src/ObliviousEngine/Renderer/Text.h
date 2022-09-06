@@ -9,7 +9,7 @@ namespace OE {
         public Texture
     {
     public:
-        Text(SDL_Renderer* renderer);
+        Text(Renderer* renderer);
         ~Text();
         bool loadText(std::string text, SDL_Colour textColour, TTF_Font* font);
     };

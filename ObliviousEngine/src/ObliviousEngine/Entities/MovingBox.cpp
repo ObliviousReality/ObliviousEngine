@@ -5,10 +5,10 @@
 
 namespace OE
 {
-	MovingBox::MovingBox(int x, int y, SDL_Renderer* renderer, EventHandler* handler) : Entity(x, y, renderer)
+	MovingBox::MovingBox(int x, int y, Renderer* renderer, EventHandler* handler) : BoxEntity(x, y, 0, 0, renderer)
 	{
-		this->w = 100;
-		this->h = 100;
+		setWidth(100);
+		setHeight(100);
 		this->handler = handler;
 		texture.loadFromFile("assets/debug.png");
 		click = new InputEvent(handler);
@@ -44,16 +44,13 @@ namespace OE
 	}
 	void MovingBox::movePosition()
 	{
-		/*newX = 10 + (std::rand() % (1800 - 10 + 1));
-		newY = 10 + (std::rand() % (900 - 10 + 1));*/
 		newX = x;
 		newY = y;
-
-		while (sqrt((pow(newX - x, 2) + pow(newY - y, 2))) < 25) 
+		do
 		{
 			newX = Maths::randomIntRange(10, 1800);
 			newY = Maths::randomIntRange(10, 900);
-		}
+		} while (Maths::dist(x, y, newX, newY) < 25);
 		velX = (newX - x) / divisor;
 		velY = (newY - y) / divisor;
 	}

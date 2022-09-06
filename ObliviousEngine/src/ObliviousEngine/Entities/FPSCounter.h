@@ -10,7 +10,7 @@ namespace OE {
 	class OBLIVIOUSENGINE_API FPSCounter : public TextEntity
 	{
 	public:
-		FPSCounter(int x, int y, SDL_Renderer* renderer);
+		FPSCounter(int x, int y, Renderer* renderer);
 		~FPSCounter();
 		void draw() override;
 		void update() override;

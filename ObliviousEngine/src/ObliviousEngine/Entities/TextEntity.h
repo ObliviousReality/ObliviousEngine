@@ -8,7 +8,7 @@ namespace OE {
 	class OBLIVIOUSENGINE_API TextEntity : public Object
 	{
 	public:
-		TextEntity(int x, int y, SDL_Renderer* renderer);
+		TextEntity(int x, int y, Renderer* renderer);
 		~TextEntity();
 
 		Text getTexture();

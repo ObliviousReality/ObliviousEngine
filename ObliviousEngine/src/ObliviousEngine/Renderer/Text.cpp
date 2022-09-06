@@ -3,9 +3,9 @@
 
 namespace OE {
 
-	Text::Text(SDL_Renderer* renderer) : Texture(renderer)
+	Text::Text(Renderer* renderer) : Texture(renderer)
 	{
-		this->renderer = renderer;
+		this->renderer = renderer->getRenderer();
 	}
 
 	Text::~Text()

@@ -3,13 +3,14 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <string>
+#include <ObliviousEngine/Renderer/Renderer.h>
 
 namespace OE {
 
 	class OBLIVIOUSENGINE_API Texture
 	{
 	public:
-		Texture(SDL_Renderer* renderer);
+		Texture(Renderer* renderer);
 		~Texture();
 
 		bool loadFromFile(std::string path);
@@ -18,9 +19,8 @@ namespace OE {
 		int getHeight();
 		int getWidth();
 
-		SDL_Renderer* renderer;
-
 	protected:
+		SDL_Renderer* renderer;
 		SDL_Texture* texture;
 
 		int width;

@@ -3,7 +3,7 @@
 
 namespace OE {
 
-	TextEntity::TextEntity(int x, int y, SDL_Renderer* renderer) : texture(renderer)
+	TextEntity::TextEntity(int x, int y, Renderer* renderer) : texture(renderer)
 	{
 		this->x = x;
 		this->y = y;

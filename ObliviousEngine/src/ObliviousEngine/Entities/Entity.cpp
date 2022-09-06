@@ -3,7 +3,7 @@
 
 namespace OE {
 
-	Entity::Entity(int x, int y, SDL_Renderer* renderer) : texture(renderer)
+	Entity::Entity(int x, int y, Renderer* renderer) : texture(renderer)
 	{
 		this->x = x;
 		this->y = y;
@@ -34,6 +34,16 @@ namespace OE {
 
 	void Entity::update()
 	{
+	}
+
+	double Entity::getArea()
+	{
+		return 0;
+	}
+
+	double Entity::getCircumference()
+	{
+		return 0;
 	}
 
 }
