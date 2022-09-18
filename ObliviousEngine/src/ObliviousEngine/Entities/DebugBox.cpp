@@ -4,11 +4,9 @@
 
 namespace OE {
 
-	DebugBox::DebugBox(int x, int y, Renderer* renderer, EventHandler* handler) : Entity(x, y, renderer)
+	DebugBox::DebugBox(int x, int y, Renderer* renderer, EventHandler* handler) : BoxEntity(x, y, 100, 100, renderer)
 	{
 		this->handler = handler;
-		this->w = 100;
-		this->h = 100;
 		texture.loadFromFile("assets/debug.png");
 		flick = new SoundEffect("assets/flick.mp3");
 		left = new InputEvent(handler);
@@ -61,6 +59,17 @@ namespace OE {
 				}
 			}
 		}
+	}
+
+	void DebugBox::onCollide(Entity* e)
+	{
+		//this->setPos(100, 100);
+		OE_CORE_WARN("Collision Detected");
+	}
+
+	int DebugBox::getCollisionClass()
+	{
+		return 1;
 	}
 
 }

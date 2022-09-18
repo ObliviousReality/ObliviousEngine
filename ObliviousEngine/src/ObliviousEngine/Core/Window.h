@@ -26,7 +26,7 @@ namespace OE {
 		Window();
 		~Window();
 
-		SDL_Window* create(const char* name, int w, int h, int size);
+		SDL_Window* create(const char* name, int w, int h, int size = 0);
 		void destroy();
 		SDL_Window* getWindow();
 

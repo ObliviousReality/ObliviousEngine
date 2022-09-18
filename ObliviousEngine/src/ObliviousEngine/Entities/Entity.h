@@ -17,14 +17,15 @@ namespace OE {
 		virtual void setPos(int x, int y);
 		virtual void draw();
 		virtual void update();
+		virtual void onCollide(Entity* e);
+
+		int getCollisionClass() override;
 
 		virtual double getArea();
 		virtual double getCircumference();
 
-
 	protected:
 		Texture texture;
-		int x, y;
 	};
 
 }

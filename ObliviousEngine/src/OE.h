@@ -3,10 +3,11 @@
 // FOR APPLICATION USE ONLY.
 
 #include "ObliviousEngine/Entities/Object.h"
-#include "ObliviousEngine/Entities/DebugBox.h"
-#include "ObliviousEngine/Entities/MovingBox.h"
 #include "ObliviousEngine/Entities/Entity.h"
 #include "ObliviousEngine/Entities/BoxEntity.h"
+#include "ObliviousEngine/Entities/CircleEntity.h"
+#include "ObliviousEngine/Entities/DebugBox.h"
+#include "ObliviousEngine/Entities/MovingBox.h"
 #include "ObliviousEngine/Entities/FPSCounter.h"
 #include "ObliviousEngine/Entities/ObjectList.h"
 #include "ObliviousEngine/Entities/TextEntity.h"
@@ -21,6 +22,7 @@
 #include "ObliviousEngine/Audio/Music.h"
 #include "ObliviousEngine/Audio/SoundEffect.h"
 
+#include "ObliviousEngine/Core/Collision.h"
 #include "ObliviousEngine/Core/Maths.h"
 #include "ObliviousEngine/Core/Timer.h"
 #include "ObliviousEngine/Core/Log.h"

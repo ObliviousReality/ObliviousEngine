@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include "Object.h"
+#include <ObliviousEngine/Core/Collision.h>
 
 namespace OE {
 

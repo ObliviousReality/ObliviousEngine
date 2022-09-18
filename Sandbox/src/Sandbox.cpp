@@ -28,10 +28,10 @@ public:
 		playEvent->addKeyPress(OE::KEY_HOME);
 		playEvent->addKeyPress(OE::KEY_KP_7);
 		playEvent->addKeyRelease(OE::KEY_LEFTSHIFT);
-		OE::Colour* c = new OE::Colour(255, 255, 23, 0);
+		OE::Colour* c = new OE::Colour(200, 200, 23, 0);
 		OE::ObjectList::ObjectNode* ol = OE::ObjectList::create();
 		OE::FPSCounter* fc = new OE::FPSCounter(100, 100, renderer);
-		OE::DebugBox* db = new OE::DebugBox(50, 50, renderer, handler);
+		OE::DebugBox* db = new OE::DebugBox(500, 500, renderer, handler);
 		OE::MovingBox* mb = new OE::MovingBox(50, 50, renderer, handler);
 		OE::ObjectList::addItem(ol, db);
 		OE::ObjectList::addItem(ol, mb);
@@ -57,10 +57,13 @@ public:
 					OE::MediaPlayer::playEffect(se, 0);
 				}
 			}
+			/*if (OE::Collision::collisionTest(db, mb)) {
+				db->onCollide(mb);
+			}*/
 			renderer->setDrawColour(c);
 			renderer->clear();
 			OE::ObjectList::render(ol);
-			db->update();
+			//db->update();
 			renderer->render();
 		}
 	}

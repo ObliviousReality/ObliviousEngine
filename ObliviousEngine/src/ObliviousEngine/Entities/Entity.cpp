@@ -36,6 +36,15 @@ namespace OE {
 	{
 	}
 
+	void Entity::onCollide(Entity* e)
+	{
+	}
+
+	int Entity::getCollisionClass()
+	{
+		return 0;
+	}
+
 	double Entity::getArea()
 	{
 		return 0;

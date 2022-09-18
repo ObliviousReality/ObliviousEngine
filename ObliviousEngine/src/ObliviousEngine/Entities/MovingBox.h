@@ -13,6 +13,7 @@ namespace OE
 		~MovingBox();
 
 		void update() override;
+		int getCollisionClass() override;
 
 	private:
 		void movePosition();

@@ -23,6 +23,11 @@ namespace OE {
 	{
 	}
 
+	void Object::onCollide(Object* e)
+	{
+		OE_CORE_ERROR("Wrong collide function");
+	}
+
 	int Object::getX()
 	{
 		return x;
@@ -41,6 +46,11 @@ namespace OE {
 	int Object::getHeight()
 	{
 		return h;
+	}
+
+	int Object::getCollisionClass()
+	{
+		return 0;
 	}
 
 }

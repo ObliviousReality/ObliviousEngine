@@ -152,6 +152,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ObliviousEngine\Core\Collision.h" />
     <ClInclude Include="src\ObliviousEngine\Entities\CircleEntity.h" />
     <ClInclude Include="src\ObliviousEngine\Entities\BoxEntity.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
@@ -182,6 +183,7 @@
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ObliviousEngine\Core\Collision.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\CircleEntity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Entities\BoxEntity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />

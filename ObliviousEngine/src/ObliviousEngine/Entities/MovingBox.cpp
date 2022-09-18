@@ -42,6 +42,10 @@ namespace OE
 			}
 		}
 	}
+	int MovingBox::getCollisionClass()
+	{
+		return 1;
+	}
 	void MovingBox::movePosition()
 	{
 		newX = x;

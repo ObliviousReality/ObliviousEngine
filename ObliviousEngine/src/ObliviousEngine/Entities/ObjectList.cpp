@@ -70,6 +70,19 @@ namespace OE {
 		while (temp)
 		{
 			temp->object->update();
+			/*if (temp->object->getCollisionClass() != 0) {
+				ObjectList::ObjectNode* coltemp = temp->next;
+				while (coltemp) {
+					if (coltemp->object->getCollisionClass() != 0) {
+						Object* a = temp->object;
+						Object* b = coltemp->object;
+						if (Collision::collisionTest(a->getX(), a->getY(), a->getWidth(), a->getHeight(), b->getX(), b->getY(), b->getWidth(), b->getHeight())) {
+							temp->object->onCollide(coltemp->object);
+						}
+					}
+					coltemp = coltemp->next;
+				}
+			}*/
 			temp->object->draw();
 			temp = temp->next;
 		}
