@@ -8,20 +8,22 @@
 #include <ObliviousEngine/Entities/DebugBox.h>
 
 namespace OE {
-
+	class Entity;
 	class OBLIVIOUSENGINE_API Scene {
 	public:
 		Scene(Renderer* renderer, EventHandler* handler); // 
 		~Scene();
 		void update();
-		entt::entity createEntity();
+		Entity createEntity(const std::string& name = std::string());
 
-		entt::registry& Reg() { return registry; }
+		//entt::registry& Reg() { return registry; }
 
 	private:
 		entt::registry registry;
 		Renderer* renderer;
 		EventHandler* handler;
+
+		friend class Entity;
 	};
 
 }

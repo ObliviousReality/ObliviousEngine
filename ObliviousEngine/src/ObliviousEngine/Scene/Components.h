@@ -7,17 +7,24 @@
 
 namespace OE {
 
+	struct TagComponent
+	{
+		std::string tag;
+
+		TagComponent() = default;
+		TagComponent(const TagComponent&) = default;
+		TagComponent(const std::string& text) : tag(text) {}
+	};
+
 	struct OBLIVIOUSENGINE_API TransformComponent
 	{
-		/*Vec2 pos;
-		Vec2 rot;
-		Vec2 sc;*/
+		//Vec2 pos;
 		int x;
 		int y;
 
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
-		//TransformComponent(const Vec2& _pos, const Vec2& _rot, const Vec2& _sc) : pos(_pos), rot(_rot), sc(_sc) {}
+		//TransformComponent(Vec2 _pos) : pos(_pos){}
 		TransformComponent(const int _x, const int _y) : x(_x), y(_y) {}
 	};
 

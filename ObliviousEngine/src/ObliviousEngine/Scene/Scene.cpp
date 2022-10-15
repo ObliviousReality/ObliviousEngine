@@ -1,6 +1,6 @@
 #include "oepch.h"
 #include "Scene.h"
-//
+#include "Entity.h"
 
 namespace OE {
 
@@ -25,9 +25,13 @@ namespace OE {
 		}
 	}
 
-	entt::entity Scene::createEntity()
+	Entity Scene::createEntity(const std::string& name)
 	{
-		return registry.create();
+		Entity temp = { registry.create(), this };
+		temp.addComp<TransformComponent>();
+		auto& tag = temp.addComp<TagComponent>();
+		tag.tag = name.empty() ? "Unnamed Entity" : name;
+		return temp;
 	}
 
 }

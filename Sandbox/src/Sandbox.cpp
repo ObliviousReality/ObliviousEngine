@@ -78,13 +78,17 @@ public:
 		OE::Colour* c = new OE::Colour(200, 200, 23, 0);
 		OE::Scene* s = new OE::Scene(renderer, handler);
 		for (int i = 0; i < 3; i++) {
-			auto box = s->createEntity();
-			s->Reg().emplace<OE::TransformComponent>(box, OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
-			s->Reg().emplace<OE::SpriteRendererComponent>(box, OE::Vec3(100, 100, 0));
+			OE::Entity e = s->createEntity(std::to_string(i));
+			//e.addComp<OE::TransformComponent>(OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
+			e.addComp<OE::SpriteRendererComponent>(OE::Vec3(100, 100, 0));
 		}
-		auto box = s->createEntity();
-		s->Reg().emplace<OE::TransformComponent>(box, OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
-		//s->Reg().emplace<OE::SpriteRendererComponent>(box, OE::Vec3(100, 100, 0));
+		OE::Entity entity = s->createEntity("gary");
+		//entity.addComp<OE::TransformComponent>(OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
+		entity.addComp<OE::SpriteRendererComponent>(OE::Vec3(100, 100, 0));
+		if (entity.hasComp<OE::TransformComponent>())
+		{
+			OE_CORE_WARN("HAS COMPONENT!");
+		}
 		while (!crashed) {
 			handler->detectEvents();
 			if (handler->quitPressed() || quitEvent->testEvent()) {

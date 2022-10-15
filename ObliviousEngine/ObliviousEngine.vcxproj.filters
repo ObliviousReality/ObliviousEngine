@@ -100,6 +100,7 @@
     </ClInclude>
     <ClInclude Include="src\oepch.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
+    <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
@@ -178,5 +179,6 @@
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>
