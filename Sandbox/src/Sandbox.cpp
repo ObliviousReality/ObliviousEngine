@@ -16,9 +16,17 @@ public:
 	void loop()
 	{
 		OE_INFO("In loop function of Application");
+		ECSLoop();
+		//LLLoop();
+	}
+
+	void LLLoop() {
+
 		//OE_INFO("{}", std::filesystem::current_path());
 		OE::Window* window = new OE::Window();
-		window->create("Test", 1920, 1080, OE::FULLSCREEN_DESKTOP);
+		const int width = 2560;
+		const int height = 1440;
+		window->create("Test", width, height, OE::FULLSCREEN_DESKTOP);
 		OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
 		bool crashed = false;
 		OE::EventHandler* handler = new OE::EventHandler();
@@ -37,14 +45,6 @@ public:
 		OE::ObjectList::addItem(ol, mb);
 		OE::ObjectList::addItem(ol, fc);
 		OE::SoundEffect* se = new OE::SoundEffect("assets/pistol.ogg");
-		double* output = OE::Maths::quadratic(1, 10, 6);
-		OE_WARN(output[0]);
-		OE_WARN(output[1]);
-		double t = 10.464646;
-		OE_ERROR(OE::Maths::roundtoN(t, 1));
-		OE_ERROR(OE::Maths::roundtoN(t, 2));
-		OE_ERROR(OE::Maths::roundtoN(t, 3));
-		OE_ERROR(OE::Maths::roundtoN(t, 0));
 		while (!crashed) {
 			handler->detectEvents();
 			if (handler->quitPressed() || quitEvent->testEvent()) {
@@ -57,13 +57,43 @@ public:
 					OE::MediaPlayer::playEffect(se, 0);
 				}
 			}
-			/*if (OE::Collision::collisionTest(db, mb)) {
-				db->onCollide(mb);
-			}*/
 			renderer->setDrawColour(c);
 			renderer->clear();
 			OE::ObjectList::render(ol);
-			//db->update();
+			renderer->render();
+		}
+	}
+
+	void ECSLoop() {
+		//OE_INFO("{}", std::filesystem::current_path());
+		OE::Window* window = new OE::Window();
+		const int width = 2560;
+		const int height = 1440;
+		window->create("Test", width, height, OE::FULLSCREEN_DESKTOP);
+		OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
+		bool crashed = false;
+		OE::EventHandler* handler = new OE::EventHandler();
+		OE::InputEvent* quitEvent = new OE::InputEvent(handler);
+		quitEvent->addKeyPress(OE::KEY_P);
+		OE::Colour* c = new OE::Colour(200, 200, 23, 0);
+		OE::Scene* s = new OE::Scene(renderer, handler);
+		for (int i = 0; i < 3; i++) {
+			auto box = s->createEntity();
+			s->Reg().emplace<OE::TransformComponent>(box, OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
+			s->Reg().emplace<OE::SpriteRendererComponent>(box, OE::Vec3(100, 100, 0));
+		}
+		auto box = s->createEntity();
+		s->Reg().emplace<OE::TransformComponent>(box, OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
+		//s->Reg().emplace<OE::SpriteRendererComponent>(box, OE::Vec3(100, 100, 0));
+		while (!crashed) {
+			handler->detectEvents();
+			if (handler->quitPressed() || quitEvent->testEvent()) {
+				OE_TRACE("Quit detected. Closing Window");
+				crashed = true;
+			}
+			renderer->setDrawColour(c);
+			renderer->clear();
+			s->update();
 			renderer->render();
 		}
 	}

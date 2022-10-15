@@ -61,7 +61,7 @@ namespace OE {
 		}
 	}
 
-	void DebugBox::onCollide(Entity* e)
+	void DebugBox::onCollide(OldEntity* e)
 	{
 		//this->setPos(100, 100);
 		OE_CORE_WARN("Collision Detected");

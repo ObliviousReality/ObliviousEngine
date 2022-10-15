@@ -13,7 +13,7 @@ namespace OE {
 		~DebugBox();
 
 		void update() override;
-		void onCollide(Entity* e) override;
+		void onCollide(OldEntity* e) override;
 		int getCollisionClass() override;
 	private:
 		EventHandler* handler;

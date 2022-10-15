@@ -30,6 +30,9 @@ namespace OE {
 		void destroy();
 		SDL_Window* getWindow();
 
+		int width, height;
+		const char* name;
+
 	private:
 		SDL_Window* window;
 		bool initFeat();

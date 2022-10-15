@@ -7,17 +7,17 @@
 
 namespace OE {
 
-	class OBLIVIOUSENGINE_API Entity : public Object
+	class OBLIVIOUSENGINE_API OldEntity : public Object
 	{
 	public:
-		Entity(int x, int y, Renderer* renderer);
-		~Entity();
+		OldEntity(int x, int y, Renderer* renderer);
+		~OldEntity();
 
 		Texture getTexture();
 		virtual void setPos(int x, int y);
 		virtual void draw();
 		virtual void update();
-		virtual void onCollide(Entity* e);
+		virtual void onCollide(OldEntity* e);
 
 		int getCollisionClass() override;
 

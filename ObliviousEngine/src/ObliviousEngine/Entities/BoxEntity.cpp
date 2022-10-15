@@ -3,7 +3,7 @@
 
 namespace OE
 {
-	BoxEntity::BoxEntity(int x, int y, int w, int h, Renderer* renderer) : Entity(x, y, renderer)
+	BoxEntity::BoxEntity(int x, int y, int w, int h, Renderer* renderer) : OldEntity(x, y, renderer)
 	{
 		this->w = w;
 		this->h = h;

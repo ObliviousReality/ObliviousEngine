@@ -1,11 +1,11 @@
 #pragma once
 #include "Core.h"
-#include "Entity.h"
+#include "OldEntity.h"
 #include <ObliviousEngine/Renderer/Renderer.h>
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API CircleEntity : public Entity
+	class OBLIVIOUSENGINE_API CircleEntity : public OldEntity
 	{
 	public:
 		CircleEntity(int x, int y, int r, Renderer* renderer);

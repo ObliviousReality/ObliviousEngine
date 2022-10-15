@@ -2,10 +2,25 @@
 #include "core.h"
 
 namespace OE {
+	struct OBLIVIOUSENGINE_API Vec2
+	{
+		int x;
+		int y;
+		Vec2(int xin, int yin) : x(xin), y(yin) {}
+	};
 
+	struct OBLIVIOUSENGINE_API Vec3
+	{
+		int x;
+		int y;
+		int z;
+		Vec3(int xin, int yin, int zin) : x(xin), y(yin), z(zin) {}
+	};
 	class OBLIVIOUSENGINE_API Maths
 	{
 	public:
+
+		
 		static const double pi;
 		static const double e;
 

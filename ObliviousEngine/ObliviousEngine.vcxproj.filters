@@ -32,6 +32,9 @@
     <ClInclude Include="src\ObliviousEngine\Core\Application.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Core\Collision.h">
+      <Filter>ObliviousEngine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
@@ -44,19 +47,31 @@
     <ClInclude Include="src\ObliviousEngine\Core\Log.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Core\Maths.h">
+      <Filter>ObliviousEngine\Core</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\Timer.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\Window.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Entities\BoxEntity.h">
+      <Filter>ObliviousEngine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Entities\CircleEntity.h">
+      <Filter>ObliviousEngine\Entities</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Entities\DebugBox.h">
       <Filter>ObliviousEngine\Entities</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\Entity.h">
+    <ClInclude Include="src\ObliviousEngine\Entities\OldEntity.h">
       <Filter>ObliviousEngine\Entities</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Entities\FPSCounter.h">
+      <Filter>ObliviousEngine\Entities</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h">
       <Filter>ObliviousEngine\Entities</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Entities\Object.h">
@@ -74,7 +89,7 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Renderer\Scene.h">
+    <ClInclude Include="src\ObliviousEngine\Scene\Scene.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Text.h">
@@ -84,11 +99,7 @@
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\oepch.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\BoxEntity.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\CircleEntity.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Collision.h" />
+    <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
@@ -103,6 +114,9 @@
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Core\Collision.cpp">
+      <Filter>ObliviousEngine\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\EventHandler.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
@@ -112,19 +126,31 @@
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp">
+      <Filter>ObliviousEngine\Core</Filter>
+    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\Window.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Entities\BoxEntity.cpp">
+      <Filter>ObliviousEngine\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Entities\CircleEntity.cpp">
+      <Filter>ObliviousEngine\Entities</Filter>
+    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Entities\DebugBox.cpp">
       <Filter>ObliviousEngine\Entities</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\Entity.cpp">
+    <ClCompile Include="src\ObliviousEngine\Entities\OldEntity.cpp">
       <Filter>ObliviousEngine\Entities</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Entities\FPSCounter.cpp">
+      <Filter>ObliviousEngine\Entities</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Entities\MovingBox.cpp">
       <Filter>ObliviousEngine\Entities</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Entities\Object.cpp">
@@ -142,7 +168,7 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Renderer\Scene.cpp">
+    <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp">
@@ -152,10 +178,5 @@
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\MovingBox.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\BoxEntity.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\CircleEntity.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\Collision.cpp" />
   </ItemGroup>
 </Project>

@@ -41,6 +41,9 @@ namespace OE {
 		window = SDL_CreateWindow(name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, w, h, flag);
 		bool s = initFeat();
 		if (s) {
+			this->width = width;
+			this->height = height;
+			this->name = name;
 			return window;
 		}
 		else {

@@ -3,7 +3,7 @@
 // FOR APPLICATION USE ONLY.
 
 #include "ObliviousEngine/Entities/Object.h"
-#include "ObliviousEngine/Entities/Entity.h"
+#include "ObliviousEngine/Entities/OldEntity.h"
 #include "ObliviousEngine/Entities/BoxEntity.h"
 #include "ObliviousEngine/Entities/CircleEntity.h"
 #include "ObliviousEngine/Entities/DebugBox.h"
@@ -12,7 +12,9 @@
 #include "ObliviousEngine/Entities/ObjectList.h"
 #include "ObliviousEngine/Entities/TextEntity.h"
 
-#include "ObliviousEngine/Renderer/Scene.h"
+#include "ObliviousEngine/Scene/Components.h"
+#include "ObliviousEngine/Scene/Scene.h"
+
 #include "ObliviousEngine/Renderer/Text.h"
 #include "ObliviousEngine/Renderer/Texture.h"
 #include "ObliviousEngine/Renderer/Renderer.h"

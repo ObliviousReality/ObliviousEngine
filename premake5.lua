@@ -10,6 +10,9 @@ workspace "ObliviousEngine"
 
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
+IncludeDir = {}
+IncludeDir["entt"] = "ObliviousEngine/vendor/entt/include"
+
 project "ObliviousEngine"
 	location "ObliviousEngine"
 	kind "SharedLib"
@@ -34,7 +37,8 @@ project "ObliviousEngine"
 		"%{prj.name}/vendor/SDL/include",
 		"%{prj.name}/vendor/SDLTTF/include",
 		"%{prj.name}/vendor/SDLImage/include",
-		"%{prj.name}/vendor/SDLMixer/include"
+		"%{prj.name}/vendor/SDLMixer/include",
+		"%{IncludeDir.entt}"
 	}
 
 	libdirs
@@ -105,7 +109,8 @@ project "Sandbox"
 		"ObliviousEngine/vendor/SDLTTF/include",
 		"ObliviousEngine/vendor/SDLImage/include",
 		"ObliviousEngine/vendor/SDLMixer/include",
-		"ObliviousEngine/src"
+		"ObliviousEngine/src",
+		"%{IncludeDir.entt}"
 	}
 
 	libdirs

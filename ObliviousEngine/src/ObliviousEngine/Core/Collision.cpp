@@ -48,7 +48,7 @@ bool OE::Collision::collisionTest(CircleEntity* a, BoxEntity* b)
 	return collisionTest(b, a);
 }
 
-bool OE::Collision::collisionTest(Entity* a, Entity* b)
+bool OE::Collision::collisionTest(OldEntity* a, OldEntity* b)
 {
 	OE_CORE_ERROR("Collision object specified which does not have a shape type. Please make sure your classes involved with collision do not extend Entity. False returned.");
 	return false;

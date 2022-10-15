@@ -4,7 +4,7 @@
 
 namespace OE {
 
-	OE::CircleEntity::CircleEntity(int x, int y, int r, Renderer* renderer) : Entity(x, y, renderer)
+	OE::CircleEntity::CircleEntity(int x, int y, int r, Renderer* renderer) : OldEntity(x, y, renderer)
 	{
 		this->r = r;
 	}

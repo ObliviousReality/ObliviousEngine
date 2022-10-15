@@ -13,7 +13,7 @@ namespace OE {
 		static bool collisionTest(CircleEntity* a, CircleEntity* b);
 		static bool collisionTest(BoxEntity* a, CircleEntity* b);
 		static bool collisionTest(CircleEntity* a, BoxEntity* b);
-		static bool collisionTest(Entity* a, Entity* b);
+		static bool collisionTest(OldEntity* a, OldEntity* b);
 		static bool collisionTest(Object* a, Object* b);
 	};
 
