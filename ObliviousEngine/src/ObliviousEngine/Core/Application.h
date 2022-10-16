@@ -4,6 +4,7 @@
 
 
 #include "Core.h"
+#include <ObliviousEngine/Events/Event.h>
 #include <ObliviousEngine/Core/Window.h>
 
 namespace OE {

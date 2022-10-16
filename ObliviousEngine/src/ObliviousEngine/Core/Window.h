@@ -2,6 +2,7 @@
 #include "oepch.h"
 
 #include "Core.h"
+#include <ObliviousEngine/Events/Event.h>
 
 namespace OE
 {

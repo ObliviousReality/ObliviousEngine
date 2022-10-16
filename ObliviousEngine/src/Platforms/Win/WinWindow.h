@@ -4,7 +4,7 @@
 
 namespace OE
 {
-	class WinWindow : public Window
+	class OBLIVIOUSENGINE_API WinWindow : public Window
 	{
 	private:
 		struct WindowData
@@ -36,7 +36,7 @@ namespace OE
 
 		GLFWwindow* window;
 
-		
-		
+
+
 	};
 }

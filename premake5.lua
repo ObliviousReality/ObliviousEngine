@@ -69,7 +69,7 @@ project "ObliviousEngine"
 	}
 
 	filter "system:windows"
-
+		buildoptions "/MDd"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -145,6 +145,7 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
+		buildoptions "/MDd"
 		systemversion "latest"
 
 		defines

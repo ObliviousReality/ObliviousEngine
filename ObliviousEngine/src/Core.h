@@ -22,3 +22,5 @@
 #define OE_ASSERT(x, ...)
 #define OE_CORE_ASSERT(x, ...)
 #endif // OE_ENABLE_ASSERTS
+
+#define BIT(x) (1 << x)

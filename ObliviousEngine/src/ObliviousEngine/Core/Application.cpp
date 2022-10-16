@@ -10,6 +10,8 @@
 #pragma warning(pop)
 //#include "EventHandler.cpp"
 //#include "KeyInput.cpp"
+#include <GLFW/glfw3.h>
+#include <ObliviousEngine/Events/AppEvent.h>
 
 
 namespace OE {
@@ -25,6 +27,9 @@ namespace OE {
 	void Application::run()
 	{
 		//loop();
+		WindowResizeEvent e(10, 10);
+		if (e.isInCat(ECApp))
+			OE_CORE_TRACE("IS IN APP!");
 		while (!crashed)
 		{
 			window->onUpdate();

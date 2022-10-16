@@ -81,6 +81,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -105,6 +106,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -130,6 +132,7 @@
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -144,11 +147,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\AppEvent.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\Event.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\KeyEvent.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\Music.h" />
@@ -156,12 +154,17 @@
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Collision.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\EventHandler.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\InputEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Log.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Timer.h" />
     <ClInclude Include="src\ObliviousEngine\Core\OldWindow.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Timer.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\AppEvent.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\Event.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\EventHandler.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\InputEvent.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\KeyEvent.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Camera.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
@@ -170,8 +173,8 @@
     <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
-    <ClInclude Include="src\oepch.h" />
     <ClInclude Include="src\Platforms\Win\WinWindow.h" />
+    <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp" />
@@ -179,22 +182,22 @@
     <ClCompile Include="src\ObliviousEngine\Audio\SoundEffect.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Collision.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Events\EventHandler.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Events\InputEvent.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\OldWindow.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Events\EventHandler.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Events\InputEvent.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp" />
+    <ClCompile Include="src\Platforms\Win\WinWindow.cpp" />
     <ClCompile Include="src\oepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\Platforms\Win\WinWindow.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
