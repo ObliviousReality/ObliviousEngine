@@ -6,4 +6,4 @@
 	url = https://github.com/g-truc/glm
 [submodule "ObliviousEngine/vendor/GLFW"]
 	path = ObliviousEngine/vendor/GLFW
-	url = https://github.com/glfw/glfw
+	url = https://github.com/TheCherno/glfw
