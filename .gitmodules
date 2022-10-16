@@ -1,3 +1,6 @@
 [submodule "ObliviousEngine/vendor/spdlog"]
 	path = ObliviousEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "ObliviousEngine/vendor/glm"]
+	path = ObliviousEngine/vendor/glm
+	url = https://github.com/g-truc/glm
