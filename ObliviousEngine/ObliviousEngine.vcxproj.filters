@@ -10,9 +10,6 @@
     <Filter Include="ObliviousEngine\Core">
       <UniqueIdentifier>{0F0DCC09-FB9B-55D3-A4BA-69CE90286679}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObliviousEngine\Entities">
-      <UniqueIdentifier>{EB84D78C-D7A9-260D-00F5-0B9DEC78252B}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ObliviousEngine\Renderer">
       <UniqueIdentifier>{DDAF01C9-C9D4-5049-F21F-36D9DEA34F67}</UniqueIdentifier>
     </Filter>

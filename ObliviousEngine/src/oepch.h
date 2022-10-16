@@ -6,7 +6,7 @@
 #include <algorithm>
 #include <functional>
 
-#include <time.h>]
+#include <time.h>
 #include <stdio.h>
 #include <stdlib.h>
 

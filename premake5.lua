@@ -16,8 +16,10 @@ IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
 
 project "ObliviousEngine"
 	location "ObliviousEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir  ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -61,7 +63,7 @@ project "ObliviousEngine"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
+
 		staticruntime "On"
 		systemversion "latest"
 
@@ -71,22 +73,20 @@ project "ObliviousEngine"
 			"OE_BUILD_DLL"
 		}
 
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
-		}
-
 	filter "configurations:Debug"
 		defines "OE_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "OE_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "OE_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 
 
@@ -94,6 +94,8 @@ project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
+	cppdialect "C++17"
+	staticruntime "on"
 
 	targetdir  ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -137,8 +139,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -148,13 +148,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "OE_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 
 	filter "configurations:Release"
 		defines "OE_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "OE_DIST"
-		optimize "On"
-	
+		runtime "Release"
+		optimize "on"
