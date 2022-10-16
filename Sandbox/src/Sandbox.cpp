@@ -2,6 +2,10 @@
 #include <ObliviousEngine/Core/EntryPoint.h>
 #include <filesystem>
 
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
+
 
 class Sandbox : public OE::Application {
 public:
@@ -17,51 +21,6 @@ public:
 	{
 		OE_INFO("In loop function of Application");
 		ECSLoop();
-		//LLLoop();
-	}
-
-	void LLLoop() {
-
-		//OE_INFO("{}", std::filesystem::current_path());
-		OE::Window* window = new OE::Window();
-		const int width = 2560;
-		const int height = 1440;
-		window->create("Test", width, height, OE::FULLSCREEN_DESKTOP);
-		OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
-		bool crashed = false;
-		OE::EventHandler* handler = new OE::EventHandler();
-		OE::InputEvent* quitEvent = new OE::InputEvent(handler);
-		quitEvent->addKeyPress(OE::KEY_P);
-		OE::InputEvent* playEvent = new OE::InputEvent(handler);
-		playEvent->addKeyPress(OE::KEY_HOME);
-		playEvent->addKeyPress(OE::KEY_KP_7);
-		playEvent->addKeyRelease(OE::KEY_LEFTSHIFT);
-		OE::Colour* c = new OE::Colour(200, 200, 23, 0);
-		OE::ObjectList::ObjectNode* ol = OE::ObjectList::create();
-		OE::FPSCounter* fc = new OE::FPSCounter(100, 100, renderer);
-		OE::DebugBox* db = new OE::DebugBox(500, 500, renderer, handler);
-		OE::MovingBox* mb = new OE::MovingBox(50, 50, renderer, handler);
-		OE::ObjectList::addItem(ol, db);
-		OE::ObjectList::addItem(ol, mb);
-		OE::ObjectList::addItem(ol, fc);
-		OE::SoundEffect* se = new OE::SoundEffect("assets/pistol.ogg");
-		while (!crashed) {
-			handler->detectEvents();
-			if (handler->quitPressed() || quitEvent->testEvent()) {
-				OE_TRACE("Quit detected. Closing Window");
-				crashed = true;
-			}
-			if (playEvent->testEvent())
-			{
-				if (!se->isPlaying()) {
-					OE::MediaPlayer::playEffect(se, 0);
-				}
-			}
-			renderer->setDrawColour(c);
-			renderer->clear();
-			OE::ObjectList::render(ol);
-			renderer->render();
-		}
 	}
 
 	void ECSLoop() {
@@ -70,35 +29,42 @@ public:
 		const int width = 2560;
 		const int height = 1440;
 		window->create("Test", width, height, OE::FULLSCREEN_DESKTOP);
-		OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
+		//OE::Renderer* renderer = new OE::Renderer(window, false, false, true, false);
+		OE::Renderer::BuildRenderer(window, false, false, true, false);
 		bool crashed = false;
 		OE::EventHandler* handler = new OE::EventHandler();
 		OE::InputEvent* quitEvent = new OE::InputEvent(handler);
 		quitEvent->addKeyPress(OE::KEY_P);
 		OE::Colour* c = new OE::Colour(200, 200, 23, 0);
-		OE::Scene* s = new OE::Scene(renderer, handler);
+		OE::Scene* s = new OE::Scene();
 		for (int i = 0; i < 3; i++) {
 			OE::Entity e = s->createEntity(std::to_string(i));
-			//e.addComp<OE::TransformComponent>(OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
-			e.addComp<OE::SpriteRendererComponent>(OE::Vec3(100, 100, 0));
+			OE_CORE_TRACE("Entity created.");
+			e.getComp<OE::TransformComponent>().vec = glm::vec2(OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
+			OE_CORE_TRACE("Transform altered.");
+			e.addComp<OE::SpriteRendererComponent>(10);
+			OE_CORE_TRACE("Asset added.");
 		}
 		OE::Entity entity = s->createEntity("gary");
-		//entity.addComp<OE::TransformComponent>(OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
-		entity.addComp<OE::SpriteRendererComponent>(OE::Vec3(100, 100, 0));
-		if (entity.hasComp<OE::TransformComponent>())
+		entity.getComp<OE::TransformComponent>().vec = glm::vec2(OE::Maths::randomIntRange(0, width - 100), OE::Maths::randomIntRange(0, height - 100));
+		entity.addComp<OE::SpriteRendererComponent>(20);
+		if (entity.hasComp<OE::SpriteRendererComponent>())
 		{
 			OE_CORE_WARN("HAS COMPONENT!");
 		}
+		/*OE::Entity camera = s->createEntity("Camera");
+		camera.addComp<OE::CameraComponent>(glm::ortho(-16.0f, 16.0f, -9.0f, 9.0f, -1.0f, 1.0f));
+		camera.getComp<OE::CameraComponent>().primary = true;*/
 		while (!crashed) {
 			handler->detectEvents();
 			if (handler->quitPressed() || quitEvent->testEvent()) {
 				OE_TRACE("Quit detected. Closing Window");
 				crashed = true;
 			}
-			renderer->setDrawColour(c);
-			renderer->clear();
+			OE::Renderer::SetDrawColour(c);
+			OE::Renderer::Clear();
 			s->update();
-			renderer->render();
+			OE::Renderer::Render();
 		}
 	}
 };

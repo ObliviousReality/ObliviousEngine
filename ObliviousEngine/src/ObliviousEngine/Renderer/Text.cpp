@@ -1,11 +1,11 @@
 #include "oepch.h"
 #include "Text.h"
+//#include "Renderer.h"
 
 namespace OE {
 
-	Text::Text(Renderer* renderer) : Texture(renderer)
+	Text::Text()
 	{
-		this->renderer = renderer->getRenderer();
 	}
 
 	Text::~Text()
@@ -15,7 +15,7 @@ namespace OE {
 
 	bool Text::loadText(std::string text, SDL_Colour textColour, TTF_Font* font)
 	{
-		free();
+		/*free();
 		SDL_Surface* textSurface = TTF_RenderText_Solid(font, text.c_str(), textColour);
 		if (textSurface == NULL)
 		{
@@ -23,7 +23,7 @@ namespace OE {
 		}
 		else
 		{
-			texture = SDL_CreateTextureFromSurface(renderer, textSurface);
+			texture = Renderer::CreateTextureFromSurface(textSurface);
 			if (texture == NULL)
 			{
 				printf("Unable to create text texture\n");
@@ -35,7 +35,19 @@ namespace OE {
 			}
 			SDL_FreeSurface(textSurface);
 		}
-		return texture != NULL;
+		return texture != NULL;*/
+		return false;
+	}
+
+	void Text::free()
+	{
+		if (texture != NULL)
+		{
+			SDL_DestroyTexture(texture);
+			texture = NULL;
+			width = 0;
+			height = 0;
+		}
 	}
 
 }

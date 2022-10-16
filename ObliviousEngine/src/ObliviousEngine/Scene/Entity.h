@@ -50,7 +50,7 @@ namespace OE {
 
 	private:
 		entt::entity handle = entt::null;
-		Scene* scene; // should be some sort of weak ref.
+		Scene* scene = nullptr; // should be some sort of weak ref.
 
 	};
 }

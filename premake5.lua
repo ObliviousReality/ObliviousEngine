@@ -12,6 +12,7 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["entt"] = "ObliviousEngine/vendor/entt/include"
+IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
 
 project "ObliviousEngine"
 	location "ObliviousEngine"
@@ -38,7 +39,8 @@ project "ObliviousEngine"
 		"%{prj.name}/vendor/SDLTTF/include",
 		"%{prj.name}/vendor/SDLImage/include",
 		"%{prj.name}/vendor/SDLMixer/include",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.glm}"
 	}
 
 	libdirs
@@ -99,7 +101,9 @@ project "Sandbox"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
 
 	includedirs
@@ -110,7 +114,8 @@ project "Sandbox"
 		"ObliviousEngine/vendor/SDLImage/include",
 		"ObliviousEngine/vendor/SDLMixer/include",
 		"ObliviousEngine/src",
-		"%{IncludeDir.entt}"
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.glm}"
 	}
 
 	libdirs

@@ -2,7 +2,7 @@
 #include "core.h"
 
 namespace OE {
-	struct OBLIVIOUSENGINE_API Vec2
+	/*struct OBLIVIOUSENGINE_API Vec2
 	{
 		int x;
 		int y;
@@ -15,7 +15,7 @@ namespace OE {
 		int y;
 		int z;
 		Vec3(int xin, int yin, int zin) : x(xin), y(yin), z(zin) {}
-	};
+	};*/
 	class OBLIVIOUSENGINE_API Maths
 	{
 	public:

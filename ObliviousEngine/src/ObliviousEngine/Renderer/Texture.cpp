@@ -1,12 +1,12 @@
 #include "oepch.h"
 #include "Texture.h"
-
+#include <ObliviousEngine/Renderer/Renderer.h>
 
 namespace OE {
 
-	Texture::Texture(Renderer* renderer)
+	Texture::Texture()
 	{
-		this->renderer = renderer->getRenderer();
+		//this->renderer = renderer->getRenderer();
 		texture = NULL;
 		width = 0;
 		height = 0;
@@ -18,21 +18,21 @@ namespace OE {
 		free();
 	}
 
-	bool Texture::loadFromFile(std::string path)
+	void Texture::loadFromFile(std::string path)
 	{
 		free();
 		SDL_Texture* newTexture = NULL;
 		SDL_Surface* loadedSurface = IMG_Load(path.c_str());
 		if (loadedSurface == NULL)
 		{
-			printf("Error loading image\n");
+			OE_CORE_WARN("Error loading image");
 		}
 		else
 		{
-			newTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+			newTexture = Renderer::CreateTextureFromSurface(loadedSurface);
 			if (newTexture == NULL)
 			{
-				printf("Failed to load texture\n");
+				OE_CORE_WARN("Failed to load texture");
 			}
 			else
 			{
@@ -41,8 +41,9 @@ namespace OE {
 			}
 			SDL_FreeSurface(loadedSurface);
 		}
+		OE_CORE_TRACE("Before assignment");
 		texture = newTexture;
-		return texture != NULL;
+		OE_CORE_TRACE("After Assignment");
 	}
 
 	void Texture::free()
@@ -56,11 +57,11 @@ namespace OE {
 		}
 	}
 
-	void Texture::render(int x, int y)
+	/*void Texture::render(int x, int y)
 	{
 		SDL_Rect renderQuad = { x, y, width, height };
 		SDL_RenderCopy(renderer, texture, NULL, &renderQuad);
-	}
+	}*/
 
 	int Texture::getHeight()
 	{

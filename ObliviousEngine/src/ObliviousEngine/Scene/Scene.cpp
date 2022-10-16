@@ -1,13 +1,14 @@
 #include "oepch.h"
 #include "Scene.h"
 #include "Entity.h"
+#include <ObliviousEngine/Scene/Components.h>
+#include <ObliviousEngine/Renderer/Renderer.h>
+
 
 namespace OE {
 
-	Scene::Scene(Renderer* renderer, EventHandler* handler) // 
+	Scene::Scene() 
 	{
-		this->renderer = renderer;
-		this->handler = handler;
 	}
 
 	Scene::~Scene()
@@ -16,12 +17,43 @@ namespace OE {
 
 	void Scene::update()
 	{
-		auto group = registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
-		for (auto g : group)
+		Camera* mainCam = nullptr;
 		{
-			auto& [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(g);
-			DebugBox* b = new DebugBox(transform.x, transform.y, renderer, handler);
-			b->draw();
+			auto group = registry.group<TransformComponent, CameraComponent>();
+			for (auto cam : group)
+			{
+				OE_CORE_TRACE("Item found");
+				auto& [transform, camera] = group.get<TransformComponent, CameraComponent>(cam);
+
+				if (camera.primary)
+				{
+					mainCam = &camera.camera;
+					OE_CORE_INFO("Main Camera Found");
+					break;
+				}
+			}
+		}
+
+		if (true)
+		{
+			OE_CORE_TRACE("Main rendering loop section");
+			auto group = registry.view<SpriteRendererComponent>();
+			OE_CORE_TRACE("Group Created.");
+			for (auto g : group)
+			{
+				OE_CORE_TRACE("Loop");
+				auto sprite = group.get<SpriteRendererComponent>(g);
+				Entity e = { g, this };
+				auto transform = e.getComp<TransformComponent>();
+				//auto sprite = group.get<>(g);
+				/*DebugBox* b = new DebugBox(transform.vec.x, transform.vec.y, renderer, handler);
+				b->draw();*/
+				//Renderer::RenderSprite(transform.vec, glm::vec2(100, 100), sprite.tex->getTexture());
+			}
+		}
+		else
+		{
+			OE_CORE_ERROR("No Camera in Scene, nothing drawn.");
 		}
 	}
 

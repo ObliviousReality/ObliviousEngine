@@ -3,6 +3,8 @@
 //#include <OE.h>
 
 #include <ObliviousEngine/Core/Maths.h>
+#include <ObliviousEngine/Renderer/Camera.h>
+#include <ObliviousEngine/Renderer/Texture.h>
 
 
 namespace OE {
@@ -19,21 +21,32 @@ namespace OE {
 	struct OBLIVIOUSENGINE_API TransformComponent
 	{
 		//Vec2 pos;
-		int x;
-		int y;
+		glm::vec2 vec;
 
 		TransformComponent() = default;
 		TransformComponent(const TransformComponent&) = default;
 		//TransformComponent(Vec2 _pos) : pos(_pos){}
-		TransformComponent(const int _x, const int _y) : x(_x), y(_y) {}
+		TransformComponent(const glm::vec2& _v) : vec(_v) {} // const int _x, const int _y, x(_x), y(_y),
 	};
 
 	struct OBLIVIOUSENGINE_API SpriteRendererComponent
 	{
-		Vec3 colour{ 255,255,255 };
+		//Texture* tex;
+		int i;
 
 		SpriteRendererComponent() = default;
 		SpriteRendererComponent(const SpriteRendererComponent&) = default;
-		SpriteRendererComponent(const Vec3& col) : colour(col) {}
+		//SpriteRendererComponent(Texture* t) : tex(t) {}
+		SpriteRendererComponent(const int& t) : i(t) {}
+	};
+
+	struct CameraComponent
+	{
+		Camera camera;
+		bool primary = false;
+
+		CameraComponent() = default;
+		CameraComponent(const CameraComponent&) = default;
+		CameraComponent(const glm::mat4& _camera) : camera(_camera) {}
 	};
 }

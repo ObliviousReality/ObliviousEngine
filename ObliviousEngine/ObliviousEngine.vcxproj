@@ -80,7 +80,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -103,7 +103,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -130,7 +130,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;OE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -153,8 +153,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
-    <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
-    <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\Music.h" />
@@ -168,20 +166,14 @@
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Timer.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\BoxEntity.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\CircleEntity.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\DebugBox.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\OldEntity.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\FPSCounter.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\Object.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\ObjectList.h" />
-    <ClInclude Include="src\ObliviousEngine\Entities\TextEntity.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Camera.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
-    <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Text.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Texture.h" />
+    <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
+    <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
+    <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
@@ -196,21 +188,12 @@
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Window.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\BoxEntity.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\CircleEntity.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\DebugBox.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\OldEntity.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\FPSCounter.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\MovingBox.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\Object.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\ObjectList.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Entities\TextEntity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp" />
     <ClCompile Include="src\oepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

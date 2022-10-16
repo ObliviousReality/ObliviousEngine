@@ -16,6 +16,9 @@
     <Filter Include="ObliviousEngine\Renderer">
       <UniqueIdentifier>{DDAF01C9-C9D4-5049-F21F-36D9DEA34F67}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ObliviousEngine\Scene">
+      <UniqueIdentifier>{B46C6844-20D9-233F-E9CC-BB9C55F845A7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
@@ -56,40 +59,13 @@
     <ClInclude Include="src\ObliviousEngine\Core\Window.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\BoxEntity.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\CircleEntity.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\DebugBox.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\OldEntity.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\FPSCounter.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\MovingBox.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\Object.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\ObjectList.h">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Entities\TextEntity.h">
-      <Filter>ObliviousEngine\Entities</Filter>
+    <ClInclude Include="src\ObliviousEngine\Renderer\Camera.h">
+      <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Scene\Scene.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Text.h">
@@ -98,9 +74,16 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\Texture.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Scene\Components.h">
+      <Filter>ObliviousEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Scene\Entity.h">
+      <Filter>ObliviousEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Scene\Scene.h">
+      <Filter>ObliviousEngine\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\oepch.h" />
-    <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
-    <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
@@ -136,40 +119,10 @@
     <ClCompile Include="src\ObliviousEngine\Core\Window.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\BoxEntity.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\CircleEntity.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\DebugBox.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\OldEntity.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\FPSCounter.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\MovingBox.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\Object.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\ObjectList.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Entities\TextEntity.cpp">
-      <Filter>ObliviousEngine\Entities</Filter>
-    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp">
@@ -178,7 +131,12 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp">
+      <Filter>ObliviousEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp">
+      <Filter>ObliviousEngine\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
   </ItemGroup>
 </Project>
