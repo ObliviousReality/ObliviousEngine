@@ -32,7 +32,7 @@ namespace OE {
 		SDL_SetRenderDrawColor(renderer, c->getR(), c->getG(), c->getB(), c->getA());
 	}
 
-	void Renderer::BuildRenderer(Window* w, bool softwareFallback, bool hardwareAccel, bool vsync, bool targetTexture)
+	void Renderer::BuildRenderer(OldWindow* w, bool softwareFallback, bool hardwareAccel, bool vsync, bool targetTexture)
 	{
 		renderer = SDL_CreateRenderer(w->getWindow(), -1, (softwareFallback ? SDL_RENDERER_SOFTWARE : 0) | (hardwareAccel ? SDL_RENDERER_ACCELERATED : 0) | (vsync ? SDL_RENDERER_PRESENTVSYNC : 0) | (targetTexture ? SDL_RENDERER_TARGETTEXTURE : 0));
 		if (renderer == NULL)

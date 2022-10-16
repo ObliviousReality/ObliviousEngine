@@ -13,6 +13,9 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 IncludeDir = {}
 IncludeDir["entt"] = "ObliviousEngine/vendor/entt/include"
 IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
+IncludeDir["GLFW"] = "ObliviousEngine/vendor/GLFW/include"
+
+include "ObliviousEngine/vendor/GLFW"
 
 project "ObliviousEngine"
 	location "ObliviousEngine"
@@ -42,7 +45,8 @@ project "ObliviousEngine"
 		"%{prj.name}/vendor/SDLImage/include",
 		"%{prj.name}/vendor/SDLMixer/include",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.GLFW}"
 	}
 
 	libdirs
@@ -55,6 +59,8 @@ project "ObliviousEngine"
 
 	links
 	{
+		"GLFW",
+		"opengl32.lib",
 		"SDL2",
 		"SDL2main",
 		"SDL2_ttf",

@@ -1,43 +1,36 @@
 #pragma once
-#ifndef WINDOW_H
-#define WINDOW_H
+#include "oepch.h"
+
 #include "Core.h"
-#pragma warning(push, 0)
-#include <SDL.h>
-#pragma warning(pop)
-#include <SDL_ttf.h>
-#include <SDL_image.h>
-#include <SDL_mixer.h>
-#include <stdio.h>
-#include <sstream>
 
-namespace OE {
+namespace OE
+{
 
-	const typedef enum {
-		NONE,
-		FULLSCREEN,
-		FULLSCREEN_DESKTOP,
-		MAXIMISED,
-	} OEResolution;
+	struct Properties
+	{
+		std::string name;
+		int width;
+		int height;
+		Properties(const std::string& n = "Window", int w = 1920, int h = 1080)
+			: name(n), width(w), height(h)
+		{}
+	};
 
 	class OBLIVIOUSENGINE_API Window
 	{
 	public:
-		Window();
-		~Window();
+		using EventCallbackFn = std::function<void(Event&)>;
+		virtual ~Window() {}
 
-		SDL_Window* create(const char* name, int w, int h, int size = 0);
-		void destroy();
-		SDL_Window* getWindow();
+		virtual void onUpdate() = 0;
 
-		int width, height;
-		const char* name;
+		virtual int getWidth() const = 0;
+		virtual int getHeight() const = 0;
 
-	private:
-		SDL_Window* window;
-		bool initFeat();
+		virtual void setEventCallback(const EventCallbackFn& callback) = 0;
+		virtual void setVSync(bool vs) = 0;
+		virtual bool vsynced() const = 0;
+
+		static Window* createWindow(const Properties& props = Properties());
 	};
-
 }
-
-#endif

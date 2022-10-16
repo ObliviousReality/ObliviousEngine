@@ -13,3 +13,12 @@
 #else
 #error The Oblivious Engine only supports Windows.
 #endif // OE_PLATFORM_WINDOWS
+
+
+#ifdef OE_ENABLE_ASSERTS
+#define OE_ASSERT(x, ...) {if (!x)) {OE_ERROR("Assertion Failed :(: {0}", __VA_ARGS__); __debugbreak();}}
+#define OE_CORE_ASSERT(x, ...) {if (!x)) {OE_CORE_ERROR("Assertion Failed :(: {0}", __VA_ARGS__); __debugbreak();}}
+#else
+#define OE_ASSERT(x, ...)
+#define OE_CORE_ASSERT(x, ...)
+#endif // OE_ENABLE_ASSERTS

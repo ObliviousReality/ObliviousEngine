@@ -1,20 +1,20 @@
 #include "oepch.h"
-#include "Window.h"
+#include "OldWindow.h"
 #include <ObliviousEngine/Core/Log.h>
 
 namespace OE {
 
-	Window::Window()
+	OldWindow::OldWindow()
 	{
 		window = NULL;
 	}
 
-	Window::~Window()
+	OldWindow::~OldWindow()
 	{
 		SDL_DestroyWindow(window);
 	}
 
-	SDL_Window* Window::create(const char* name, int w, int h, int size)
+	SDL_Window* OldWindow::create(const char* name, int w, int h, int size)
 	{
 		OE_CORE_TRACE("Initialising Window");
 		int flag = 0;
@@ -52,19 +52,19 @@ namespace OE {
 
 	}
 
-	void Window::destroy()
+	void OldWindow::destroy()
 	{
 		SDL_DestroyWindow(window);
 	}
 
-	SDL_Window* Window::getWindow()
+	SDL_Window* OldWindow::getWindow()
 	{
 		return window;
 	}
 
 
 
-	bool Window::initFeat()
+	bool OldWindow::initFeat()
 	{
 		if (window == NULL)
 		{

@@ -4,6 +4,7 @@
 
 
 #include "Core.h"
+#include <ObliviousEngine/Core/Window.h>
 
 namespace OE {
 
@@ -12,12 +13,13 @@ namespace OE {
 	public:
 		Application();
 		virtual ~Application();
-		static void init();
+		static void init(); // SDL
 		static void quit();
 		void run();
 		virtual void loop();
 	private:
-		
+		std::unique_ptr<Window> window;
+		bool crashed = false;
 	};
 
 	//Client side

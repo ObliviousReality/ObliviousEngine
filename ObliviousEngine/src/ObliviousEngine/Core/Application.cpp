@@ -15,6 +15,7 @@
 namespace OE {
 
 	Application::Application() {
+		window = std::unique_ptr<Window>(Window::createWindow());
 	}
 
 	Application::~Application() {
@@ -23,7 +24,11 @@ namespace OE {
 
 	void Application::run()
 	{
-		loop();
+		//loop();
+		while (!crashed)
+		{
+			window->onUpdate();
+		}
 	}
 
 	void Application::loop()

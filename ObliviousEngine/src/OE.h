@@ -32,7 +32,7 @@
 #include "ObliviousEngine/Core/Log.h"
 #include "ObliviousEngine/Core/EventHandler.h"
 #include "ObliviousEngine/Core/InputEvent.h"
-#include "ObliviousEngine/Core/Window.h"
+#include "ObliviousEngine/Core/OldWindow.h"
 #include "ObliviousEngine/Core/Application.h"
 
 // ENTRY POINT:
