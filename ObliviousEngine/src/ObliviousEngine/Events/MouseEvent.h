@@ -43,6 +43,9 @@ namespace OE
 			return ss.str();
 		}
 
+		EVENT_CLASS_TYPE(MouseScroll);
+		EVENT_CLASS_CAT(ECMouse | ECInput);
+
 	private:
 		float xOff, yOff;
 	};

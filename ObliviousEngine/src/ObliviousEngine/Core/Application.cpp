@@ -11,13 +11,16 @@
 //#include "EventHandler.cpp"
 //#include "KeyInput.cpp"
 #include <GLFW/glfw3.h>
-#include <ObliviousEngine/Events/AppEvent.h>
+
 
 
 namespace OE {
 
+#define BIND_EV(x) std::bind(&x, this, std::placeholders::_1)
+
 	Application::Application() {
 		window = std::unique_ptr<Window>(Window::createWindow());
+		window->setEventCallback(BIND_EV(Application::onEvent));
 	}
 
 	Application::~Application() {
@@ -27,11 +30,10 @@ namespace OE {
 	void Application::run()
 	{
 		//loop();
-		WindowResizeEvent e(10, 10);
-		if (e.isInCat(ECApp))
-			OE_CORE_TRACE("IS IN APP!");
 		while (!crashed)
 		{
+			glClearColor(1, 1, 0, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 			window->onUpdate();
 		}
 	}
@@ -40,6 +42,15 @@ namespace OE {
 	{
 		OE_CORE_WARN("This should not be visible - Application::loop() should be overrridden.");
 	}
+
+	void Application::onEvent(Event& e)
+	{
+		//OE_CORE_TRACE("{0}", e);
+		EventDispatcher dispatcher(e);
+		dispatcher.dispatch<WindowCloseEvent>(BIND_EV(Application::onClose));
+	}
+
+	
 
 	void Application::init()
 	{
@@ -81,5 +92,12 @@ namespace OE {
 		OE_CORE_TRACE("Quitting SDL:");
 		SDL_Quit();
 		OE_CORE_ERROR("SDL Quit.");
+	}
+
+
+	bool Application::onClose(WindowCloseEvent& e)
+	{
+		crashed = true;
+		return true;
 	}
 }

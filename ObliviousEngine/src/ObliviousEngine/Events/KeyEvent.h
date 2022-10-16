@@ -40,6 +40,7 @@ namespace OE
 
 	class OBLIVIOUSENGINE_API KeyUpEvent : public KeyEvent
 	{
+	public:
 		KeyUpEvent(int kc)
 			: KeyEvent(kc) {}
 

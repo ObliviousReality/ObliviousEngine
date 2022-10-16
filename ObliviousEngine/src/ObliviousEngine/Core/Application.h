@@ -5,6 +5,7 @@
 
 #include "Core.h"
 #include <ObliviousEngine/Events/Event.h>
+#include <ObliviousEngine/Events/AppEvent.h>
 #include <ObliviousEngine/Core/Window.h>
 
 namespace OE {
@@ -18,9 +19,12 @@ namespace OE {
 		static void quit();
 		void run();
 		virtual void loop();
+
+		void onEvent(Event& e);
 	private:
 		std::unique_ptr<Window> window;
 		bool crashed = false;
+		bool onClose(WindowCloseEvent& e);
 	};
 
 	//Client side

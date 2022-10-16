@@ -55,7 +55,7 @@ namespace OE
 			: ev(e) {}
 
 		template<typename T>
-		bool dispatch(EventFn<T> fn)
+		bool dispatch(EventFn<T> func)
 		{
 			if (ev.getEventType() == T::getStaticType())
 			{
