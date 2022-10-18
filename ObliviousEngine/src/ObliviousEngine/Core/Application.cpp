@@ -32,8 +32,12 @@ namespace OE {
 		//loop();
 		while (!crashed)
 		{
-			glClearColor(1, 1, 0, 1);
+			glClearColor(0.8, 0.8, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+			for (Layer* l : ls)
+			{
+				l->onUpdate();
+			}
 			window->onUpdate();
 		}
 	}
@@ -48,9 +52,26 @@ namespace OE {
 		//OE_CORE_TRACE("{0}", e);
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EV(Application::onClose));
+
+		for (auto it = ls.end(); it != ls.begin();)
+		{
+			(*--it)->onEvent(e);
+			if (e.handled)
+			{
+				break;
+			}
+		}
 	}
 
-	
+	void Application::pushLayer(Layer* l)
+	{
+		ls.push(l);
+	}
+
+	void Application::pushOverlay(Layer* l)
+	{
+		ls.pushOverlay(l);
+	}
 
 	void Application::init()
 	{

@@ -7,6 +7,7 @@
 #include <ObliviousEngine/Events/Event.h>
 #include <ObliviousEngine/Events/AppEvent.h>
 #include <ObliviousEngine/Core/Window.h>
+#include <ObliviousEngine/Renderer/LayerStack.h>
 
 namespace OE {
 
@@ -21,10 +22,15 @@ namespace OE {
 		virtual void loop();
 
 		void onEvent(Event& e);
+
+		void pushLayer(Layer* l);
+		void pushOverlay(Layer* l);
 	private:
+		bool onClose(WindowCloseEvent& e);
+
 		std::unique_ptr<Window> window;
 		bool crashed = false;
-		bool onClose(WindowCloseEvent& e);
+		LayerStack ls;
 	};
 
 	//Client side

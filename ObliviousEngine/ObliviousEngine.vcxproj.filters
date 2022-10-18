@@ -108,6 +108,8 @@
       <Filter>Platforms\Win</Filter>
     </ClInclude>
     <ClInclude Include="src\oepch.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Layer.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
@@ -165,5 +167,7 @@
       <Filter>Platforms\Win</Filter>
     </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
   </ItemGroup>
 </Project>

@@ -69,11 +69,10 @@ namespace OE
 			}
 			OE_CORE_INFO("GLFW Initialised");
 		}
-		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), nullptr, nullptr);
+		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
 		glfwMakeContextCurrent(window);
 		glfwSetWindowUserPointer(window, &winProps);
 		setVSync(true);
-
 		//Events motherfucker:
 
 		glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int w, int h)

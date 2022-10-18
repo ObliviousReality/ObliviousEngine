@@ -147,6 +147,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Layer.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\LayerStack.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h" />
     <ClInclude Include="src\ObliviousEngine\Audio\Music.h" />
@@ -189,6 +191,8 @@
     <ClCompile Include="src\ObliviousEngine\Events\EventHandler.cpp" />
     <ClCompile Include="src\ObliviousEngine\Events\InputEvent.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp" />

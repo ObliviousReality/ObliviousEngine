@@ -42,8 +42,8 @@ namespace OE
 			return getCatFlags() & cat;
 		}
 
-	protected:
 		bool handled = false;
+	protected:
 	};
 
 	class EventDispatcher

@@ -69,7 +69,6 @@ project "ObliviousEngine"
 	}
 
 	filter "system:windows"
-		buildoptions "/MDd"
 		staticruntime "On"
 		systemversion "latest"
 
@@ -81,16 +80,19 @@ project "ObliviousEngine"
 
 	filter "configurations:Debug"
 		defines "OE_DEBUG"
+		buildoptions "/MDd"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "OE_RELEASE"
+		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "OE_DIST"
+		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
 
@@ -145,7 +147,6 @@ project "Sandbox"
 	}
 
 	filter "system:windows"
-		buildoptions "/MDd"
 		systemversion "latest"
 
 		defines
@@ -155,15 +156,18 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "OE_DEBUG"
+		buildoptions "/MDd"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "OE_RELEASE"
+		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "OE_DIST"
+		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
