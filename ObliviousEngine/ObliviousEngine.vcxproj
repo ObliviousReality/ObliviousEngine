@@ -77,7 +77,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;GLFW_INCLUDE_NONE;OE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -89,8 +89,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;vendor\SDLTTF\lib\x64;vendor\SDLImage\lib\x64;vendor\SDLMixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -99,7 +98,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;GLFW_INCLUDE_NONE;OE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -115,8 +114,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;vendor\SDLTTF\lib\x64;vendor\SDLImage\lib\x64;vendor\SDLMixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -125,7 +123,7 @@
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>OE_PLATFORM_WINDOWS;OE_BUILD_DLL;GLFW_INCLUDE_NONE;OE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\SDL\include;vendor\SDLTTF\include;vendor\SDLImage\include;vendor\SDLMixer\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -141,37 +139,25 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>opengl32.lib;SDL2.lib;SDL2main.lib;SDL2_ttf.lib;SDL2_image.lib;SDL2_mixer.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>vendor\SDL\lib\x64;vendor\SDLTTF\lib\x64;vendor\SDLImage\lib\x64;vendor\SDLMixer\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\OE.h" />
-    <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h" />
-    <ClInclude Include="src\ObliviousEngine\Audio\Music.h" />
-    <ClInclude Include="src\ObliviousEngine\Audio\SoundEffect.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Collision.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Log.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\OldWindow.h" />
-    <ClInclude Include="src\ObliviousEngine\Core\Timer.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
     <ClInclude Include="src\ObliviousEngine\Events\AppEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Events\Event.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\EventHandler.h" />
-    <ClInclude Include="src\ObliviousEngine\Events\InputEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Events\KeyEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Events\MouseEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Camera.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Layer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\LayerStack.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Text.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Texture.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Components.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
@@ -179,23 +165,12 @@
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Audio\Music.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Audio\SoundEffect.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\Collision.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\OldWindow.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Events\EventHandler.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Events\InputEvent.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp" />
     <ClCompile Include="src\Platforms\Win\WinWindow.cpp" />

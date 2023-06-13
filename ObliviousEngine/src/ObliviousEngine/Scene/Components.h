@@ -4,7 +4,6 @@
 
 #include <ObliviousEngine/Core/Maths.h>
 #include <ObliviousEngine/Renderer/Camera.h>
-#include <ObliviousEngine/Renderer/Texture.h>
 
 
 namespace OE {

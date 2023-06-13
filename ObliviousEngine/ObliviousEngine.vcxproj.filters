@@ -4,9 +4,6 @@
     <Filter Include="ObliviousEngine">
       <UniqueIdentifier>{57DA2915-C365-97D9-CC76-1ACE3881F3D9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ObliviousEngine\Audio">
-      <UniqueIdentifier>{988D2C43-04FA-E73D-CDED-7F9B39190AA6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ObliviousEngine\Core">
       <UniqueIdentifier>{0F0DCC09-FB9B-55D3-A4BA-69CE90286679}</UniqueIdentifier>
     </Filter>
@@ -29,19 +26,7 @@
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\OE.h" />
-    <ClInclude Include="src\ObliviousEngine\Audio\MediaPlayer.h">
-      <Filter>ObliviousEngine\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Audio\Music.h">
-      <Filter>ObliviousEngine\Audio</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Audio\SoundEffect.h">
-      <Filter>ObliviousEngine\Audio</Filter>
-    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\Application.h">
-      <Filter>ObliviousEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Core\Collision.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h">
@@ -53,12 +38,6 @@
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Core\OldWindow.h">
-      <Filter>ObliviousEngine\Core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Core\Timer.h">
-      <Filter>ObliviousEngine\Core</Filter>
-    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Core\Window.h">
       <Filter>ObliviousEngine\Core</Filter>
     </ClInclude>
@@ -66,12 +45,6 @@
       <Filter>ObliviousEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Events\Event.h">
-      <Filter>ObliviousEngine\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Events\EventHandler.h">
-      <Filter>ObliviousEngine\Events</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Events\InputEvent.h">
       <Filter>ObliviousEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Events\KeyEvent.h">
@@ -92,15 +65,6 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\LayerStack.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Renderer\Text.h">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Renderer\Texture.h">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Scene\Components.h">
       <Filter>ObliviousEngine\Scene</Filter>
     </ClInclude>
@@ -116,19 +80,7 @@
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
-      <Filter>ObliviousEngine\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Audio\Music.cpp">
-      <Filter>ObliviousEngine\Audio</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Audio\SoundEffect.cpp">
-      <Filter>ObliviousEngine\Audio</Filter>
-    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
-      <Filter>ObliviousEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Core\Collision.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp">
@@ -137,18 +89,6 @@
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp">
       <Filter>ObliviousEngine\Core</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Core\OldWindow.cpp">
-      <Filter>ObliviousEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Core\Timer.cpp">
-      <Filter>ObliviousEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Events\EventHandler.cpp">
-      <Filter>ObliviousEngine\Events</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Events\InputEvent.cpp">
-      <Filter>ObliviousEngine\Events</Filter>
-    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
@@ -156,15 +96,6 @@
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Renderer\Text.cpp">
-      <Filter>ObliviousEngine\Renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp">

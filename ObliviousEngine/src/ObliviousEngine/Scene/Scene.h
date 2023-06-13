@@ -1,10 +1,7 @@
 #pragma once
 #include "Core.h"
-//#include "ObliviousEngine/Entities/ObjectList.h"
-//#include <SDL.h>
 #include "entt.hpp"
 
-//#include <ObliviousEngine/Entities/DebugBox.h>
 
 namespace OE {
 	class Entity;

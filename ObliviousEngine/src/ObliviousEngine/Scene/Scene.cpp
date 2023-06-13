@@ -2,7 +2,6 @@
 #include "Scene.h"
 #include "Entity.h"
 #include <ObliviousEngine/Scene/Components.h>
-#include <ObliviousEngine/Renderer/Renderer.h>
 
 
 namespace OE {
@@ -45,10 +44,6 @@ namespace OE {
 				auto sprite = group.get<SpriteRendererComponent>(g);
 				Entity e = { g, this };
 				auto transform = e.getComp<TransformComponent>();
-				//auto sprite = group.get<>(g);
-				/*DebugBox* b = new DebugBox(transform.vec.x, transform.vec.y, renderer, handler);
-				b->draw();*/
-				//Renderer::RenderSprite(transform.vec, glm::vec2(100, 100), sprite.tex->getTexture());
 			}
 		}
 		else

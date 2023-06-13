@@ -43,10 +43,6 @@ project "ObliviousEngine"
 	{
 		"%{prj.name}/src",
 		"%{prj.name}/vendor/spdlog/include",
-		"%{prj.name}/vendor/SDL/include",
-		"%{prj.name}/vendor/SDLTTF/include",
-		"%{prj.name}/vendor/SDLImage/include",
-		"%{prj.name}/vendor/SDLMixer/include",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}",
@@ -56,10 +52,6 @@ project "ObliviousEngine"
 
 	libdirs
 	{
-		"%{prj.name}/vendor/SDL/lib/x64",
-		"%{prj.name}/vendor/SDLTTF/lib/x64",
-		"%{prj.name}/vendor/SDLImage/lib/x64",
-		"%{prj.name}/vendor/SDLMixer/lib/x64"
 	}
 
 	links
@@ -67,11 +59,6 @@ project "ObliviousEngine"
 		"GLFW",
 		"Glad",
 		"opengl32.lib",
-		"SDL2",
-		"SDL2main",
-		"SDL2_ttf",
-		"SDL2_image",
-		"SDL2_mixer"
 	}
 
 	filter "system:windows"
@@ -126,10 +113,6 @@ project "Sandbox"
 	includedirs
 	{
 		"ObliviousEngine/vendor/spdlog/include",
-		"ObliviousEngine/vendor/SDL/include",
-		"ObliviousEngine/vendor/SDLTTF/include",
-		"ObliviousEngine/vendor/SDLImage/include",
-		"ObliviousEngine/vendor/SDLMixer/include",
 		"ObliviousEngine/src",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.glm}"
@@ -137,20 +120,11 @@ project "Sandbox"
 
 	libdirs
 	{
-		"ObliviousEngine/vendor/SDL/lib/x64",
-		"ObliviousEngine/vendor/SDLTTF/lib/x64",
-		"ObliviousEngine/vendor/SDLImage/lib/x64",
-		"ObliviousEngine/vendor/SDLMixer/lib/x64"
 	}
 
 	links
 	{
 		"ObliviousEngine",
-		"SDL2",
-		"SDL2main",
-		"SDL2_ttf",
-		"SDL2_image",
-		"SDL2_mixer"
 	}
 
 	filter "system:windows"
