@@ -16,8 +16,14 @@
     <Filter Include="ObliviousEngine\Scene">
       <UniqueIdentifier>{B46C6844-20D9-233F-E9CC-BB9C55F845A7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ObliviousEngine\imgui">
+      <UniqueIdentifier>{010DFC45-6D79-B740-366D-4F9EA298D9A8}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Platforms">
       <UniqueIdentifier>{DDACA145-4917-56BC-9255-0762FEFE3311}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platforms\OpenGL">
+      <UniqueIdentifier>{719BB998-5D94-D8EA-86C6-BD6F721EB8F6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Platforms\Win">
       <UniqueIdentifier>{3A195266-A6D9-CD9C-6F14-171ADB931279}</UniqueIdentifier>
@@ -74,6 +80,12 @@
     <ClInclude Include="src\ObliviousEngine\Scene\Scene.h">
       <Filter>ObliviousEngine\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\imgui\ImGuiLayer.h">
+      <Filter>ObliviousEngine\imgui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platforms\OpenGL\imGuiOpenGLRenderer.h">
+      <Filter>Platforms\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platforms\Win\WinWindow.h">
       <Filter>Platforms\Win</Filter>
     </ClInclude>
@@ -103,6 +115,12 @@
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp">
       <Filter>ObliviousEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\imgui\ImGuiLayer.cpp">
+      <Filter>ObliviousEngine\imgui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platforms\OpenGL\imGuiOpenGLRenderer.cpp">
+      <Filter>Platforms\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platforms\Win\WinWindow.cpp">
       <Filter>Platforms\Win</Filter>

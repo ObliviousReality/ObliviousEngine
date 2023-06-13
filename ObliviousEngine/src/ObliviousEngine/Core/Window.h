@@ -12,7 +12,7 @@ namespace OE
 		std::string name;
 		int width;
 		int height;
-		Properties(const std::string& n = "Window", int w = 2560, int h = 1440)
+		Properties(const std::string& n = "Window", int w = 1920, int h = 1080)
 			: name(n), width(w), height(h)
 		{}
 	};

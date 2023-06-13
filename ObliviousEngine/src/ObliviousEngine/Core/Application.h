@@ -25,12 +25,17 @@ namespace OE {
 
 		void pushLayer(Layer* l);
 		void pushOverlay(Layer* l);
+
+		inline static Application& Get() { return *instance; }
+		inline Window& GetWindow() { return *window; }
 	private:
 		bool onClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> window;
 		bool crashed = false;
 		LayerStack ls;
+	private:
+		static Application* instance;
 	};
 
 	//Client side

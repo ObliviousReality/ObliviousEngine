@@ -5,6 +5,7 @@
 #include "ObliviousEngine/Scene/Entity.h"
 #include "ObliviousEngine/Scene/Components.h"
 #include "ObliviousEngine/Scene/Scene.h"
+#include "ObliviousEngine/imgui/ImGuiLayer.h"
 
 #include "ObliviousEngine/Renderer/Camera.h"
 #include "ObliviousEngine/Renderer/Colour.h"

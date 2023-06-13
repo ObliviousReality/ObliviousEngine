@@ -30,6 +30,7 @@ public:
 	Sandbox() {
 		OE_TRACE("Sandbox Started");
 		pushLayer(new TestLayer());
+		pushOverlay(new OE::ImGuiLayer());
 	}
 
 	~Sandbox() {

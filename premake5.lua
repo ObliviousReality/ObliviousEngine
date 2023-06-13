@@ -15,10 +15,13 @@ IncludeDir["entt"] = "ObliviousEngine/vendor/entt/include"
 IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
 IncludeDir["GLFW"] = "ObliviousEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "ObliviousEngine/vendor/Glad/include"
+IncludeDir["imgui"] = "ObliviousEngine/vendor/imgui"
 
 
 include "ObliviousEngine/vendor/GLFW"
 include "ObliviousEngine/vendor/Glad"
+include "ObliviousEngine/vendor/imgui"
+
 
 project "ObliviousEngine"
 	location "ObliviousEngine"
@@ -46,7 +49,9 @@ project "ObliviousEngine"
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.Glad}"
+		"%{IncludeDir.Glad}",
+		"%{IncludeDir.imgui}"
+
 
 	}
 
@@ -59,6 +64,7 @@ project "ObliviousEngine"
 		"GLFW",
 		"Glad",
 		"opengl32.lib",
+		"imgui"
 	}
 
 	filter "system:windows"

@@ -71,7 +71,9 @@ namespace OE
 			}
 			OE_CORE_INFO("GLFW Initialised");
 		}
-		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
+		// FULLSCREEN: window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
+
+		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(window);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		OE_CORE_ASSERT(status, "Failed to initialise Glad");

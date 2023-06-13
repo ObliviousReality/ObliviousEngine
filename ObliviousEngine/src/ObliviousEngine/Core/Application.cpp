@@ -9,7 +9,12 @@ namespace OE {
 
 #define BIND_EV(x) std::bind(&x, this, std::placeholders::_1)
 
-	Application::Application() {
+	Application* Application::instance = nullptr;
+
+	Application::Application()
+	{
+		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
+		instance = this;
 		window = std::unique_ptr<Window>(Window::createWindow());
 		window->setEventCallback(BIND_EV(Application::onEvent));
 	}
@@ -57,11 +62,13 @@ namespace OE {
 	void Application::pushLayer(Layer* l)
 	{
 		ls.push(l);
+		l->onAttach();
 	}
 
 	void Application::pushOverlay(Layer* l)
 	{
 		ls.pushOverlay(l);
+		l->onAttach();
 	}
 
 	void Application::init()
