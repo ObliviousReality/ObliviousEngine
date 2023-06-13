@@ -8,7 +8,7 @@ namespace OE
 		None = 0,
 		WinClose, WinResize, WinFocus, WinUnFocus, WinMove,
 		AppTick, AppUpdate, AppRender,
-		KeyDown, KeyUp,
+		KeyDown, KeyUp, KeyType,
 		MouseDown, MouseUp, MouseMove, MouseScroll
 	};
 

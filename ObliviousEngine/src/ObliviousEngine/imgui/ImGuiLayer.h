@@ -28,7 +28,7 @@ namespace OE {
 		bool onKeyDownEvent(KeyDownEvent& e);
 		bool onKeyUpEvent(KeyUpEvent& e);
 
-		//bool onKeyTypeEvent(KeyTypeEvent& e);
+		bool onKeyTypeEvent(KeyTypeEvent& e);
 
 		bool onWindowResizeEvent(WindowResizeEvent& e);
 

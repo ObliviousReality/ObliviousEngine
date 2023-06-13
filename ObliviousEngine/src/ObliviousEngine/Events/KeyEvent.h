@@ -52,4 +52,21 @@ namespace OE
 		}
 		EVENT_CLASS_TYPE(KeyUp);
 	};
+
+	class OBLIVIOUSENGINE_API KeyTypeEvent : public KeyEvent
+	{
+	public:
+		KeyTypeEvent(int kc)
+			: KeyEvent(kc) {}
+
+		std::string toString() const override
+		{
+			std::stringstream ss;
+			ss << "KeyTypeEvent: " << keyCode;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(KeyType);
+
+	};
 }

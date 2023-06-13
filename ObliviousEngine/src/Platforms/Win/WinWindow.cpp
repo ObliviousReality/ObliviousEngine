@@ -126,6 +126,13 @@ namespace OE
 			}
 		);
 
+		glfwSetCharCallback(window, [](GLFWwindow* window, unsigned int character)
+		{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypeEvent event(character);
+				data.callback(event);
+		});
+
 		glfwSetMouseButtonCallback(window, [](GLFWwindow* window, int but, int act, int mod)
 			{
 				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
