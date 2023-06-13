@@ -15,7 +15,7 @@ public:
 
 	void onUpdate() override
 	{
-		OE_INFO("TestLayer! update!");
+		//OE_INFO("TestLayer! update!");
 	}
 
 	void onEvent(OE::Event& event) override

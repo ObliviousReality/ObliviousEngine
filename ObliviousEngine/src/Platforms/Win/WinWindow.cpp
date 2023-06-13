@@ -4,6 +4,8 @@
 #include <ObliviousEngine/Events/MouseEvent.h>
 #include <ObliviousEngine/Events/KeyEvent.h>
 
+#include <glad/glad.h>
+
 namespace OE
 {
 	static bool glfw_init = false;
@@ -71,6 +73,9 @@ namespace OE
 		}
 		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
 		glfwMakeContextCurrent(window);
+		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
+		OE_CORE_ASSERT(status, "Failed to initialise Glad");
+		OE_CORE_INFO("Glad initialised.");
 		glfwSetWindowUserPointer(window, &winProps);
 		setVSync(true);
 		//Events motherfucker:

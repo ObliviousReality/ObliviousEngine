@@ -10,7 +10,7 @@
 #pragma warning(pop)
 //#include "EventHandler.cpp"
 //#include "KeyInput.cpp"
-#include <GLFW/glfw3.h>
+#include <glad/glad.h>
 
 
 

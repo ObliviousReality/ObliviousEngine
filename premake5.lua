@@ -14,8 +14,11 @@ IncludeDir = {}
 IncludeDir["entt"] = "ObliviousEngine/vendor/entt/include"
 IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
 IncludeDir["GLFW"] = "ObliviousEngine/vendor/GLFW/include"
+IncludeDir["Glad"] = "ObliviousEngine/vendor/Glad/include"
+
 
 include "ObliviousEngine/vendor/GLFW"
+include "ObliviousEngine/vendor/Glad"
 
 project "ObliviousEngine"
 	location "ObliviousEngine"
@@ -46,7 +49,9 @@ project "ObliviousEngine"
 		"%{prj.name}/vendor/SDLMixer/include",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
+
 	}
 
 	libdirs
@@ -60,6 +65,7 @@ project "ObliviousEngine"
 	links
 	{
 		"GLFW",
+		"Glad",
 		"opengl32.lib",
 		"SDL2",
 		"SDL2main",
@@ -75,7 +81,8 @@ project "ObliviousEngine"
 		defines
 		{
 			"OE_PLATFORM_WINDOWS",
-			"OE_BUILD_DLL"
+			"OE_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 
 	filter "configurations:Debug"

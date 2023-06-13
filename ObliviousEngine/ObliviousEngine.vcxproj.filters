@@ -86,6 +86,12 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\Colour.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Renderer\Layer.h">
+      <Filter>ObliviousEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Renderer\LayerStack.h">
+      <Filter>ObliviousEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClInclude>
@@ -108,8 +114,6 @@
       <Filter>Platforms\Win</Filter>
     </ClInclude>
     <ClInclude Include="src\oepch.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Layer.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\LayerStack.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Audio\MediaPlayer.cpp">
@@ -148,6 +152,12 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp">
+      <Filter>ObliviousEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp">
+      <Filter>ObliviousEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp">
       <Filter>ObliviousEngine\Renderer</Filter>
     </ClCompile>
@@ -167,7 +177,5 @@
       <Filter>Platforms\Win</Filter>
     </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
   </ItemGroup>
 </Project>
