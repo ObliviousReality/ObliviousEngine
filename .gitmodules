@@ -7,3 +7,6 @@
 [submodule "ObliviousEngine/vendor/GLFW"]
 	path = ObliviousEngine/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+[submodule "ObliviousEngine/vendor/imgui"]
+	path = ObliviousEngine/vendor/imgui
+	url = https://github.com/ocornut/imgui.git
