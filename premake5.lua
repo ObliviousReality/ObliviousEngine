@@ -1,5 +1,6 @@
 workspace "ObliviousEngine"
 	architecture "x64"
+	startproject "Sandbox"
 
 	configurations
 	{
@@ -23,12 +24,13 @@ include "ObliviousEngine/vendor/Glad"
 include "ObliviousEngine/vendor/imgui"
 
 
+
 project "ObliviousEngine"
 	location "ObliviousEngine"
 	kind "StaticLib"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir  ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -68,7 +70,6 @@ project "ObliviousEngine"
 	}
 
 	filter "system:windows"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -80,19 +81,16 @@ project "ObliviousEngine"
 
 	filter "configurations:Debug"
 		defines "OE_DEBUG"
-		buildoptions "/MDd"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "OE_RELEASE"
-		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "OE_DIST"
-		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
 
@@ -103,7 +101,7 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "off"
 
 	targetdir  ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir  ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -143,18 +141,15 @@ project "Sandbox"
 
 	filter "configurations:Debug"
 		defines "OE_DEBUG"
-		buildoptions "/MDd"
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
 		defines "OE_RELEASE"
-		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
 		defines "OE_DIST"
-		buildoptions "/MD"
 		runtime "Release"
 		optimize "on"
