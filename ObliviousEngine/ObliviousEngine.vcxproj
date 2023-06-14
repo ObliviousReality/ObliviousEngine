@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Input.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
     <ClInclude Include="src\ObliviousEngine\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Platforms\OpenGL\imGuiOpenGLRenderer.h" />
+    <ClInclude Include="src\Platforms\Win\WinInput.h" />
     <ClInclude Include="src\Platforms\Win\WinWindow.h" />
     <ClInclude Include="src\oepch.h" />
   </ItemGroup>
@@ -174,6 +176,7 @@
     <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp" />
     <ClCompile Include="src\ObliviousEngine\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\imGuiOpenGLRenderer.cpp" />
+    <ClCompile Include="src\Platforms\Win\WinInput.cpp" />
     <ClCompile Include="src\Platforms\Win\WinWindow.cpp" />
     <ClCompile Include="src\oepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

@@ -90,6 +90,8 @@
       <Filter>Platforms\Win</Filter>
     </ClInclude>
     <ClInclude Include="src\oepch.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Input.h" />
+    <ClInclude Include="src\Platforms\Win\WinInput.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
@@ -126,5 +128,6 @@
       <Filter>Platforms\Win</Filter>
     </ClCompile>
     <ClCompile Include="src\oepch.cpp" />
+    <ClCompile Include="src\Platforms\Win\WinInput.cpp" />
   </ItemGroup>
 </Project>

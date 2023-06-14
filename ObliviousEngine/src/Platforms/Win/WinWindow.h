@@ -30,6 +30,8 @@ namespace OE
 		void setVSync(bool e) override;
 		bool vsynced() const override;
 
+		inline virtual void* getNativeWindow() const { return window; }
+
 	private:
 		virtual void init(const Properties& props);
 		virtual void close();

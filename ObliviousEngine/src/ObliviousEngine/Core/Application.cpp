@@ -3,7 +3,7 @@
 #include "Log.h"
 #include <glad/glad.h>
 
-
+#include "Input.h"
 
 namespace OE {
 
@@ -34,6 +34,8 @@ namespace OE {
 			{
 				l->onUpdate();
 			}
+			auto [x, y] = Input::getMousePos();
+			OE_CORE_TRACE("{0}, {1}", x, y);
 			window->onUpdate();
 		}
 	}

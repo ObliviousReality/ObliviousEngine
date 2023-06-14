@@ -20,7 +20,7 @@ public:
 
 	void onEvent(OE::Event& event) override
 	{
-		OE_TRACE("{0}", event);
+		//OE_TRACE("{0}", event);
 	}
 };
 

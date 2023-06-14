@@ -32,6 +32,8 @@ namespace OE
 		virtual void setVSync(bool vs) = 0;
 		virtual bool vsynced() const = 0;
 
+		virtual void* getNativeWindow() const = 0;
+
 		static Window* createWindow(const Properties& props = Properties());
 	};
 }
