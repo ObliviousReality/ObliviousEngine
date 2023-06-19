@@ -13,10 +13,10 @@ outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 IncludeDir = {}
 IncludeDir["entt"] = "ObliviousEngine/vendor/entt/include"
-IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
 IncludeDir["GLFW"] = "ObliviousEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "ObliviousEngine/vendor/Glad/include"
-IncludeDir["imgui"] = "ObliviousEngine/vendor/imgui"
+IncludeDir["ImGui"] = "ObliviousEngine/vendor/imgui"
+IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
 
 
 include "ObliviousEngine/vendor/GLFW"
@@ -41,7 +41,14 @@ project "ObliviousEngine"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/glm/glm/**.hpp",
+		"%{prj.name}/vendor/glm/glm/**.inl"
+	}
+
+	defines
+	{
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 
 	includedirs
@@ -52,21 +59,17 @@ project "ObliviousEngine"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.ImGui}"
 
 
-	}
-
-	libdirs
-	{
 	}
 
 	links
 	{
 		"GLFW",
 		"Glad",
-		"opengl32.lib",
-		"imgui"
+		"ImGui",
+		"opengl32.lib"
 	}
 
 	filter "system:windows"
@@ -109,15 +112,14 @@ project "Sandbox"
 	files
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
+		"%{prj.name}/src/**.cpp"	
 	}
 
 	includedirs
 	{
 		"ObliviousEngine/vendor/spdlog/include",
 		"ObliviousEngine/src",
+		"ObliviousEngine/vendor",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.glm}"
 	}

@@ -17,6 +17,9 @@ namespace OE {
 		instance = this;
 		window = std::unique_ptr<Window>(Window::createWindow());
 		window->setEventCallback(BIND_EV(Application::onEvent));
+
+		imGuiLayer = new ImGuiLayer();
+		pushOverlay(imGuiLayer);
 	}
 
 	Application::~Application() {
@@ -30,10 +33,19 @@ namespace OE {
 		{
 			glClearColor(0.8, 0.8, 0, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
+
 			for (Layer* l : ls)
 			{
 				l->onUpdate();
 			}
+
+			imGuiLayer->begin();
+			for (Layer* l : ls)
+			{
+				l->onImGuiRender();
+			}
+			imGuiLayer->end();
+
 			//auto [x, y] = Input::getMousePos();
 			//OE_CORE_TRACE("{0}, {1}", x, y);
 			window->onUpdate();
@@ -64,13 +76,11 @@ namespace OE {
 	void Application::pushLayer(Layer* l)
 	{
 		ls.push(l);
-		l->onAttach();
 	}
 
 	void Application::pushOverlay(Layer* l)
 	{
 		ls.pushOverlay(l);
-		l->onAttach();
 	}
 
 	void Application::init()
@@ -81,6 +91,7 @@ namespace OE {
 	void Application::quit()
 	{
 		Application::Get().crashed = true;
+		
 	}
 
 

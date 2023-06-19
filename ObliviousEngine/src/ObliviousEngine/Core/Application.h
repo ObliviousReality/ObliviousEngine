@@ -8,6 +8,7 @@
 #include <ObliviousEngine/Events/AppEvent.h>
 #include <ObliviousEngine/Core/Window.h>
 #include <ObliviousEngine/Renderer/LayerStack.h>
+#include "ObliviousEngine/imgui/ImGuiLayer.h"
 
 namespace OE {
 
@@ -32,6 +33,7 @@ namespace OE {
 		bool onClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> window;
+		ImGuiLayer* imGuiLayer;
 		bool crashed = false;
 		LayerStack ls;
 	private:

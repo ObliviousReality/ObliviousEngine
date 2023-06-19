@@ -5,7 +5,6 @@ namespace OE
 {
 	LayerStack::LayerStack()
 	{
-		layerIn = layers.begin();
 	}
 	LayerStack::~LayerStack()
 	{
@@ -16,11 +15,16 @@ namespace OE
 	}
 	void LayerStack::push(Layer* l)
 	{
-		layerIn = layers.emplace(layerIn, l);
+		layers.emplace(layers.begin() + layerIndex, l);
+		layerIndex++;
+		l->onAttach();
+
 	}
 	void LayerStack::pushOverlay(Layer* ov)
 	{
 		layers.emplace_back(ov);
+		ov->onAttach();
+
 	}
 	void LayerStack::pop(Layer* l)
 	{
@@ -28,7 +32,8 @@ namespace OE
 		if (it != layers.end())
 		{
 			layers.erase(it);
-			layerIn--;
+			layerIndex--;
+			l->onDetatch();
 		}
 	}
 	void LayerStack::popOverlay(Layer* ov)
@@ -37,6 +42,7 @@ namespace OE
 		if (it != layers.end())
 		{
 			layers.erase(it);
+			ov->onDetatch();
 		}
 	}
 }

@@ -2,7 +2,7 @@
 #include <ObliviousEngine/Core/EntryPoint.h>
 #include <filesystem>
 
-
+#include "imgui/imgui.h"
 
 class TestLayer : public OE::Layer
 {
@@ -19,6 +19,13 @@ public:
 		}
 	}
 
+	virtual void onImGuiRender() override 
+	{
+		ImGui::Begin("Test");
+		ImGui::Text("Hello");
+		ImGui::End();
+	}
+
 	void onEvent(OE::Event& event) override
 	{
 		//OE_TRACE("{0}", event);
@@ -31,7 +38,6 @@ public:
 	Sandbox() {
 		OE_TRACE("Sandbox Started");
 		pushLayer(new TestLayer());
-		pushOverlay(new OE::ImGuiLayer());
 	}
 
 	~Sandbox() {

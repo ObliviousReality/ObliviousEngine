@@ -21,6 +21,6 @@ namespace OE
 		std::vector<Layer*>::iterator end() { return layers.end(); }
 	private:
 		std::vector<Layer*> layers;
-		std::vector<Layer*>::iterator layerIn;
+		unsigned int layerIndex = 0;
 	};
 }

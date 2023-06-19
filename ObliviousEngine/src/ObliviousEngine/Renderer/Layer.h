@@ -13,6 +13,7 @@ namespace OE
 		virtual void onAttach() {}
 		virtual void onDetatch() {}
 		virtual void onUpdate() {}
+		virtual void onImGuiRender() {}
 		virtual void onEvent(Event& event) {}
 
 		inline const std::string& getName() const { return name; }

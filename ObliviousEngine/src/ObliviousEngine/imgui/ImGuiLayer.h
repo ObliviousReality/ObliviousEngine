@@ -14,24 +14,12 @@ namespace OE {
 		ImGuiLayer();
 		~ImGuiLayer();
 
-		void onAttach();
-		void onDetatch();
-		void onUpdate();
-		void onEvent(Event& event);
-	private:
-		bool onMouseDownEvent(MouseDownEvent& e);
-		bool onMouseUpEvent(MouseUpEvent& e);
+		virtual void onAttach() override;
+		virtual void onDetatch() override;
+		virtual void onImGuiRender() override;
 
-		bool onMouseMoveEvent(MouseMoveEvent& e);
-		bool onMouseScrollEvent(MouseScrollEvent& e);
-
-		bool onKeyDownEvent(KeyDownEvent& e);
-		bool onKeyUpEvent(KeyUpEvent& e);
-
-		bool onKeyTypeEvent(KeyTypeEvent& e);
-
-		bool onWindowResizeEvent(WindowResizeEvent& e);
-
+		void begin();
+		void end();
 
 	private:
 		float m_Time = 0.0f;
