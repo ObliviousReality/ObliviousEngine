@@ -2,9 +2,6 @@
 #include <ObliviousEngine/Core/EntryPoint.h>
 #include <filesystem>
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 
 class TestLayer : public OE::Layer
@@ -16,6 +13,10 @@ public:
 	void onUpdate() override
 	{
 		//OE_INFO("TestLayer! update!");
+		if (OE::Input::isKeyPressed(KEY_P)) {
+			OE_TRACE("P PRESSED");
+			OE::Application::quit();
+		}
 	}
 
 	void onEvent(OE::Event& event) override

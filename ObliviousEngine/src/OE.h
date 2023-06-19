@@ -5,6 +5,7 @@
 #include "ObliviousEngine/Scene/Entity.h"
 #include "ObliviousEngine/Scene/Components.h"
 #include "ObliviousEngine/Scene/Scene.h"
+
 #include "ObliviousEngine/imgui/ImGuiLayer.h"
 
 #include "ObliviousEngine/Renderer/Camera.h"
@@ -14,9 +15,13 @@
 #include "ObliviousEngine/Events/Event.h"
 #include "ObliviousEngine/Events/KeyEvent.h"
 #include "ObliviousEngine/Events/MouseEvent.h"
+#include "ObliviousEngine/Events/KeyCodes.h"
+#include "ObliviousEngine/Events/MouseCodes.h"
+
 
 #include "ObliviousEngine/Core/Maths.h"
 #include "ObliviousEngine/Core/Log.h"
+#include "ObliviousEngine/Core/Input.h"
 #include "ObliviousEngine/Core/Application.h"
 
 // ENTRY POINT:

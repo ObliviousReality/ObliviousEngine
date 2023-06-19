@@ -142,6 +142,8 @@
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Input.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\KeyCodes.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\MouseCodes.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />

@@ -34,8 +34,8 @@ namespace OE {
 			{
 				l->onUpdate();
 			}
-			auto [x, y] = Input::getMousePos();
-			OE_CORE_TRACE("{0}, {1}", x, y);
+			//auto [x, y] = Input::getMousePos();
+			//OE_CORE_TRACE("{0}, {1}", x, y);
 			window->onUpdate();
 		}
 	}
@@ -80,6 +80,7 @@ namespace OE {
 
 	void Application::quit()
 	{
+		Application::Get().crashed = true;
 	}
 
 

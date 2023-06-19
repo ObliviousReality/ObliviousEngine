@@ -92,6 +92,8 @@
     <ClInclude Include="src\oepch.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Input.h" />
     <ClInclude Include="src\Platforms\Win\WinInput.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\KeyCodes.h" />
+    <ClInclude Include="src\ObliviousEngine\Events\MouseCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">

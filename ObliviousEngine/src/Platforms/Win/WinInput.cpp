@@ -12,7 +12,7 @@ namespace OE {
 	{
 		auto window = static_cast<GLFWwindow*>(Application::Get().GetWindow().getNativeWindow());
 		auto state = glfwGetKey(window, KC);
-		return state == GLFW_PRESS || GLFW_REPEAT;
+		return state == GLFW_PRESS || state == GLFW_REPEAT;
 	}
 	bool WinInput::isMousePressedImp(int button)
 	{
