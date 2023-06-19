@@ -1,7 +1,7 @@
 #pragma once
 
 #ifdef OE_PLATFORM_WINDOWS
-#if HZ_DYNAMIC_LINK
+#if OE_DYNAMIC_LINK
 #ifdef OE_BUILD_DLL
 #define OBLIVIOUSENGINE_API __declspec(dllexport)
 #else

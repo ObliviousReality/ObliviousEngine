@@ -6,7 +6,7 @@ const double OE::Maths::e = 2.71828182845904523536;
 
 void OE::Maths::init()
 {
-	srand(time(NULL));
+	srand((unsigned int)time(NULL));
 }
 
 int OE::Maths::randomIntRange(int lowerBound, int upperBound)
@@ -30,12 +30,9 @@ double OE::Maths::dist(int x1, int y1, int x2, int y2)
 	return sqrt((pow(x2 - x1, 2) + pow(y2 - y1, 2)));
 }
 
-double* OE::Maths::midpoint(int x1, int y1, int x2, int y2)
+std::pair<double,double> OE::Maths::midpoint(double x1, double y1, double x2, double y2)
 {
-	double* temp = new double[2];
-	temp[0] = (x1 + x2) * 2;
-	temp[1] = (y1 + y2) * 2;
-	return temp;
+	return { (x1 + x2) * 2.0 , (y1 + y2) * 2.0 };
 }
 
 

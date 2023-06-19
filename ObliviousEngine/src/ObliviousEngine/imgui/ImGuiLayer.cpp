@@ -67,7 +67,7 @@ namespace OE {
 	{
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().getWidth(), app.GetWindow().getHeight());
+		io.DisplaySize = ImVec2((float)app.GetWindow().getWidth(), (float)app.GetWindow().getHeight());
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());

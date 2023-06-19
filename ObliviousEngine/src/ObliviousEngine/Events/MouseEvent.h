@@ -8,10 +8,10 @@ namespace OE
 	{
 	public:
 		MouseMoveEvent(float x, float y)
-			: mouseX(x), mouseY(y) {}
+			: mouseX((int)x), mouseY((int)y) {}
 
-		inline float getX() const { return mouseX; }
-		inline float getY() const { return mouseY; }
+		inline float getX() const { return (float)mouseX; }
+		inline float getY() const { return (float)mouseY; }
 
 		std::string toString() const override
 		{

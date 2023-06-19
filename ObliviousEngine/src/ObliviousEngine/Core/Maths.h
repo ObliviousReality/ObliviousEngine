@@ -20,7 +20,7 @@ namespace OE {
 	{
 	public:
 
-		
+
 		static const double pi;
 		static const double e;
 
@@ -29,7 +29,7 @@ namespace OE {
 		static double randomFloatRange(double lowerBound, double upperBound);
 		static double squareRoot(double x);
 		static double dist(int x1, int y1, int x2, int y2);
-		static double* midpoint(int x1, int y1, int x2, int y2);
+		static std::pair<double, double>  midpoint(double x1, double y1, double x2, double y2);
 		static double* quadratic(double a, double b, double c);
 		static double roundtoN(double n, int d);
 	};

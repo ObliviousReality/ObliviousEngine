@@ -31,7 +31,7 @@ namespace OE {
 		//loop();
 		while (!crashed)
 		{
-			glClearColor(0.8, 0.8, 0, 1);
+			glClearColor(0.8f, 0.8f, 0.0f, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* l : ls)
