@@ -141,8 +141,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\GLShader.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderContext.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
@@ -164,6 +166,7 @@
     <ClInclude Include="src\ObliviousEngine\Scene\Entity.h" />
     <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
     <ClInclude Include="src\ObliviousEngine\imgui\ImGuiLayer.h" />
+    <ClInclude Include="src\Platforms\OpenGL\GLBuffer.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platforms\Win\WinInput.h" />
     <ClInclude Include="src\Platforms\Win\WinWindow.h" />
@@ -588,14 +591,17 @@
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\GLShader.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Scene.cpp" />
     <ClCompile Include="src\ObliviousEngine\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ObliviousEngine\imgui\ImGuiLayer.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\GLBuffer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platforms\Win\WinInput.cpp" />
     <ClCompile Include="src\Platforms\Win\WinWindow.cpp" />

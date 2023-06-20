@@ -11,6 +11,7 @@
 #include "ObliviousEngine/imgui/ImGuiLayer.h"
 
 #include "ObliviousEngine/Renderer/GLShader.h"
+#include "ObliviousEngine/Renderer/Buffer.h"
 
 namespace OE {
 
@@ -39,9 +40,12 @@ namespace OE {
 		bool crashed = false;
 		LayerStack ls;
 
-		unsigned int vertexArr, vertexBuf, indexBuf;
+		unsigned int vertexArr;
 
 		std::unique_ptr<GLShader> shader;
+		std::unique_ptr<VertexBuffer> vertexBuf;
+		std::unique_ptr<IndexBuffer> indexBuf;
+
 	private:
 		static Application* instance;
 	};

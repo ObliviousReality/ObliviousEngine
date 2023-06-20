@@ -24,8 +24,6 @@ namespace OE {
 		glGenVertexArrays(1, &vertexArr);
 		glBindVertexArray(vertexArr);
 
-		glGenBuffers(1, &vertexBuf);
-		glBindBuffer(GL_ARRAY_BUFFER, vertexBuf);
 
 		float v[3 * 4] = {
 			-0.5f, 0.0f, 0.0f,
@@ -41,19 +39,15 @@ namespace OE {
 			-1.0f, -1.0f, 0.0f
 		};
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(v2), v2, GL_STATIC_DRAW);
+		vertexBuf.reset(VertexBuffer::Create(v2, sizeof(v2)));
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
 
-		glGenBuffers(1, &indexBuf);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
-
 		unsigned int indexs[6] = {
 			0,1,2,0,2,3
 		};
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexs), indexs, GL_STATIC_DRAW);
-
+		indexBuf.reset(IndexBuffer::Create(indexs, 6));
 		std::string vertexSource = R"(
 			#version 330 core
 
@@ -98,7 +92,7 @@ namespace OE {
 			shader->bind();
 
 			glBindVertexArray(vertexArr);
-			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, indexBuf->getCount(), GL_UNSIGNED_INT, nullptr);
 			for (Layer* l : ls)
 			{
 				l->onUpdate();
