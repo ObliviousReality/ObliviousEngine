@@ -34,6 +34,6 @@ namespace OE
 
 		virtual void* getNativeWindow() const = 0;
 
-		static Window* createWindow(const Properties& props = Properties());
+		static Window* WindowCreate(const Properties& props = Properties());
 	};
 }

@@ -15,7 +15,7 @@ namespace OE {
 	{
 		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
 		instance = this;
-		window = std::unique_ptr<Window>(Window::createWindow());
+		window = std::unique_ptr<Window>(Window::WindowCreate());
 		window->setEventCallback(BIND_EV(Application::onEvent));
 
 		imGuiLayer = new ImGuiLayer();
@@ -142,12 +142,12 @@ namespace OE {
 		ls.pushOverlay(l);
 	}
 
-	void Application::init()
+	void Application::Init()
 	{
 		OE_CORE_INFO("Oblivious Engine Online.");
 	}
 
-	void Application::quit()
+	void Application::Quit()
 	{
 		Application::Get().crashed = true;
 

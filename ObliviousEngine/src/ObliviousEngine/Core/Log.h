@@ -10,24 +10,24 @@ namespace OE {
 	class OBLIVIOUSENGINE_API Log
 	{
 	public:
-		static void init();
+		static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& getCoreLogger() { return coreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& getClientLogger() { return clientLogger; }
+		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return coreLogger; }
+		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return clientLogger; }
 	private:
 		static std::shared_ptr<spdlog::logger> coreLogger;
 		static std::shared_ptr<spdlog::logger> clientLogger;
 	};
 }
 
-#define OE_CORE_FATAL(...) ::OE::Log::getCoreLogger()->fatal(__VA_ARGS__)
-#define OE_CORE_ERROR(...) ::OE::Log::getCoreLogger()->error(__VA_ARGS__)
-#define OE_CORE_WARN(...)  ::OE::Log::getCoreLogger()->warn(__VA_ARGS__)
-#define OE_CORE_INFO(...)  ::OE::Log::getCoreLogger()->info(__VA_ARGS__)
-#define OE_CORE_TRACE(...) ::OE::Log::getCoreLogger()->trace(__VA_ARGS__)
+#define OE_CORE_FATAL(...) ::OE::Log::GetCoreLogger()->fatal(__VA_ARGS__)
+#define OE_CORE_ERROR(...) ::OE::Log::GetCoreLogger()->error(__VA_ARGS__)
+#define OE_CORE_WARN(...)  ::OE::Log::GetCoreLogger()->warn(__VA_ARGS__)
+#define OE_CORE_INFO(...)  ::OE::Log::GetCoreLogger()->info(__VA_ARGS__)
+#define OE_CORE_TRACE(...) ::OE::Log::GetCoreLogger()->trace(__VA_ARGS__)
 
-#define OE_FATAL(...) ::OE::Log::getClientLogger()->fatal(__VA_ARGS__)
-#define OE_ERROR(...) ::OE::Log::getClientLogger()->error(__VA_ARGS__)
-#define OE_WARN(...)  ::OE::Log::getClientLogger()->warn(__VA_ARGS__)
-#define OE_INFO(...)  ::OE::Log::getClientLogger()->info(__VA_ARGS__)
-#define OE_TRACE(...) ::OE::Log::getClientLogger()->trace(__VA_ARGS__)
+#define OE_FATAL(...) ::OE::Log::GetClientLogger()->fatal(__VA_ARGS__)
+#define OE_ERROR(...) ::OE::Log::GetClientLogger()->error(__VA_ARGS__)
+#define OE_WARN(...)  ::OE::Log::GetClientLogger()->warn(__VA_ARGS__)
+#define OE_INFO(...)  ::OE::Log::GetClientLogger()->info(__VA_ARGS__)
+#define OE_TRACE(...) ::OE::Log::GetClientLogger()->trace(__VA_ARGS__)

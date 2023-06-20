@@ -16,7 +16,7 @@ namespace OE
 		OE_CORE_ERROR("GLFW Error {0}: {1}", e, desc);
 	}
 
-	Window* Window::createWindow(const Properties& props)
+	Window* Window::WindowCreate(const Properties& props)
 	{
 		return new WinWindow(props);
 	}

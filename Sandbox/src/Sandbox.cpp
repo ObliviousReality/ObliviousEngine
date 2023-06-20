@@ -15,7 +15,7 @@ public:
 		//OE_INFO("TestLayer! update!");
 		if (OE::Input::isKeyPressed(KEY_P)) {
 			OE_TRACE("P PRESSED");
-			OE::Application::quit();
+			OE::Application::Quit();
 		}
 	}
 

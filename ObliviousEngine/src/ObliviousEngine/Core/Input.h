@@ -11,7 +11,7 @@ namespace OE {
 		inline static bool isMousePressed(int button) { return instance->isMousePressedImp(button); }
 		inline static float getMouseX() { return instance->getMouseXImp(); }
 		inline static float getMouseY() { return instance->getMouseYImp(); }
-		inline static std::pair<float,float> getMousePos() { return instance->getMousePosImp(); }
+		inline static std::pair<float,float> GetMousePos() { return instance->getMousePosImp(); }
 
 
 	protected:

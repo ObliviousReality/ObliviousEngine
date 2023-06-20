@@ -20,8 +20,8 @@ namespace OE {
 	public:
 		Application();
 		virtual ~Application();
-		static void init(); // SDL
-		static void quit();
+		static void Init(); // SDL
+		static void Quit();
 		void run();
 		virtual void loop();
 
@@ -31,7 +31,7 @@ namespace OE {
 		void pushOverlay(Layer* l);
 
 		inline static Application& Get() { return *instance; }
-		inline Window& GetWindow() { return *window; }
+		inline Window& getWindow() { return *window; }
 	private:
 		bool onClose(WindowCloseEvent& e);
 

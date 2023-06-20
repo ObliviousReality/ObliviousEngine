@@ -9,9 +9,9 @@ extern OE::Application* OE::CreateApplication();
 
 int wmain(int argc, char** argv) {
 
-	OE::Log::init();
-	OE::Maths::init();
-	OE::Application::init();
+	OE::Log::Init();
+	OE::Maths::Init();
+	OE::Application::Init();
 	OE_CORE_INFO("Main Started");
 	auto app = OE::CreateApplication();
 	OE_CORE_TRACE("App created");
@@ -19,7 +19,7 @@ int wmain(int argc, char** argv) {
 	app->run();
 	OE_CORE_TRACE("App ended.");
 	delete app;
-	OE::Application::quit();
+	OE::Application::Quit();
 	OE_CORE_INFO("Engine shutting down.");
 }
 
