@@ -3,8 +3,9 @@
 #include <ObliviousEngine/Events/AppEvent.h>
 #include <ObliviousEngine/Events/MouseEvent.h>
 #include <ObliviousEngine/Events/KeyEvent.h>
+#include "Platforms/OpenGL/OpenGLContext.h"
 
-#include <glad/glad.h>
+
 
 namespace OE
 {
@@ -33,7 +34,7 @@ namespace OE
 	void WinWindow::onUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(window);
+		context->swapBuffers();
 	}
 
 	void WinWindow::setVSync(bool e)
@@ -74,13 +75,11 @@ namespace OE
 		// FULLSCREEN: window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
 
 		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		OE_CORE_ASSERT(status, "Failed to initialise Glad");
-		OE_CORE_INFO("Glad initialised.");
+		context = new OpenGLContext(window);
+		context->init();
+
 		glfwSetWindowUserPointer(window, &winProps);
 		setVSync(true);
-		//Events motherfucker:
 
 		glfwSetWindowSizeCallback(window, [](GLFWwindow* window, int w, int h)
 			{
