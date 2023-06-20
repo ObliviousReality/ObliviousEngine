@@ -36,6 +36,8 @@ namespace OE {
 		ImGuiLayer* imGuiLayer;
 		bool crashed = false;
 		LayerStack ls;
+
+		unsigned int vertexArr, vertexBuf, indexBuf;
 	private:
 		static Application* instance;
 	};
