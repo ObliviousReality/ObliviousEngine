@@ -10,6 +10,8 @@
 #include <ObliviousEngine/Renderer/LayerStack.h>
 #include "ObliviousEngine/imgui/ImGuiLayer.h"
 
+#include "ObliviousEngine/Renderer/GLShader.h"
+
 namespace OE {
 
 	class OBLIVIOUSENGINE_API Application
@@ -38,6 +40,8 @@ namespace OE {
 		LayerStack ls;
 
 		unsigned int vertexArr, vertexBuf, indexBuf;
+
+		std::unique_ptr<GLShader> shader;
 	private:
 		static Application* instance;
 	};

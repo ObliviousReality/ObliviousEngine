@@ -34,7 +34,14 @@ namespace OE {
 			0.0f, -0.5f, 0.0f
 		};
 
-		glBufferData(GL_ARRAY_BUFFER, sizeof(v), v, GL_STATIC_DRAW);
+		float v2[3 * 4] = {
+			-1.0f, 1.0f, 0.0f,
+			1.0f, 1.0f, 0.0f,
+			1.0f, -1.0f, 0.0f,
+			-1.0f, -1.0f, 0.0f
+		};
+
+		glBufferData(GL_ARRAY_BUFFER, sizeof(v2), v2, GL_STATIC_DRAW);
 
 		glEnableVertexAttribArray(0);
 		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
@@ -43,10 +50,36 @@ namespace OE {
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, indexBuf);
 
 		unsigned int indexs[6] = {
-			0,1,2,0,1,3
+			0,1,2,0,2,3
 		};
 		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indexs), indexs, GL_STATIC_DRAW);
 
+		std::string vertexSource = R"(
+			#version 330 core
+
+			layout(location=0) in vec3 pos;			
+			out vec3 vPos;	
+
+			void main()
+			{
+				vPos = pos;
+				gl_Position = vec4(pos,1.0);
+			}
+		)";
+		std::string fragmentSource = R"(
+			#version 330 core
+
+			layout(location=0) out vec4 colour;		
+			in vec3 vPos;	
+
+			void main()
+			{
+				colour = vec4(vPos * 0.5 + 0.5,1.0);
+			}
+		)";
+
+
+		shader.reset(new GLShader(vertexSource, fragmentSource));
 	}
 
 	Application::~Application() {
@@ -61,6 +94,9 @@ namespace OE {
 			//glClearColor(0.12f, 0.12f, 0.12f, 1.0f);
 			glClearColor(0, 0, 0, 1.0f);
 			glClear(GL_COLOR_BUFFER_BIT);
+
+			shader->bind();
+
 			glBindVertexArray(vertexArr);
 			glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 			for (Layer* l : ls)

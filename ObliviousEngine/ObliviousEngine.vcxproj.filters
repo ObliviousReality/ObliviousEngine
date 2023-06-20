@@ -1373,6 +1373,7 @@
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderContext.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\GLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
@@ -1415,5 +1416,6 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\GLShader.cpp" />
   </ItemGroup>
 </Project>
