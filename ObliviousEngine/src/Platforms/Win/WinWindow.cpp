@@ -72,7 +72,8 @@ namespace OE
 			}
 			OE_CORE_INFO("GLFW Initialised");
 		}
-		// FULLSCREEN: window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
+		//FULLSCREEN:
+		//window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
 
 		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), nullptr, nullptr);
 		context = new OpenGLContext(window);

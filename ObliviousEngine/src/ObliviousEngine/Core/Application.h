@@ -12,7 +12,7 @@
 
 #include "ObliviousEngine/Renderer/GLShader.h"
 #include "ObliviousEngine/Renderer/Buffer.h"
-
+#include "ObliviousEngine/Renderer/VertexArray.h"
 namespace OE {
 
 	class OBLIVIOUSENGINE_API Application
@@ -40,12 +40,11 @@ namespace OE {
 		bool crashed = false;
 		LayerStack ls;
 
-		unsigned int vertexArr;
+		std::shared_ptr<GLShader> shader;
+		std::shared_ptr<VertexArray> vertexArr;
 
-		std::unique_ptr<GLShader> shader;
-		std::unique_ptr<VertexBuffer> vertexBuf;
-		std::unique_ptr<IndexBuffer> indexBuf;
-
+		std::shared_ptr<GLShader> shader2;
+		std::shared_ptr<VertexArray> squareArr;
 	private:
 		static Application* instance;
 	};

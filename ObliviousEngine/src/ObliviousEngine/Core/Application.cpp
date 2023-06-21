@@ -11,39 +11,7 @@ namespace OE {
 
 	Application* Application::instance = nullptr;
 
-	static GLenum ShaderTypeToGLType(ShaderType st)
-	{
-		switch (st)
-		{
-		case OE::ShaderType::None:
-			return 0;
-		case OE::ShaderType::Float:
-			return GL_FLOAT;
-		case OE::ShaderType::Float2:
-			return GL_FLOAT;
-		case OE::ShaderType::Float3:
-			return GL_FLOAT;
-		case OE::ShaderType::Float4:
-			return GL_FLOAT;
-		case OE::ShaderType::Mat3:
-			return GL_FLOAT;
-		case OE::ShaderType::Mat4:
-			return GL_FLOAT;
-		case OE::ShaderType::Int:
-			return GL_INT;
-		case OE::ShaderType::Int2:
-			return GL_INT;
-		case OE::ShaderType::Int3:
-			return GL_INT;
-		case OE::ShaderType::Int4:
-			return GL_INT;
-		case OE::ShaderType::Bool:
-			return GL_BOOL;
-		default:
-			OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE");
-			return 0;
-		}
-	}
+
 
 	Application::Application()
 	{
@@ -55,9 +23,7 @@ namespace OE {
 		imGuiLayer = new ImGuiLayer();
 		pushOverlay(imGuiLayer);
 
-		glGenVertexArrays(1, &vertexArr);
-		glBindVertexArray(vertexArr);
-
+		vertexArr.reset(VertexArray::Create());
 
 		float triangle[3 * 3] = {
 			-0.5f, 0.0f, 0.0f,
@@ -71,29 +37,49 @@ namespace OE {
 			1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
 			-1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f
 		};
-
+		std::shared_ptr<VertexBuffer> vertexBuf;
 		vertexBuf.reset(VertexBuffer::Create(rect, sizeof(rect)));
 
-		{
-			BufferLayout layout = {
-				{ShaderType::Float3, "position"},
-				{ShaderType::Float4, "colour"}
-			};
-			vertexBuf->setLayout(layout);
-		}
-		uint32_t ind = 0;
-		const auto& layout = vertexBuf->getLayout();
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(ind);
-			glVertexAttribPointer(ind, element.getComponentCount(), ShaderTypeToGLType(element.type), element.normalised ? GL_TRUE : GL_FALSE, layout.getStride(), (const void*)element.offset);
-			ind++;
-		}
+		BufferLayout layout = {
+			{ShaderType::Float3, "position"},
+			{ShaderType::Float4, "colour"}
+		};
+
+		vertexBuf->setLayout(layout);
+		vertexArr->addVertexBuffer(vertexBuf);
 
 		unsigned int indexs[6] = {
 			0,1,2,0,2,3
 		};
+		std::shared_ptr<IndexBuffer> indexBuf;
 		indexBuf.reset(IndexBuffer::Create(indexs, 6));
+		vertexArr->setIndexBuffer(indexBuf);
+
+		float square[4 * 3] = {
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f,
+			0.5f,0.5f,0.0f,
+			-0.5f,0.5f,0.0f
+		};
+
+		squareArr.reset(VertexArray::Create());
+		std::shared_ptr<VertexBuffer> squareVB;
+		squareVB.reset(VertexBuffer::Create(square, sizeof(square)));
+
+		BufferLayout squareLayout = {
+			{ShaderType::Float3, "position"}
+		};
+
+		squareVB->setLayout(squareLayout);
+		squareArr->addVertexBuffer(squareVB);
+
+		unsigned int squareis[6] = {
+			0,1,2,2,3,0
+		};
+		std::shared_ptr<IndexBuffer> squareIB;
+		squareIB.reset(IndexBuffer::Create(squareis, 6));
+		squareArr->setIndexBuffer(squareIB);
+
 		std::string vertexSource = R"(
 			#version 330 core
 
@@ -127,6 +113,33 @@ namespace OE {
 
 
 		shader.reset(new GLShader(vertexSource, fragmentSource));
+
+		std::string vertexSource2 = R"(
+			#version 330 core
+
+			layout(location=0) in vec3 pos;
+			
+			out vec3 vPos;	
+			void main()
+			{
+				vPos = pos;
+				gl_Position = vec4(pos,1.0);
+			}
+		)";
+		std::string fragmentSource2 = R"(
+			#version 330 core
+
+			layout(location=0) out vec4 colour;		
+			in vec3 vPos;	
+
+			void main()
+			{
+				colour = vec4(0.8,0.8,0.2,1.0);
+			}
+		)";
+
+
+		shader2.reset(new GLShader(vertexSource2, fragmentSource2));
 	}
 
 	Application::~Application() {
@@ -143,9 +156,13 @@ namespace OE {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			shader->bind();
+			vertexArr->bind();
+			glDrawElements(GL_TRIANGLES, vertexArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 
-			glBindVertexArray(vertexArr);
-			glDrawElements(GL_TRIANGLES, indexBuf->getCount(), GL_UNSIGNED_INT, nullptr);
+			shader2->bind();
+			squareArr->bind();
+			glDrawElements(GL_TRIANGLES, squareArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+
 			for (Layer* l : ls)
 			{
 				l->onUpdate();

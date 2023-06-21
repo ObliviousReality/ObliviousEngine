@@ -1377,6 +1377,8 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLBuffer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\VertexArray.h" />
+    <ClInclude Include="src\Platforms\OpenGL\GLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
@@ -1423,5 +1425,7 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLBuffer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\VertexArray.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\GLVertexArray.cpp" />
   </ItemGroup>
 </Project>
