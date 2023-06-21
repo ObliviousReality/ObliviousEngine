@@ -11,6 +11,40 @@ namespace OE {
 
 	Application* Application::instance = nullptr;
 
+	static GLenum ShaderTypeToGLType(ShaderType st)
+	{
+		switch (st)
+		{
+		case OE::ShaderType::None:
+			return 0;
+		case OE::ShaderType::Float:
+			return GL_FLOAT;
+		case OE::ShaderType::Float2:
+			return GL_FLOAT;
+		case OE::ShaderType::Float3:
+			return GL_FLOAT;
+		case OE::ShaderType::Float4:
+			return GL_FLOAT;
+		case OE::ShaderType::Mat3:
+			return GL_FLOAT;
+		case OE::ShaderType::Mat4:
+			return GL_FLOAT;
+		case OE::ShaderType::Int:
+			return GL_INT;
+		case OE::ShaderType::Int2:
+			return GL_INT;
+		case OE::ShaderType::Int3:
+			return GL_INT;
+		case OE::ShaderType::Int4:
+			return GL_INT;
+		case OE::ShaderType::Bool:
+			return GL_BOOL;
+		default:
+			OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE");
+			return 0;
+		}
+	}
+
 	Application::Application()
 	{
 		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
@@ -25,24 +59,36 @@ namespace OE {
 		glBindVertexArray(vertexArr);
 
 
-		float v[3 * 4] = {
+		float triangle[3 * 3] = {
 			-0.5f, 0.0f, 0.0f,
 			0.5f, 0.0f, 0.0f,
-			0.0f, 0.5f, 0.0f,
-			0.0f, -0.5f, 0.0f
+			0.0f, 0.5f, 0.0f
 		};
 
-		float v2[3 * 4] = {
-			-1.0f, 1.0f, 0.0f,
-			1.0f, 1.0f, 0.0f,
-			1.0f, -1.0f, 0.0f,
-			-1.0f, -1.0f, 0.0f
+		float rect[4 * 7] = {
+			-1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
+			1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+			1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
+			-1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f
 		};
 
-		vertexBuf.reset(VertexBuffer::Create(v2, sizeof(v2)));
+		vertexBuf.reset(VertexBuffer::Create(rect, sizeof(rect)));
 
-		glEnableVertexAttribArray(0);
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), nullptr);
+		{
+			BufferLayout layout = {
+				{ShaderType::Float3, "position"},
+				{ShaderType::Float4, "colour"}
+			};
+			vertexBuf->setLayout(layout);
+		}
+		uint32_t ind = 0;
+		const auto& layout = vertexBuf->getLayout();
+		for (const auto& element : layout)
+		{
+			glEnableVertexAttribArray(ind);
+			glVertexAttribPointer(ind, element.getComponentCount(), ShaderTypeToGLType(element.type), element.normalised ? GL_TRUE : GL_FALSE, layout.getStride(), (const void*)element.offset);
+			ind++;
+		}
 
 		unsigned int indexs[6] = {
 			0,1,2,0,2,3
@@ -51,12 +97,17 @@ namespace OE {
 		std::string vertexSource = R"(
 			#version 330 core
 
-			layout(location=0) in vec3 pos;			
+			layout(location=0) in vec3 pos;
+			layout(location=1) in vec4 colour;			
+			
 			out vec3 vPos;	
+
+			out vec4 vColour;
 
 			void main()
 			{
 				vPos = pos;
+				vColour = colour;
 				gl_Position = vec4(pos,1.0);
 			}
 		)";
@@ -65,10 +116,12 @@ namespace OE {
 
 			layout(location=0) out vec4 colour;		
 			in vec3 vPos;	
+			in vec4 vColour;
 
 			void main()
 			{
 				colour = vec4(vPos * 0.5 + 0.5,1.0);
+				colour = vColour;
 			}
 		)";
 

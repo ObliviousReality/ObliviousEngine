@@ -9,10 +9,14 @@ namespace OE
 		GLVertexBuffer(float* vertexes, uint32_t size);
 		virtual ~GLVertexBuffer();
 
-		virtual void bind() const;
-		virtual void unbind() const;
+		virtual void bind() const override;
+		virtual void unbind() const override;
+
+		virtual const BufferLayout& getLayout() const override { return m_Layout; }
+		virtual void setLayout(const BufferLayout& layout) override { m_Layout = layout; }
 	private:
 		uint32_t rendererID;
+		BufferLayout m_Layout;
 	};
 
 	class GLIndexBuffer : public IndexBuffer

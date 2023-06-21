@@ -19,10 +19,11 @@ public:
 		}
 	}
 
-	virtual void onImGuiRender() override 
+	virtual void onImGuiRender() override
 	{
 		ImGui::Begin("Test");
 		ImGui::Text("Hello");
+		ImGui::SliderAngle("hi", &x);
 		ImGui::End();
 	}
 
@@ -30,6 +31,8 @@ public:
 	{
 		//OE_TRACE("{0}", event);
 	}
+	float x = 0;
+
 };
 
 
