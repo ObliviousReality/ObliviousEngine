@@ -10,10 +10,10 @@ namespace OE
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::None:
+		case RenderAPI::API::None:
 			OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED");
 			return nullptr;
-		case RendererAPI::OpenGL:
+		case RenderAPI::API::OpenGL:
 			return new GLVertexArray();
 		default:
 			OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET");

@@ -3,7 +3,7 @@
 
 namespace OE {
 
-	Colour::Colour(int r, int g, int b, int a)
+	Colour::Colour(float r, float g, float b, float a)
 	{
 		this->r = r;
 		this->g = g;
@@ -15,22 +15,22 @@ namespace OE {
 	{
 	}
 
-	int Colour::getR()
+	float Colour::getR()
 	{
 		return r;
 	}
 
-	int Colour::getG()
+	float Colour::getG()
 	{
 		return g;
 	}
 
-	int Colour::getB()
+	float Colour::getB()
 	{
 		return b;
 	}
 
-	int Colour::getA()
+	float Colour::getA()
 	{
 		return a;
 	}

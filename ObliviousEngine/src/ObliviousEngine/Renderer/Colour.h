@@ -8,14 +8,14 @@ namespace OE {
 	class OBLIVIOUSENGINE_API Colour
 	{
 	public:
-		Colour(int r, int g, int b, int a = 255);
+		Colour(float r, float g, float b, float a = 1.0f);
 		~Colour();
-		int getR();
-		int getG();
-		int getB();
-		int getA();
+		float getR();
+		float getG();
+		float getB();
+		float getA();
+		float r, g, b, a;
 	private:
-		int r, g, b, a;
 	};
 
 }

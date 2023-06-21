@@ -1,7 +1,7 @@
 #include "oepch.h"
 #include "Application.h"
 #include "Log.h"
-#include <glad/glad.h>
+#include "ObliviousEngine/Renderer/Renderer.h"
 
 #include "Input.h"
 
@@ -151,17 +151,26 @@ namespace OE {
 		//loop();
 		while (!crashed)
 		{
-			//glClearColor(0.12f, 0.12f, 0.12f, 1.0f);
-			glClearColor(0, 0, 0, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColour(Colour(0, 0, 0, 1.0f));
+			RenderCommand::Clear();
 
-			shader->bind();
-			vertexArr->bind();
-			glDrawElements(GL_TRIANGLES, vertexArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::BeginScene();
+			{
+				shader->bind();
+				Renderer::Draw(vertexArr);
 
-			shader2->bind();
-			squareArr->bind();
-			glDrawElements(GL_TRIANGLES, squareArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+				shader2->bind();
+				Renderer::Draw(squareArr);
+			}
+			Renderer::EndScene();
+
+			//shader->bind();
+			//vertexArr->bind();
+			//glDrawElements(GL_TRIANGLES, vertexArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
+
+			//shader2->bind();
+			//squareArr->bind();
+			//glDrawElements(GL_TRIANGLES, squareArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* l : ls)
 			{

@@ -143,6 +143,8 @@
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\GLShader.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\RenderAPI.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderContext.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\VertexArray.h" />
@@ -168,6 +170,7 @@
     <ClInclude Include="src\ObliviousEngine\Scene\Scene.h" />
     <ClInclude Include="src\ObliviousEngine\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLBuffer.h" />
+    <ClInclude Include="src\Platforms\OpenGL\GLRenderAPI.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLVertexArray.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platforms\Win\WinInput.h" />
@@ -598,6 +601,8 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\GLShader.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\RenderAPI.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\VertexArray.cpp" />
     <ClCompile Include="src\ObliviousEngine\Scene\Entity.cpp" />
@@ -605,6 +610,7 @@
     <ClCompile Include="src\ObliviousEngine\imgui\ImGuiBuild.cpp" />
     <ClCompile Include="src\ObliviousEngine\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLBuffer.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\GLRenderAPI.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLVertexArray.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platforms\Win\WinInput.cpp" />
