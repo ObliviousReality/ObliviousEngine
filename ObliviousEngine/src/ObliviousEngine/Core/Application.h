@@ -42,13 +42,7 @@ namespace OE {
 		bool crashed = false;
 		LayerStack ls;
 
-		std::shared_ptr<GLShader> shader;
-		std::shared_ptr<VertexArray> vertexArr;
-
-		std::shared_ptr<GLShader> shader2;
-		std::shared_ptr<VertexArray> squareArr;
-
-		OrthographicCamera camera;
+		
 
 	private:
 		static Application* instance;
