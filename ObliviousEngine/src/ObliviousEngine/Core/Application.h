@@ -13,6 +13,8 @@
 #include "ObliviousEngine/Renderer/GLShader.h"
 #include "ObliviousEngine/Renderer/Buffer.h"
 #include "ObliviousEngine/Renderer/VertexArray.h"
+#include"ObliviousEngine/Renderer/OrthoCamera.h"
+
 namespace OE {
 
 	class OBLIVIOUSENGINE_API Application
@@ -45,6 +47,9 @@ namespace OE {
 
 		std::shared_ptr<GLShader> shader2;
 		std::shared_ptr<VertexArray> squareArr;
+
+		OrthographicCamera camera;
+
 	private:
 		static Application* instance;
 	};

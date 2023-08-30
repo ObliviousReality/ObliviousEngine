@@ -4,6 +4,8 @@
 
 #include <glad/glad.h>
 
+#include <glm/gtc/type_ptr.hpp>
+
 namespace OE
 {
 	GLShader::GLShader(const std::string& vertexSource, const std::string& fragmentSource)
@@ -128,5 +130,10 @@ namespace OE
 	void GLShader::unbind() const
 	{
 		glUseProgram(0);
+	}
+	void GLShader::uploadUniformMat4(const std::string& name, const glm::mat4& matrix)
+	{
+		GLint loc = glGetUniformLocation(renderID, name.c_str());
+		glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 }

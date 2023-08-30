@@ -5,6 +5,7 @@
 
 #include "Input.h"
 
+
 namespace OE {
 
 #define BIND_EV(x) std::bind(&x, this, std::placeholders::_1)
@@ -13,7 +14,7 @@ namespace OE {
 
 
 
-	Application::Application()
+	Application::Application() : camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
 		instance = this;
@@ -84,7 +85,9 @@ namespace OE {
 			#version 330 core
 
 			layout(location=0) in vec3 pos;
-			layout(location=1) in vec4 colour;			
+			layout(location=1) in vec4 colour;	
+
+			uniform mat4 u_ViewProj;		
 			
 			out vec3 vPos;	
 
@@ -94,7 +97,7 @@ namespace OE {
 			{
 				vPos = pos;
 				vColour = colour;
-				gl_Position = vec4(pos,1.0);
+				gl_Position = u_ViewProj * vec4(pos,1.0);
 			}
 		)";
 		std::string fragmentSource = R"(
@@ -119,11 +122,13 @@ namespace OE {
 
 			layout(location=0) in vec3 pos;
 			
+			uniform mat4 u_ViewProj;	
+
 			out vec3 vPos;	
 			void main()
 			{
 				vPos = pos;
-				gl_Position = vec4(pos,1.0);
+				gl_Position = u_ViewProj * vec4(pos,1.0);
 			}
 		)";
 		std::string fragmentSource2 = R"(
@@ -154,23 +159,15 @@ namespace OE {
 			RenderCommand::SetClearColour(Colour(0, 0, 0, 1.0f));
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
-			{
-				shader->bind();
-				Renderer::Draw(vertexArr);
+			camera.setPos({ 0.5f, 0.5f, 0.0f });
+			camera.setRot(45.0f);
 
-				shader2->bind();
-				Renderer::Draw(squareArr);
+			Renderer::BeginScene(camera);
+			{
+				Renderer::Draw(shader, vertexArr);
+				Renderer::Draw(shader2, squareArr);
 			}
 			Renderer::EndScene();
-
-			//shader->bind();
-			//vertexArr->bind();
-			//glDrawElements(GL_TRIANGLES, vertexArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
-
-			//shader2->bind();
-			//squareArr->bind();
-			//glDrawElements(GL_TRIANGLES, squareArr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* l : ls)
 			{

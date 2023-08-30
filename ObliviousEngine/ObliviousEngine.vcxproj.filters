@@ -1382,6 +1382,7 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderAPI.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLRenderAPI.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\OrthoCamera.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
@@ -1433,5 +1434,6 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderAPI.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLRenderAPI.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\OrthoCamera.cpp" />
   </ItemGroup>
 </Project>
