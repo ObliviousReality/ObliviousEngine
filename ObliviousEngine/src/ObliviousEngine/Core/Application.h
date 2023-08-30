@@ -10,10 +10,7 @@
 #include <ObliviousEngine/Renderer/LayerStack.h>
 #include "ObliviousEngine/imgui/ImGuiLayer.h"
 
-#include "ObliviousEngine/Renderer/GLShader.h"
-#include "ObliviousEngine/Renderer/Buffer.h"
-#include "ObliviousEngine/Renderer/VertexArray.h"
-#include"ObliviousEngine/Renderer/OrthoCamera.h"
+#include "ObliviousEngine/Core/Timestep.h"
 
 namespace OE {
 
@@ -36,13 +33,13 @@ namespace OE {
 		inline Window& getWindow() { return *window; }
 	private:
 		bool onClose(WindowCloseEvent& e);
-
+	private:
 		std::unique_ptr<Window> window;
 		ImGuiLayer* imGuiLayer;
 		bool crashed = false;
 		LayerStack ls;
+		float frameTime = 0.0f;
 
-		
 
 	private:
 		static Application* instance;

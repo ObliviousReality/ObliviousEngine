@@ -132,30 +132,31 @@ public:
 		shader2.reset(new OE::GLShader(vertexSource2, fragmentSource2));
 	}
 
-	void onUpdate() override
+	void onUpdate(OE::Timestep ts) override
 	{
+		//OE_TRACE("DELTA TIME: {0}s", ts.getSeconds());
 		if (OE::Input::isKeyPressed(KEY_P)) {
 			OE_TRACE("P PRESSED");
 			OE::Application::Quit();
 		}
 		if (OE::Input::isKeyPressed(KEY_LEFT)) {
-			cameraPos.x -= camSpeed;
+			cameraPos.x -= camSpeed * ts;
 		}
 		if (OE::Input::isKeyPressed(KEY_RIGHT)) {
-			cameraPos.x += camSpeed;
+			cameraPos.x += camSpeed * ts;
 		}
 		if (OE::Input::isKeyPressed(KEY_UP)) {
-			cameraPos.y += camSpeed;
+			cameraPos.y += camSpeed * ts;
 		}
 		if (OE::Input::isKeyPressed(KEY_DOWN)) {
-			cameraPos.y -= camSpeed;
+			cameraPos.y -= camSpeed * ts;
 		}
 
 		if (OE::Input::isKeyPressed(KEY_Q)) {
-			cameraRot += rotSpeed;
+			cameraRot += rotSpeed * ts;
 		}
 		if (OE::Input::isKeyPressed(KEY_E)) {
-			cameraRot -= rotSpeed;
+			cameraRot -= rotSpeed * ts;
 		}
 
 		OE::RenderCommand::SetClearColour(OE::Colour(0, 0, 0, 1.0f));
@@ -217,10 +218,10 @@ private:
 	OE::OrthographicCamera camera;
 
 	glm::vec3 cameraPos;
-	float camSpeed = 0.1f;
+	float camSpeed = 7.0f;
 
 	float cameraRot = 0;
-	float rotSpeed = 0.1f;
+	float rotSpeed = 180.0f;
 };
 
 

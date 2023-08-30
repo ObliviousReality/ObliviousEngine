@@ -1,6 +1,7 @@
 #pragma once
 #include "Core.h"
 #include <ObliviousEngine/Events/Event.h>
+#include "ObliviousEngine/Core/Timestep.h"
 
 namespace OE
 {
@@ -12,7 +13,7 @@ namespace OE
 
 		virtual void onAttach() {}
 		virtual void onDetatch() {}
-		virtual void onUpdate() {}
+		virtual void onUpdate(Timestep ts) {}
 		virtual void onImGuiRender() {}
 		virtual void onEvent(Event& event) {}
 

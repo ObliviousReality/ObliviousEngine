@@ -4,6 +4,7 @@
 #include "ObliviousEngine/Renderer/Renderer.h"
 
 #include "Input.h"
+#include <GLFW/glfw3.h>
 
 
 namespace OE {
@@ -20,7 +21,7 @@ namespace OE {
 		instance = this;
 		window = std::unique_ptr<Window>(Window::WindowCreate());
 		window->setEventCallback(BIND_EV(Application::onEvent));
-
+		window->setVSync(true);
 		imGuiLayer = new ImGuiLayer();
 		pushOverlay(imGuiLayer);
 	}
@@ -34,9 +35,13 @@ namespace OE {
 		//loop();
 		while (!crashed)
 		{
+			float time = (float)glfwGetTime(); // Platform specific
+			Timestep ts = time - frameTime;
+			frameTime = time;
+
 			for (Layer* l : ls)
 			{
-				l->onUpdate();
+				l->onUpdate(ts);
 			}
 
 			imGuiLayer->begin();

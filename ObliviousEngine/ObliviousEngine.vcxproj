@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\ObliviousEngine\Core\Timestep.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\GLShader.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\OrthoCamera.h" />
