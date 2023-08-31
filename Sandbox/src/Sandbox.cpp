@@ -12,12 +12,6 @@ public:
 		: Layer("Test!"), camera(-1.6f, 1.6f, -0.9f, 0.9f), cameraPos(0.0f, 0.0f, 0.0f) {
 		vertexArr.reset(OE::VertexArray::Create());
 
-		float triangle[3 * 3] = {
-			-0.5f, 0.0f, 0.0f,
-			0.5f, 0.0f, 0.0f,
-			0.0f, 0.5f, 0.0f
-		};
-
 		float square[3 * 4] = {
 			-0.5f, -0.5f, 0.0f,
 			 0.5f, -0.5f, 0.0f,
@@ -46,19 +40,15 @@ public:
 			#version 330 core
 
 			layout(location=0) in vec3 position;
-			layout(location=1) in vec4 colour;	
 
 			uniform mat4 u_ViewProj;
 			uniform mat4 transform;	
 			
 			out vec3 vPos;	
 
-			out vec4 vColour;
-
 			void main()
 			{
 				vPos = position;
-				vColour = colour;
 				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
 			}
 		)";
@@ -67,16 +57,74 @@ public:
 
 			layout(location=0) out vec4 colour;		
 			in vec3 vPos;	
-			in vec4 vColour;
 
 			void main()
 			{
-				colour = vec4(vPos * 0.5 + 0.5, 1.0);
-				colour = vColour;
+				colour = vec4(0.2, 0.3, 0.8, 1.0);
 			}
 		)";
 
 		shader.reset(new OE::GLShader(vertexSource, fragmentSource));
+
+		//------------------------------------------------------
+
+		triangleArr.reset(OE::VertexArray::Create());
+
+		float triangleVertices[3 * 7] = {
+			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
+			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
+			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
+		};
+		std::shared_ptr<OE::VertexBuffer> triangleVertexBuffer;
+		triangleVertexBuffer.reset(OE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices)));
+		OE::BufferLayout triangleLayout = {
+			{OE::ShaderType::Float3, "position"},
+			{OE::ShaderType::Float4, "colour"}
+		};
+		triangleVertexBuffer->setLayout(triangleLayout);
+		triangleArr->addVertexBuffer(triangleVertexBuffer);
+
+		uint32_t triangleIndices[3] = { 0,1,2 };
+		std::shared_ptr<OE::IndexBuffer> triangleIndexBuffer;
+		triangleIndexBuffer.reset(OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t)));
+		triangleArr->setIndexBuffer(triangleIndexBuffer);
+
+
+		std::string triangleVertexSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) in vec3 position;
+			layout(location = 1) in vec4 colour;
+
+			uniform mat4 u_ViewProj;
+			uniform mat4 transform;
+
+			out vec3 v_Position;
+			out vec4 v_Color;
+
+			void main()
+			{
+				v_Position = position;
+				v_Color = colour;
+				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
+			}
+		)";
+
+		std::string triangleFragmentSrc = R"(
+			#version 330 core
+			
+			layout(location = 0) out vec4 color;
+
+			in vec3 v_Position;
+			in vec4 v_Color;
+
+			void main()
+			{
+				color = vec4(v_Position * 0.5 + 0.5, 1.0);
+				color = v_Color;
+			}
+		)";
+		triangleShader.reset(new OE::GLShader(triangleVertexSrc, triangleFragmentSrc));
 	}
 
 	void onUpdate(OE::Timestep ts) override
@@ -130,6 +178,7 @@ public:
 					OE::Renderer::Draw(shader, vertexArr, transform);
 				}
 			}
+			OE::Renderer::Draw(triangleShader, triangleArr);
 		}
 		OE::Renderer::EndScene();
 	}
@@ -173,8 +222,8 @@ private:
 	std::shared_ptr<OE::GLShader> shader;
 	std::shared_ptr<OE::VertexArray> vertexArr;
 
-	std::shared_ptr<OE::GLShader> shader2;
-	std::shared_ptr<OE::VertexArray> squareArr;
+	std::shared_ptr<OE::GLShader> triangleShader;
+	std::shared_ptr<OE::VertexArray> triangleArr;
 
 	OE::OrthographicCamera camera;
 
