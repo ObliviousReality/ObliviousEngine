@@ -11,7 +11,7 @@
 #include "ObliviousEngine/Renderer/Buffer.h"
 #include "ObliviousEngine/Renderer/Camera.h"
 #include "ObliviousEngine/Renderer/Colour.h"
-#include "ObliviousEngine/Renderer/GLShader.h"
+#include "ObliviousEngine/Renderer/Shader.h"
 #include "ObliviousEngine/Renderer/Layer.h"
 #include "ObliviousEngine/Renderer/LayerStack.h"
 #include "ObliviousEngine/Renderer/OrthoCamera.h"

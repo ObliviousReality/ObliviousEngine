@@ -13,7 +13,7 @@ namespace OE
 	void Renderer::EndScene()
 	{
 	}
-	void Renderer::Draw(const std::shared_ptr<GLShader>& shader, const std::shared_ptr<VertexArray>& vArray, const glm::mat4& transform) {
+	void Renderer::Draw(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vArray, const glm::mat4& transform) {
 		shader->bind();
 		shader->uploadUniformMat4("u_ViewProj", params->ViewProjMatrix);
 		shader->uploadUniformMat4("transform", transform);

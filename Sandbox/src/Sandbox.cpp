@@ -56,15 +56,17 @@ public:
 			#version 330 core
 
 			layout(location=0) out vec4 colour;		
-			in vec3 vPos;	
+			in vec3 vPos;
+
+			uniform vec4 u_Colour;
 
 			void main()
 			{
-				colour = vec4(0.2, 0.3, 0.8, 1.0);
+				colour = u_Colour;
 			}
 		)";
 
-		shader.reset(new OE::GLShader(vertexSource, fragmentSource));
+		shader.reset(new OE::Shader(vertexSource, fragmentSource));
 
 		//------------------------------------------------------
 
@@ -124,7 +126,7 @@ public:
 				color = v_Color;
 			}
 		)";
-		triangleShader.reset(new OE::GLShader(triangleVertexSrc, triangleFragmentSrc));
+		triangleShader.reset(new OE::Shader(triangleVertexSrc, triangleFragmentSrc));
 	}
 
 	void onUpdate(OE::Timestep ts) override
@@ -168,6 +170,9 @@ public:
 
 		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
 
+		OE::Colour blue(0.8f, 0.2f, 0.3f);
+		OE::Colour red(0.2f, 0.3f, 0.8f);
+
 		OE::Renderer::BeginScene(camera);
 		{
 			for (int y = 0; y < 20; y++) {
@@ -175,6 +180,13 @@ public:
 				{
 					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
 					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+					if (x % 2 == 0)
+					{
+						shader->uploadUniformFloat4("u_Colour", red);
+					}
+					else {
+						shader->uploadUniformFloat4("u_Colour", blue);
+					}
 					OE::Renderer::Draw(shader, vertexArr, transform);
 				}
 			}
@@ -219,10 +231,10 @@ public:
 		return false;
 	}
 private:
-	std::shared_ptr<OE::GLShader> shader;
+	std::shared_ptr<OE::Shader> shader;
 	std::shared_ptr<OE::VertexArray> vertexArr;
 
-	std::shared_ptr<OE::GLShader> triangleShader;
+	std::shared_ptr<OE::Shader> triangleShader;
 	std::shared_ptr<OE::VertexArray> triangleArr;
 
 	OE::OrthographicCamera camera;

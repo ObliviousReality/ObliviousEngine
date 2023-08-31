@@ -1,6 +1,6 @@
 #include "oepch.h"
 
-#include "GLShader.h"
+#include "Shader.h"
 
 #include <glad/glad.h>
 
@@ -8,7 +8,7 @@
 
 namespace OE
 {
-	GLShader::GLShader(const std::string& vertexSource, const std::string& fragmentSource)
+	Shader::Shader(const std::string& vertexSource, const std::string& fragmentSource)
 	{
 		//Source: https://www.khronos.org/opengl/wiki/Shader_Compilation#Example
 		// 
@@ -119,19 +119,24 @@ namespace OE
 		glDetachShader(renderID, vertexShader);
 		glDetachShader(renderID, fragmentShader);
 	}
-	GLShader::~GLShader()
+	Shader::~Shader()
 	{
 		glDeleteProgram(renderID);
 	}
-	void GLShader::bind() const
+	void Shader::bind() const
 	{
 		glUseProgram(renderID);
 	}
-	void GLShader::unbind() const
+	void Shader::unbind() const
 	{
 		glUseProgram(0);
 	}
-	void GLShader::uploadUniformMat4(const std::string& name, const glm::mat4& matrix)
+	void Shader::uploadUniformFloat4(const std::string& name, const glm::vec4& vec)
+	{
+		GLint loc = glGetUniformLocation(renderID, name.c_str());
+		glUniform4f(loc, vec.x, vec.y, vec.z, vec.w);
+	}
+	void Shader::uploadUniformMat4(const std::string& name, const glm::mat4& matrix)
 	{
 		GLint loc = glGetUniformLocation(renderID, name.c_str());
 		glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));

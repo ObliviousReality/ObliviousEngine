@@ -143,7 +143,7 @@
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Timestep.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Buffer.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\GLShader.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Shader.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\OrthoCamera.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderAPI.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderCommand.h" />
@@ -599,8 +599,7 @@
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Buffer.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\GLShader.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\LayerStack.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\OrthoCamera.cpp" />

@@ -1373,7 +1373,7 @@
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderContext.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\GLShader.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Shader.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLBuffer.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
@@ -1394,9 +1394,6 @@
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp">
       <Filter>src\ObliviousEngine\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Renderer\Colour.cpp">
-      <Filter>src\ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Layer.cpp">
       <Filter>src\ObliviousEngine\Renderer</Filter>
@@ -1426,7 +1423,7 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\GLShader.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Buffer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLBuffer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
