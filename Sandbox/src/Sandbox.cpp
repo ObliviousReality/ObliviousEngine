@@ -4,6 +4,8 @@
 
 #include "imgui/imgui.h"
 #include <glm/glm/ext/matrix_transform.hpp>
+#include <Platforms/OpenGL/GLShader.h>
+#include <glm/glm/gtc/type_ptr.hpp>
 
 class TestLayer : public OE::Layer
 {
@@ -58,15 +60,15 @@ public:
 			layout(location=0) out vec4 colour;		
 			in vec3 vPos;
 
-			uniform vec4 u_Colour;
+			uniform vec3 u_Colour;
 
 			void main()
 			{
-				colour = u_Colour;
+				colour = vec4(u_Colour,1.0);
 			}
 		)";
 
-		shader.reset(new OE::Shader(vertexSource, fragmentSource));
+		shader.reset(OE::Shader::Create(vertexSource, fragmentSource));
 
 		//------------------------------------------------------
 
@@ -126,7 +128,7 @@ public:
 				color = v_Color;
 			}
 		)";
-		triangleShader.reset(new OE::Shader(triangleVertexSrc, triangleFragmentSrc));
+		triangleShader.reset(OE::Shader::Create(triangleVertexSrc, triangleFragmentSrc));
 	}
 
 	void onUpdate(OE::Timestep ts) override
@@ -162,31 +164,27 @@ public:
 			cameraPos.y = 0;
 		}
 
-		OE::RenderCommand::SetClearColour(OE::Colour(0, 0, 0, 1.0f));
+
+
+		OE::RenderCommand::SetClearColour(OE::Colour(0.1f, 0.1f, 0.1f, 1.0f));
 		OE::RenderCommand::Clear();
 
 		camera.setPos(cameraPos);
 		camera.setRot(cameraRot);
 
-		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scaleFactor));
 
-		OE::Colour blue(0.8f, 0.2f, 0.3f);
-		OE::Colour red(0.2f, 0.3f, 0.8f);
+		std::dynamic_pointer_cast<OE::GLShader>(shader)->bind();
+		std::dynamic_pointer_cast<OE::GLShader>(shader)->uploadUniformFloat3("u_Colour", squareColour);
+
 
 		OE::Renderer::BeginScene(camera);
 		{
 			for (int y = 0; y < 20; y++) {
 				for (int x = 0; x < 20; x++)
 				{
-					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+					glm::vec3 pos(x * (scaleFactor + (scaleFactor * 0.1f)), y * (scaleFactor + (scaleFactor * 0.1f)), 0.0f);
 					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					if (x % 2 == 0)
-					{
-						shader->uploadUniformFloat4("u_Colour", red);
-					}
-					else {
-						shader->uploadUniformFloat4("u_Colour", blue);
-					}
 					OE::Renderer::Draw(shader, vertexArr, transform);
 				}
 			}
@@ -197,6 +195,9 @@ public:
 
 	virtual void onImGuiRender() override
 	{
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Square Colour", glm::value_ptr(squareColour));
+		ImGui::End();
 	}
 
 	void onEvent(OE::Event& event) override
@@ -207,27 +208,19 @@ public:
 	}
 
 	bool onKeyPressedEvent(OE::KeyDownEvent& e) {
-		/*switch (e.getKeyCode())
+		switch (e.getKeyCode())
 		{
-		case KEY_LEFT:
-			cameraPos.x -= camSpeed;
+		case KEY_EQUAL:
+			scaleFactor += 0.1f;
 			break;
-		case KEY_RIGHT:
-			cameraPos.x += camSpeed;
+
+		case KEY_MINUS:
+			scaleFactor -= 0.1f;
 			break;
-		case KEY_DOWN:
-			cameraPos.y -= camSpeed;
-			break;
-		case KEY_UP:
-			cameraPos.y += camSpeed;
-			break;
-		case KEY_P:
-			OE_TRACE("P PRESSED");
-			OE::Application::Quit();
-			break;
+
 		default:
 			break;
-		}*/
+		}
 		return false;
 	}
 private:
@@ -244,6 +237,9 @@ private:
 
 	float cameraRot = 0;
 	float rotSpeed = 180.0f;
+	float scaleFactor = 0.1f;
+
+	glm::vec3 squareColour = { 0.2f, 0.3f, 0.8f };
 };
 
 

@@ -1,22 +1,16 @@
 #pragma once
 #include <string>
 
-#include <glm/glm.hpp>
-
 namespace OE
 {
 	class Shader
 	{
 	public:
-		Shader(const std::string& vertexSource, const std::string& fragmentSource);
-		~Shader();
+		virtual ~Shader() = default;
 
-		void bind() const;
-		void unbind() const;
+		virtual void bind() const = 0;
+		virtual void unbind() const = 0;
 
-		void uploadUniformFloat4(const std::string& name, const glm::vec4& vec);
-		void uploadUniformMat4(const std::string& name,  const glm::mat4& matrix);
-	private:
-		uint32_t renderID;
+		static Shader* Create(const std::string& vertexSource, const std::string& fragmentSource);
 	};
 }

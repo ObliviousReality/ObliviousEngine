@@ -173,6 +173,7 @@
     <ClInclude Include="src\ObliviousEngine\imgui\ImGuiLayer.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLBuffer.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLRenderAPI.h" />
+    <ClInclude Include="src\Platforms\OpenGL\GLShader.h" />
     <ClInclude Include="src\Platforms\OpenGL\GLVertexArray.h" />
     <ClInclude Include="src\Platforms\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platforms\Win\WinInput.h" />
@@ -613,6 +614,7 @@
     <ClCompile Include="src\ObliviousEngine\imgui\ImGuiLayer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLBuffer.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLRenderAPI.cpp" />
+    <ClCompile Include="src\Platforms\OpenGL\GLShader.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\GLVertexArray.cpp" />
     <ClCompile Include="src\Platforms\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platforms\Win\WinInput.cpp" />

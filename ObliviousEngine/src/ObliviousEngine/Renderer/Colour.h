@@ -33,6 +33,8 @@ namespace OE {
 
 
 		operator glm::vec4() const { return glm::vec4(r, g, b, a); }
+		operator glm::vec3() const { return glm::vec3(r, g, b); }
+
 		float r, g, b, a;
 	private:
 	};
