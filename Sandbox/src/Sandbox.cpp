@@ -3,6 +3,7 @@
 #include <filesystem>
 
 #include "imgui/imgui.h"
+#include <glm/glm/ext/matrix_transform.hpp>
 
 class TestLayer : public OE::Layer
 {
@@ -17,62 +18,38 @@ public:
 			0.0f, 0.5f, 0.0f
 		};
 
-		float rect[4 * 7] = {
-			-1.0f, 1.0f, 0.0f, 1.0f, 1.0f, 0.0f, 1.0f,
-			1.0f, 1.0f, 0.0f, 1.0f, 0.0f, 1.0f, 1.0f,
-			1.0f, -1.0f, 0.0f, 0.0f, 1.0f, 1.0f, 1.0f,
-			-1.0f, -1.0f, 0.0f, 1.0f, 1.0f, 1.0f, 1.0f
+		float square[3 * 4] = {
+			-0.5f, -0.5f, 0.0f,
+			 0.5f, -0.5f, 0.0f,
+			 0.5f,  0.5f, 0.0f,
+			-0.5f,  0.5f, 0.0f
 		};
+
+
 		std::shared_ptr<OE::VertexBuffer> vertexBuf;
-		vertexBuf.reset(OE::VertexBuffer::Create(rect, sizeof(rect)));
+		vertexBuf.reset(OE::VertexBuffer::Create(square, sizeof(square)));
 
 		OE::BufferLayout layout = {
-			{OE::ShaderType::Float3, "position"},
-			{OE::ShaderType::Float4, "colour"}
+			{OE::ShaderType::Float3, "position"}
 		};
 
 		vertexBuf->setLayout(layout);
 		vertexArr->addVertexBuffer(vertexBuf);
 
-		unsigned int indexs[6] = {
-			0,1,2,0,2,3
-		};
+		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+
 		std::shared_ptr<OE::IndexBuffer> indexBuf;
-		indexBuf.reset(OE::IndexBuffer::Create(indexs, 6));
+		indexBuf.reset(OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		vertexArr->setIndexBuffer(indexBuf);
-
-		float square[4 * 3] = {
-			-0.5f, -0.5f, 0.0f,
-			0.5f, -0.5f, 0.0f,
-			0.5f,0.5f,0.0f,
-			-0.5f,0.5f,0.0f
-		};
-
-		squareArr.reset(OE::VertexArray::Create());
-		std::shared_ptr<OE::VertexBuffer> squareVB;
-		squareVB.reset(OE::VertexBuffer::Create(square, sizeof(square)));
-
-		OE::BufferLayout squareLayout = {
-			{OE::ShaderType::Float3, "position"}
-		};
-
-		squareVB->setLayout(squareLayout);
-		squareArr->addVertexBuffer(squareVB);
-
-		unsigned int squareis[6] = {
-			0,1,2,2,3,0
-		};
-		std::shared_ptr<OE::IndexBuffer> squareIB;
-		squareIB.reset(OE::IndexBuffer::Create(squareis, 6));
-		squareArr->setIndexBuffer(squareIB);
 
 		std::string vertexSource = R"(
 			#version 330 core
 
-			layout(location=0) in vec3 pos;
+			layout(location=0) in vec3 position;
 			layout(location=1) in vec4 colour;	
 
-			uniform mat4 u_ViewProj;		
+			uniform mat4 u_ViewProj;
+			uniform mat4 transform;	
 			
 			out vec3 vPos;	
 
@@ -80,9 +57,9 @@ public:
 
 			void main()
 			{
-				vPos = pos;
+				vPos = position;
 				vColour = colour;
-				gl_Position = u_ViewProj * vec4(pos,1.0);
+				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
 			}
 		)";
 		std::string fragmentSource = R"(
@@ -94,42 +71,12 @@ public:
 
 			void main()
 			{
-				colour = vec4(vPos * 0.5 + 0.5,1.0);
+				colour = vec4(vPos * 0.5 + 0.5, 1.0);
 				colour = vColour;
 			}
 		)";
 
-
 		shader.reset(new OE::GLShader(vertexSource, fragmentSource));
-
-		std::string vertexSource2 = R"(
-			#version 330 core
-
-			layout(location=0) in vec3 pos;
-			
-			uniform mat4 u_ViewProj;	
-
-			out vec3 vPos;	
-			void main()
-			{
-				vPos = pos;
-				gl_Position = u_ViewProj * vec4(pos,1.0);
-			}
-		)";
-		std::string fragmentSource2 = R"(
-			#version 330 core
-
-			layout(location=0) out vec4 colour;		
-			in vec3 vPos;	
-
-			void main()
-			{
-				colour = vec4(0.8,0.8,0.2,1.0);
-			}
-		)";
-
-
-		shader2.reset(new OE::GLShader(vertexSource2, fragmentSource2));
 	}
 
 	void onUpdate(OE::Timestep ts) override
@@ -159,16 +106,30 @@ public:
 			cameraRot -= rotSpeed * ts;
 		}
 
+		if (OE::Input::isKeyPressed(KEY_R)) {
+			cameraRot = 0;
+			cameraPos.x = 0;
+			cameraPos.y = 0;
+		}
+
 		OE::RenderCommand::SetClearColour(OE::Colour(0, 0, 0, 1.0f));
 		OE::RenderCommand::Clear();
 
 		camera.setPos(cameraPos);
 		camera.setRot(cameraRot);
 
+		static glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(0.1f));
+
 		OE::Renderer::BeginScene(camera);
 		{
-			OE::Renderer::Draw(shader, vertexArr);
-			OE::Renderer::Draw(shader2, squareArr);
+			for (int y = 0; y < 20; y++) {
+				for (int x = 0; x < 20; x++)
+				{
+					glm::vec3 pos(x * 0.11f, y * 0.11f, 0.0f);
+					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+					OE::Renderer::Draw(shader, vertexArr, transform);
+				}
+			}
 		}
 		OE::Renderer::EndScene();
 	}
