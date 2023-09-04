@@ -55,7 +55,7 @@ namespace OE
 	{
 		glBindVertexArray(0);
 	}
-	void GLVertexArray::addVertexBuffer(const std::shared_ptr<VertexBuffer>& buf)
+	void GLVertexArray::addVertexBuffer(const Ref<VertexBuffer>& buf)
 	{
 		OE_CORE_ASSERT(buf->getLayout().getElements().size(), "VERTEX BUFFER MISSING LAYOUT");
 		glBindVertexArray(rendererID);
@@ -71,7 +71,7 @@ namespace OE
 		vertexBufs.push_back(buf);
 
 	}
-	void GLVertexArray::setIndexBuffer(const std::shared_ptr<IndexBuffer>& buf)
+	void GLVertexArray::setIndexBuffer(const Ref<IndexBuffer>& buf)
 	{
 		glBindVertexArray(rendererID);
 		buf->bind();

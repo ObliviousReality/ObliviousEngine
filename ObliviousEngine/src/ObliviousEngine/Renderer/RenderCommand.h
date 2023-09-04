@@ -14,7 +14,7 @@ namespace OE
 			rAPI->setClearColour(colour);
 		}
 
-		inline static void DrawIndexed(const std::shared_ptr<VertexArray>& arr)
+		inline static void DrawIndexed(const Ref<VertexArray>& arr)
 		{
 			rAPI->drawIndexed(arr);
 		}

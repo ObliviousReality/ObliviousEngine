@@ -22,7 +22,7 @@ public:
 		};
 
 
-		std::shared_ptr<OE::VertexBuffer> vertexBuf;
+		OE::Ref<OE::VertexBuffer> vertexBuf;
 		vertexBuf.reset(OE::VertexBuffer::Create(square, sizeof(square)));
 
 		OE::BufferLayout layout = {
@@ -34,7 +34,7 @@ public:
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		std::shared_ptr<OE::IndexBuffer> indexBuf;
+		OE::Ref<OE::IndexBuffer> indexBuf;
 		indexBuf.reset(OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		vertexArr->setIndexBuffer(indexBuf);
 
@@ -79,7 +79,7 @@ public:
 			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
-		std::shared_ptr<OE::VertexBuffer> triangleVertexBuffer;
+		OE::Ref<OE::VertexBuffer> triangleVertexBuffer;
 		triangleVertexBuffer.reset(OE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices)));
 		OE::BufferLayout triangleLayout = {
 			{OE::ShaderType::Float3, "position"},
@@ -89,7 +89,7 @@ public:
 		triangleArr->addVertexBuffer(triangleVertexBuffer);
 
 		uint32_t triangleIndices[3] = { 0,1,2 };
-		std::shared_ptr<OE::IndexBuffer> triangleIndexBuffer;
+		OE::Ref<OE::IndexBuffer> triangleIndexBuffer;
 		triangleIndexBuffer.reset(OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t)));
 		triangleArr->setIndexBuffer(triangleIndexBuffer);
 
@@ -224,11 +224,11 @@ public:
 		return false;
 	}
 private:
-	std::shared_ptr<OE::Shader> shader;
-	std::shared_ptr<OE::VertexArray> vertexArr;
+	OE::Ref<OE::Shader> shader;
+	OE::Ref<OE::VertexArray> vertexArr;
 
-	std::shared_ptr<OE::Shader> triangleShader;
-	std::shared_ptr<OE::VertexArray> triangleArr;
+	OE::Ref<OE::Shader> triangleShader;
+	OE::Ref<OE::VertexArray> triangleArr;
 
 	OE::OrthographicCamera camera;
 

@@ -15,7 +15,7 @@ namespace OE
 		virtual void clear() = 0;
 		virtual void setClearColour(const Colour& colour) = 0;
 
-		virtual void drawIndexed(const std::shared_ptr<VertexArray>& arr) = 0;
+		virtual void drawIndexed(const Ref<VertexArray>& arr) = 0;
 
 		inline static API GetAPI() { return activeAPI; }
 

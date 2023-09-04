@@ -13,15 +13,15 @@ namespace OE
 		virtual void bind() const override;
 		virtual void unbind() const override;
 
-		virtual void addVertexBuffer(const std::shared_ptr<VertexBuffer>& buf) override;
-		virtual void setIndexBuffer(const std::shared_ptr<IndexBuffer>& buf) override;
+		virtual void addVertexBuffer(const Ref<VertexBuffer>& buf) override;
+		virtual void setIndexBuffer(const Ref<IndexBuffer>& buf) override;
 
-		virtual const std::vector<std::shared_ptr<VertexBuffer>>& getVertexBuffers() const override { return vertexBufs; }
-		virtual const std::shared_ptr<IndexBuffer>& getIndexBuffer() const override { return indexBuf; }
+		virtual const std::vector<Ref<VertexBuffer>>& getVertexBuffers() const override { return vertexBufs; }
+		virtual const Ref<IndexBuffer>& getIndexBuffer() const override { return indexBuf; }
 
 	private:
-		std::vector<std::shared_ptr<VertexBuffer>> vertexBufs;
-		std::shared_ptr<IndexBuffer> indexBuf;
+		std::vector<Ref<VertexBuffer>> vertexBufs;
+		Ref<IndexBuffer> indexBuf;
 		uint32_t rendererID;
 	};
 }

@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef OE_PLATFORM_WINDOWS
 #if OE_DYNAMIC_LINK
 #ifdef OE_BUILD_DLL
@@ -29,3 +31,12 @@
 #define BIT(x) (1 << x)
 
 #define OE_BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
+
+namespace OE
+{
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}

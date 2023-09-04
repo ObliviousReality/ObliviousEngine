@@ -13,7 +13,7 @@ namespace OE
 	{
 		glClearColor(colour.r, colour.g, colour.b, colour.a);
 	}
-	void GLRenderAPI::drawIndexed(const std::shared_ptr<VertexArray>& arr)
+	void GLRenderAPI::drawIndexed(const Ref<VertexArray>& arr)
 	{
 		glDrawElements(GL_TRIANGLES, arr->getIndexBuffer()->getCount(), GL_UNSIGNED_INT, nullptr);
 	}

@@ -15,7 +15,7 @@ namespace OE
 		static void BeginScene(OrthographicCamera& camera); // TODO: Scene Params
 		static void EndScene();
 
-		static void Draw(const std::shared_ptr<Shader>& shader, const std::shared_ptr<VertexArray>& vArray, const glm::mat4& transform = glm::mat4(1.0f));
+		static void Draw(const Ref<Shader>& shader, const Ref<VertexArray>& vArray, const glm::mat4& transform = glm::mat4(1.0f));
 
 		inline static RenderAPI::API GetAPI() { return RenderAPI::GetAPI(); }
 	private:
