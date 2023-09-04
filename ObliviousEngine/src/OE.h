@@ -20,6 +20,7 @@
 #include "ObliviousEngine/Renderer/RenderContext.h"
 #include "ObliviousEngine/Renderer/Renderer.h"
 #include "ObliviousEngine/Renderer/VertexArray.h"
+#include "ObliviousEngine/Renderer/Texture.h"
 
 #include "ObliviousEngine/Events/AppEvent.h"
 #include "ObliviousEngine/Events/Event.h"

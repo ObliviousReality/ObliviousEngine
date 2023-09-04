@@ -14,11 +14,11 @@ public:
 		: Layer("Test!"), camera(-1.6f, 1.6f, -0.9f, 0.9f), cameraPos(0.0f, 0.0f, 0.0f) {
 		vertexArr.reset(OE::VertexArray::Create());
 
-		float square[3 * 4] = {
-			-0.5f, -0.5f, 0.0f,
-			 0.5f, -0.5f, 0.0f,
-			 0.5f,  0.5f, 0.0f,
-			-0.5f,  0.5f, 0.0f
+		float square[5 * 4] = {
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
 
@@ -26,7 +26,8 @@ public:
 		vertexBuf.reset(OE::VertexBuffer::Create(square, sizeof(square)));
 
 		OE::BufferLayout layout = {
-			{OE::ShaderType::Float3, "position"}
+			{OE::ShaderType::Float3, "position"},
+			{OE::ShaderType::Float2, "textureCoord"}
 		};
 
 		vertexBuf->setLayout(layout);
@@ -129,6 +130,47 @@ public:
 			}
 		)";
 		triangleShader.reset(OE::Shader::Create(triangleVertexSrc, triangleFragmentSrc));
+
+		//------------------------------------------------------
+
+
+		std::string textureVertexSource = R"(
+			#version 330 core
+
+			layout(location=0) in vec3 position;
+			layout(location=1) in vec2 textureCoord;
+
+			uniform mat4 u_ViewProj;
+			uniform mat4 transform;	
+
+			out vec2 v_textureCoord;
+			
+			void main()
+			{
+				v_textureCoord = textureCoord;
+				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
+			}
+		)";
+		std::string textureFragmentSource = R"(
+			#version 330 core
+
+			layout(location=0) out vec4 colour;		
+			in vec2 v_textureCoord;
+
+			uniform sampler2D u_Texture;
+
+			void main()
+			{
+				colour = texture(u_Texture, v_textureCoord);
+			}
+		)";
+
+		textureShader.reset(OE::Shader::Create(textureVertexSource, textureFragmentSource));
+
+		texture2d = OE::Texture2D::Create("assets/textures/TestImage.png");
+
+		std::dynamic_pointer_cast<OE::GLShader>(textureShader)->bind();
+		std::dynamic_pointer_cast<OE::GLShader>(textureShader)->uploadUniformInt("u_Texture", 0);
 	}
 
 	void onUpdate(OE::Timestep ts) override
@@ -188,7 +230,9 @@ public:
 					OE::Renderer::Draw(shader, vertexArr, transform);
 				}
 			}
-			OE::Renderer::Draw(triangleShader, triangleArr);
+			texture2d->bind();
+			OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+			//OE::Renderer::Draw(triangleShader, triangleArr);
 		}
 		OE::Renderer::EndScene();
 	}
@@ -224,11 +268,13 @@ public:
 		return false;
 	}
 private:
-	OE::Ref<OE::Shader> shader;
+	OE::Ref<OE::Shader> shader, textureShader;
 	OE::Ref<OE::VertexArray> vertexArr;
 
 	OE::Ref<OE::Shader> triangleShader;
 	OE::Ref<OE::VertexArray> triangleArr;
+
+	OE::Ref<OE::Texture2D> texture2d;
 
 	OE::OrthographicCamera camera;
 

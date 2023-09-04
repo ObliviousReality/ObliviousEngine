@@ -17,6 +17,8 @@ IncludeDir["GLFW"] = "ObliviousEngine/vendor/GLFW/include"
 IncludeDir["Glad"] = "ObliviousEngine/vendor/Glad/include"
 IncludeDir["ImGui"] = "ObliviousEngine/vendor/imgui"
 IncludeDir["glm"] = "ObliviousEngine/vendor/glm"
+IncludeDir["stb_image"] = "ObliviousEngine/vendor/stb_image"
+
 
 
 include "ObliviousEngine/vendor/GLFW"
@@ -42,6 +44,8 @@ project "ObliviousEngine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 	}
@@ -59,9 +63,8 @@ project "ObliviousEngine"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
-
-
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.stb_image}"
 	}
 
 	links
