@@ -7,6 +7,11 @@ namespace OE
 
 	Renderer::SceneParams* Renderer::params = new Renderer::SceneParams;
 
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		params->ViewProjMatrix = camera.getViewProjMatrix();

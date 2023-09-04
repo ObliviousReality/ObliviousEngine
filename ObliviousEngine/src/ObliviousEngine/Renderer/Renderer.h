@@ -11,6 +11,7 @@ namespace OE
 	class Renderer
 	{
 	public:
+		static void Init();
 
 		static void BeginScene(OrthographicCamera& camera); // TODO: Scene Params
 		static void EndScene();

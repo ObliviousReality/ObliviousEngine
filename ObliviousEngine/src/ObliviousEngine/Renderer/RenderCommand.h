@@ -5,6 +5,11 @@ namespace OE
 	class RenderCommand
 	{
 	public:
+		inline static void Init()
+		{
+			rAPI->Init();
+		}
+
 		inline static void Clear()
 		{
 			rAPI->clear();

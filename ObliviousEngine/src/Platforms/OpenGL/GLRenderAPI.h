@@ -6,6 +6,7 @@ namespace OE
 	class GLRenderAPI : public RenderAPI
 	{
 	public:
+		virtual void Init() override;
 		virtual void clear() override;
 		virtual void setClearColour(const Colour& colour) override;
 

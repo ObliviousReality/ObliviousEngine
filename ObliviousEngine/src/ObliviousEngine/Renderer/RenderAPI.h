@@ -12,6 +12,7 @@ namespace OE
 			OpenGL = 1
 		};
 	public:
+		virtual void Init() = 0;
 		virtual void clear() = 0;
 		virtual void setClearColour(const Colour& colour) = 0;
 

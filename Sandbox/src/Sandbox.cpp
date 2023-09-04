@@ -168,6 +168,8 @@ public:
 		textureShader.reset(OE::Shader::Create(textureVertexSource, textureFragmentSource));
 
 		texture2d = OE::Texture2D::Create("assets/textures/TestImage.png");
+		alphaTexture2d = OE::Texture2D::Create("assets/textures/TestAlphaImage.png");
+
 
 		std::dynamic_pointer_cast<OE::GLShader>(textureShader)->bind();
 		std::dynamic_pointer_cast<OE::GLShader>(textureShader)->uploadUniformInt("u_Texture", 0);
@@ -232,6 +234,9 @@ public:
 			}
 			texture2d->bind();
 			OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+
+			alphaTexture2d->bind();
+			OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 			//OE::Renderer::Draw(triangleShader, triangleArr);
 		}
 		OE::Renderer::EndScene();
@@ -274,7 +279,7 @@ private:
 	OE::Ref<OE::Shader> triangleShader;
 	OE::Ref<OE::VertexArray> triangleArr;
 
-	OE::Ref<OE::Texture2D> texture2d;
+	OE::Ref<OE::Texture2D> texture2d, alphaTexture2d;
 
 	OE::OrthographicCamera camera;
 

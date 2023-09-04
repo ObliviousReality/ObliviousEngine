@@ -16,13 +16,29 @@ namespace OE
 		width = w;
 		height = h;
 
+		GLenum intFormat = 0, dataFormat = 0;
+		if (cs == 4)
+		{
+			//RGBA
+			intFormat = GL_RGBA8;
+			dataFormat = GL_RGBA;
+		}
+		else if (cs == 3)
+		{
+			//RGB
+			intFormat = GL_RGB8;
+			dataFormat = GL_RGB;
+		}
+
+		OE_CORE_ASSERT(intFormat && dataFormat, "TEXTURE FORMAT NOT SUPPORTED");
+
 		glCreateTextures(GL_TEXTURE_2D, 1, &renderID);
-		glTextureStorage2D(renderID, 1, GL_RGB8, width, height);
+		glTextureStorage2D(renderID, 1, intFormat, width, height);
 
 		glTextureParameteri(renderID, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTextureParameteri(renderID, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-		glTextureSubImage2D(renderID, 0, 0, 0, width, height, GL_RGB, GL_UNSIGNED_BYTE, data);
+		glTextureSubImage2D(renderID, 0, 0, 0, width, height, dataFormat, GL_UNSIGNED_BYTE, data);
 
 		stbi_image_free(data);
 

@@ -22,6 +22,9 @@ namespace OE {
 		window = std::unique_ptr<Window>(Window::WindowCreate());
 		window->setEventCallback(BIND_EV(Application::onEvent));
 		window->setVSync(true);
+
+		Renderer::Init();
+
 		imGuiLayer = new ImGuiLayer();
 		pushOverlay(imGuiLayer);
 	}

@@ -18,5 +18,6 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="assets\textures\TestImage.png" />
+    <Image Include="assets\textures\TestAlphaImage.png" />
   </ItemGroup>
 </Project>
