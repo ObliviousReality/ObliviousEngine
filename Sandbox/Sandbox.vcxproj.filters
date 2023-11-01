@@ -20,4 +20,9 @@
     <Image Include="assets\textures\TestImage.png" />
     <Image Include="assets\textures\TestAlphaImage.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="assets\shaders\Flat.glsl" />
+    <None Include="assets\shaders\Texture.glsl" />
+    <None Include="assets\shaders\Triangle.glsl" />
+  </ItemGroup>
 </Project>

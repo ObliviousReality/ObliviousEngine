@@ -39,37 +39,8 @@ public:
 		indexBuf.reset(OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		vertexArr->setIndexBuffer(indexBuf);
 
-		std::string vertexSource = R"(
-			#version 330 core
-
-			layout(location=0) in vec3 position;
-
-			uniform mat4 u_ViewProj;
-			uniform mat4 transform;	
+		shader.reset(OE::Shader::Create("assets/shaders/Flat.glsl"));
 			
-			out vec3 vPos;	
-
-			void main()
-			{
-				vPos = position;
-				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
-			}
-		)";
-		std::string fragmentSource = R"(
-			#version 330 core
-
-			layout(location=0) out vec4 colour;		
-			in vec3 vPos;
-
-			uniform vec3 u_Colour;
-
-			void main()
-			{
-				colour = vec4(u_Colour,1.0);
-			}
-		)";
-
-		shader.reset(OE::Shader::Create(vertexSource, fragmentSource));
 
 		//------------------------------------------------------
 
@@ -94,78 +65,12 @@ public:
 		triangleIndexBuffer.reset(OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t)));
 		triangleArr->setIndexBuffer(triangleIndexBuffer);
 
-
-		std::string triangleVertexSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) in vec3 position;
-			layout(location = 1) in vec4 colour;
-
-			uniform mat4 u_ViewProj;
-			uniform mat4 transform;
-
-			out vec3 v_Position;
-			out vec4 v_Color;
-
-			void main()
-			{
-				v_Position = position;
-				v_Color = colour;
-				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
-			}
-		)";
-
-		std::string triangleFragmentSrc = R"(
-			#version 330 core
-			
-			layout(location = 0) out vec4 color;
-
-			in vec3 v_Position;
-			in vec4 v_Color;
-
-			void main()
-			{
-				color = vec4(v_Position * 0.5 + 0.5, 1.0);
-				color = v_Color;
-			}
-		)";
-		triangleShader.reset(OE::Shader::Create(triangleVertexSrc, triangleFragmentSrc));
+		triangleShader.reset(OE::Shader::Create("assets/shaders/Triangle.glsl"));
 
 		//------------------------------------------------------
 
 
-		std::string textureVertexSource = R"(
-			#version 330 core
-
-			layout(location=0) in vec3 position;
-			layout(location=1) in vec2 textureCoord;
-
-			uniform mat4 u_ViewProj;
-			uniform mat4 transform;	
-
-			out vec2 v_textureCoord;
-			
-			void main()
-			{
-				v_textureCoord = textureCoord;
-				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
-			}
-		)";
-		std::string textureFragmentSource = R"(
-			#version 330 core
-
-			layout(location=0) out vec4 colour;		
-			in vec2 v_textureCoord;
-
-			uniform sampler2D u_Texture;
-
-			void main()
-			{
-				colour = texture(u_Texture, v_textureCoord);
-			}
-		)";
-
-		textureShader.reset(OE::Shader::Create(textureVertexSource, textureFragmentSource));
+		textureShader.reset(OE::Shader::Create("assets/shaders/Texture.glsl"));
 
 		texture2d = OE::Texture2D::Create("assets/textures/TestImage.png");
 		alphaTexture2d = OE::Texture2D::Create("assets/textures/TestAlphaImage.png");
