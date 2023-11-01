@@ -111,7 +111,7 @@ namespace OE
 		size_t pos = src.find(typeToken, 0);
 		while (pos != std::string::npos) {
 			size_t eol = src.find_first_of("\r\n", pos);
-			//OE_CORE_ASSERT(eol != std::string::npos, "SYNTAX ERROR WITH SHADER FILE"); //TODO: FIX
+			OE_CORE_ASSERT(eol != std::string::npos, "SYNTAX ERROR WITH SHADER FILE");
 			size_t begin = pos + tokenLength + 1;
 			std::string type = src.substr(begin, eol - begin);
 			OE_CORE_ASSERT(ShaderTypeFromString(type), "INVALID SHADER TYPE FOUND");
@@ -125,7 +125,9 @@ namespace OE
 	void GLShader::compile(const std::unordered_map<GLenum, std::string>& shaderSrcs)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> shaderIDs(shaderSrcs.size());
+		OE_CORE_ASSERT(shaderSrcs.size() <= 2, "ERROR: Too Many Shader Sources (Only 2 Allowed)");
+		std::array<GLenum, 2> shaderIDs;
+		int arrIndex = 0;
 		for (auto& kv : shaderSrcs)
 		{
 			GLenum type = kv.first;
@@ -166,7 +168,7 @@ namespace OE
 			}
 			// Attach our shaders to our program
 			glAttachShader(program, shader);
-			shaderIDs.push_back(shader);
+			shaderIDs[arrIndex++] = shader;
 		}
 
 		// Vertex and fragment shaders are successfully compiled.
