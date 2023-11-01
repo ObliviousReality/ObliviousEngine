@@ -39,7 +39,43 @@ public:
 		indexBuf.reset(OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		vertexArr->setIndexBuffer(indexBuf);
 
-		shader.reset(OE::Shader::Create("assets/shaders/Flat.glsl"));
+		//shader = OE::Shader::Create("assets/shaders/Flat.glsl");
+
+		std::string flatVertexSource = R"(
+			#version 330 core
+
+			layout(location=0) in vec3 position;
+
+			uniform mat4 u_ViewProj;
+			uniform mat4 transform;	
+			
+			out vec3 vPos;	
+
+			void main()
+			{
+				vPos = position;
+				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
+			}
+		)";
+		std::string flatFragmentSource = R"(
+			#version 330 core
+
+			layout(location=0) out vec4 colour;		
+			in vec3 vPos;
+
+			uniform vec3 u_Colour;
+
+			void main()
+			{
+				colour = vec4(u_Colour,1.0);
+			}
+		)";
+
+		auto shader = OE::Shader::Create("flat", flatVertexSource, flatFragmentSource);
+		shaderLib.add(shader);
+
+		//auto FlatShader = shaderLib.load("assets/shaders/flat.glsl");
+
 			
 
 		//------------------------------------------------------
@@ -65,12 +101,12 @@ public:
 		triangleIndexBuffer.reset(OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t)));
 		triangleArr->setIndexBuffer(triangleIndexBuffer);
 
-		triangleShader.reset(OE::Shader::Create("assets/shaders/Triangle.glsl"));
+		triangleShader = OE::Shader::Create("assets/shaders/Triangle.glsl");
 
 		//------------------------------------------------------
 
 
-		textureShader.reset(OE::Shader::Create("assets/shaders/Texture.glsl"));
+		auto textureShader = shaderLib.load("assets/shaders/Texture.glsl");
 
 		texture2d = OE::Texture2D::Create("assets/textures/TestImage.png");
 		alphaTexture2d = OE::Texture2D::Create("assets/textures/TestAlphaImage.png");
@@ -123,8 +159,10 @@ public:
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scaleFactor));
 
-		std::dynamic_pointer_cast<OE::GLShader>(shader)->bind();
-		std::dynamic_pointer_cast<OE::GLShader>(shader)->uploadUniformFloat3("u_Colour", squareColour);
+		auto flatShader = shaderLib.get("flat");
+
+		std::dynamic_pointer_cast<OE::GLShader>(flatShader)->bind();
+		std::dynamic_pointer_cast<OE::GLShader>(flatShader)->uploadUniformFloat3("u_Colour", squareColour);
 
 
 		OE::Renderer::BeginScene(camera);
@@ -134,9 +172,12 @@ public:
 				{
 					glm::vec3 pos(x * (scaleFactor + (scaleFactor * 0.1f)), y * (scaleFactor + (scaleFactor * 0.1f)), 0.0f);
 					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					OE::Renderer::Draw(shader, vertexArr, transform);
+					OE::Renderer::Draw(flatShader, vertexArr, transform);
 				}
 			}
+
+			auto textureShader = shaderLib.get("Texture");
+
 			texture2d->bind();
 			OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
@@ -178,7 +219,7 @@ public:
 		return false;
 	}
 private:
-	OE::Ref<OE::Shader> shader, textureShader;
+	//OE::Ref<OE::Shader> shader;
 	OE::Ref<OE::VertexArray> vertexArr;
 
 	OE::Ref<OE::Shader> triangleShader;
@@ -187,6 +228,8 @@ private:
 	OE::Ref<OE::Texture2D> texture2d, alphaTexture2d;
 
 	OE::OrthographicCamera camera;
+
+	OE::ShaderLib shaderLib;
 
 	glm::vec3 cameraPos;
 	float camSpeed = 7.0f;

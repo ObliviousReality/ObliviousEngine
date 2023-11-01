@@ -28,8 +28,15 @@ namespace OE
 		std::string& shaderSource = readFile(path);
 		auto srcs = preprocessFile(shaderSource);
 		compile(srcs);
+
+		auto lastSlash = path.find_last_of("/\\");
+		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
+		auto lastDot = path.rfind('.');
+		auto count = lastDot == std::string::npos ? path.size() - lastSlash : lastDot - lastSlash;
+		name = path.substr(lastSlash, count);
+
 	}
-	GLShader::GLShader(const std::string& vertexSource, const std::string& fragmentSource)
+	GLShader::GLShader(const std::string& namein, const std::string& vertexSource, const std::string& fragmentSource) : name(namein)
 	{
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSource;

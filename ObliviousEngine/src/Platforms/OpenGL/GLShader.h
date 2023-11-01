@@ -12,11 +12,13 @@ namespace OE
 	{
 	public:
 		GLShader(const std::string& path);
-		GLShader(const std::string& vertexSource, const std::string& fragmentSource);
+		GLShader(const std::string& namein, const std::string& vertexSource, const std::string& fragmentSource);
 		virtual ~GLShader();
 
 		virtual void bind() const override;
 		virtual void unbind() const override;
+
+		virtual const std::string& getName() const override { return name; }
 
 		void uploadUniformInt(const std::string& name, int value);
 
@@ -33,5 +35,6 @@ namespace OE
 		void compile(const std::unordered_map<GLenum, std::string>& shaderSrcs);
 	private:
 		uint32_t renderID;
+		std::string name;
 	};
 }
