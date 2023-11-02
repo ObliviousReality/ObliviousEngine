@@ -15,6 +15,7 @@
 #include "ObliviousEngine/Renderer/Layer.h"
 #include "ObliviousEngine/Renderer/LayerStack.h"
 #include "ObliviousEngine/Renderer/OrthoCamera.h"
+#include "ObliviousEngine/Renderer/OrthoCameraController.h"
 #include "ObliviousEngine/Renderer/RenderAPI.h"
 #include "ObliviousEngine/Renderer/RenderCommand.h"
 #include "ObliviousEngine/Renderer/RenderContext.h"

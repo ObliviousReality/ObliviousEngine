@@ -7,6 +7,7 @@ namespace OE {
 	{
 	public:
 		OrthographicCamera(float l, float r, float b, float t);
+		void setProj(float l, float r, float b, float t);
 
 		void setPos(const glm::vec3& p) { pos = p; recalcVM(); }
 		void setRot(float r) { rot = r; recalcVM(); }
@@ -17,8 +18,6 @@ namespace OE {
 		const glm::mat4 getProjMatrix() const { return projMatrix; }
 		const glm::mat4 getViewMatrix() const { return viewMatrix; }
 		const glm::mat4 getViewProjMatrix() const { return viewProjMatrix; }
-
-
 
 	private:
 		void recalcVM();

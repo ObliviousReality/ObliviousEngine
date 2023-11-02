@@ -140,6 +140,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\ObliviousEngine\Renderer\OrthoCameraController.h" />
     <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
@@ -599,6 +600,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\ObliviousEngine\Renderer\OrthoCameraController.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Log.cpp" />
     <ClCompile Include="src\ObliviousEngine\Core\Maths.cpp" />

@@ -54,12 +54,12 @@ namespace OE
 		EventDispatcher(Event& e)
 			: ev(e) {}
 
-		template<typename T>
-		bool dispatch(EventFn<T> func)
+		template<typename T, typename F>
+		bool dispatch(const F& func)
 		{
 			if (ev.getEventType() == T::getStaticType())
 			{
-				ev.handled = func(*(T*)&ev);
+				ev.handled = func(static_cast<T&>(ev));
 				return true;
 			}
 			return false;

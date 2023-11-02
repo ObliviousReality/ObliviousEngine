@@ -11,7 +11,7 @@ class TestLayer : public OE::Layer
 {
 public:
 	TestLayer()
-		: Layer("Test!"), camera(-1.6f, 1.6f, -0.9f, 0.9f), cameraPos(0.0f, 0.0f, 0.0f) {
+		: Layer("Test!") , cameraController(1920.0f / 1080.0f, true){
 		vertexArr.reset(OE::VertexArray::Create());
 
 		float square[5 * 4] = {
@@ -71,8 +71,7 @@ public:
 			}
 		)";
 
-		auto shader = OE::Shader::Create("flat", flatVertexSource, flatFragmentSource);
-		shaderLib.add(shader);
+		shaderLib.add(OE::Shader::Create("flat", flatVertexSource, flatFragmentSource));
 
 		//auto FlatShader = shaderLib.load("assets/shaders/flat.glsl");
 
@@ -123,39 +122,11 @@ public:
 			OE_TRACE("P PRESSED");
 			OE::Application::Quit();
 		}
-		if (OE::Input::isKeyPressed(KEY_LEFT)) {
-			cameraPos.x -= camSpeed * ts;
-		}
-		if (OE::Input::isKeyPressed(KEY_RIGHT)) {
-			cameraPos.x += camSpeed * ts;
-		}
-		if (OE::Input::isKeyPressed(KEY_UP)) {
-			cameraPos.y += camSpeed * ts;
-		}
-		if (OE::Input::isKeyPressed(KEY_DOWN)) {
-			cameraPos.y -= camSpeed * ts;
-		}
 
-		if (OE::Input::isKeyPressed(KEY_Q)) {
-			cameraRot += rotSpeed * ts;
-		}
-		if (OE::Input::isKeyPressed(KEY_E)) {
-			cameraRot -= rotSpeed * ts;
-		}
-
-		if (OE::Input::isKeyPressed(KEY_R)) {
-			cameraRot = 0;
-			cameraPos.x = 0;
-			cameraPos.y = 0;
-		}
-
-
+		cameraController.onUpdate(ts);
 
 		OE::RenderCommand::SetClearColour(OE::Colour(0.1f, 0.1f, 0.1f, 1.0f));
 		OE::RenderCommand::Clear();
-
-		camera.setPos(cameraPos);
-		camera.setRot(cameraRot);
 
 		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scaleFactor));
 
@@ -165,7 +136,7 @@ public:
 		std::dynamic_pointer_cast<OE::GLShader>(flatShader)->uploadUniformFloat3("u_Colour", squareColour);
 
 
-		OE::Renderer::BeginScene(camera);
+		OE::Renderer::BeginScene(cameraController.getCamera());
 		{
 			for (int y = 0; y < 20; y++) {
 				for (int x = 0; x < 20; x++)
@@ -199,7 +170,7 @@ public:
 	{
 		OE::EventDispatcher dispatcher(event);
 		dispatcher.dispatch<OE::KeyDownEvent>(OE_BIND_EVENT(TestLayer::onKeyPressedEvent));
-
+		cameraController.onEvent(event);
 	}
 
 	bool onKeyPressedEvent(OE::KeyDownEvent& e) {
@@ -218,6 +189,7 @@ public:
 		}
 		return false;
 	}
+
 private:
 	//OE::Ref<OE::Shader> shader;
 	OE::Ref<OE::VertexArray> vertexArr;
@@ -227,18 +199,13 @@ private:
 
 	OE::Ref<OE::Texture2D> texture2d, alphaTexture2d;
 
-	OE::OrthographicCamera camera;
-
 	OE::ShaderLib shaderLib;
 
-	glm::vec3 cameraPos;
-	float camSpeed = 7.0f;
+	glm::vec3 squareColour = { 0.2f, 0.3f, 0.8f };
 
-	float cameraRot = 0;
-	float rotSpeed = 180.0f;
 	float scaleFactor = 0.1f;
 
-	glm::vec3 squareColour = { 0.2f, 0.3f, 0.8f };
+	OE::OrthographicCameraController cameraController;
 };
 
 
