@@ -13,6 +13,8 @@ namespace OE
 	public:
 		static void Init();
 
+		static void WindowResize(uint32_t w, uint32_t h);
+
 		static void BeginScene(OrthographicCamera& camera); // TODO: Scene Params
 		static void EndScene();
 

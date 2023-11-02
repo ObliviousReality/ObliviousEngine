@@ -14,7 +14,6 @@ namespace OE {
 	void OrthographicCameraController::onUpdate(Timestep ts)
 	{
 		cameraSpeed = 2 * zoom;
-		// Factor zoom level into speed
 		if (Input::isKeyPressed(KEY_A)) {
 			cameraPos.x -= cameraSpeed * ts;
 		}

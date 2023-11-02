@@ -18,6 +18,9 @@ namespace OE {
 
 		OrthographicCamera& getCamera() { return camera; }
 		const OrthographicCamera& getCamera() const { return camera; }
+
+		float getZoomLevel() const { return zoom; }
+		void setZoomLevel(float newLevel) { zoom = newLevel; }
 	private:
 		bool onMouseScroll(MouseScrollEvent& mse);
 		bool onWindowResize(WindowResizeEvent& rse);

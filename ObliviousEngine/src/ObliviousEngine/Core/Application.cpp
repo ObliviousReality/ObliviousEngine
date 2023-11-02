@@ -41,18 +41,19 @@ namespace OE {
 			float time = (float)glfwGetTime(); // Platform specific
 			Timestep ts = time - frameTime;
 			frameTime = time;
-
-			for (Layer* l : ls)
-			{
-				l->onUpdate(ts);
+			if (!minimised) {
+				for (Layer* l : ls)
+				{
+					l->onUpdate(ts);
+				}
 			}
-
 			imGuiLayer->begin();
 			for (Layer* l : ls)
 			{
 				l->onImGuiRender();
 			}
 			imGuiLayer->end();
+
 
 			//auto [x, y] = Input::getMousePos();
 			//OE_CORE_TRACE("{0}, {1}", x, y);
@@ -70,6 +71,8 @@ namespace OE {
 		//OE_CORE_TRACE("{0}", e);
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(BIND_EV(Application::onClose));
+		dispatcher.dispatch<WindowResizeEvent>(BIND_EV(Application::resizeEvent));
+
 
 		for (auto it = ls.end(); it != ls.begin();)
 		{
@@ -107,5 +110,17 @@ namespace OE {
 	{
 		crashed = true;
 		return true;
+	}
+	bool Application::resizeEvent(WindowResizeEvent& rse)
+	{
+		if (rse.getWidth() == 0 || rse.getHeight() == 0) {
+			minimised = true;
+			return false;
+		}
+		minimised = false;
+
+		Renderer::WindowResize(rse.getWidth(), rse.getHeight());
+
+		return false;
 	}
 }

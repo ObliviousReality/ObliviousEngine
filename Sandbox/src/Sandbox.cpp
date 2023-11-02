@@ -11,7 +11,7 @@ class TestLayer : public OE::Layer
 {
 public:
 	TestLayer()
-		: Layer("Test!") , cameraController(1920.0f / 1080.0f, true){
+		: Layer("Test!"), cameraController(1920.0f / 1080.0f, true) {
 		vertexArr.reset(OE::VertexArray::Create());
 
 		float square[5 * 4] = {
@@ -75,7 +75,7 @@ public:
 
 		//auto FlatShader = shaderLib.load("assets/shaders/flat.glsl");
 
-			
+
 
 		//------------------------------------------------------
 

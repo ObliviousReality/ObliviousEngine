@@ -23,6 +23,11 @@ namespace OE
 		{
 			rAPI->drawIndexed(arr);
 		}
+
+		inline static void SetViewport(uint32_t x, uint32_t y, uint32_t w, uint32_t h)
+		{
+			rAPI->setViewport(x, y, w, h);
+		}
 	private:
 		static RenderAPI* rAPI;
 	};

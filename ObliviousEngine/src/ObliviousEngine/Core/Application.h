@@ -33,10 +33,13 @@ namespace OE {
 		inline Window& getWindow() { return *window; }
 	private:
 		bool onClose(WindowCloseEvent& e);
+		bool resizeEvent(WindowResizeEvent& rse);
+
 	private:
 		std::unique_ptr<Window> window;
 		ImGuiLayer* imGuiLayer;
 		bool crashed = false;
+		bool minimised = false;
 		LayerStack ls;
 		float frameTime = 0.0f;
 

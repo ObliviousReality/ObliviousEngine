@@ -12,6 +12,11 @@ namespace OE
 		RenderCommand::Init();
 	}
 
+	void Renderer::WindowResize(uint32_t w, uint32_t h)
+	{
+		RenderCommand::SetViewport(0, 0, w, h);
+	}
+
 	void Renderer::BeginScene(OrthographicCamera& camera)
 	{
 		params->ViewProjMatrix = camera.getViewProjMatrix();

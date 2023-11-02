@@ -15,6 +15,7 @@ namespace OE
 		virtual void Init() = 0;
 		virtual void clear() = 0;
 		virtual void setClearColour(const Colour& colour) = 0;
+		virtual void setViewport(uint32_t x, uint32_t y, uint32_t w, uint32_t h) = 0;
 
 		virtual void drawIndexed(const Ref<VertexArray>& arr) = 0;
 
