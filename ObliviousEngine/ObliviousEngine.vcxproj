@@ -141,6 +141,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
@@ -611,6 +612,7 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderAPI.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderCommand.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Shader.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Texture.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\VertexArray.cpp" />
