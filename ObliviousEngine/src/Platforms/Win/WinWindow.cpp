@@ -89,7 +89,7 @@ namespace OE
 				data.height = h;
 
 				WindowResizeEvent event(w, h);
-				OE_CORE_INFO("WINDOW SIZE: {0} x, {1} y", w, h);
+				//OE_CORE_INFO("WINDOW SIZE: {0} x, {1} y", w, h);
 				data.callback(event);
 			});
 

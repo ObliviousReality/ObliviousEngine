@@ -2,19 +2,49 @@
 
 #include <memory>
 
+#ifdef _WIN32
+	#ifdef _WIN64
+		#define OE_PLATFORM_WINDOWS
+	#else
+		#error "x86 IS NOT SUPPORTED"
+	#endif
+#elif defined(__APPLE__) || defined(__MACH__)
+	#include <TargetConditionals.h>
+	#if TARGET_IPHONE_SIMULATOR == 1
+		#error "IOS Simulator NOT SUPPORTED"
+	#elif TARGET_OS_IPHONE == 1
+		#define OE_PLATFORM_IOS
+		#error "IOS NOT SUPPORTED"
+	#elif TARGET_OS_MAC == 1
+		#define OE_PLATFORM_MACOS
+		#error "MacOS NOT SUPPORTED"
+	#else
+		#error "UNKNOWN APPLE PLATFORM (AND ALSO NOT SUPPORTED)"
+		#endif
+#elif defined(__ANDROID__)
+	#define OE_PLATFORM_ANDROID
+	#error "ANDROID NOT SUPPORTED"
+#elif defined(__linux__)
+	#define OE_PLATFORM_LINUX
+	#error "LINUX NOT SUPPORTED"
+#else
+	#error "UNKNOWN PLATFORM (AND ALSO NOT SUPPORTED)"
+#endif
+
 #ifdef OE_PLATFORM_WINDOWS
 #if OE_DYNAMIC_LINK
 #ifdef OE_BUILD_DLL
 #define OBLIVIOUSENGINE_API __declspec(dllexport)
 #else
 #define OBLIVIOUSENGINE_API __declspec(dllimport)
-#endif // OE_BUILD_DLL
+#endif
 #else
 #define OBLIVIOUSENGINE_API
 #endif
 #else
-#error The Oblivious Engine only supports Windows.
-#endif // OE_PLATFORM_WINDOWS
+#error "THE OBLIVIOUS ENGINE ONLY SUPPORTS WINDOWS"
+#endif
+
 
 #ifdef OE_DEBUG
 	#define OE_ENABLE_ASSERTS

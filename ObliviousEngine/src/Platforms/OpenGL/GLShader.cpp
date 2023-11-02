@@ -124,8 +124,10 @@ namespace OE
 			OE_CORE_ASSERT(ShaderTypeFromString(type), "INVALID SHADER TYPE FOUND");
 
 			size_t nextLinePos = src.find_first_not_of("\r\n", eol);
+			OE_CORE_ASSERT(nextLinePos != std::string::npos, "ERROR WITH SHADER FILE");
 			pos = src.find(typeToken, nextLinePos);
-			shaderSrcs[ShaderTypeFromString(type)] = src.substr(nextLinePos, pos - (nextLinePos == std::string::npos ? src.size() - 1 : nextLinePos));
+			shaderSrcs[ShaderTypeFromString(type)] = (pos == std::string::npos) ? src.substr(nextLinePos) : src.substr(nextLinePos, pos - nextLinePos);
+
 		}
 		return shaderSrcs;
 	}
@@ -218,6 +220,7 @@ namespace OE
 		// Always detach shaders after a successful link.
 		for (auto s : shaderIDs) {
 			glDetachShader(program, s);
+			glDeleteShader(s);
 		}
 	}
 }

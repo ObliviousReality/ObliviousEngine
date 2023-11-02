@@ -1,12 +1,16 @@
 [submodule "ObliviousEngine/vendor/spdlog"]
 	path = ObliviousEngine/vendor/spdlog
 	url = https://github.com/gabime/spdlog
+	branch = v1.x
 [submodule "ObliviousEngine/vendor/glm"]
 	path = ObliviousEngine/vendor/glm
 	url = https://github.com/g-truc/glm
+	branch = master
 [submodule "ObliviousEngine/vendor/GLFW"]
 	path = ObliviousEngine/vendor/GLFW
 	url = https://github.com/TheCherno/glfw
+	branch = master
 [submodule "ObliviousEngine/vendor/imgui"]
 	path = ObliviousEngine/vendor/imgui
 	url = https://github.com/ocornut/imgui.git
+	branch = docking

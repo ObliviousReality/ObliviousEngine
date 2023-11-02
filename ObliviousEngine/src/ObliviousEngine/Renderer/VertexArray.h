@@ -20,6 +20,6 @@ namespace OE
 		virtual const Ref<IndexBuffer>& getIndexBuffer() const = 0;
 
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
 }

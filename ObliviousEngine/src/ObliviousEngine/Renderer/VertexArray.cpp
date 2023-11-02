@@ -6,7 +6,7 @@
 
 namespace OE
 {
-	VertexArray* VertexArray::Create()
+	Ref<VertexArray> VertexArray::Create()
 	{
 		switch (Renderer::GetAPI())
 		{
@@ -14,7 +14,7 @@ namespace OE
 			OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED");
 			return nullptr;
 		case RenderAPI::API::OpenGL:
-			return new GLVertexArray();
+			return std::make_shared<GLVertexArray>();
 		default:
 			OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET");
 			return nullptr;

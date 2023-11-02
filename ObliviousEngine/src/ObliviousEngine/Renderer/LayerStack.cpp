@@ -10,6 +10,7 @@ namespace OE
 	{
 		for (Layer* l : layers)
 		{
+			l->onDetatch();
 			delete l;
 		}
 	}

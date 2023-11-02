@@ -36,6 +36,3 @@
 #include "ObliviousEngine/Core/Input.h"
 #include "ObliviousEngine/Core/Application.h"
 #include "ObliviousEngine/Core/Timestep.h"
-
-// ENTRY POINT:
-#include "ObliviousEngine/Core/EntryPoint.h"

@@ -7,12 +7,14 @@
 #include <Platforms/OpenGL/GLShader.h>
 #include <glm/glm/gtc/type_ptr.hpp>
 
+#include "Sandbox2D.h"
+
 class TestLayer : public OE::Layer
 {
 public:
 	TestLayer()
 		: Layer("Test!"), cameraController(1920.0f / 1080.0f, true) {
-		vertexArr.reset(OE::VertexArray::Create());
+		vertexArr = OE::VertexArray::Create();
 
 		float square[5 * 4] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
@@ -79,7 +81,7 @@ public:
 
 		//------------------------------------------------------
 
-		triangleArr.reset(OE::VertexArray::Create());
+		triangleArr = OE::VertexArray::Create();
 
 		float triangleVertices[3 * 7] = {
 			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
@@ -213,7 +215,8 @@ class Sandbox : public OE::Application {
 public:
 	Sandbox() {
 		OE_TRACE("Sandbox Started");
-		pushLayer(new TestLayer());
+		//pushLayer(new TestLayer());
+		pushLayer(new Sandbox2D());
 	}
 
 	~Sandbox() {
