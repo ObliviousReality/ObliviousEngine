@@ -11,6 +11,7 @@ namespace OE {
 	public:
 		Colour(float ri, float gi, float bi, float ai = 1.0f) : r(ri), g(gi), b(bi), a(ai) {}
 		Colour(glm::vec4 vin) : r(vin.x), g(vin.y), b(vin.z), a(vin.w) {}
+		Colour(glm::vec3 vin) : r(vin.x), g(vin.y), b(vin.z), a(1.0f) {}
 		float getR() { return r; }
 		float getG() { return g; }
 		float getB() { return b; }

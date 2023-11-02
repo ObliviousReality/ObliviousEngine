@@ -2,8 +2,8 @@
 #include "Renderer2D.h"
 #include "VertexArray.h"
 #include "Shader.h"
-#include "Platforms/OpenGL/GLShader.h"
 #include "RenderCommand.h"
+#include <glm/ext/matrix_transform.hpp>
 
 namespace OE
 {
@@ -52,9 +52,8 @@ namespace OE
 	}
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		std::dynamic_pointer_cast<GLShader>(storage->shader)->bind();
-		std::dynamic_pointer_cast<GLShader>(storage->shader)->uploadUniformMat4("u_ViewProj", camera.getViewProjMatrix());
-		std::dynamic_pointer_cast<GLShader>(storage->shader)->uploadUniformMat4("transform", glm::mat4(1.0f));
+		storage->shader->bind();
+		storage->shader->setMat4("u_ViewProj", camera.getViewProjMatrix());
 
 
 	}
@@ -67,8 +66,12 @@ namespace OE
 	}
 	void Renderer2D::DrawRect(const glm::vec3& pos, const glm::vec2& size, const glm::vec4& colour)
 	{
-		std::dynamic_pointer_cast<GLShader>(storage->shader)->bind();
-		std::dynamic_pointer_cast<GLShader>(storage->shader)->uploadUniformFloat4("u_Colour", colour);
+		storage->shader->bind();
+		storage->shader->setFloat4("u_Colour", colour);
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+
+		storage->shader->setMat4("transform", transform);
 
 		storage->vArray->bind();
 		RenderCommand::DrawIndexed(storage->vArray);

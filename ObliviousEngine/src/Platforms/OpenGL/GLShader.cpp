@@ -55,6 +55,18 @@ namespace OE
 	{
 		glUseProgram(0);
 	}
+	void GLShader::setMat4(const std::string& name, const glm::mat4& val)
+	{
+		uploadUniformMat4(name, val);
+	}
+	void GLShader::setFloat3(const std::string& name, const glm::vec3& val)
+	{
+		uploadUniformFloat3(name, val);
+	}
+	void GLShader::setFloat4(const std::string& name, const glm::vec4& val)
+	{
+		uploadUniformFloat4(name, val);
+	}
 	void GLShader::uploadUniformInt(const std::string& name, int value)
 	{
 		GLint loc = glGetUniformLocation(renderID, name.c_str());
