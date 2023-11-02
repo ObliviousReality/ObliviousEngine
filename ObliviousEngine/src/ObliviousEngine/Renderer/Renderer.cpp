@@ -1,6 +1,7 @@
 #include "oepch.h"
 #include "Renderer.h"
 #include <Platforms/OpenGL/GLShader.h>
+#include "Renderer2D.h"
 
 namespace OE
 {
@@ -10,6 +11,7 @@ namespace OE
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
 	}
 
 	void Renderer::WindowResize(uint32_t w, uint32_t h)
