@@ -1,7 +1,7 @@
 #include "oepch.h"
-#include "VertexArray.h"
+#include "ObliviousEngine/Renderer/VertexArray.h"
 
-#include "Renderer.h"
+#include "ObliviousEngine/Renderer/Renderer.h"
 #include "Platforms/OpenGL/GLVertexArray.h"
 
 namespace OE
@@ -14,7 +14,7 @@ namespace OE
 			OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED");
 			return nullptr;
 		case RenderAPI::API::OpenGL:
-			return std::make_shared<GLVertexArray>();
+			return CreateRef<GLVertexArray>();
 		default:
 			OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET");
 			return nullptr;

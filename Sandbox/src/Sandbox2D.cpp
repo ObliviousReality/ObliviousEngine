@@ -1,5 +1,5 @@
 #include "Sandbox2D.h"
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 #include <glm/glm/gtc/type_ptr.hpp>
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <chrono>
@@ -85,9 +85,6 @@ void Sandbox2D::onUpdate(OE::Timestep ts)
 	if (OE::Input::isKeyPressed(KEY_P) || buttonPressed) {
 		OE_TRACE("P PRESSED");
 		OE::Application::Quit();
-	}
-	if (OE::Input::isMousePressed(0)) {
-		OE_TRACE("LEFT CLICK");
 	}
 }
 

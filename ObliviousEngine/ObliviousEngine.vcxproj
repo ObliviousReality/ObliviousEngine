@@ -611,6 +611,7 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\OrthoCameraController.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderAPI.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderCommand.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\RenderContext.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer2D.cpp" />
     <ClCompile Include="src\ObliviousEngine\Renderer\Shader.cpp" />

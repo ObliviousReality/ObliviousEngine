@@ -4,7 +4,7 @@
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API Camera
+	class Camera
 	{
 	public:
 		Camera(const glm::mat4& _projection) : projection(_projection) {}

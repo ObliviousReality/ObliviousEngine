@@ -1,9 +1,9 @@
 #pragma once
 
-#include "RenderCommand.h"
+#include "ObliviousEngine/Renderer/RenderCommand.h"
 
-#include "OrthoCamera.h"
-#include "Shader.h"
+#include "ObliviousEngine/Renderer/OrthoCamera.h"
+#include "ObliviousEngine/Renderer/Shader.h"
 
 namespace OE
 {
@@ -12,6 +12,7 @@ namespace OE
 	{
 	public:
 		static void Init();
+		static void Finish();
 
 		static void WindowResize(uint32_t w, uint32_t h);
 
@@ -27,6 +28,6 @@ namespace OE
 			glm::mat4 ViewProjMatrix;
 		};
 
-		static SceneParams* params;
+		static Scope<SceneParams> params;
 	};
 }

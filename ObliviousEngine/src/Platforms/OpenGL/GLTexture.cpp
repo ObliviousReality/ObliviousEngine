@@ -1,7 +1,7 @@
 #include "oepch.h"
-#include "GLTexture.h"
+#include "Platforms/OpenGL/GLTexture.h"
 
-#include "stb_image.h"
+#include <stb_image.h>
 
 namespace OE
 {

@@ -1,5 +1,5 @@
 #include "oepch.h"
-#include "GLVertexArray.h"
+#include "Platforms/OpenGL/GLVertexArray.h"
 
 #include <glad/glad.h>
 
@@ -10,29 +10,29 @@ namespace OE
 	{
 		switch (st)
 		{
-		case OE::ShaderType::None:
+		case ShaderType::None:
 			return 0;
-		case OE::ShaderType::Float:
+		case ShaderType::Float:
 			return GL_FLOAT;
-		case OE::ShaderType::Float2:
+		case ShaderType::Float2:
 			return GL_FLOAT;
-		case OE::ShaderType::Float3:
+		case ShaderType::Float3:
 			return GL_FLOAT;
-		case OE::ShaderType::Float4:
+		case ShaderType::Float4:
 			return GL_FLOAT;
-		case OE::ShaderType::Mat3:
+		case ShaderType::Mat3:
 			return GL_FLOAT;
-		case OE::ShaderType::Mat4:
+		case ShaderType::Mat4:
 			return GL_FLOAT;
-		case OE::ShaderType::Int:
+		case ShaderType::Int:
 			return GL_INT;
-		case OE::ShaderType::Int2:
+		case ShaderType::Int2:
 			return GL_INT;
-		case OE::ShaderType::Int3:
+		case ShaderType::Int3:
 			return GL_INT;
-		case OE::ShaderType::Int4:
+		case ShaderType::Int4:
 			return GL_INT;
-		case OE::ShaderType::Bool:
+		case ShaderType::Bool:
 			return GL_BOOL;
 		default:
 			OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE");

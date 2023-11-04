@@ -28,7 +28,7 @@ namespace OE
 
 #define EVENT_CLASS_CAT(cat) virtual int getCatFlags() const override { return cat; }
 
-	class OBLIVIOUSENGINE_API Event
+	class Event
 	{
 		friend class EventDispatcher;
 	public:

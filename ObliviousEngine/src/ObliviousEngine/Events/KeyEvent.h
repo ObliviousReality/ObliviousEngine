@@ -1,9 +1,9 @@
 #pragma once
-//#include "oepch.h"
-#include "Event.h"
+#include "ObliviousEngine/Events/Event.h"
+
 namespace OE
 {
-	class OBLIVIOUSENGINE_API KeyEvent : public Event
+	class KeyEvent : public Event
 	{
 	public:
 		inline int getKeyCode() const { return keyCode; }
@@ -17,7 +17,7 @@ namespace OE
 		int keyCode;
 	};
 
-	class OBLIVIOUSENGINE_API KeyDownEvent : public KeyEvent
+	class KeyDownEvent : public KeyEvent
 	{
 	public:
 		KeyDownEvent(int kc, int repCount) 
@@ -38,7 +38,7 @@ namespace OE
 		int repeatCount;
 	};
 
-	class OBLIVIOUSENGINE_API KeyUpEvent : public KeyEvent
+	class KeyUpEvent : public KeyEvent
 	{
 	public:
 		KeyUpEvent(int kc)
@@ -53,7 +53,7 @@ namespace OE
 		EVENT_CLASS_TYPE(KeyUp);
 	};
 
-	class OBLIVIOUSENGINE_API KeyTypeEvent : public KeyEvent
+	class KeyTypeEvent : public KeyEvent
 	{
 	public:
 		KeyTypeEvent(int kc)

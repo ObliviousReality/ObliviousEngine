@@ -4,7 +4,7 @@
 
 namespace OE {
 
-	class OBLIVIOUSENGINE_API Input 
+	class Input 
 	{
 	public:
 		inline static bool isKeyPressed(int KC) { return instance->isKeyPressedImp(KC); }
@@ -25,6 +25,6 @@ namespace OE {
 
 
 	private:
-		static Input* instance;
+		static Scope<Input> instance;
 	};
 }

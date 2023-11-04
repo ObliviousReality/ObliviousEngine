@@ -1,6 +1,6 @@
 #include "oepch.h"
 
-#include "GLShader.h"
+#include "Platforms/OpenGL/GLShader.h"
 
 #include <fstream>
 #include <glad/glad.h>

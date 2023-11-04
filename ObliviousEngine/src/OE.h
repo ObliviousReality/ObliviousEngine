@@ -2,6 +2,8 @@
 
 // FOR APPLICATION USE ONLY.
 
+#include "Core.h"
+
 #include "ObliviousEngine/Scene/Entity.h"
 #include "ObliviousEngine/Scene/Components.h"
 #include "ObliviousEngine/Scene/Scene.h"

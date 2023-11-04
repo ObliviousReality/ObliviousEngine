@@ -6,7 +6,7 @@
 #include <glm/glm.hpp>
 namespace OE {
 
-	class OBLIVIOUSENGINE_API Colour
+	class Colour
 	{
 	public:
 		Colour(float ri, float gi, float bi, float ai = 1.0f) : r(ri), g(gi), b(bi), a(ai) {}

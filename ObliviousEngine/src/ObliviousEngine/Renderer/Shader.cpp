@@ -1,7 +1,7 @@
 #include "oepch.h"
-#include "Shader.h"
+#include "ObliviousEngine/Renderer/Shader.h"
 
-#include "Renderer.h"
+#include "ObliviousEngine/Renderer/Renderer.h"
 #include "Platforms/OpenGL/GLShader.h"
 
 namespace OE
@@ -14,7 +14,7 @@ namespace OE
 			OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED");
 			return nullptr;
 		case RenderAPI::API::OpenGL:
-			return std::make_shared<GLShader>(path);
+			return CreateRef<GLShader>(path);
 		default:
 			OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET");
 			return nullptr;
@@ -28,7 +28,7 @@ namespace OE
 			OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED");
 			return nullptr;
 		case RenderAPI::API::OpenGL:
-			return std::make_shared<GLShader>(namein, vertexSource, fragmentSource);
+			return CreateRef<GLShader>(namein, vertexSource, fragmentSource);
 		default:
 			OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET");
 			return nullptr;

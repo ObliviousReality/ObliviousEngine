@@ -2,9 +2,8 @@
 #include <ObliviousEngine/Core/EntryPoint.h>
 #include <filesystem>
 
-#include "imgui/imgui.h"
+#include <imgui/imgui.h>
 #include <glm/glm/ext/matrix_transform.hpp>
-#include <Platforms/OpenGL/GLShader.h>
 #include <glm/glm/gtc/type_ptr.hpp>
 
 #include "Sandbox2D.h"
@@ -23,9 +22,7 @@ public:
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-
-		OE::Ref<OE::VertexBuffer> vertexBuf;
-		vertexBuf.reset(OE::VertexBuffer::Create(square, sizeof(square)));
+		OE::Ref<OE::VertexBuffer> vertexBuf = OE::VertexBuffer::Create(square, sizeof(square));
 
 		OE::BufferLayout layout = {
 			{OE::ShaderType::Float3, "position"},
@@ -37,8 +34,7 @@ public:
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		OE::Ref<OE::IndexBuffer> indexBuf;
-		indexBuf.reset(OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		OE::Ref<OE::IndexBuffer> indexBuf = OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
 		vertexArr->setIndexBuffer(indexBuf);
 
 		//shader = OE::Shader::Create("assets/shaders/Flat.glsl");
@@ -88,8 +84,7 @@ public:
 			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
 		};
-		OE::Ref<OE::VertexBuffer> triangleVertexBuffer;
-		triangleVertexBuffer.reset(OE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices)));
+		OE::Ref<OE::VertexBuffer> triangleVertexBuffer = OE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices));
 		OE::BufferLayout triangleLayout = {
 			{OE::ShaderType::Float3, "position"},
 			{OE::ShaderType::Float4, "colour"}
@@ -98,8 +93,7 @@ public:
 		triangleArr->addVertexBuffer(triangleVertexBuffer);
 
 		uint32_t triangleIndices[3] = { 0,1,2 };
-		OE::Ref<OE::IndexBuffer> triangleIndexBuffer;
-		triangleIndexBuffer.reset(OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t)));
+		OE::Ref<OE::IndexBuffer> triangleIndexBuffer = OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t));
 		triangleArr->setIndexBuffer(triangleIndexBuffer);
 
 		triangleShader = OE::Shader::Create("assets/shaders/Triangle.glsl");
@@ -113,8 +107,8 @@ public:
 		alphaTexture2d = OE::Texture2D::Create("assets/textures/TestAlphaImage.png");
 
 
-		std::dynamic_pointer_cast<OE::GLShader>(textureShader)->bind();
-		std::dynamic_pointer_cast<OE::GLShader>(textureShader)->uploadUniformInt("u_Texture", 0);
+		textureShader->bind();
+		textureShader->setInt("u_Texture", 0);
 	}
 
 	void onUpdate(OE::Timestep ts) override
@@ -134,8 +128,8 @@ public:
 
 		auto flatShader = shaderLib.get("flat");
 
-		std::dynamic_pointer_cast<OE::GLShader>(flatShader)->bind();
-		std::dynamic_pointer_cast<OE::GLShader>(flatShader)->uploadUniformFloat3("u_Colour", squareColour);
+		flatShader->bind();
+		flatShader->setFloat3("u_Colour", squareColour);
 
 
 		OE::Renderer::BeginScene(cameraController.getCamera());

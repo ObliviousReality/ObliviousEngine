@@ -1,15 +1,13 @@
 #include "oepch.h"
-#include "Application.h"
+#include "ObliviousEngine/Core/Application.h"
 #include "Log.h"
 #include "ObliviousEngine/Renderer/Renderer.h"
 
-#include "Input.h"
+#include "ObliviousEngine/Core/Input.h"
 #include <GLFW/glfw3.h>
 
 
 namespace OE {
-
-#define BIND_EV(x) std::bind(&x, this, std::placeholders::_1)
 
 	Application* Application::instance = nullptr;
 
@@ -19,8 +17,8 @@ namespace OE {
 	{
 		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
 		instance = this;
-		window = std::unique_ptr<Window>(Window::WindowCreate());
-		window->setEventCallback(BIND_EV(Application::onEvent));
+		window = Window::WindowCreate();
+		window->setEventCallback(OE_BIND_EVENT(Application::onEvent));
 		window->setVSync(true);
 
 		Renderer::Init();
@@ -30,7 +28,7 @@ namespace OE {
 	}
 
 	Application::~Application() {
-
+		Renderer::Finish();
 	}
 
 	void Application::run()
@@ -70,8 +68,8 @@ namespace OE {
 	{
 		//OE_CORE_TRACE("{0}", e);
 		EventDispatcher dispatcher(e);
-		dispatcher.dispatch<WindowCloseEvent>(BIND_EV(Application::onClose));
-		dispatcher.dispatch<WindowResizeEvent>(BIND_EV(Application::resizeEvent));
+		dispatcher.dispatch<WindowCloseEvent>(OE_BIND_EVENT(Application::onClose));
+		dispatcher.dispatch<WindowResizeEvent>(OE_BIND_EVENT(Application::resizeEvent));
 
 
 		for (auto it = ls.end(); it != ls.begin();)

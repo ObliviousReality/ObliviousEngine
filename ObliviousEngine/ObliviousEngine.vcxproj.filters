@@ -1519,5 +1519,6 @@
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer2D.cpp" />
+    <ClCompile Include="src\ObliviousEngine\Renderer\RenderContext.cpp" />
   </ItemGroup>
 </Project>

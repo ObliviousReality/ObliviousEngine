@@ -1,18 +1,18 @@
 #pragma once
-#include "Event.h"
+#include "ObliviousEngine/Events/Event.h"
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API WindowCloseEvent : public Event
+	class WindowCloseEvent : public Event
 	{
 	public:
-		WindowCloseEvent() {}
+		WindowCloseEvent() = default;
 
 		EVENT_CLASS_TYPE(WinClose);
 		EVENT_CLASS_CAT(ECApp);
 	};
 
-	class OBLIVIOUSENGINE_API WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(int w, int h)
@@ -34,28 +34,28 @@ namespace OE
 		int width, height;
 	};
 
-	class OBLIVIOUSENGINE_API AppTickEvent : public Event
+	class AppTickEvent : public Event
 	{
 	public:
-		AppTickEvent() {}
+		AppTickEvent() = default;
 
 		EVENT_CLASS_TYPE(AppTick);
 		EVENT_CLASS_CAT(ECApp);
 	};
 	
-	class OBLIVIOUSENGINE_API AppUpdateEvent : public Event
+	class AppUpdateEvent : public Event
 	{
 	public:
-		AppUpdateEvent() {}
+		AppUpdateEvent() = default;
 
 		EVENT_CLASS_TYPE(AppUpdate);
 		EVENT_CLASS_CAT(ECApp);
 	}; 
 	
-	class OBLIVIOUSENGINE_API AppRenderEvent : public Event
+	class AppRenderEvent : public Event
 	{
 	public:
-		AppRenderEvent() {}
+		AppRenderEvent() = default;
 
 		EVENT_CLASS_TYPE(AppRender);
 		EVENT_CLASS_CAT(ECApp);

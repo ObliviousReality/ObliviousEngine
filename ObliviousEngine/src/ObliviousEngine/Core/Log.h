@@ -2,21 +2,21 @@
 
 #include <memory>
 #include "Core.h"
-#include "spdlog/spdlog.h"
-#include "spdlog/fmt/ostr.h"
+#include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 
 namespace OE {
-	class OBLIVIOUSENGINE_API Log
+	class Log
 	{
 	public:
 		static void Init();
 
-		inline static std::shared_ptr<spdlog::logger>& GetCoreLogger() { return coreLogger; }
-		inline static std::shared_ptr<spdlog::logger>& GetClientLogger() { return clientLogger; }
+		inline static Ref<spdlog::logger>& GetCoreLogger() { return coreLogger; }
+		inline static Ref<spdlog::logger>& GetClientLogger() { return clientLogger; }
 	private:
-		static std::shared_ptr<spdlog::logger> coreLogger;
-		static std::shared_ptr<spdlog::logger> clientLogger;
+		static Ref<spdlog::logger> coreLogger;
+		static Ref<spdlog::logger> clientLogger;
 	};
 }
 

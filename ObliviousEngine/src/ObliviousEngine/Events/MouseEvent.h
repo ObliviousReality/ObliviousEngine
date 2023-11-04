@@ -1,10 +1,10 @@
 #pragma once
 
-#include "Event.h"
+#include "ObliviousEngine/Events/Event.h"
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API MouseMoveEvent : public Event
+	class MouseMoveEvent : public Event
 	{
 	public:
 		MouseMoveEvent(float x, float y)
@@ -27,7 +27,7 @@ namespace OE
 		int mouseX, mouseY;
 	};
 
-	class OBLIVIOUSENGINE_API MouseScrollEvent : public Event
+	class MouseScrollEvent : public Event
 	{
 	public:
 		MouseScrollEvent(float x, float y)
@@ -50,7 +50,7 @@ namespace OE
 		float xOff, yOff;
 	};
 
-	class OBLIVIOUSENGINE_API MouseButtonEvent : public Event
+	class MouseButtonEvent : public Event
 	{
 	public:
 		inline int getButton() const { return button; }
@@ -62,7 +62,7 @@ namespace OE
 		int button;
 	};
 
-	class OBLIVIOUSENGINE_API MouseDownEvent : public MouseButtonEvent
+	class MouseDownEvent : public MouseButtonEvent
 	{
 	public:
 		MouseDownEvent(int but)
@@ -77,7 +77,7 @@ namespace OE
 		EVENT_CLASS_TYPE(MouseDown);
 	};
 
-	class OBLIVIOUSENGINE_API MouseUpEvent : public MouseButtonEvent
+	class MouseUpEvent : public MouseButtonEvent
 	{
 	public:
 		MouseUpEvent(int but)

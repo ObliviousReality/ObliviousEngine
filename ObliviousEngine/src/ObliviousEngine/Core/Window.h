@@ -2,7 +2,7 @@
 #include "oepch.h"
 
 #include "Core.h"
-#include <ObliviousEngine/Events/Event.h>
+#include "ObliviousEngine/Events/Event.h"
 
 namespace OE
 {
@@ -17,7 +17,7 @@ namespace OE
 		{}
 	};
 
-	class OBLIVIOUSENGINE_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
@@ -34,6 +34,6 @@ namespace OE
 
 		virtual void* getNativeWindow() const = 0;
 
-		static Window* WindowCreate(const Properties& props = Properties());
+		static Scope<Window> WindowCreate(const Properties& props = Properties());
 	};
 }

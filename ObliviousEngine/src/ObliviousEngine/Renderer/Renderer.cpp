@@ -1,17 +1,21 @@
 #include "oepch.h"
-#include "Renderer.h"
-#include <Platforms/OpenGL/GLShader.h>
-#include "Renderer2D.h"
+#include "ObliviousEngine/Renderer/Renderer.h"
+#include "ObliviousEngine/Renderer/Renderer2D.h"
 
 namespace OE
 {
 
-	Renderer::SceneParams* Renderer::params = new Renderer::SceneParams;
+	Scope<Renderer::SceneParams> Renderer::params = CreateScope<Renderer::SceneParams>();
 
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
 		Renderer2D::Init();
+	}
+
+	void Renderer::Finish()
+	{
+		Renderer2D::Finish();
 	}
 
 	void Renderer::WindowResize(uint32_t w, uint32_t h)
@@ -28,8 +32,10 @@ namespace OE
 	}
 	void Renderer::Draw(const Ref<Shader>& shader, const Ref<VertexArray>& vArray, const glm::mat4& transform) {
 		shader->bind();
-		std::dynamic_pointer_cast<GLShader>(shader)->uploadUniformMat4("u_ViewProj", params->ViewProjMatrix);
-		std::dynamic_pointer_cast<GLShader>(shader)->uploadUniformMat4("transform", transform);
+
+		shader->setMat4("u_ViewProj", params->ViewProjMatrix);
+		shader->setMat4("transform", transform);
+
 
 		vArray->bind();
 		RenderCommand::DrawIndexed(vArray);

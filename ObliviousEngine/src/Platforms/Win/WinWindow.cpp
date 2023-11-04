@@ -1,5 +1,5 @@
 #include "oepch.h"
-#include "WinWindow.h"
+#include "Platforms/Win/WinWindow.h"
 #include <ObliviousEngine/Events/AppEvent.h>
 #include <ObliviousEngine/Events/MouseEvent.h>
 #include <ObliviousEngine/Events/KeyEvent.h>
@@ -9,16 +9,16 @@
 
 namespace OE
 {
-	static bool glfw_init = false;
+	static uint8_t GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int e, const char* desc)
 	{
 		OE_CORE_ERROR("GLFW Error {0}: {1}", e, desc);
 	}
 
-	Window* Window::WindowCreate(const Properties& props)
+	Scope<Window> Window::WindowCreate(const Properties& props)
 	{
-		return new WinWindow(props);
+		return CreateScope<WinWindow>(props);
 	}
 
 	WinWindow::WinWindow(const Properties& props)
@@ -59,7 +59,7 @@ namespace OE
 
 		OE_CORE_INFO("Creating a window.");
 
-		if (!glfw_init)
+		if (GLFWWindowCount == 0)
 		{
 			OE_CORE_TRACE("Initialising GLFW");
 			int success = glfwInit();
@@ -68,7 +68,6 @@ namespace OE
 				OE_CORE_ERROR("GLFW Could not initialise.");
 				OE_CORE_ASSERT(success, "ERROR!");
 				glfwSetErrorCallback(GLFWErrorCallback);
-				glfw_init = true;
 			}
 			OE_CORE_INFO("GLFW Initialised");
 		}
@@ -76,7 +75,9 @@ namespace OE
 		//window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(), nullptr);
 
 		window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), nullptr, nullptr);
-		context = new OpenGLContext(window);
+		++GLFWWindowCount;
+
+		context = RenderContext::Create(window);
 		context->init();
 
 		glfwSetWindowUserPointer(window, &winProps);
@@ -178,6 +179,14 @@ namespace OE
 	void WinWindow::close()
 	{
 		glfwDestroyWindow(window);
+
+		--GLFWWindowCount;
+
+		if (GLFWWindowCount == 0)
+		{
+			OE_CORE_INFO("Terminating GLFW, no windows are left.");
+			glfwTerminate();
+		}
 	}
 
 }

@@ -6,7 +6,7 @@
 
 namespace OE {
 
-	class OBLIVIOUSENGINE_API Entity
+	class Entity
 	{
 	public:
 		Entity() = default;

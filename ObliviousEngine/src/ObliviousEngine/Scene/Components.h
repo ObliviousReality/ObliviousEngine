@@ -17,7 +17,7 @@ namespace OE {
 		TagComponent(const std::string& text) : tag(text) {}
 	};
 
-	struct OBLIVIOUSENGINE_API TransformComponent
+	struct TransformComponent
 	{
 		//Vec2 pos;
 		glm::vec2 vec;
@@ -28,7 +28,7 @@ namespace OE {
 		TransformComponent(const glm::vec2& _v) : vec(_v) {} // const int _x, const int _y, x(_x), y(_y),
 	};
 
-	struct OBLIVIOUSENGINE_API SpriteRendererComponent
+	struct SpriteRendererComponent
 	{
 		//Texture* tex;
 		int i;

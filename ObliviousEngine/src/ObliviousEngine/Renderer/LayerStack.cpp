@@ -1,11 +1,8 @@
 #include "oepch.h"
-#include "LayerStack.h"
+#include "ObliviousEngine/Renderer/LayerStack.h"
 
 namespace OE
 {
-	LayerStack::LayerStack()
-	{
-	}
 	LayerStack::~LayerStack()
 	{
 		for (Layer* l : layers)

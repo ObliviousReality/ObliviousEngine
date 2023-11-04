@@ -6,7 +6,7 @@
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API WinWindow : public Window
+	class WinWindow : public Window
 	{
 
 	public:
@@ -31,7 +31,7 @@ namespace OE
 
 		GLFWwindow* window;
 
-		RenderContext* context;
+		Scope<RenderContext> context;
 
 		struct WindowData
 		{

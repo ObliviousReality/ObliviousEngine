@@ -1,11 +1,11 @@
 #pragma once
 #include "Core.h"
-#include <ObliviousEngine/Events/Event.h>
+#include "ObliviousEngine/Events/Event.h"
 #include "ObliviousEngine/Core/Timestep.h"
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API Layer
+	class Layer
 	{
 	public:
 		Layer(const std::string& n = "Layer!");

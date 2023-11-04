@@ -14,7 +14,7 @@
 
 namespace OE {
 
-	class OBLIVIOUSENGINE_API Application
+	class Application
 	{
 	public:
 		Application();

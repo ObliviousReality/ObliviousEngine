@@ -1,12 +1,12 @@
 #include "oepch.h"
-#include "WinInput.h"
+#include "Platforms/Win/WinInput.h"
 
 #include <GLFW/glfw3.h>
 #include "ObliviousEngine/Core/Application.h"
 
 namespace OE {
 
-	Input* Input::instance = new WinInput();
+	Scope<Input> Input::instance = CreateScope<WinInput>();
 
 	bool WinInput::isKeyPressedImp(int KC)
 	{

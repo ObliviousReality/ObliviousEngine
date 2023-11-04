@@ -1,8 +1,8 @@
 #include "oepch.h"
-#include "Renderer2D.h"
-#include "VertexArray.h"
-#include "Shader.h"
-#include "RenderCommand.h"
+#include "ObliviousEngine/Renderer/Renderer2D.h"
+#include "ObliviousEngine/Renderer/VertexArray.h"
+#include "ObliviousEngine/Renderer/Shader.h"
+#include "ObliviousEngine/Renderer/RenderCommand.h"
 #include <glm/ext/matrix_transform.hpp>
 
 namespace OE
@@ -30,8 +30,7 @@ namespace OE
 			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 
-		Ref<VertexBuffer> vertexBuf;
-		vertexBuf.reset(VertexBuffer::Create(square, sizeof(square)));
+		Ref<VertexBuffer> vertexBuf = VertexBuffer::Create(square, sizeof(square));
 
 		BufferLayout layout = {
 			{ShaderType::Float3, "position"},
@@ -44,8 +43,8 @@ namespace OE
 
 		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		Ref<IndexBuffer> indexBuf;
-		indexBuf.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
+		Ref<IndexBuffer> indexBuf = IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
+
 		storage->vArray->setIndexBuffer(indexBuf);
 
 		storage->standardTexture = Texture2D::Create(1, 1);

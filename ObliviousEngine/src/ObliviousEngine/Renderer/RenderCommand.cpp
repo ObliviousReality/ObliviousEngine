@@ -1,9 +1,7 @@
 #include "oepch.h"
-#include "RenderCommand.h"
-
-#include "Platforms/OpenGL/GLRenderAPI.h"
+#include "ObliviousEngine/Renderer/RenderCommand.h"
 
 namespace OE
 {
-	RenderAPI* RenderCommand::rAPI = new GLRenderAPI;
+	Scope<RenderAPI> RenderCommand::rAPI = RenderAPI::Create();
 }

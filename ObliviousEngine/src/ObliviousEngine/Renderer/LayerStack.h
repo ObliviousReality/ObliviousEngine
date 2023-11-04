@@ -6,10 +6,10 @@
 
 namespace OE
 {
-	class OBLIVIOUSENGINE_API LayerStack
+	class LayerStack
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 
 		void push(Layer* l);

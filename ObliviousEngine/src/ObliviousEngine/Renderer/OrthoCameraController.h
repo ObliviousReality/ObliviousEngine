@@ -1,5 +1,5 @@
 #pragma once
-#include "OrthoCamera.h"
+#include "ObliviousEngine/Renderer/OrthoCamera.h"
 #include "ObliviousEngine/Core/Timestep.h"
 
 #include "ObliviousEngine/Events/Event.h"

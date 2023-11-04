@@ -31,21 +31,6 @@
 	#error "UNKNOWN PLATFORM (AND ALSO NOT SUPPORTED)"
 #endif
 
-#ifdef OE_PLATFORM_WINDOWS
-#if OE_DYNAMIC_LINK
-#ifdef OE_BUILD_DLL
-#define OBLIVIOUSENGINE_API __declspec(dllexport)
-#else
-#define OBLIVIOUSENGINE_API __declspec(dllimport)
-#endif
-#else
-#define OBLIVIOUSENGINE_API
-#endif
-#else
-#error "THE OBLIVIOUS ENGINE ONLY SUPPORTS WINDOWS"
-#endif
-
-
 #ifdef OE_DEBUG
 	#define OE_ENABLE_ASSERTS
 #endif
@@ -66,7 +51,17 @@ namespace OE
 {
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
+	template<typename T, typename ... Args>
+	constexpr Scope<T> CreateScope(Args&& ... args)
+	{
+		return std::make_unique<T>(std::forward<Args>(args)...);
+	}
 
 	template<typename T>
 	using Ref = std::shared_ptr<T>;
+	template<typename T, typename ... Args>
+	constexpr Ref<T> CreateRef(Args&& ... args)
+	{
+		return std::make_unique<T>(std::forward<Args>(args)...);
+	}
 }

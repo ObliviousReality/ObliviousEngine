@@ -58,10 +58,10 @@ namespace OE
 		std::string name;
 		ShaderType type;
 		uint32_t size;
-		uint32_t offset;
+		size_t offset;
 		bool normalised;
 
-		BufferElement() {}
+		BufferElement() = default;
 
 		BufferElement(ShaderType type_in, const std::string& name_in, bool normalised_in = false)
 			: name(name_in), type(type_in), size(ShaderTypeSize(type)), offset(0), normalised(false)
@@ -123,7 +123,7 @@ namespace OE
 	private:
 		void calculateVars()
 		{
-			uint32_t off = 0;
+			size_t off = 0;
 			stride = 0;
 			for (auto& e : elements)
 			{
@@ -148,7 +148,7 @@ namespace OE
 		virtual const BufferLayout& getLayout() const = 0;
 		virtual void setLayout(const BufferLayout& layout) = 0;
 
-		static VertexBuffer* Create(float* vertexes, uint32_t size);
+		static Ref<VertexBuffer> Create(float* vertexes, uint32_t size);
 	};
 
 	class IndexBuffer
@@ -158,6 +158,6 @@ namespace OE
 		virtual void bind() const = 0;
 		virtual void unbind() const = 0;
 		virtual uint32_t getCount() const = 0;
-		static IndexBuffer* Create(uint32_t* indexes, uint32_t count);
+		static Ref<IndexBuffer> Create(uint32_t* indexes, uint32_t count);
 	};
 }

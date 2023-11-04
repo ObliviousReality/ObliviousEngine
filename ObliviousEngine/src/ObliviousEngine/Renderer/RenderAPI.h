@@ -1,6 +1,6 @@
 #pragma once
 #include "Colour.h"
-#include "VertexArray.h"
+#include "ObliviousEngine/Renderer/VertexArray.h"
 namespace OE
 {
 	class RenderAPI
@@ -20,6 +20,8 @@ namespace OE
 		virtual void drawIndexed(const Ref<VertexArray>& arr) = 0;
 
 		inline static API GetAPI() { return activeAPI; }
+
+		static Scope<RenderAPI> Create();
 
 	private:
 		static API activeAPI;

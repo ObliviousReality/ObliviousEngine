@@ -1,5 +1,5 @@
 #pragma once
-#include "RenderAPI.h"
+#include "ObliviousEngine/Renderer/RenderAPI.h"
 namespace OE
 {
 	class RenderCommand
@@ -29,6 +29,6 @@ namespace OE
 			rAPI->setViewport(x, y, w, h);
 		}
 	private:
-		static RenderAPI* rAPI;
+		static Scope<RenderAPI> rAPI;
 	};
 }

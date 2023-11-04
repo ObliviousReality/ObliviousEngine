@@ -5,7 +5,7 @@
 
 namespace OE {
 	class Entity;
-	class OBLIVIOUSENGINE_API Scene {
+	class Scene {
 	public:
 		Scene(); // 
 		~Scene();
