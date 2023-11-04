@@ -18,6 +18,7 @@ namespace OE
 		virtual void bind() const override;
 		virtual void unbind() const override;
 
+		virtual void setInt(const std::string& name, int val) override;
 		virtual void setMat4(const std::string& name, const glm::mat4& val) override;
 		virtual void setFloat3(const std::string& name, const glm::vec3& val) override;
 		virtual void setFloat4(const std::string& name, const glm::vec4& val) override;

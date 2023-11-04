@@ -55,6 +55,10 @@ namespace OE
 	{
 		glUseProgram(0);
 	}
+	void GLShader::setInt(const std::string& name, int val)
+	{
+		uploadUniformInt(name, val);
+	}
 	void GLShader::setMat4(const std::string& name, const glm::mat4& val)
 	{
 		uploadUniformMat4(name, val);

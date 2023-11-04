@@ -20,4 +20,7 @@
   <ItemGroup>
     <ClInclude Include="src\Sandbox2D.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Image Include="E:\Projects\YT\Logo2023.png" />
+  </ItemGroup>
 </Project>

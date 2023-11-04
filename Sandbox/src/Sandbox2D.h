@@ -23,5 +23,13 @@ private:
 	glm::vec4 square2Colour = { 0.8f, 0.3f, 0.2f, 1.0f };
 	glm::vec3 backgroundColour = { 0.2f, 0.2f, 0.2f };
 
+	OE::Ref<OE::Texture2D> testTexture;
+
+	float leftSquareAngle = 0.0f;
+	float rightSquareAngle = 0.0f;
+	float centerSquareAngle = 0.0f;
+
+
+
 
 };
