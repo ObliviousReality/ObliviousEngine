@@ -60,16 +60,16 @@ namespace OE
 	void Renderer2D::EndScene()
 	{
 	}
-	void Renderer2D::DrawRect(const glm::vec2& pos, const glm::vec2& size, const glm::vec4& colour)
+	void Renderer2D::DrawRect(const glm::vec2& pos, const glm::vec2& size, const glm::vec4& colour, float a)
 	{
-		DrawRect({ pos.x, pos.y, 0.0f }, size, colour);
+		DrawRect({ pos.x, pos.y, 0.0f }, size, colour, a);
 	}
-	void Renderer2D::DrawRect(const glm::vec3& pos, const glm::vec2& size, const glm::vec4& colour)
+	void Renderer2D::DrawRect(const glm::vec3& pos, const glm::vec2& size, const glm::vec4& colour, float a)
 	{
 		storage->shader->bind();
 		storage->shader->setFloat4("u_Colour", colour);
 
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::rotate(glm::mat4(1.0f), glm::radians(a), glm::vec3(0, 0, 1)) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
 		storage->shader->setMat4("transform", transform);
 
