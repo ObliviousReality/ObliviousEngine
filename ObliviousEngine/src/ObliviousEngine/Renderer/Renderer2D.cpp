@@ -11,8 +11,9 @@ namespace OE
 	struct R2DStorage
 	{
 		Ref<VertexArray> vArray;
-		Ref<Shader> flatShader;
+		//Ref<Shader> flatShader;
 		Ref<Shader> textureShader;
+		Ref<Texture2D> standardTexture;
 	};
 
 	static R2DStorage* storage;
@@ -47,7 +48,10 @@ namespace OE
 		indexBuf.reset(IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t)));
 		storage->vArray->setIndexBuffer(indexBuf);
 
-		storage->flatShader = Shader::Create("assets/shaders/Flat.glsl");
+		storage->standardTexture = Texture2D::Create(1, 1);
+		uint32_t standardTextureData = 0xffffffff;
+		storage->standardTexture->setData(&standardTextureData, sizeof(uint32_t));
+
 		storage->textureShader = Shader::Create("assets/shaders/Texture.glsl");
 		storage->textureShader->bind();
 		storage->textureShader->setInt("u_Texture", 0);
@@ -59,9 +63,6 @@ namespace OE
 	}
 	void Renderer2D::BeginScene(const OrthographicCamera& camera)
 	{
-		storage->flatShader->bind();
-		storage->flatShader->setMat4("u_ViewProj", camera.getViewProjMatrix());
-
 		storage->textureShader->bind();
 		storage->textureShader->setMat4("u_ViewProj", camera.getViewProjMatrix());
 	}
@@ -74,29 +75,27 @@ namespace OE
 	}
 	void Renderer2D::DrawRect(const glm::vec3& pos, const glm::vec2& size, const glm::vec4& colour, float a)
 	{
-		storage->flatShader->bind();
-		storage->flatShader->setFloat4("u_Colour", colour);
+		storage->textureShader->setFloat4("u_Colour", colour);
+		storage->standardTexture->bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::rotate(glm::mat4(1.0f), glm::radians(a), glm::vec3(0, 0, 1)) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 
-		storage->flatShader->setMat4("transform", transform);
+		storage->textureShader->setMat4("transform", transform);
 
 		storage->vArray->bind();
 		RenderCommand::DrawIndexed(storage->vArray);
 	}
-	void Renderer2D::DrawRect(const glm::vec2& pos, const glm::vec2& size, const Ref<Texture2D>& texture, float a)
+	void Renderer2D::DrawRect(const glm::vec2& pos, const glm::vec2& size, const Ref<Texture2D>& texture, float a, const glm::vec4& colour)
 	{
-		DrawRect({ pos.x, pos.y, 0.0f }, size, texture, a);
+		DrawRect({ pos.x, pos.y, 0.0f }, size, texture, a, colour);
 	}
-	void Renderer2D::DrawRect(const glm::vec3& pos, const glm::vec2& size, const Ref<Texture2D>& texture, float a)
+	void Renderer2D::DrawRect(const glm::vec3& pos, const glm::vec2& size, const Ref<Texture2D>& texture, float a, const glm::vec4& colour)
 	{
-		storage->textureShader->bind();
-
+		storage->textureShader->setFloat4("u_Colour", colour);
+		texture->bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * glm::rotate(glm::mat4(1.0f), glm::radians(a), glm::vec3(0, 0, 1)) * glm::scale(glm::mat4(1.0f), { size.x, size.y, 1.0f });
 		storage->textureShader->setMat4("transform", transform);
-
-		texture->bind();
 
 		storage->vArray->bind();
 		RenderCommand::DrawIndexed(storage->vArray);
