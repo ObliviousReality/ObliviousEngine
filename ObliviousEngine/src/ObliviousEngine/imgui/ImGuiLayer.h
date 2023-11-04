@@ -16,7 +16,6 @@ namespace OE {
 
 		virtual void onAttach() override;
 		virtual void onDetatch() override;
-		virtual void onImGuiRender() override;
 
 		void begin();
 		void end();

@@ -22,6 +22,8 @@ private:
 	glm::vec4 squareColour = { 0.2f, 0.3f, 0.8f, 1.0f };
 	glm::vec4 square2Colour = { 0.8f, 0.3f, 0.2f, 1.0f };
 	glm::vec3 backgroundColour = { 0.2f, 0.2f, 0.2f };
+	glm::vec4 centerSquareTint = { 1.0f, 1.0f, 1.0f, 1.0f };
+
 
 	OE::Ref<OE::Texture2D> testTexture;
 
@@ -30,6 +32,14 @@ private:
 	float centerSquareAngle = 0.0f;
 
 
+	bool buttonPressed = false;
 
+	struct ProfilerResult
+	{
+		const char* name;
+		float t;
+	};
+
+	std::vector<ProfilerResult> results;
 
 };
