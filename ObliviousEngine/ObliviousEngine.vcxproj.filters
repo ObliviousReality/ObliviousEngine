@@ -1432,6 +1432,7 @@
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer2D.h" />
+    <ClInclude Include="src\ObliviousEngine\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">

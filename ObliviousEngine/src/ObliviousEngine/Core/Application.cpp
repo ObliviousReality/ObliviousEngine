@@ -17,7 +17,7 @@ namespace OE {
 	{
 		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
 		instance = this;
-		window = Window::WindowCreate();
+		window = Window::WindowCreate(Properties("Sandbox!", 1920, 1080));
 		window->setEventCallback(OE_BIND_EVENT(Application::onEvent));
 		window->setVSync(true);
 

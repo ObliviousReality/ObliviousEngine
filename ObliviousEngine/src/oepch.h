@@ -21,6 +21,7 @@
 #include <unordered_set>
 
 #include <ObliviousEngine/Core/Log.h>
+#include "ObliviousEngine/Debug/Instrumentor.h"
 
 
 #ifdef OE_PLATFORM_WINDOWS

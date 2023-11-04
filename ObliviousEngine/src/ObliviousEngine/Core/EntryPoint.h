@@ -11,14 +11,18 @@ int wmain(int argc, char** argv) {
 
 	OE::Log::Init();
 	OE::Maths::Init();
-	OE::Application::Init();
+	OE_START_PROFILER("Startup", "OEProfile-Startup.json");
 	OE_CORE_INFO("Main Started");
 	auto app = OE::CreateApplication();
+	OE_STOP_PROFILER();
+	OE_START_PROFILER("Runtime", "OEProfile-Runtime.json");
 	OE_CORE_TRACE("App created");
-	OE_CORE_TRACE("Running app.");
 	app->run();
+	OE_STOP_PROFILER();
 	OE_CORE_TRACE("App ended.");
+	OE_START_PROFILER("Shutdown", "OEProfile-Shutdown.json");
 	delete app;
+	OE_STOP_PROFILER();
 	OE::Application::Quit();
 	OE_CORE_INFO("Engine shutting down.");
 }

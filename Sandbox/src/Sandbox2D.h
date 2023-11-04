@@ -34,12 +34,4 @@ private:
 
 	bool buttonPressed = false;
 
-	struct ProfilerResult
-	{
-		const char* name;
-		float t;
-	};
-
-	std::vector<ProfilerResult> results;
-
 };
