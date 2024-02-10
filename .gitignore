@@ -5,3 +5,6 @@
 /.vs/
 bin
 bin-int
+sandbox/profiling
+sandbox/imgui.ini
+*.vcxproj
