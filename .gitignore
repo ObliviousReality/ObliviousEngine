@@ -8,3 +8,5 @@ bin-int
 sandbox/profiling
 sandbox/imgui.ini
 *.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
