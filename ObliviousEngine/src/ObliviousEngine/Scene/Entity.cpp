@@ -1,10 +1,9 @@
-#include "oepch.h"
 #include "Entity.h"
+#include "oepch.h"
 
-namespace OE {
+namespace OE
+{
 
-	Entity::Entity(entt::entity h, Scene* s)
-		: handle(h), scene(s)
-	{}
+    Entity::Entity(entt::entity h, Scene * s) : handle(h), scene(s) {}
 
-}
+} // namespace OE

@@ -2,22 +2,23 @@
 #include "Core.h"
 #include "entt.hpp"
 
+namespace OE
+{
+    class Entity;
+    class Scene
+    {
+    public:
+        Scene(); //
+        ~Scene();
+        void update();
+        Entity createEntity(const std::string & name = std::string());
 
-namespace OE {
-	class Entity;
-	class Scene {
-	public:
-		Scene(); // 
-		~Scene();
-		void update();
-		Entity createEntity(const std::string& name = std::string());
+        // entt::registry& Reg() { return registry; }
 
-		//entt::registry& Reg() { return registry; }
+    private:
+        entt::registry registry;
 
-	private:
-		entt::registry registry;
+        friend class Entity;
+    };
 
-		friend class Entity;
-	};
-
-}
+} // namespace OE

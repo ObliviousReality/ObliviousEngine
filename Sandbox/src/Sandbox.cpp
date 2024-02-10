@@ -1,45 +1,39 @@
+#include "Sandbox2D.h"
+
 #include <OE.h>
 #include <ObliviousEngine/Core/EntryPoint.h>
 #include <filesystem>
-
-#include <imgui/imgui.h>
 #include <glm/glm/ext/matrix_transform.hpp>
 #include <glm/glm/gtc/type_ptr.hpp>
-
-#include "Sandbox2D.h"
+#include <imgui/imgui.h>
 
 class TestLayer : public OE::Layer
 {
 public:
-	TestLayer()
-		: Layer("Test!"), cameraController(1920.0f / 1080.0f, true) {
-		vertexArr = OE::VertexArray::Create();
+    TestLayer() : Layer("Test!"), cameraController(1920.0f / 1080.0f, true)
+    {
+        vertexArr = OE::VertexArray::Create();
 
-		float square[5 * 4] = {
-			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-		};
+        float square[5 * 4] = { -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, 0.5f,  -0.5f, 0.0f, 1.0f, 0.0f,
+                                0.5f,  0.5f,  0.0f, 1.0f, 1.0f, -0.5f, 0.5f,  0.0f, 0.0f, 1.0f };
 
-		OE::Ref<OE::VertexBuffer> vertexBuf = OE::VertexBuffer::Create(square, sizeof(square));
+        OE::Ref<OE::VertexBuffer> vertexBuf = OE::VertexBuffer::Create(square, sizeof(square));
 
-		OE::BufferLayout layout = {
-			{OE::ShaderType::Float3, "position"},
-			{OE::ShaderType::Float2, "textureCoord"}
-		};
+        OE::BufferLayout layout
+            = { { OE::ShaderType::Float3, "position" }, { OE::ShaderType::Float2, "textureCoord" } };
 
-		vertexBuf->setLayout(layout);
-		vertexArr->addVertexBuffer(vertexBuf);
+        vertexBuf->setLayout(layout);
+        vertexArr->addVertexBuffer(vertexBuf);
 
-		uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
+        uint32_t squareIndices[6] = { 0, 1, 2, 2, 3, 0 };
 
-		OE::Ref<OE::IndexBuffer> indexBuf = OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
-		vertexArr->setIndexBuffer(indexBuf);
+        OE::Ref<OE::IndexBuffer> indexBuf
+            = OE::IndexBuffer::Create(squareIndices, sizeof(squareIndices) / sizeof(uint32_t));
+        vertexArr->setIndexBuffer(indexBuf);
 
-		//shader = OE::Shader::Create("assets/shaders/Flat.glsl");
+        // shader = OE::Shader::Create("assets/shaders/Flat.glsl");
 
-		std::string flatVertexSource = R"(
+        std::string flatVertexSource = R"(
 			#version 330 core
 
 			layout(location=0) in vec3 position;
@@ -55,7 +49,7 @@ public:
 				gl_Position = u_ViewProj * transform * vec4(position, 1.0);	
 			}
 		)";
-		std::string flatFragmentSource = R"(
+        std::string flatFragmentSource = R"(
 			#version 330 core
 
 			layout(location=0) out vec4 colour;		
@@ -69,163 +63,149 @@ public:
 			}
 		)";
 
-		shaderLib.add(OE::Shader::Create("flat", flatVertexSource, flatFragmentSource));
+        shaderLib.add(OE::Shader::Create("flat", flatVertexSource, flatFragmentSource));
 
-		//auto FlatShader = shaderLib.load("assets/shaders/flat.glsl");
+        // auto FlatShader = shaderLib.load("assets/shaders/flat.glsl");
 
+        //------------------------------------------------------
 
+        triangleArr = OE::VertexArray::Create();
 
-		//------------------------------------------------------
+        float triangleVertices[3 * 7] = { -0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f, 0.5f, -0.5f, 0.0f, 0.2f,
+                                          0.3f,  0.8f,  1.0f, 0.0f, 0.5f, 0.0f, 0.8f, 0.8f, 0.2f,  1.0f };
+        OE::Ref<OE::VertexBuffer> triangleVertexBuffer
+            = OE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices));
+        OE::BufferLayout triangleLayout
+            = { { OE::ShaderType::Float3, "position" }, { OE::ShaderType::Float4, "colour" } };
+        triangleVertexBuffer->setLayout(triangleLayout);
+        triangleArr->addVertexBuffer(triangleVertexBuffer);
 
-		triangleArr = OE::VertexArray::Create();
+        uint32_t triangleIndices[3] = { 0, 1, 2 };
+        OE::Ref<OE::IndexBuffer> triangleIndexBuffer
+            = OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t));
+        triangleArr->setIndexBuffer(triangleIndexBuffer);
 
-		float triangleVertices[3 * 7] = {
-			-0.5f, -0.5f, 0.0f, 0.8f, 0.2f, 0.8f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.2f, 0.3f, 0.8f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 0.8f, 0.8f, 0.2f, 1.0f
-		};
-		OE::Ref<OE::VertexBuffer> triangleVertexBuffer = OE::VertexBuffer::Create(triangleVertices, sizeof(triangleVertices));
-		OE::BufferLayout triangleLayout = {
-			{OE::ShaderType::Float3, "position"},
-			{OE::ShaderType::Float4, "colour"}
-		};
-		triangleVertexBuffer->setLayout(triangleLayout);
-		triangleArr->addVertexBuffer(triangleVertexBuffer);
+        triangleShader = OE::Shader::Create("assets/shaders/Triangle.glsl");
 
-		uint32_t triangleIndices[3] = { 0,1,2 };
-		OE::Ref<OE::IndexBuffer> triangleIndexBuffer = OE::IndexBuffer::Create(triangleIndices, sizeof(triangleIndices) / sizeof(uint32_t));
-		triangleArr->setIndexBuffer(triangleIndexBuffer);
+        //------------------------------------------------------
 
-		triangleShader = OE::Shader::Create("assets/shaders/Triangle.glsl");
+        auto textureShader = shaderLib.load("assets/shaders/Texture.glsl");
 
-		//------------------------------------------------------
+        texture2d = OE::Texture2D::Create("assets/textures/TestImage.png");
+        alphaTexture2d = OE::Texture2D::Create("assets/textures/TestAlphaImage.png");
 
+        textureShader->bind();
+        textureShader->setInt("u_Texture", 0);
+    }
 
-		auto textureShader = shaderLib.load("assets/shaders/Texture.glsl");
+    void onUpdate(OE::Timestep ts) override
+    {
+        // OE_TRACE("DELTA TIME: {0}s", ts.getSeconds());
+        if (OE::Input::isKeyPressed(KEY_P))
+        {
+            OE_TRACE("P PRESSED");
+            OE::Application::Quit();
+        }
 
-		texture2d = OE::Texture2D::Create("assets/textures/TestImage.png");
-		alphaTexture2d = OE::Texture2D::Create("assets/textures/TestAlphaImage.png");
+        cameraController.onUpdate(ts);
 
+        OE::RenderCommand::SetClearColour(OE::Colour(0.1f, 0.1f, 0.1f, 1.0f));
+        OE::RenderCommand::Clear();
 
-		textureShader->bind();
-		textureShader->setInt("u_Texture", 0);
-	}
+        glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scaleFactor));
 
-	void onUpdate(OE::Timestep ts) override
-	{
-		//OE_TRACE("DELTA TIME: {0}s", ts.getSeconds());
-		if (OE::Input::isKeyPressed(KEY_P)) {
-			OE_TRACE("P PRESSED");
-			OE::Application::Quit();
-		}
+        auto flatShader = shaderLib.get("flat");
 
-		cameraController.onUpdate(ts);
+        flatShader->bind();
+        flatShader->setFloat3("u_Colour", squareColour);
 
-		OE::RenderCommand::SetClearColour(OE::Colour(0.1f, 0.1f, 0.1f, 1.0f));
-		OE::RenderCommand::Clear();
+        OE::Renderer::BeginScene(cameraController.getCamera());
+        {
+            for (int y = 0; y < 20; y++)
+            {
+                for (int x = 0; x < 20; x++)
+                {
+                    glm::vec3 pos(
+                        x * (scaleFactor + (scaleFactor * 0.1f)), y * (scaleFactor + (scaleFactor * 0.1f)), 0.0f);
+                    glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
+                    OE::Renderer::Draw(flatShader, vertexArr, transform);
+                }
+            }
 
-		glm::mat4 scale = glm::scale(glm::mat4(1.0f), glm::vec3(scaleFactor));
+            auto textureShader = shaderLib.get("Texture");
 
-		auto flatShader = shaderLib.get("flat");
+            texture2d->bind();
+            OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
 
-		flatShader->bind();
-		flatShader->setFloat3("u_Colour", squareColour);
+            alphaTexture2d->bind();
+            OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+            // OE::Renderer::Draw(triangleShader, triangleArr);
+        }
+        OE::Renderer::EndScene();
+    }
 
+    virtual void onImGuiRender() override
+    {
+        ImGui::Begin("Settings");
+        ImGui::ColorEdit3("Square Colour", glm::value_ptr(squareColour));
+        ImGui::End();
+    }
 
-		OE::Renderer::BeginScene(cameraController.getCamera());
-		{
-			for (int y = 0; y < 20; y++) {
-				for (int x = 0; x < 20; x++)
-				{
-					glm::vec3 pos(x * (scaleFactor + (scaleFactor * 0.1f)), y * (scaleFactor + (scaleFactor * 0.1f)), 0.0f);
-					glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos) * scale;
-					OE::Renderer::Draw(flatShader, vertexArr, transform);
-				}
-			}
+    void onEvent(OE::Event & event) override
+    {
+        OE::EventDispatcher dispatcher(event);
+        dispatcher.dispatch<OE::KeyDownEvent>(OE_BIND_EVENT(TestLayer::onKeyPressedEvent));
+        cameraController.onEvent(event);
+    }
 
-			auto textureShader = shaderLib.get("Texture");
+    bool onKeyPressedEvent(OE::KeyDownEvent & e)
+    {
+        switch (e.getKeyCode())
+        {
+            case KEY_EQUAL: scaleFactor += 0.1f; break;
 
-			texture2d->bind();
-			OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
+            case KEY_MINUS: scaleFactor -= 0.1f; break;
 
-			alphaTexture2d->bind();
-			OE::Renderer::Draw(textureShader, vertexArr, glm::scale(glm::mat4(1.0f), glm::vec3(1.5f)));
-			//OE::Renderer::Draw(triangleShader, triangleArr);
-		}
-		OE::Renderer::EndScene();
-	}
-
-	virtual void onImGuiRender() override
-	{
-		ImGui::Begin("Settings");
-		ImGui::ColorEdit3("Square Colour", glm::value_ptr(squareColour));
-		ImGui::End();
-	}
-
-	void onEvent(OE::Event& event) override
-	{
-		OE::EventDispatcher dispatcher(event);
-		dispatcher.dispatch<OE::KeyDownEvent>(OE_BIND_EVENT(TestLayer::onKeyPressedEvent));
-		cameraController.onEvent(event);
-	}
-
-	bool onKeyPressedEvent(OE::KeyDownEvent& e) {
-		switch (e.getKeyCode())
-		{
-		case KEY_EQUAL:
-			scaleFactor += 0.1f;
-			break;
-
-		case KEY_MINUS:
-			scaleFactor -= 0.1f;
-			break;
-
-		default:
-			break;
-		}
-		return false;
-	}
+            default: break;
+        }
+        return false;
+    }
 
 private:
-	//OE::Ref<OE::Shader> shader;
-	OE::Ref<OE::VertexArray> vertexArr;
+    // OE::Ref<OE::Shader> shader;
+    OE::Ref<OE::VertexArray> vertexArr;
 
-	OE::Ref<OE::Shader> triangleShader;
-	OE::Ref<OE::VertexArray> triangleArr;
+    OE::Ref<OE::Shader> triangleShader;
+    OE::Ref<OE::VertexArray> triangleArr;
 
-	OE::Ref<OE::Texture2D> texture2d, alphaTexture2d;
+    OE::Ref<OE::Texture2D> texture2d, alphaTexture2d;
 
-	OE::ShaderLib shaderLib;
+    OE::ShaderLib shaderLib;
 
-	glm::vec3 squareColour = { 0.2f, 0.3f, 0.8f };
+    glm::vec3 squareColour = { 0.2f, 0.3f, 0.8f };
 
-	float scaleFactor = 0.1f;
+    float scaleFactor = 0.1f;
 
-	OE::OrthographicCameraController cameraController;
+    OE::OrthographicCameraController cameraController;
 };
 
-
-class Sandbox : public OE::Application {
+class Sandbox : public OE::Application
+{
 public:
-	Sandbox() {
-		OE_TRACE("Sandbox Started");
-		//pushLayer(new TestLayer());
-		pushLayer(new Sandbox2D());
-	}
+    Sandbox()
+    {
+        OE_TRACE("Sandbox Started");
+        // pushLayer(new TestLayer());
+        pushLayer(new Sandbox2D());
+    }
 
-	~Sandbox() {
-		OE_TRACE("Sandbox ended.");
-	}
+    ~Sandbox() { OE_TRACE("Sandbox ended."); }
 
-	void loop()
-	{
-		OE_INFO("In loop function of Application");
-	}
-
+    void loop() { OE_INFO("In loop function of Application"); }
 };
 
-OE::Application* OE::CreateApplication() {
-	OE_INFO("App created.");
-	return new Sandbox();
+OE::Application * OE::CreateApplication()
+{
+    OE_INFO("App created.");
+    return new Sandbox();
 }
-

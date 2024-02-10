@@ -1,24 +1,26 @@
 #pragma once
 
-#include <memory>
 #include "Core.h"
-#include <spdlog/spdlog.h>
+
+#include <memory>
 #include <spdlog/fmt/ostr.h>
+#include <spdlog/spdlog.h>
 
+namespace OE
+{
+    class Log
+    {
+    public:
+        static void Init();
 
-namespace OE {
-	class Log
-	{
-	public:
-		static void Init();
+        inline static Ref<spdlog::logger> & GetCoreLogger() { return coreLogger; }
+        inline static Ref<spdlog::logger> & GetClientLogger() { return clientLogger; }
 
-		inline static Ref<spdlog::logger>& GetCoreLogger() { return coreLogger; }
-		inline static Ref<spdlog::logger>& GetClientLogger() { return clientLogger; }
-	private:
-		static Ref<spdlog::logger> coreLogger;
-		static Ref<spdlog::logger> clientLogger;
-	};
-}
+    private:
+        static Ref<spdlog::logger> coreLogger;
+        static Ref<spdlog::logger> clientLogger;
+    };
+} // namespace OE
 
 #define OE_CORE_FATAL(...) ::OE::Log::GetCoreLogger()->fatal(__VA_ARGS__)
 #define OE_CORE_ERROR(...) ::OE::Log::GetCoreLogger()->error(__VA_ARGS__)

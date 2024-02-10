@@ -3,70 +3,65 @@
 
 namespace OE
 {
-	class KeyEvent : public Event
-	{
-	public:
-		inline int getKeyCode() const { return keyCode; }
+    class KeyEvent : public Event
+    {
+    public:
+        inline int getKeyCode() const { return keyCode; }
 
-		EVENT_CLASS_CAT(ECKeyboard | ECInput);
+        EVENT_CLASS_CAT(ECKeyboard | ECInput);
 
-	protected:
-		KeyEvent(int kc)
-			: keyCode(kc) {}
+    protected:
+        KeyEvent(int kc) : keyCode(kc) {}
 
-		int keyCode;
-	};
+        int keyCode;
+    };
 
-	class KeyDownEvent : public KeyEvent
-	{
-	public:
-		KeyDownEvent(int kc, int repCount) 
-			: KeyEvent(kc), repeatCount(repCount) {}
+    class KeyDownEvent : public KeyEvent
+    {
+    public:
+        KeyDownEvent(int kc, int repCount) : KeyEvent(kc), repeatCount(repCount) {}
 
-		inline int getRepCount() const { return repeatCount; }
-		
-		std::string toString() const override
-		{
-			std::stringstream ss;
-			ss << "KeyDownEvent: " << keyCode << " (" << repeatCount << " times).";
-			return ss.str();
-		}
+        inline int getRepCount() const { return repeatCount; }
 
-		EVENT_CLASS_TYPE(KeyDown);
+        std::string toString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyDownEvent: " << keyCode << " (" << repeatCount << " times).";
+            return ss.str();
+        }
 
-	private:
-		int repeatCount;
-	};
+        EVENT_CLASS_TYPE(KeyDown);
 
-	class KeyUpEvent : public KeyEvent
-	{
-	public:
-		KeyUpEvent(int kc)
-			: KeyEvent(kc) {}
+    private:
+        int repeatCount;
+    };
 
-		std::string toString() const override 
-		{
-			std::stringstream ss;
-			ss << "KeyUpEvent: " << keyCode;
-			return ss.str();
-		}
-		EVENT_CLASS_TYPE(KeyUp);
-	};
+    class KeyUpEvent : public KeyEvent
+    {
+    public:
+        KeyUpEvent(int kc) : KeyEvent(kc) {}
 
-	class KeyTypeEvent : public KeyEvent
-	{
-	public:
-		KeyTypeEvent(int kc)
-			: KeyEvent(kc) {}
+        std::string toString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyUpEvent: " << keyCode;
+            return ss.str();
+        }
+        EVENT_CLASS_TYPE(KeyUp);
+    };
 
-		std::string toString() const override
-		{
-			std::stringstream ss;
-			ss << "KeyTypeEvent: " << keyCode;
-			return ss.str();
-		}
+    class KeyTypeEvent : public KeyEvent
+    {
+    public:
+        KeyTypeEvent(int kc) : KeyEvent(kc) {}
 
-		EVENT_CLASS_TYPE(KeyType);
+        std::string toString() const override
+        {
+            std::stringstream ss;
+            ss << "KeyTypeEvent: " << keyCode;
+            return ss.str();
+        }
 
-	};
-}
+        EVENT_CLASS_TYPE(KeyType);
+    };
+} // namespace OE

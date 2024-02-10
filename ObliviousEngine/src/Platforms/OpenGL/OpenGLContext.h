@@ -5,14 +5,15 @@ struct GLFWwindow;
 
 namespace OE
 {
-	class OpenGLContext : public RenderContext
-	{
-	public:
-		OpenGLContext(GLFWwindow* window_in);
+    class OpenGLContext : public RenderContext
+    {
+    public:
+        OpenGLContext(GLFWwindow * window_in);
 
-		virtual void init() override;
-		virtual void swapBuffers() override;
-	private:
-		GLFWwindow* window;
-	};
-}
+        virtual void init() override;
+        virtual void swapBuffers() override;
+
+    private:
+        GLFWwindow * window;
+    };
+} // namespace OE

@@ -1,82 +1,78 @@
-#include "oepch.h"
+#include "ObliviousEngine/Core/Application.h"
 #include "ObliviousEngine/imgui/ImGuiLayer.h"
+#include "oepch.h"
 
-#include <imgui.h>
 #include <backends/imgui_impl_glfw.h>
 #include <backends/imgui_impl_opengl3.h>
+#include <imgui.h>
 
-#include "ObliviousEngine/Core/Application.h"
-
-//TODO: REMOVE
+// TODO: REMOVE
 #include <GLFW/glfw3.h>
-//#include <glad/glad.h>
+// #include <glad/glad.h>
 
-namespace OE {
-	ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer")
-	{
+namespace OE
+{
+    ImGuiLayer::ImGuiLayer() : Layer("ImGuiLayer") {}
+    ImGuiLayer::~ImGuiLayer() {}
+    void ImGuiLayer::onAttach()
+    {
+        OE_PROFILE_FUNCTION();
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGui::StyleColorsDark();
 
-	}
-	ImGuiLayer::~ImGuiLayer()
-	{
-	}
-	void ImGuiLayer::onAttach()
-	{
-		OE_PROFILE_FUNCTION();
-		IMGUI_CHECKVERSION();
-		ImGui::CreateContext();
-		ImGui::StyleColorsDark();
+        ImGuiIO & io = ImGui::GetIO();
+        (void)io;
+        io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+        // io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
+        io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+        io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
+        // io.ConfigFlags |= ImGuiViewportFlags_NoTaskBarIcon;
+        // io.ConfigFlags |= ImGuiViewportFlags_NoAutoMerge;
 
-		ImGuiIO& io = ImGui::GetIO(); (void)io;
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;
-		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
-		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;
-		//io.ConfigFlags |= ImGuiViewportFlags_NoTaskBarIcon;
-		//io.ConfigFlags |= ImGuiViewportFlags_NoAutoMerge;
+        ImGuiStyle & style = ImGui::GetStyle();
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            style.WindowRounding = 0.0f;
+            style.Colors[ImGuiCol_WindowBg].w = 1.0f;
+        }
 
+        Application & app = Application::Get();
+        GLFWwindow * window = static_cast<GLFWwindow *>(app.getWindow().getNativeWindow());
 
-		ImGuiStyle& style = ImGui::GetStyle();
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable) {
-			style.WindowRounding = 0.0f;
-			style.Colors[ImGuiCol_WindowBg].w = 1.0f;
-		}
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplOpenGL3_Init("#version 410");
+    }
+    void ImGuiLayer::onDetatch()
+    {
+        OE_PROFILE_FUNCTION();
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+    }
+    void ImGuiLayer::begin()
+    {
+        OE_PROFILE_FUNCTION();
+        ImGui_ImplOpenGL3_NewFrame();
+        ImGui_ImplGlfw_NewFrame();
+        ImGui::NewFrame();
+    }
+    void ImGuiLayer::end()
+    {
+        OE_PROFILE_FUNCTION();
+        ImGuiIO & io = ImGui::GetIO();
+        Application & app = Application::Get();
+        io.DisplaySize = ImVec2((float)app.getWindow().getWidth(), (float)app.getWindow().getHeight());
 
-		Application& app = Application::Get();
-		GLFWwindow* window = static_cast<GLFWwindow*>(app.getWindow().getNativeWindow());
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		ImGui_ImplGlfw_InitForOpenGL(window, true);
-		ImGui_ImplOpenGL3_Init("#version 410");
-	}
-	void ImGuiLayer::onDetatch()
-	{
-		OE_PROFILE_FUNCTION();
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-	}
-	void ImGuiLayer::begin()
-	{
-		OE_PROFILE_FUNCTION();
-		ImGui_ImplOpenGL3_NewFrame();
-		ImGui_ImplGlfw_NewFrame();
-		ImGui::NewFrame();
-	}
-	void ImGuiLayer::end()
-	{
-		OE_PROFILE_FUNCTION();
-		ImGuiIO& io = ImGui::GetIO();
-		Application& app = Application::Get();
-		io.DisplaySize = ImVec2((float)app.getWindow().getWidth(), (float)app.getWindow().getHeight());
-
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-
-		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
-		{
-			GLFWwindow* currentContext = glfwGetCurrentContext();
-			ImGui::UpdatePlatformWindows();
-			ImGui::RenderPlatformWindowsDefault();
-			glfwMakeContextCurrent(currentContext);
-		}
-	}
-}
+        if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
+        {
+            GLFWwindow * currentContext = glfwGetCurrentContext();
+            ImGui::UpdatePlatformWindows();
+            ImGui::RenderPlatformWindowsDefault();
+            glfwMakeContextCurrent(currentContext);
+        }
+    }
+} // namespace OE
