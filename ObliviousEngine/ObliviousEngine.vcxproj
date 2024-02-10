@@ -76,7 +76,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>oepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;OE_BUILD_DLL;GLFW_INCLUDE_NONE;OE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;OE_BUILD_DLL;GLFW_INCLUDE_NONE;OE_DEBUG;PROFILING_ENABLED;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\entt\include;vendor\glm;vendor\GLFW\include;vendor\Glad\include;vendor\imgui;vendor\stb_image;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -141,8 +141,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Core.h" />
-    <ClInclude Include="src\ObliviousEngine\Debug\Instrumentor.h" />
-    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\OE.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Application.h" />
     <ClInclude Include="src\ObliviousEngine\Core\EntryPoint.h" />
@@ -151,6 +149,7 @@
     <ClInclude Include="src\ObliviousEngine\Core\Maths.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Timestep.h" />
     <ClInclude Include="src\ObliviousEngine\Core\Window.h" />
+    <ClInclude Include="src\ObliviousEngine\Debug\Instrumentor.h" />
     <ClInclude Include="src\ObliviousEngine\Events\AppEvent.h" />
     <ClInclude Include="src\ObliviousEngine\Events\Event.h" />
     <ClInclude Include="src\ObliviousEngine\Events\KeyCodes.h" />
@@ -168,6 +167,7 @@
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderCommand.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\RenderContext.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h" />
+    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer2D.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Shader.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\Texture.h" />
     <ClInclude Include="src\ObliviousEngine\Renderer\VertexArray.h" />

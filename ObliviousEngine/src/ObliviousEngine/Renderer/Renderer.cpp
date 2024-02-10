@@ -9,6 +9,7 @@ namespace OE
 
 	void Renderer::Init()
 	{
+		OE_PROFILE_FUNCTION();
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}

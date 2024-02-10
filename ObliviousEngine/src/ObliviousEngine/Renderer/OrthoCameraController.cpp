@@ -13,6 +13,7 @@ namespace OE {
 	}
 	void OrthographicCameraController::onUpdate(Timestep ts)
 	{
+		OE_PROFILE_FUNCTION();
 		cameraSpeed = 2 * zoom;
 		if (Input::isKeyPressed(KEY_A)) {
 			cameraPos.x -= cameraSpeed * ts;
@@ -48,6 +49,7 @@ namespace OE {
 	}
 	void OrthographicCameraController::onEvent(Event& e)
 	{
+		OE_PROFILE_FUNCTION();
 		EventDispatcher d(e);
 		d.dispatch<MouseScrollEvent>(OE_BIND_EVENT(OrthographicCameraController::onMouseScroll));
 		d.dispatch<WindowResizeEvent>(OE_BIND_EVENT(OrthographicCameraController::onWindowResize));
@@ -55,6 +57,7 @@ namespace OE {
 	}
 	bool OrthographicCameraController::onMouseScroll(MouseScrollEvent& mse)
 	{
+		OE_PROFILE_FUNCTION();
 		zoom -= mse.getYOff() * 0.25f;
 		zoom = std::max(zoom, 0.25f);
 		camera.setProj(-aspectRatio * zoom, aspectRatio * zoom, -zoom, zoom);
@@ -62,6 +65,7 @@ namespace OE {
 	}
 	bool OrthographicCameraController::onWindowResize(WindowResizeEvent& rse)
 	{
+		OE_PROFILE_FUNCTION();
 		aspectRatio = (float)rse.getWidth() / (float)rse.getHeight();
 		camera.setProj(-aspectRatio * zoom, aspectRatio * zoom, -zoom, zoom);
 		return false;

@@ -14,6 +14,7 @@ namespace OE
 	}
 	void OpenGLContext::init()
 	{
+		OE_PROFILE_FUNCTION();
 		glfwMakeContextCurrent(window);
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		OE_CORE_ASSERT(status, "Failed to initialise Glad");
@@ -35,6 +36,7 @@ namespace OE
 	}
 	void OpenGLContext::swapBuffers()
 	{
+		OE_PROFILE_FUNCTION();
 		glfwSwapBuffers(window);
 	}
 }

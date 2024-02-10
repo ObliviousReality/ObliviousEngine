@@ -15,6 +15,7 @@ namespace OE {
 
 	Application::Application()
 	{
+		OE_PROFILE_FUNCTION();
 		OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
 		instance = this;
 		window = Window::WindowCreate(Properties("Sandbox!", 1920, 1080));
@@ -27,30 +28,42 @@ namespace OE {
 		pushOverlay(imGuiLayer);
 	}
 
-	Application::~Application() {
+	Application::~Application()
+	{
+		OE_PROFILE_FUNCTION();
 		Renderer::Finish();
 	}
 
 	void Application::run()
 	{
+		OE_PROFILE_FUNCTION();
 		//loop();
 		while (!crashed)
 		{
+			OE_PROFILE_SCOPE("Individual Run Loop");
+
 			float time = (float)glfwGetTime(); // Platform specific
 			Timestep ts = time - frameTime;
 			frameTime = time;
 			if (!minimised) {
-				for (Layer* l : ls)
 				{
-					l->onUpdate(ts);
+					OE_PROFILE_SCOPE("Layers Update");
+					for (Layer* l : ls)
+					{
+						l->onUpdate(ts);
+					}
 				}
+
+				imGuiLayer->begin();
+				{
+					OE_PROFILE_SCOPE("imGui Update");
+					for (Layer* l : ls)
+					{
+						l->onImGuiRender();
+					}
+				}
+				imGuiLayer->end();
 			}
-			imGuiLayer->begin();
-			for (Layer* l : ls)
-			{
-				l->onImGuiRender();
-			}
-			imGuiLayer->end();
 
 
 			//auto [x, y] = Input::getMousePos();
@@ -66,6 +79,7 @@ namespace OE {
 
 	void Application::onEvent(Event& e)
 	{
+		OE_PROFILE_FUNCTION();
 		//OE_CORE_TRACE("{0}", e);
 		EventDispatcher dispatcher(e);
 		dispatcher.dispatch<WindowCloseEvent>(OE_BIND_EVENT(Application::onClose));
@@ -84,33 +98,40 @@ namespace OE {
 
 	void Application::pushLayer(Layer* l)
 	{
+		OE_PROFILE_FUNCTION();
 		ls.push(l);
+		l->onAttach();
 	}
 
 	void Application::pushOverlay(Layer* l)
 	{
+		OE_PROFILE_FUNCTION();
 		ls.pushOverlay(l);
+		l->onAttach();
 	}
 
 	void Application::Init()
 	{
+		OE_PROFILE_FUNCTION();
 		OE_CORE_INFO("Oblivious Engine Online.");
 	}
 
 	void Application::Quit()
 	{
+		OE_PROFILE_FUNCTION();
 		Application::Get().crashed = true;
-
 	}
 
 
 	bool Application::onClose(WindowCloseEvent& e)
 	{
+		OE_PROFILE_FUNCTION();
 		crashed = true;
 		return true;
 	}
 	bool Application::resizeEvent(WindowResizeEvent& rse)
 	{
+		OE_PROFILE_FUNCTION();
 		if (rse.getWidth() == 0 || rse.getHeight() == 0) {
 			minimised = true;
 			return false;

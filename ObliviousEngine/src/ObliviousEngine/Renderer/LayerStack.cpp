@@ -15,14 +15,10 @@ namespace OE
 	{
 		layers.emplace(layers.begin() + layerIndex, l);
 		layerIndex++;
-		l->onAttach();
-
 	}
 	void LayerStack::pushOverlay(Layer* ov)
 	{
 		layers.emplace_back(ov);
-		ov->onAttach();
-
 	}
 	void LayerStack::pop(Layer* l)
 	{

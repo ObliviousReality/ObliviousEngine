@@ -10,6 +10,9 @@
     <Filter Include="src\ObliviousEngine\Core">
       <UniqueIdentifier>{863A0B14-725F-5A94-9BAA-3F24872E59B2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\ObliviousEngine\Debug">
+      <UniqueIdentifier>{64E67E95-D0A8-B21F-1959-41AC855A8BFD}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\ObliviousEngine\Events">
       <UniqueIdentifier>{9205E648-7E15-9219-E7CE-F637D3FD80B2}</UniqueIdentifier>
     </Filter>
@@ -84,6 +87,9 @@
     <ClInclude Include="src\ObliviousEngine\Core\Window.h">
       <Filter>src\ObliviousEngine\Core</Filter>
     </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Debug\Instrumentor.h">
+      <Filter>src\ObliviousEngine\Debug</Filter>
+    </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Events\AppEvent.h">
       <Filter>src\ObliviousEngine\Events</Filter>
     </ClInclude>
@@ -133,6 +139,9 @@
       <Filter>src\ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Renderer.h">
+      <Filter>src\ObliviousEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer2D.h">
       <Filter>src\ObliviousEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\ObliviousEngine\Renderer\Shader.h">
@@ -1431,8 +1440,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\ObliviousEngine\Renderer\Renderer2D.h" />
-    <ClInclude Include="src\ObliviousEngine\Debug\Instrumentor.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\ObliviousEngine\Core\Application.cpp">
@@ -1465,7 +1472,13 @@
     <ClCompile Include="src\ObliviousEngine\Renderer\RenderCommand.cpp">
       <Filter>src\ObliviousEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Renderer\RenderContext.cpp">
+      <Filter>src\ObliviousEngine\Renderer</Filter>
+    </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Renderer.cpp">
+      <Filter>src\ObliviousEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer2D.cpp">
       <Filter>src\ObliviousEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\ObliviousEngine\Renderer\Shader.cpp">
@@ -1519,7 +1532,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\ObliviousEngine\Renderer\Renderer2D.cpp" />
-    <ClCompile Include="src\ObliviousEngine\Renderer\RenderContext.cpp" />
   </ItemGroup>
 </Project>

@@ -85,7 +85,11 @@ project "ObliviousEngine"
 		}
 
 	filter "configurations:Debug"
-		defines "OE_DEBUG"
+		defines 
+		{
+			"OE_DEBUG",
+			"PROFILING_ENABLED"
+		}
 		runtime "Debug"
 		symbols "on"
 
@@ -139,7 +143,11 @@ project "Sandbox"
 		systemversion "latest"
 
 	filter "configurations:Debug"
-		defines "OE_DEBUG"
+		defines 
+		{
+			"OE_DEBUG",
+			"PROFILING_ENABLED"
+		}
 		runtime "Debug"
 		symbols "on"
 

@@ -10,21 +10,20 @@ Sandbox2D::Sandbox2D()
 
 void Sandbox2D::onAttach()
 {
-	testTexture = OE::Texture2D::Create("assets/textures/Logo2023.png");
+	OE_PROFILE_FUNCTION();
+	testTexture = OE::Texture2D::Create("assets/textures/OE mk3.png");
 }
 
 void Sandbox2D::onDetatch()
 {
+	OE_PROFILE_FUNCTION();
 }
 
 void Sandbox2D::onUpdate(OE::Timestep ts)
 {
 	OE_PROFILE_FUNCTION();
 
-	{
-		OE_PROFILE_SCOPE("Camera::onUpdate");
-		cameraController.onUpdate(ts);
-	}
+	cameraController.onUpdate(ts);
 	{
 		OE_PROFILE_SCOPE("RenderReset");
 		OE::RenderCommand::SetClearColour(backgroundColour);

@@ -41,22 +41,27 @@ namespace OE
 	}
 	GLVertexArray::GLVertexArray()
 	{
+		OE_PROFILE_FUNCTION();
 		glCreateVertexArrays(1, &rendererID);
 	}
 	GLVertexArray::~GLVertexArray()
 	{
+		OE_PROFILE_FUNCTION();
 		glDeleteVertexArrays(1, &rendererID);
 	}
 	void GLVertexArray::bind() const
 	{
+		OE_PROFILE_FUNCTION();
 		glBindVertexArray(rendererID);
 	}
 	void GLVertexArray::unbind() const
 	{
+		OE_PROFILE_FUNCTION();
 		glBindVertexArray(0);
 	}
 	void GLVertexArray::addVertexBuffer(const Ref<VertexBuffer>& buf)
 	{
+		OE_PROFILE_FUNCTION();
 		OE_CORE_ASSERT(buf->getLayout().getElements().size(), "VERTEX BUFFER MISSING LAYOUT");
 		glBindVertexArray(rendererID);
 		buf->bind();
@@ -73,6 +78,7 @@ namespace OE
 	}
 	void GLVertexArray::setIndexBuffer(const Ref<IndexBuffer>& buf)
 	{
+		OE_PROFILE_FUNCTION();
 		glBindVertexArray(rendererID);
 		buf->bind();
 		indexBuf = buf;

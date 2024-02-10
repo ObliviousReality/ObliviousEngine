@@ -11,6 +11,7 @@ namespace OE
 {
 	static GLenum ShaderTypeFromString(const std::string& type)
 	{
+		OE_PROFILE_FUNCTION();
 		if (type == "vertex")
 		{
 			return GL_VERTEX_SHADER;
@@ -25,6 +26,7 @@ namespace OE
 
 	GLShader::GLShader(const std::string& path)
 	{
+		OE_PROFILE_FUNCTION();
 		std::string& shaderSource = readFile(path);
 		auto srcs = preprocessFile(shaderSource);
 		compile(srcs);
@@ -38,6 +40,7 @@ namespace OE
 	}
 	GLShader::GLShader(const std::string& namein, const std::string& vertexSource, const std::string& fragmentSource) : name(namein)
 	{
+		OE_PROFILE_FUNCTION();
 		std::unordered_map<GLenum, std::string> sources;
 		sources[GL_VERTEX_SHADER] = vertexSource;
 		sources[GL_FRAGMENT_SHADER] = fragmentSource;
@@ -45,30 +48,37 @@ namespace OE
 	}
 	GLShader::~GLShader()
 	{
+		OE_PROFILE_FUNCTION();
 		glDeleteProgram(renderID);
 	}
 	void GLShader::bind() const
 	{
+		OE_PROFILE_FUNCTION();
 		glUseProgram(renderID);
 	}
 	void GLShader::unbind() const
 	{
+		OE_PROFILE_FUNCTION();
 		glUseProgram(0);
 	}
 	void GLShader::setInt(const std::string& name, int val)
 	{
+		OE_PROFILE_FUNCTION();
 		uploadUniformInt(name, val);
 	}
 	void GLShader::setMat4(const std::string& name, const glm::mat4& val)
 	{
+		OE_PROFILE_FUNCTION();
 		uploadUniformMat4(name, val);
 	}
 	void GLShader::setFloat3(const std::string& name, const glm::vec3& val)
 	{
+		OE_PROFILE_FUNCTION();
 		uploadUniformFloat3(name, val);
 	}
 	void GLShader::setFloat4(const std::string& name, const glm::vec4& val)
 	{
+		OE_PROFILE_FUNCTION();
 		uploadUniformFloat4(name, val);
 	}
 	void GLShader::uploadUniformInt(const std::string& name, int value)
@@ -108,6 +118,7 @@ namespace OE
 	}
 	std::string GLShader::readFile(const std::string& path)
 	{
+		OE_PROFILE_FUNCTION();
 		std::string result;
 		std::ifstream in(path, std::ios::in | std::ios::binary);
 		if (in)
@@ -135,6 +146,7 @@ namespace OE
 	}
 	std::unordered_map<GLenum, std::string> GLShader::preprocessFile(const std::string& src)
 	{
+		OE_PROFILE_FUNCTION();
 		std::unordered_map<GLenum, std::string> shaderSrcs;
 
 		const char* typeToken = "#type";
@@ -157,6 +169,7 @@ namespace OE
 	}
 	void GLShader::compile(const std::unordered_map<GLenum, std::string>& shaderSrcs)
 	{
+		OE_PROFILE_FUNCTION();
 		GLuint program = glCreateProgram();
 		OE_CORE_ASSERT(shaderSrcs.size() <= 2, "ERROR: Too Many Shader Sources (Only 2 Allowed)");
 		std::array<GLenum, 2> shaderIDs;

@@ -137,8 +137,8 @@ namespace OE {
 	};
 
 }
-#define OE_PROFILE 1
-#if OE_PROFILE
+
+#ifdef PROFILING_ENABLED
 #define OE_START_PROFILER(name, path) ::OE::Instrumentor::Get().StartSession(name, path)
 #define OE_STOP_PROFILER() ::OE::Instrumentor::Get().StopSession()
 #define OE_PROFILE_SCOPE(name) ::OE::InstrumentationTimer timer##__LINE__(name);
@@ -146,6 +146,6 @@ namespace OE {
 #else
 #define OE_START_PROFILER(name, path)
 #define OE_STOP_PROFILER()
-#define OE_PROFILE_FUNCTION(name)
-#define OE_PROFILE_SCOPE()
+#define OE_PROFILE_SCOPE(name)
+#define OE_PROFILE_FUNCTION()
 #endif

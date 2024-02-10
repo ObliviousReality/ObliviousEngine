@@ -23,22 +23,26 @@ namespace OE
 
 	WinWindow::WinWindow(const Properties& props)
 	{
+		OE_PROFILE_FUNCTION();
 		init(props);
 	}
 
 	WinWindow::~WinWindow()
 	{
+		OE_PROFILE_FUNCTION();
 		close();
 	}
 
 	void WinWindow::onUpdate()
 	{
+		OE_PROFILE_FUNCTION();
 		glfwPollEvents();
 		context->swapBuffers();
 	}
 
 	void WinWindow::setVSync(bool e)
 	{
+		OE_PROFILE_FUNCTION();
 		winProps.vsync = e;
 		if (e)
 			glfwSwapInterval(1);
@@ -53,6 +57,7 @@ namespace OE
 
 	void WinWindow::init(const Properties& props)
 	{
+		OE_PROFILE_FUNCTION();
 		winProps.height = props.height;
 		winProps.width = props.width;
 		winProps.name = props.name;
@@ -178,6 +183,7 @@ namespace OE
 
 	void WinWindow::close()
 	{
+		OE_PROFILE_FUNCTION();
 		glfwDestroyWindow(window);
 
 		--GLFWWindowCount;
