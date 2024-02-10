@@ -1,7 +1,8 @@
+#include "oepch.h"
+
 #include "ObliviousEngine/Renderer/Renderer.h"
 #include "ObliviousEngine/Renderer/VertexArray.h"
 #include "Platforms/OpenGL/GLVertexArray.h"
-#include "oepch.h"
 
 namespace OE
 {

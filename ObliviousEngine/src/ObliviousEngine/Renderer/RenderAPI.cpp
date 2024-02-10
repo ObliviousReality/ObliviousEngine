@@ -1,6 +1,7 @@
+#include "oepch.h"
+
 #include "Platforms/OpenGL/GLRenderAPI.h"
 #include "RenderAPI.h"
-#include "oepch.h"
 
 namespace OE
 {

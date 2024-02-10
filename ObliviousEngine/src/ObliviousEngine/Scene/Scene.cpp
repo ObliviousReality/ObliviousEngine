@@ -1,6 +1,7 @@
+#include "oepch.h"
+
 #include "Entity.h"
 #include "Scene.h"
-#include "oepch.h"
 
 #include <ObliviousEngine/Scene/Components.h>
 

@@ -1,8 +1,9 @@
+#include "oepch.h"
+
 #include "ObliviousEngine/Renderer/RenderCommand.h"
 #include "ObliviousEngine/Renderer/Renderer2D.h"
 #include "ObliviousEngine/Renderer/Shader.h"
 #include "ObliviousEngine/Renderer/VertexArray.h"
-#include "oepch.h"
 
 #include <glm/ext/matrix_transform.hpp>
 

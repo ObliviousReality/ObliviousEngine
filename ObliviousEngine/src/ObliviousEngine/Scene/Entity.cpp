@@ -1,5 +1,6 @@
-#include "Entity.h"
 #include "oepch.h"
+
+#include "Entity.h"
 
 namespace OE
 {

@@ -1,7 +1,8 @@
+#include "oepch.h"
+
 #include "ObliviousEngine/Core/Input.h"
 #include "ObliviousEngine/Events/KeyCodes.h"
 #include "OrthoCameraController.h"
-#include "oepch.h"
 
 namespace OE
 {

@@ -1,7 +1,8 @@
+#include "oepch.h"
+
 #include "ObliviousEngine/Renderer/RenderContext.h"
 #include "ObliviousEngine/Renderer/Renderer.h"
 #include "Platforms/OpenGL/OpenGLContext.h"
-#include "oepch.h"
 
 namespace OE
 {

@@ -1,8 +1,9 @@
+#include "oepch.h"
+
 #include "Log.h"
 #include "ObliviousEngine/Core/Application.h"
 #include "ObliviousEngine/Core/Input.h"
 #include "ObliviousEngine/Renderer/Renderer.h"
-#include "oepch.h"
 
 #include <GLFW/glfw3.h>
 

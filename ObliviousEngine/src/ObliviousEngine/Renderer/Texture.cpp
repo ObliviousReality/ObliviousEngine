@@ -1,8 +1,9 @@
+#include "oepch.h"
+
 #include "Core.h"
 #include "ObliviousEngine/Renderer/Renderer.h"
 #include "ObliviousEngine/Renderer/Texture.h"
 #include "Platforms/OpenGL/GLTexture.h"
-#include "oepch.h"
 
 #include <string>
 

@@ -1,6 +1,7 @@
+#include "oepch.h"
+
 #include "Platforms/OpenGL/OpenGLContext.h"
 #include "Platforms/Win/WinWindow.h"
-#include "oepch.h"
 
 #include <ObliviousEngine/Events/AppEvent.h>
 #include <ObliviousEngine/Events/KeyEvent.h>

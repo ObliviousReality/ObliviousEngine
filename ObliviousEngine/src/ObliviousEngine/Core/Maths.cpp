@@ -1,5 +1,6 @@
-#include "Maths.h"
 #include "oepch.h"
+
+#include "Maths.h"
 
 const double OE::Maths::pi = atan(1) * 4;
 const double OE::Maths::e = 2.71828182845904523536;

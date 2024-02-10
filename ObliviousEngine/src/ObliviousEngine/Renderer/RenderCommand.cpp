@@ -1,5 +1,6 @@
-#include "ObliviousEngine/Renderer/RenderCommand.h"
 #include "oepch.h"
+
+#include "ObliviousEngine/Renderer/RenderCommand.h"
 
 namespace OE
 {

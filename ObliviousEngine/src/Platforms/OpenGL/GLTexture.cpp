@@ -1,5 +1,6 @@
-#include "Platforms/OpenGL/GLTexture.h"
 #include "oepch.h"
+
+#include "Platforms/OpenGL/GLTexture.h"
 
 #include <stb_image.h>
 

@@ -1,6 +1,7 @@
+#include "oepch.h"
+
 #include "ObliviousEngine/Core/Application.h"
 #include "Platforms/Win/WinInput.h"
-#include "oepch.h"
 
 #include <GLFW/glfw3.h>
 

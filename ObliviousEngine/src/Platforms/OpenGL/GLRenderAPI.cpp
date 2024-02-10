@@ -1,5 +1,6 @@
-#include "Platforms/OpenGL/GLRenderAPI.h"
 #include "oepch.h"
+
+#include "Platforms/OpenGL/GLRenderAPI.h"
 
 #include <glad/glad.h>
 

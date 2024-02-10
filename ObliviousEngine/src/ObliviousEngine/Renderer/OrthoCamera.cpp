@@ -1,5 +1,6 @@
-#include "ObliviousEngine/Renderer/OrthoCamera.h"
 #include "oepch.h"
+
+#include "ObliviousEngine/Renderer/OrthoCamera.h"
 
 #include <glm/gtc/matrix_transform.hpp>
 
