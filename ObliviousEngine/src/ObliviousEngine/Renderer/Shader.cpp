@@ -13,7 +13,7 @@ namespace OE
         {
             case RenderAPI::API::None:
             {
-                OE_CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
+                CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
                 return nullptr;
             }
             case RenderAPI::API::OpenGL:
@@ -22,7 +22,7 @@ namespace OE
             }
             default:
             {
-                OE_CORE_ASSERT(false, "UNKNOWN RENDERER API");
+                CORE_ASSERT(false, "UNKNOWN RENDERER API");
                 return nullptr;
             }
         }
@@ -35,7 +35,7 @@ namespace OE
         {
             case RenderAPI::API::None:
             {
-                OE_CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
+                CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
                 return nullptr;
             }
             case RenderAPI::API::OpenGL:
@@ -44,7 +44,7 @@ namespace OE
             }
             default:
             {
-                OE_CORE_ASSERT(false, "UNKNOWN RENDERER API");
+                CORE_ASSERT(false, "UNKNOWN RENDERER API");
                 return nullptr;
             }
         }
@@ -58,7 +58,7 @@ namespace OE
 
     void ShaderLib::add(const std::string & name, const Ref<Shader> & shader)
     {
-        OE_CORE_ASSERT(!exists(name), "SHADER ALREADY EXISTS!");
+        CORE_ASSERT(!exists(name), "SHADER ALREADY EXISTS!");
         shaders[name] = shader;
     }
 
@@ -78,7 +78,7 @@ namespace OE
 
     Ref<Shader> ShaderLib::get(const std::string & name)
     {
-        OE_CORE_ASSERT(exists(name), "SHADER DOESN'T EXIST!");
+        CORE_ASSERT(exists(name), "SHADER DOESN'T EXIST!");
         return shaders[name];
     }
 

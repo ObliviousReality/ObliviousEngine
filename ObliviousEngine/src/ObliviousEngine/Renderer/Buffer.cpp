@@ -12,18 +12,18 @@ namespace OE
     {
         switch (Renderer::GetAPI())
         {
-            case RenderAPI::API::None: OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED"); return nullptr;
+            case RenderAPI::API::None: CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED"); return nullptr;
             case RenderAPI::API::OpenGL: return CreateRef<GLVertexBuffer>(vertexes, size);
-            default: OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET"); return nullptr;
+            default: CORE_ASSERT(false, "UNKOWN RENDERER API SET"); return nullptr;
         }
     }
     Ref<IndexBuffer> IndexBuffer::Create(uint32_t * indexes, uint32_t count)
     {
         switch (Renderer::GetAPI())
         {
-            case RenderAPI::API::None: OE_CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED"); return nullptr;
+            case RenderAPI::API::None: CORE_ASSERT(false, "RENDERER API 'none' NOT SUPPORTED"); return nullptr;
             case RenderAPI::API::OpenGL: return CreateRef<GLIndexBuffer>(indexes, count);
-            default: OE_CORE_ASSERT(false, "UNKOWN RENDERER API SET"); return nullptr;
+            default: CORE_ASSERT(false, "UNKOWN RENDERER API SET"); return nullptr;
         }
     }
 } // namespace OE

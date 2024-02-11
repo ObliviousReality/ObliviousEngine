@@ -4,7 +4,7 @@
 
 #ifdef _WIN32
 	#ifdef _WIN64
-		#define OE_PLATFORM_WINDOWS
+		#define PLATFORM_WINDOWS
 	#else
 		#error "x86 IS NOT SUPPORTED"
 	#endif
@@ -13,65 +13,65 @@
 	#if TARGET_IPHONE_SIMULATOR == 1
 		#error "IOS Simulator NOT SUPPORTED"
 	#elif TARGET_OS_IPHONE == 1
-		#define OE_PLATFORM_IOS
+		#define PLATFORM_IOS
 		#error "IOS NOT SUPPORTED"
 	#elif TARGET_OS_MAC == 1
-		#define OE_PLATFORM_MACOS
+		#define PLATFORM_MACOS
 		#error "MacOS NOT SUPPORTED"
 	#else
 		#error "UNKNOWN APPLE PLATFORM (AND ALSO NOT SUPPORTED)"
 		#endif
 #elif defined(__ANDROID__)
-	#define OE_PLATFORM_ANDROID
+	#define PLATFORM_ANDROID
 	#error "ANDROID NOT SUPPORTED"
 #elif defined(__linux__)
-	#define OE_PLATFORM_LINUX
+	#define PLATFORM_LINUX
 	#error "LINUX NOT SUPPORTED"
 #else
 	#error "UNKNOWN PLATFORM (AND ALSO NOT SUPPORTED)"
 #endif
 
 #ifdef OE_DEBUG
-	#define OE_ENABLE_ASSERTS
+	#define ENABLE_ASSERTS
 #endif
 
-#ifdef OE_ENABLE_ASSERTS
-#define OE_ASSERT(x, ...)                                      \
-    {                                                          \
-        if (!(x))                                              \
-        {                                                      \
-            OE_ERROR("Assertion Failed :(: {0}", __VA_ARGS__); \
-            __debugbreak();                                    \
-        }                                                      \
+#ifdef ENABLE_ASSERTS
+#define ASSERT(x, ...)                                               \
+    {                                                                \
+        if (!(x))                                                    \
+        {                                                            \
+            FATAL("APPLICATION ASSERTION FAILED: {0}", __VA_ARGS__); \
+            __debugbreak();                                          \
+        }                                                            \
     }
-#define OE_CORE_ASSERT(x, ...)                                      \
-    {                                                               \
-        if (!(x))                                                   \
-        {                                                           \
-            OE_CORE_ERROR("Assertion Failed :(: {0}", __VA_ARGS__); \
-            __debugbreak();                                         \
-        }                                                           \
+#define CORE_ASSERT(x, ...)                                          \
+    {                                                                \
+        if (!(x))                                                    \
+        {                                                            \
+            CORE_FATAL("ENGINE ASSERTION FAILED: {0}", __VA_ARGS__); \
+            __debugbreak();                                          \
+        }                                                            \
     }
 #else
-#define OE_ASSERT(x, ...)                                      \
-    {                                                          \
-        if (!(x))                                              \
-        {                                                      \
-            OE_ERROR("Assertion Failed :(: {0}", __VA_ARGS__); \
-        }                                                      \
+#define ASSERT(x, ...)                                               \
+    {                                                                \
+        if (!(x))                                                    \
+        {                                                            \
+            FATAL("APPLICATION ASSERTION FAILED: {0}", __VA_ARGS__); \
+        }                                                            \
     }
-#define OE_CORE_ASSERT(x, ...)                                      \
-    {                                                               \
-        if (!(x))                                                   \
-        {                                                           \
-            OE_CORE_ERROR("Assertion Failed :(: {0}", __VA_ARGS__); \
-        }                                                           \
+#define CORE_ASSERT(x, ...)                                          \
+    {                                                                \
+        if (!(x))                                                    \
+        {                                                            \
+            CORE_FATAL("ENGINE ASSERTION FAILED: {0}", __VA_ARGS__); \
+        }                                                            \
     }
-#endif // OE_ENABLE_ASSERTS
+#endif // ENABLE_ASSERTS
 
 #define BIT(x) (1 << x)
 
-#define OE_BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
+#define BIND_EVENT(x) std::bind(&x, this, std::placeholders::_1)
 
 namespace OE
 {

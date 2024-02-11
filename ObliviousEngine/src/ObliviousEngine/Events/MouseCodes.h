@@ -28,15 +28,15 @@ namespace OE
     }
 } // namespace OE
 
-#define OE_MOUSE_0      ::OE::Mouse::Button0
-#define OE_MOUSE_1      ::OE::Mouse::Button1
-#define OE_MOUSE_2      ::OE::Mouse::Button2
-#define OE_MOUSE_3      ::OE::Mouse::Button3
-#define OE_MOUSE_4      ::OE::Mouse::Button4
-#define OE_MOUSE_5      ::OE::Mouse::Button5
-#define OE_MOUSE_6      ::OE::Mouse::Button6
-#define OE_MOUSE_7      ::OE::Mouse::Button7
-#define OE_MOUSE_LAST   ::OE::Mouse::ButtonLast
-#define OE_MOUSE_LEFT   ::OE::Mouse::ButtonLeft
-#define OE_MOUSE_RIGHT  ::OE::Mouse::ButtonRight
-#define OE_MOUSE_MIDDLE ::OE::Mouse::ButtonMiddle
+#define MOUSE_0      ::OE::Mouse::Button0
+#define MOUSE_1      ::OE::Mouse::Button1
+#define MOUSE_2      ::OE::Mouse::Button2
+#define MOUSE_3      ::OE::Mouse::Button3
+#define MOUSE_4      ::OE::Mouse::Button4
+#define MOUSE_5      ::OE::Mouse::Button5
+#define MOUSE_6      ::OE::Mouse::Button6
+#define MOUSE_7      ::OE::Mouse::Button7
+#define MOUSE_LAST   ::OE::Mouse::ButtonLast
+#define MOUSE_LEFT   ::OE::Mouse::ButtonLeft
+#define MOUSE_RIGHT  ::OE::Mouse::ButtonRight
+#define MOUSE_MIDDLE ::OE::Mouse::ButtonMiddle

@@ -21,7 +21,7 @@ namespace OE
 
     void Renderer2D::Init()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         storage = new R2DStorage();
         storage->vArray = VertexArray::Create();
 
@@ -51,18 +51,18 @@ namespace OE
     }
     void Renderer2D::Finish()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         delete storage;
     }
 
     void Renderer2D::BeginScene(const OrthographicCamera & camera)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         storage->textureShader->bind();
         storage->textureShader->setMat4("u_ViewProj", camera.getViewProjMatrix());
     }
 
-    void Renderer2D::EndScene() { OE_PROFILE_FUNCTION(); }
+    void Renderer2D::EndScene() { PROFILE_FUNCTION(); }
 
     void Renderer2D::DrawRect(const glm::vec2 & pos, const glm::vec2 & size, const glm::vec4 & colour, float a)
     {
@@ -71,7 +71,7 @@ namespace OE
 
     void Renderer2D::DrawRect(const glm::vec3 & pos, const glm::vec2 & size, const glm::vec4 & colour, float a)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         storage->textureShader->setFloat4("u_Colour", colour);
         storage->standardTexture->bind();
 
@@ -100,7 +100,7 @@ namespace OE
                               float a,
                               const glm::vec4 & colour)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         storage->textureShader->setFloat4("u_Colour", colour);
         texture->bind();
 

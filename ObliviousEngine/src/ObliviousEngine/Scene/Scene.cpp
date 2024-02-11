@@ -17,13 +17,13 @@ namespace OE
             auto group = registry.group<TransformComponent, CameraComponent>();
             for (auto cam : group)
             {
-                OE_CORE_TRACE("Item found");
+                CORE_TRACE("Item found");
                 auto & [transform, camera] = group.get<TransformComponent, CameraComponent>(cam);
 
                 if (camera.primary)
                 {
                     mainCam = &camera.camera;
-                    OE_CORE_INFO("Main Camera Found");
+                    CORE_INFO("Main Camera Found");
                     break;
                 }
             }
@@ -31,12 +31,12 @@ namespace OE
 
         if (true)
         {
-            OE_CORE_TRACE("Main rendering loop section");
+            CORE_TRACE("Main rendering loop section");
             auto group = registry.view<SpriteRendererComponent>();
-            OE_CORE_TRACE("Group Created.");
+            CORE_TRACE("Group Created.");
             for (auto g : group)
             {
-                OE_CORE_TRACE("Loop");
+                CORE_TRACE("Loop");
                 auto sprite = group.get<SpriteRendererComponent>(g);
                 Entity e = { g, this };
                 auto transform = e.getComp<TransformComponent>();
@@ -44,7 +44,7 @@ namespace OE
         }
         else
         {
-            OE_CORE_ERROR("No Camera in Scene, nothing drawn.");
+            CORE_ERROR("No Camera in Scene, nothing drawn.");
         }
     }
 

@@ -28,7 +28,7 @@ namespace OE
         {
             if (hasComp<T>())
             {
-                OE_CORE_WARN("Warn: Entity already has component");
+                CORE_WARN("Warn: Entity already has component");
             }
             return scene->registry.emplace<T>(handle, std::forward<Args>(args)...);
         }
@@ -38,7 +38,7 @@ namespace OE
         {
             if (!hasComp<T>())
             {
-                OE_CORE_WARN("Warn: Entity does not have component");
+                CORE_WARN("Warn: Entity does not have component");
             }
             return scene->registry.get<T>(handle);
         }
@@ -48,7 +48,7 @@ namespace OE
         {
             if (!hasComp<T>())
             {
-                OE_CORE_WARN("Warn: Entity does not have component");
+                CORE_WARN("Warn: Entity does not have component");
             }
             scene->registry.remove<T>(handle);
         }

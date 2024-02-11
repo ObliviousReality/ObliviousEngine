@@ -101,10 +101,10 @@ public:
 
     void onUpdate(OE::Timestep ts) override
     {
-        // OE_TRACE("DELTA TIME: {0}s", ts.getSeconds());
+        // TRACE("DELTA TIME: {0}s", ts.getSeconds());
         if (OE::Input::isKeyPressed(KEY_P))
         {
-            OE_TRACE("P PRESSED");
+            TRACE("P PRESSED");
             OE::Application::Quit();
         }
 
@@ -155,7 +155,7 @@ public:
     void onEvent(OE::Event & event) override
     {
         OE::EventDispatcher dispatcher(event);
-        dispatcher.dispatch<OE::KeyDownEvent>(OE_BIND_EVENT(TestLayer::onKeyPressedEvent));
+        dispatcher.dispatch<OE::KeyDownEvent>(BIND_EVENT(TestLayer::onKeyPressedEvent));
         cameraController.onEvent(event);
     }
 
@@ -195,18 +195,22 @@ class Sandbox : public OE::Application
 public:
     Sandbox()
     {
-        OE_TRACE("Sandbox Started");
-        // pushLayer(new TestLayer());
+        TRACE("Sandbox Started");
+        INFO("INFO");
+        WARN("WARN");
+        LOG_ERROR("LOG_ERROR");
+        FATAL("FATAL");
+        //ASSERT(false, "ASSERT");
         pushLayer(new Sandbox2D());
     }
 
-    ~Sandbox() { OE_TRACE("Sandbox ended."); }
+    ~Sandbox() { TRACE("Sandbox ended."); }
 
-    void loop() { OE_INFO("In loop function of Application"); }
+    void loop() { INFO("In loop function of Application"); }
 };
 
 OE::Application * OE::CreateApplication()
 {
-    OE_INFO("App created.");
+    INFO("App created.");
     return new Sandbox();
 }

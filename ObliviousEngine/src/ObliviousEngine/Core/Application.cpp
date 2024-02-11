@@ -14,11 +14,11 @@ namespace OE
 
     Application::Application()
     {
-        OE_PROFILE_FUNCTION();
-        OE_CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
+        PROFILE_FUNCTION();
+        CORE_ASSERT(!instance, "APPLICATION ALREADY EXISTS");
         instance = this;
         window = Window::WindowCreate(Properties("Sandbox!", 1920, 1080));
-        window->setEventCallback(OE_BIND_EVENT(Application::onEvent));
+        window->setEventCallback(BIND_EVENT(Application::onEvent));
         window->setVSync(true);
 
         Renderer::Init();
@@ -29,16 +29,16 @@ namespace OE
 
     Application::~Application()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         Renderer::Finish();
     }
 
     void Application::run()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         while (!crashed)
         {
-            OE_PROFILE_SCOPE("Individual Run Loop");
+            PROFILE_SCOPE("Individual Run Loop");
 
             float time = (float)glfwGetTime(); // Platform specific
             Timestep ts = time - frameTime;
@@ -46,7 +46,7 @@ namespace OE
             if (!minimised)
             {
                 {
-                    OE_PROFILE_SCOPE("Layers Update");
+                    PROFILE_SCOPE("Layers Update");
                     for (Layer * l : layerStack)
                     {
                         l->onUpdate(ts);
@@ -55,7 +55,7 @@ namespace OE
 
                 imGuiLayer->begin();
                 {
-                    OE_PROFILE_SCOPE("imGui Update");
+                    PROFILE_SCOPE("imGui Update");
                     for (Layer * l : layerStack)
                     {
                         l->onImGuiRender();
@@ -65,20 +65,20 @@ namespace OE
             }
 
             // auto [x, y] = Input::getMousePos();
-            // OE_CORE_TRACE("{0}, {1}", x, y);
+            // CORE_TRACE("{0}, {1}", x, y);
             window->onUpdate();
         }
     }
 
     void Application::onEvent(Event & e)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
 #ifdef LOG_EVENTS
-        OE_CORE_TRACE("{0}", e);
+        CORE_TRACE("{0}", e);
 #endif // LOG_EVENTS
         EventDispatcher dispatcher(e);
-        dispatcher.dispatch<WindowCloseEvent>(OE_BIND_EVENT(Application::onClose));
-        dispatcher.dispatch<WindowResizeEvent>(OE_BIND_EVENT(Application::resizeEvent));
+        dispatcher.dispatch<WindowCloseEvent>(BIND_EVENT(Application::onClose));
+        dispatcher.dispatch<WindowResizeEvent>(BIND_EVENT(Application::resizeEvent));
 
         for (auto it = layerStack.rbegin(); it != layerStack.rend(); ++it)
         {
@@ -92,34 +92,34 @@ namespace OE
 
     void Application::pushLayer(Layer * layer)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         layerStack.push(layer);
         layer->onAttach();
     }
 
     void Application::pushOverlay(Layer * overlay)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         layerStack.pushOverlay(overlay);
         overlay->onAttach();
     }
 
     void Application::Quit()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         Application::Get().crashed = true;
     }
 
     bool Application::onClose(WindowCloseEvent & e)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         crashed = true;
         return true;
     }
 
     bool Application::resizeEvent(WindowResizeEvent & rse)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         if (rse.getWidth() == 0 || rse.getHeight() == 0)
         {
             minimised = true;

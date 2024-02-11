@@ -14,12 +14,20 @@ namespace OE
     {
         std::vector<spdlog::sink_ptr> logSinks;
         logSinks.emplace_back(std::make_shared<spdlog::sinks::stdout_color_sink_mt>());
-        logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>("logs/output.log", true));
+
+        auto t = std::time(nullptr);
+        auto tm = *std::localtime(&t);
+
+        std::ostringstream oss;
+        oss << std::put_time(&tm, "%Y-%m-%d-%H-%M-%S");
+        auto logName = "logs/" + oss.str() + ".log";
+
+        logSinks.emplace_back(std::make_shared<spdlog::sinks::basic_file_sink_mt>(logName, true));
 
         logSinks[0]->set_pattern("%^[%T] %n: %v%$");
         logSinks[1]->set_pattern("[%T] [%l] %n: %v");
 
-        coreLogger = std::make_shared<spdlog::logger>("Oblivious Engine", begin(logSinks), end(logSinks));
+        coreLogger = std::make_shared<spdlog::logger>("Engine", begin(logSinks), end(logSinks));
         spdlog::register_logger(coreLogger);
         coreLogger->set_level(spdlog::level::trace);
 

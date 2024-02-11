@@ -16,30 +16,30 @@ namespace OE
 {
     static uint8_t GLFWWindowCount = 0;
 
-    static void GLFWErrorCallback(int e, const char * desc) { OE_CORE_ERROR("GLFW Error {0}: {1}", e, desc); }
+    static void GLFWErrorCallback(int e, const char * desc) { CORE_ERROR("GLFW Error {0}: {1}", e, desc); }
 
     WinWindow::WinWindow(const Properties & props)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         init(props);
     }
 
     WinWindow::~WinWindow()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         close();
     }
 
     void WinWindow::onUpdate()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glfwPollEvents();
         context->swapBuffers();
     }
 
     void WinWindow::setVSync(bool e)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         winProps.vsync = e;
         if (e)
             glfwSwapInterval(1);
@@ -51,23 +51,23 @@ namespace OE
 
     void WinWindow::init(const Properties & props)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         winProps.height = props.height;
         winProps.width = props.width;
         winProps.name = props.name;
 
-        OE_CORE_INFO("Creating a window.");
+        CORE_INFO("Creating a window.");
 
         if (GLFWWindowCount == 0)
         {
-            OE_CORE_TRACE("Initialising GLFW");
+            CORE_TRACE("Initialising GLFW");
             int success = glfwInit();
             if (!success)
             {
-                OE_CORE_ASSERT(success, "COULD NOT INITIALISE GLFW");
+                CORE_ASSERT(success, "COULD NOT INITIALISE GLFW");
                 glfwSetErrorCallback(GLFWErrorCallback);
             }
-            OE_CORE_TRACE("GLFW Initialised");
+            CORE_TRACE("GLFW Initialised");
         }
         // FULLSCREEN:
         // window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(),
@@ -97,7 +97,7 @@ namespace OE
                                       data.height = h;
 
                                       WindowResizeEvent event(w, h);
-                                      // OE_CORE_INFO("WINDOW SIZE: {0} x, {1} y", w, h);
+                                      // CORE_INFO("WINDOW SIZE: {0} x, {1} y", w, h);
                                       data.callback(event);
                                   });
 
@@ -184,14 +184,14 @@ namespace OE
 
     void WinWindow::close()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glfwDestroyWindow(window);
 
         --GLFWWindowCount;
 
         if (GLFWWindowCount == 0)
         {
-            OE_CORE_INFO("Terminating GLFW, no windows are left.");
+            CORE_INFO("Terminating GLFW, no windows are left.");
             glfwTerminate();
         }
     }

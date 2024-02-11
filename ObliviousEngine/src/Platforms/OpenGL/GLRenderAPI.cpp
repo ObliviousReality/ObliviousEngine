@@ -18,31 +18,31 @@ namespace OE
         {
             case GL_DEBUG_SEVERITY_HIGH:
             {
-                OE_CORE_FATAL(message);
+                CORE_FATAL(message);
                 return;
             }
             case GL_DEBUG_SEVERITY_MEDIUM:
             {
-                OE_CORE_ERROR(message);
+                CORE_ERROR(message);
                 return;
             }
             case GL_DEBUG_SEVERITY_LOW:
             {
-                OE_CORE_WARN(message);
+                CORE_WARN(message);
                 return;
             }
             case GL_DEBUG_SEVERITY_NOTIFICATION:
             {
-                OE_CORE_TRACE(message);
+                CORE_TRACE(message);
                 return;
             }
         }
-        OE_CORE_ASSERT(false, "UNKNOWN OPENGL MESSAGE SEVERITY LEVEL");
+        CORE_ASSERT(false, "UNKNOWN OPENGL MESSAGE SEVERITY LEVEL");
     }
 
     void GLRenderAPI::Init()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
 #ifdef LOG_GL_WARNINGS
         glEnable(GL_DEBUG_OUTPUT);
         glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);

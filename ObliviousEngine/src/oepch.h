@@ -24,6 +24,6 @@
 #include "ObliviousEngine/Debug/Instrumentor.h"
 
 
-#ifdef OE_PLATFORM_WINDOWS
+#ifdef PLATFORM_WINDOWS
 #include <Windows.h>
-#endif // OE_PLATFORM_WINDOWS
+#endif // PLATFORM_WINDOWS

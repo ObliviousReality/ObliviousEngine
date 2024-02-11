@@ -58,9 +58,9 @@ namespace OE
             {
                 if (Log::GetCoreLogger())
                 {
-                    OE_CORE_ERROR("Instrumentor::BeginSession('{0}') WHEN SESSION '{1}' ALREADY OPEN",
-                                  name,
-                                  m_CurrentSession->Name);
+                    CORE_ERROR("Instrumentor::BeginSession('{0}') WHEN SESSION '{1}' ALREADY OPEN",
+                               name,
+                               m_CurrentSession->Name);
                     InternalEndSession();
                 }
             }
@@ -74,7 +74,7 @@ namespace OE
             {
                 if (Log::GetCoreLogger())
                 {
-                    OE_CORE_ASSERT("INSTRUMENTOR COULD NOT OPEN FILE '{0}'.", filepath);
+                    CORE_ASSERT("INSTRUMENTOR COULD NOT OPEN FILE '{0}'.", filepath);
                 }
             }
         }
@@ -182,13 +182,13 @@ namespace OE
 } // namespace OE
 
 #ifdef PROFILING_ENABLED
-#define OE_START_PROFILER(name, path) ::OE::Instrumentor::Get().StartSession(name, path)
-#define OE_STOP_PROFILER()            ::OE::Instrumentor::Get().StopSession()
-#define OE_PROFILE_SCOPE(name)        ::OE::InstrumentationTimer timer##__LINE__(name);
-#define OE_PROFILE_FUNCTION()         OE_PROFILE_SCOPE(__FUNCSIG__)
+#define START_PROFILER(name, path) ::OE::Instrumentor::Get().StartSession(name, path)
+#define STOP_PROFILER()            ::OE::Instrumentor::Get().StopSession()
+#define PROFILE_SCOPE(name)        ::OE::InstrumentationTimer timer##__LINE__(name);
+#define PROFILE_FUNCTION()         PROFILE_SCOPE(__FUNCSIG__)
 #else
-#define OE_START_PROFILER(name, path)
-#define OE_STOP_PROFILER()
-#define OE_PROFILE_SCOPE(name)
-#define OE_PROFILE_FUNCTION()
+#define START_PROFILER(name, path)
+#define STOP_PROFILER()
+#define PROFILE_SCOPE(name)
+#define PROFILE_FUNCTION()
 #endif

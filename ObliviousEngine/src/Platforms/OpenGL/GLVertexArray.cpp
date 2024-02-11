@@ -22,38 +22,38 @@ namespace OE
             case ShaderType::Int3: return GL_INT;
             case ShaderType::Int4: return GL_INT;
             case ShaderType::Bool: return GL_BOOL;
-            default: OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
+            default: CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
         }
     }
 
     GLVertexArray::GLVertexArray()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glCreateVertexArrays(1, &rendererID);
     }
 
     GLVertexArray::~GLVertexArray()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glDeleteVertexArrays(1, &rendererID);
     }
 
     void GLVertexArray::bind() const
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glBindVertexArray(rendererID);
     }
 
     void GLVertexArray::unbind() const
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glBindVertexArray(0);
     }
 
     void GLVertexArray::addVertexBuffer(const Ref<VertexBuffer> & buf)
     {
-        OE_PROFILE_FUNCTION();
-        OE_CORE_ASSERT(buf->getLayout().getElements().size(), "VERTEX BUFFER MISSING LAYOUT");
+        PROFILE_FUNCTION();
+        CORE_ASSERT(buf->getLayout().getElements().size(), "VERTEX BUFFER MISSING LAYOUT");
         glBindVertexArray(rendererID);
         buf->bind();
         uint32_t ind = 0;
@@ -74,7 +74,7 @@ namespace OE
 
     void GLVertexArray::setIndexBuffer(const Ref<IndexBuffer> & buf)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glBindVertexArray(rendererID);
         buf->bind();
         indexBuf = buf;

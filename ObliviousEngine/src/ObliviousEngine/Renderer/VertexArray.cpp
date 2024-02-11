@@ -13,7 +13,7 @@ namespace OE
         {
             case RenderAPI::API::None:
             {
-                OE_CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
+                CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
                 return nullptr;
             }
             case RenderAPI::API::OpenGL:
@@ -22,7 +22,7 @@ namespace OE
             }
             default:
             {
-                OE_CORE_ASSERT(false, "UNKOWN RENDERER API");
+                CORE_ASSERT(false, "UNKOWN RENDERER API");
                 return nullptr;
             }
         }

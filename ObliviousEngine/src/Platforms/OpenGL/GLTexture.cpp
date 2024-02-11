@@ -8,7 +8,7 @@ namespace OE
 {
     GLTexture2D::GLTexture2D(uint32_t w, uint32_t h) : width(w), height(h)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         internalFormat = GL_RGBA8;
         format = GL_RGBA;
 
@@ -24,16 +24,16 @@ namespace OE
 
     GLTexture2D::GLTexture2D(const std::string & p) : path(p)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         int w, h, cs;
         stbi_set_flip_vertically_on_load(1);
         stbi_uc * data = nullptr;
         {
-            OE_PROFILE_SCOPE("stbi_load @ GLTexture2D::GLTexture2D(const std::string& p)");
+            PROFILE_SCOPE("stbi_load @ GLTexture2D::GLTexture2D(const std::string& p)");
 
             data = stbi_load(path.c_str(), &w, &h, &cs, 0);
         }
-        OE_CORE_ASSERT(data, "FAILED TO LOAD IMAGE");
+        CORE_ASSERT(data, "FAILED TO LOAD IMAGE");
         width = w;
         height = h;
 
@@ -54,7 +54,7 @@ namespace OE
         internalFormat = intFormat;
         format = dataFormat;
 
-        OE_CORE_ASSERT(intFormat && dataFormat, "TEXTURE FORMAT NOT SUPPORTED");
+        CORE_ASSERT(intFormat && dataFormat, "TEXTURE FORMAT NOT SUPPORTED");
 
         glCreateTextures(GL_TEXTURE_2D, 1, &renderID);
         glTextureStorage2D(renderID, 1, intFormat, width, height);
@@ -72,21 +72,21 @@ namespace OE
 
     GLTexture2D::~GLTexture2D()
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glDeleteTextures(1, &renderID);
     }
 
     void GLTexture2D::setData(void * d, uint32_t size)
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         uint32_t bytesperpixel = format == GL_RGBA ? 4 : 3;
-        OE_CORE_ASSERT(size == width * height * bytesperpixel, "DATA MUST BE ENTIRE TEXTURE");
+        CORE_ASSERT(size == width * height * bytesperpixel, "DATA MUST BE ENTIRE TEXTURE");
         glTextureSubImage2D(renderID, 0, 0, 0, width, height, format, GL_UNSIGNED_BYTE, d);
     }
 
     void GLTexture2D::bind(uint32_t slot) const
     {
-        OE_PROFILE_FUNCTION();
+        PROFILE_FUNCTION();
         glBindTextureUnit(slot, renderID);
     }
 } // namespace OE

@@ -8,25 +8,25 @@ Sandbox2D::Sandbox2D() : Layer("Sandbox2D"), cameraController(1920.0f / 1080.0f,
 
 void Sandbox2D::onAttach()
 {
-    OE_PROFILE_FUNCTION();
+    PROFILE_FUNCTION();
     testTexture = OE::Texture2D::Create("assets/textures/OE mk3.png");
 }
 
-void Sandbox2D::onDetatch() { OE_PROFILE_FUNCTION(); }
+void Sandbox2D::onDetatch() { PROFILE_FUNCTION(); }
 
 void Sandbox2D::onUpdate(OE::Timestep ts)
 {
-    OE_PROFILE_FUNCTION();
+    PROFILE_FUNCTION();
 
     cameraController.onUpdate(ts);
     {
-        OE_PROFILE_SCOPE("RenderReset");
+        PROFILE_SCOPE("RenderReset");
         OE::RenderCommand::SetClearColour(backgroundColour);
         OE::RenderCommand::Clear();
     }
 
     {
-        OE_PROFILE_SCOPE("RenderDraw");
+        PROFILE_SCOPE("RenderDraw");
         OE::Renderer2D::BeginScene(cameraController.getCamera());
         {
             OE::Renderer2D::DrawRect({ -1.0f, 0.0f }, { 1.0f, 1.5f }, squareColour, leftSquareAngle);
@@ -39,14 +39,14 @@ void Sandbox2D::onUpdate(OE::Timestep ts)
 
     if (OE::Input::isKeyPressed(KEY_P) || buttonPressed)
     {
-        OE_TRACE("P PRESSED");
+        TRACE("P PRESSED");
         OE::Application::Quit();
     }
 }
 
 void Sandbox2D::onImGuiRender()
 {
-    OE_PROFILE_FUNCTION();
+    PROFILE_FUNCTION();
     ImGui::Begin("Settings");
     ImGui::ColorEdit4("Square Colour", glm::value_ptr(squareColour));
     ImGui::ColorEdit4("Square2 Colour", glm::value_ptr(square2Colour));

@@ -31,7 +31,7 @@ double * OE::Maths::Quadratic(double a, double b, double c)
 {
     if (!a)
     {
-        OE_CORE_WARN("a value of 0 sent to Quadratic Formula. Null Returned.");
+        CORE_WARN("a value of 0 sent to Quadratic Formula. Null Returned.");
         return nullptr;
     }
     double * temp = new double[2];

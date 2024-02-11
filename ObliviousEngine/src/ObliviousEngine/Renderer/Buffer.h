@@ -34,7 +34,7 @@ namespace OE
             case OE::ShaderType::Int3: return 4 * 3;
             case OE::ShaderType::Int4: return 4 * 4;
             case OE::ShaderType::Bool: return 1;
-            default: OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
+            default: CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
         }
     }
 
@@ -69,7 +69,7 @@ namespace OE
                 case OE::ShaderType::Int3: return 3;
                 case OE::ShaderType::Int4: return 4;
                 case OE::ShaderType::Bool: return 1;
-                default: OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
+                default: CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
             }
         }
     };
