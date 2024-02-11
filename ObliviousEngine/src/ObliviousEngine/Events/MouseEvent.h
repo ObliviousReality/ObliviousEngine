@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ObliviousEngine/Core/Input.h"
+
 #include "ObliviousEngine/Events/Event.h"
 
 namespace OE
@@ -51,19 +53,19 @@ namespace OE
     class MouseButtonEvent : public Event
     {
     public:
-        inline int getButton() const { return button; }
+        inline MouseCode getButton() const { return button; }
 
         EVENT_CLASS_CAT(ECMouse | ECInput);
 
     protected:
-        MouseButtonEvent(int but) : button(but) {}
-        int button;
+        MouseButtonEvent(MouseCode but) : button(but) {}
+        MouseCode button;
     };
 
     class MouseDownEvent : public MouseButtonEvent
     {
     public:
-        MouseDownEvent(int but) : MouseButtonEvent(but) {}
+        MouseDownEvent(MouseCode but) : MouseButtonEvent(but) {}
 
         std::string toString() const override
         {
@@ -77,7 +79,7 @@ namespace OE
     class MouseUpEvent : public MouseButtonEvent
     {
     public:
-        MouseUpEvent(int but) : MouseButtonEvent(but) {}
+        MouseUpEvent(MouseCode but) : MouseButtonEvent(but) {}
 
         std::string toString() const override
         {

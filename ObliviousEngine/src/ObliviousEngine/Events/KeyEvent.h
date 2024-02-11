@@ -1,5 +1,7 @@
 #pragma once
 
+#include "ObliviousEngine/Core/Input.h"
+
 #include "ObliviousEngine/Events/Event.h"
 
 namespace OE
@@ -7,20 +9,20 @@ namespace OE
     class KeyEvent : public Event
     {
     public:
-        inline int getKeyCode() const { return keyCode; }
+        inline KeyCode getKeyCode() const { return keyCode; }
 
         EVENT_CLASS_CAT(ECKeyboard | ECInput);
 
     protected:
-        KeyEvent(int kc) : keyCode(kc) {}
+        KeyEvent(KeyCode kc) : keyCode(kc) {}
 
-        int keyCode;
+        KeyCode keyCode;
     };
 
     class KeyDownEvent : public KeyEvent
     {
     public:
-        KeyDownEvent(int kc, int repCount) : KeyEvent(kc), repeatCount(repCount) {}
+        KeyDownEvent(KeyCode kc, int repCount) : KeyEvent(kc), repeatCount(repCount) {}
 
         inline int getRepCount() const { return repeatCount; }
 
@@ -40,7 +42,7 @@ namespace OE
     class KeyUpEvent : public KeyEvent
     {
     public:
-        KeyUpEvent(int kc) : KeyEvent(kc) {}
+        KeyUpEvent(KeyCode kc) : KeyEvent(kc) {}
 
         std::string toString() const override
         {
@@ -54,7 +56,7 @@ namespace OE
     class KeyTypeEvent : public KeyEvent
     {
     public:
-        KeyTypeEvent(int kc) : KeyEvent(kc) {}
+        KeyTypeEvent(KeyCode kc) : KeyEvent(kc) {}
 
         std::string toString() const override
         {

@@ -1,5 +1,5 @@
 workspace "ObliviousEngine"
-	architecture "x64"
+	architecture "x86_64"
 	startproject "Sandbox"
 
 	configurations
@@ -81,7 +81,7 @@ project "ObliviousEngine"
 		defines
 		{
 			"OE_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
+			"GLFW_INCLUDE_NONE",
 		}
 
 	filter "configurations:Debug"
@@ -89,7 +89,8 @@ project "ObliviousEngine"
 		{
 			"OE_DEBUG",
 			"PROFILING_ENABLED",
-			"LOG_TRACES"
+			"LOG_TRACES",
+			"LOG_GL_WARNINGS"
 		}
 		runtime "Debug"
 		symbols "on"
@@ -148,7 +149,8 @@ project "Sandbox"
 		{
 			"OE_DEBUG",
 			"PROFILING_ENABLED",
-			"LOG_TRACES"
+			"LOG_TRACES",
+			"LOG_GL_WARNINGS"
 		}
 		runtime "Debug"
 		symbols "on"

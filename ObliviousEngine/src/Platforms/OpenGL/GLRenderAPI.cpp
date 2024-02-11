@@ -6,9 +6,50 @@
 
 namespace OE
 {
+    void openGLMessageCallback(unsigned source,
+                               unsigned type,
+                               unsigned id,
+                               unsigned severity,
+                               int length,
+                               const char * message,
+                               const void * param)
+    {
+        switch (severity)
+        {
+            case GL_DEBUG_SEVERITY_HIGH:
+            {
+                OE_CORE_FATAL(message);
+                return;
+            }
+            case GL_DEBUG_SEVERITY_MEDIUM:
+            {
+                OE_CORE_ERROR(message);
+                return;
+            }
+            case GL_DEBUG_SEVERITY_LOW:
+            {
+                OE_CORE_WARN(message);
+                return;
+            }
+            case GL_DEBUG_SEVERITY_NOTIFICATION:
+            {
+                OE_CORE_TRACE(message);
+                return;
+            }
+        }
+        OE_CORE_ASSERT(false, "UNKNOWN OPENGL MESSAGE SEVERITY LEVEL");
+    }
+
     void GLRenderAPI::Init()
     {
         OE_PROFILE_FUNCTION();
+#ifdef LOG_GL_WARNINGS
+        glEnable(GL_DEBUG_OUTPUT);
+        glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+        glDebugMessageCallback(openGLMessageCallback, nullptr);
+
+        glDebugMessageControl(GL_DONT_CARE, GL_DONT_CARE, GL_DEBUG_SEVERITY_NOTIFICATION, 0, NULL, GL_FALSE);
+#endif // LOG_GL_WARNINGS
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
         glEnable(GL_DEPTH_TEST);

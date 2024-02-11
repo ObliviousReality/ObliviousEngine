@@ -11,6 +11,8 @@
 
 #include "ObliviousEngine/Renderer/LayerStack.h"
 
+int main(int argc, char ** argv);
+
 namespace OE
 {
     class Application
@@ -19,7 +21,6 @@ namespace OE
         Application();
         virtual ~Application();
         static void Quit();
-        void run();
 
         void onEvent(Event & e);
 
@@ -30,6 +31,8 @@ namespace OE
         inline Window & getWindow() { return *window; }
 
     private:
+        void run();
+
         bool onClose(WindowCloseEvent & e);
         bool resizeEvent(WindowResizeEvent & rse);
 
@@ -43,6 +46,8 @@ namespace OE
 
     private:
         static Application * instance;
+
+        friend int ::main(int argc, char ** argv);
     };
 
     // Client side

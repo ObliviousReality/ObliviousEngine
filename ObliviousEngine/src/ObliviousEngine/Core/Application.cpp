@@ -80,9 +80,9 @@ namespace OE
         dispatcher.dispatch<WindowCloseEvent>(OE_BIND_EVENT(Application::onClose));
         dispatcher.dispatch<WindowResizeEvent>(OE_BIND_EVENT(Application::resizeEvent));
 
-        for (auto it = layerStack.end(); it != layerStack.begin();)
+        for (auto it = layerStack.rbegin(); it != layerStack.rend(); ++it)
         {
-            (*--it)->onEvent(e);
+            (*it)->onEvent(e);
             if (e.handled)
             {
                 break;

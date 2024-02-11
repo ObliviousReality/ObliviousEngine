@@ -20,7 +20,7 @@ namespace OE
             }
             case RenderAPI::API::OpenGL:
             {
-                return std::make_shared<GLTexture2D>(p);
+                return CreateRef<GLTexture2D>(p);
             }
             default:
             {
@@ -40,7 +40,7 @@ namespace OE
             }
             case RenderAPI::API::OpenGL:
             {
-                return std::make_shared<GLTexture2D>(w, h);
+                return CreateRef<GLTexture2D>(w, h);
             }
             default:
             {

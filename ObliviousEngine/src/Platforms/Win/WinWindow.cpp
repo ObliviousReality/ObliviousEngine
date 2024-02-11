@@ -2,9 +2,13 @@
 
 #include "WinWindow.h"
 
+#include "ObliviousEngine/Core/Input.h"
+
 #include "ObliviousEngine/Events/AppEvent.h"
 #include "ObliviousEngine/Events/KeyEvent.h"
 #include "ObliviousEngine/Events/MouseEvent.h"
+
+#include "ObliviousEngine/Renderer/Renderer.h"
 
 #include "Platforms/OpenGL/OpenGLContext.h"
 
@@ -13,8 +17,6 @@ namespace OE
     static uint8_t GLFWWindowCount = 0;
 
     static void GLFWErrorCallback(int e, const char * desc) { OE_CORE_ERROR("GLFW Error {0}: {1}", e, desc); }
-
-    Scope<Window> Window::WindowCreate(const Properties & props) { return CreateScope<WinWindow>(props); }
 
     WinWindow::WinWindow(const Properties & props)
     {
@@ -71,6 +73,13 @@ namespace OE
         // window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(),
         // nullptr);
 
+#ifdef LOG_GL_WARNINGS
+        if (Renderer::GetAPI() == RenderAPI::API::OpenGL)
+        {
+            glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+        }
+#endif //  LOG_GL_WARNINGS
+
         window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), nullptr, nullptr);
         ++GLFWWindowCount;
 
@@ -108,19 +117,19 @@ namespace OE
                                {
                                    case GLFW_PRESS:
                                    {
-                                       KeyDownEvent ev(k, 0);
+                                       KeyDownEvent ev(static_cast<KeyCode>(k), 0);
                                        data.callback(ev);
                                        break;
                                    }
                                    case GLFW_RELEASE:
                                    {
-                                       KeyUpEvent ev(k);
+                                       KeyUpEvent ev(static_cast<KeyCode>(k));
                                        data.callback(ev);
                                        break;
                                    }
                                    case GLFW_REPEAT:
                                    {
-                                       KeyDownEvent ev(k, 1);
+                                       KeyDownEvent ev(static_cast<KeyCode>(k), 1);
                                        data.callback(ev);
                                        break;
                                    }
@@ -131,7 +140,7 @@ namespace OE
                             [](GLFWwindow * window, unsigned int character)
                             {
                                 WindowData & data = *(WindowData *)glfwGetWindowUserPointer(window);
-                                KeyTypeEvent event(character);
+                                KeyTypeEvent event(static_cast<KeyCode>(character));
                                 data.callback(event);
                             });
 
@@ -143,13 +152,13 @@ namespace OE
                                        {
                                            case GLFW_PRESS:
                                            {
-                                               MouseDownEvent ev(but);
+                                               MouseDownEvent ev(static_cast<MouseCode>(but));
                                                data.callback(ev);
                                                break;
                                            }
                                            case GLFW_RELEASE:
                                            {
-                                               MouseUpEvent ev(but);
+                                               MouseUpEvent ev(static_cast<MouseCode>(but));
                                                data.callback(ev);
                                                break;
                                            }

@@ -163,7 +163,7 @@ public:
     {
         switch (e.getKeyCode())
         {
-            case KEY_EQUAL: scaleFactor += 0.1f; break;
+            case KEY_EQUALS: scaleFactor += 0.1f; break;
 
             case KEY_MINUS: scaleFactor -= 0.1f; break;
 

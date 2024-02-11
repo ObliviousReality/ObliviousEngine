@@ -8,7 +8,7 @@
 
 extern OE::Application * OE::CreateApplication();
 
-int wmain(int argc, char ** argv)
+int main(int argc, char ** argv)
 {
     OE::Log::Init();
     OE::Maths::Init();

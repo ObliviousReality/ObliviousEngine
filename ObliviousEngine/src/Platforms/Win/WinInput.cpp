@@ -8,19 +8,17 @@
 
 namespace OE
 {
-    Scope<Input> Input::instance = CreateScope<WinInput>();
-
-    bool WinInput::isKeyPressedImp(int KC)
+    bool WinInput::isKeyPressedImp(KeyCode KC)
     {
         auto window = static_cast<GLFWwindow *>(Application::Get().getWindow().getNativeWindow());
-        auto state = glfwGetKey(window, KC);
+        auto state = glfwGetKey(window, static_cast<int32_t>(KC));
         return state == GLFW_PRESS || state == GLFW_REPEAT;
     }
 
-    bool WinInput::isMousePressedImp(int button)
+    bool WinInput::isMousePressedImp(MouseCode button)
     {
         auto window = static_cast<GLFWwindow *>(Application::Get().getWindow().getNativeWindow());
-        auto state = glfwGetMouseButton(window, button);
+        auto state = glfwGetMouseButton(window, static_cast<int32_t>(button));
         return state == GLFW_PRESS;
     }
 
