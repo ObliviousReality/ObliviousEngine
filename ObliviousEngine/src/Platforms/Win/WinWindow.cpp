@@ -1,11 +1,12 @@
 #include "oepch.h"
 
-#include "Platforms/OpenGL/OpenGLContext.h"
-#include "Platforms/Win/WinWindow.h"
+#include "WinWindow.h"
 
-#include <ObliviousEngine/Events/AppEvent.h>
-#include <ObliviousEngine/Events/KeyEvent.h>
-#include <ObliviousEngine/Events/MouseEvent.h>
+#include "ObliviousEngine/Events/AppEvent.h"
+#include "ObliviousEngine/Events/KeyEvent.h"
+#include "ObliviousEngine/Events/MouseEvent.h"
+
+#include "Platforms/OpenGL/OpenGLContext.h"
 
 namespace OE
 {
@@ -61,11 +62,10 @@ namespace OE
             int success = glfwInit();
             if (!success)
             {
-                OE_CORE_ERROR("GLFW Could not initialise.");
-                OE_CORE_ASSERT(success, "ERROR!");
+                OE_CORE_ASSERT(success, "COULD NOT INITIALISE GLFW");
                 glfwSetErrorCallback(GLFWErrorCallback);
             }
-            OE_CORE_INFO("GLFW Initialised");
+            OE_CORE_TRACE("GLFW Initialised");
         }
         // FULLSCREEN:
         // window = glfwCreateWindow(winProps.width, winProps.height, winProps.name.c_str(), glfwGetPrimaryMonitor(),

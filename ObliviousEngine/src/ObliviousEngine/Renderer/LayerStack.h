@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Core.h"
+
 #include "Layer.h"
 
 namespace OE
@@ -11,10 +12,10 @@ namespace OE
         LayerStack() = default;
         ~LayerStack();
 
-        void push(Layer * l);
-        void pushOverlay(Layer * ov);
-        void pop(Layer * l);
-        void popOverlay(Layer * ov);
+        void push(Layer * layer);
+        void pushOverlay(Layer * overlay);
+        void pop(Layer * layer);
+        void popOverlay(Layer * overlay);
 
         std::vector<Layer *>::iterator begin() { return layers.begin(); }
         std::vector<Layer *>::iterator end() { return layers.end(); }

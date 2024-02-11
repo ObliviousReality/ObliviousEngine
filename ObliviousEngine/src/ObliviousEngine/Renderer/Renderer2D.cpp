@@ -1,15 +1,14 @@
 #include "oepch.h"
 
-#include "ObliviousEngine/Renderer/RenderCommand.h"
-#include "ObliviousEngine/Renderer/Renderer2D.h"
-#include "ObliviousEngine/Renderer/Shader.h"
-#include "ObliviousEngine/Renderer/VertexArray.h"
+#include "RenderCommand.h"
+#include "Renderer2D.h"
+#include "Shader.h"
+#include "VertexArray.h"
 
 #include <glm/ext/matrix_transform.hpp>
 
 namespace OE
 {
-
     struct R2DStorage
     {
         Ref<VertexArray> vArray;
@@ -31,9 +30,7 @@ namespace OE
 
         Ref<VertexBuffer> vertexBuf = VertexBuffer::Create(square, sizeof(square));
 
-        BufferLayout layout = { { ShaderType::Float3, "position" }, { ShaderType::Float2, "a_TexCoord" }
-
-        };
+        BufferLayout layout = { { ShaderType::Float3, "position" }, { ShaderType::Float2, "a_TexCoord" } };
 
         vertexBuf->setLayout(layout);
         storage->vArray->addVertexBuffer(vertexBuf);
@@ -57,17 +54,21 @@ namespace OE
         OE_PROFILE_FUNCTION();
         delete storage;
     }
+
     void Renderer2D::BeginScene(const OrthographicCamera & camera)
     {
         OE_PROFILE_FUNCTION();
         storage->textureShader->bind();
         storage->textureShader->setMat4("u_ViewProj", camera.getViewProjMatrix());
     }
+
     void Renderer2D::EndScene() { OE_PROFILE_FUNCTION(); }
+
     void Renderer2D::DrawRect(const glm::vec2 & pos, const glm::vec2 & size, const glm::vec4 & colour, float a)
     {
         DrawRect({ pos.x, pos.y, 0.0f }, size, colour, a);
     }
+
     void Renderer2D::DrawRect(const glm::vec3 & pos, const glm::vec2 & size, const glm::vec4 & colour, float a)
     {
         OE_PROFILE_FUNCTION();
@@ -83,6 +84,7 @@ namespace OE
         storage->vArray->bind();
         RenderCommand::DrawIndexed(storage->vArray);
     }
+
     void Renderer2D::DrawRect(const glm::vec2 & pos,
                               const glm::vec2 & size,
                               const Ref<Texture2D> & texture,
@@ -91,6 +93,7 @@ namespace OE
     {
         DrawRect({ pos.x, pos.y, 0.0f }, size, texture, a, colour);
     }
+
     void Renderer2D::DrawRect(const glm::vec3 & pos,
                               const glm::vec2 & size,
                               const Ref<Texture2D> & texture,

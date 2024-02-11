@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ObliviousEngine/Renderer/Shader.h"
 
 #include <glm/glm.hpp>

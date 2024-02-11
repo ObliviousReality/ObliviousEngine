@@ -1,12 +1,11 @@
 #pragma once
 
-#include "ObliviousEngine/Renderer/OrthoCamera.h"
-#include "ObliviousEngine/Renderer/RenderCommand.h"
-#include "ObliviousEngine/Renderer/Shader.h"
+#include "OrthoCamera.h"
+#include "RenderCommand.h"
+#include "Shader.h"
 
 namespace OE
 {
-
     class Renderer
     {
     public:

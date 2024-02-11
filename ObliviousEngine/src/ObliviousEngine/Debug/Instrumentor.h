@@ -24,7 +24,6 @@
 
 namespace OE
 {
-
     struct ProfileResult
     {
         std::string Name;

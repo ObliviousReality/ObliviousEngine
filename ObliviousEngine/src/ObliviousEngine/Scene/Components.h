@@ -1,13 +1,13 @@
 #pragma once
-#include <Core.h>
-// #include <OE.h>
 
-#include <ObliviousEngine/Core/Maths.h>
-#include <ObliviousEngine/Renderer/Camera.h>
+#include "Core.h"
+
+#include "ObliviousEngine/Core/Maths.h"
+
+#include "ObliviousEngine/Renderer/Camera.h"
 
 namespace OE
 {
-
     struct TagComponent
     {
         std::string tag;

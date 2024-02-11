@@ -1,12 +1,15 @@
 #pragma once
+
 #include "Core.h"
-#include "ObliviousEngine/Core/Log.h"
+
 #include "Scene.h"
-#include "entt.hpp"
+
+#include "ObliviousEngine/Core/Log.h"
+
+#include <entt.hpp>
 
 namespace OE
 {
-
     class Entity
     {
     public:
@@ -25,7 +28,7 @@ namespace OE
         {
             if (hasComp<T>())
             {
-                OE_CORE_WARN("Entity already has component!");
+                OE_CORE_WARN("Warn: Entity already has component");
             }
             return scene->registry.emplace<T>(handle, std::forward<Args>(args)...);
         }
@@ -35,7 +38,7 @@ namespace OE
         {
             if (!hasComp<T>())
             {
-                OE_CORE_WARN("Entity does not have component!");
+                OE_CORE_WARN("Warn: Entity does not have component");
             }
             return scene->registry.get<T>(handle);
         }
@@ -45,7 +48,7 @@ namespace OE
         {
             if (!hasComp<T>())
             {
-                OE_CORE_WARN("Entity does not have component!");
+                OE_CORE_WARN("Warn: Entity does not have component");
             }
             scene->registry.remove<T>(handle);
         }

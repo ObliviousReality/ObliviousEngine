@@ -1,18 +1,19 @@
 #pragma once
+
 #include "oepch.h"
 
 #include "Core.h"
+
 #include "ObliviousEngine/Events/Event.h"
 
 namespace OE
 {
-
     struct Properties
     {
         std::string name;
         int width;
         int height;
-        Properties(const std::string & n = "Sandbox", int w = 1920, int h = 1080) : name(n), width(w), height(h) {}
+        Properties(const std::string & n = "OE::Sandbox", int w = 1920, int h = 1080) : name(n), width(w), height(h) {}
     };
 
     class Window

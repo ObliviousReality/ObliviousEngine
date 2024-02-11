@@ -69,18 +69,21 @@ namespace OE
 
         stbi_image_free(data);
     }
+
     GLTexture2D::~GLTexture2D()
     {
         OE_PROFILE_FUNCTION();
         glDeleteTextures(1, &renderID);
     }
+
     void GLTexture2D::setData(void * d, uint32_t size)
     {
         OE_PROFILE_FUNCTION();
         uint32_t bytesperpixel = format == GL_RGBA ? 4 : 3;
-        OE_CORE_ASSERT(size == width * height * bytesperpixel, "ERROR: Data must be entire texture.");
+        OE_CORE_ASSERT(size == width * height * bytesperpixel, "DATA MUST BE ENTIRE TEXTURE");
         glTextureSubImage2D(renderID, 0, 0, 0, width, height, format, GL_UNSIGNED_BYTE, d);
     }
+
     void GLTexture2D::bind(uint32_t slot) const
     {
         OE_PROFILE_FUNCTION();

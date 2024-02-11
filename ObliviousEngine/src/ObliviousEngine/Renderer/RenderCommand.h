@@ -1,5 +1,7 @@
 #pragma once
+
 #include "ObliviousEngine/Renderer/RenderAPI.h"
+
 namespace OE
 {
     class RenderCommand

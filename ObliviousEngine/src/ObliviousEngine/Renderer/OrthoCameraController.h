@@ -1,9 +1,12 @@
 #pragma once
+
+#include "OrthoCamera.h"
+
 #include "ObliviousEngine/Core/Timestep.h"
+
 #include "ObliviousEngine/Events/AppEvent.h"
 #include "ObliviousEngine/Events/Event.h"
 #include "ObliviousEngine/Events/MouseEvent.h"
-#include "ObliviousEngine/Renderer/OrthoCamera.h"
 
 namespace OE
 {

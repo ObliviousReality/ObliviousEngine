@@ -1,7 +1,9 @@
 #pragma once
+
 #include "oepch.h"
 
 #include "Core.h"
+
 namespace OE
 {
     enum class EventType

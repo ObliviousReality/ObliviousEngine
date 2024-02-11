@@ -1,12 +1,11 @@
 #include "oepch.h"
 
-#include "Platforms/OpenGL/GLVertexArray.h"
+#include "GLVertexArray.h"
 
 #include <glad/glad.h>
 
 namespace OE
 {
-
     static GLenum ShaderTypeToGLType(ShaderType st)
     {
         switch (st)
@@ -26,26 +25,31 @@ namespace OE
             default: OE_CORE_ASSERT(false, "UNKNOWN SHADER TYPE"); return 0;
         }
     }
+
     GLVertexArray::GLVertexArray()
     {
         OE_PROFILE_FUNCTION();
         glCreateVertexArrays(1, &rendererID);
     }
+
     GLVertexArray::~GLVertexArray()
     {
         OE_PROFILE_FUNCTION();
         glDeleteVertexArrays(1, &rendererID);
     }
+
     void GLVertexArray::bind() const
     {
         OE_PROFILE_FUNCTION();
         glBindVertexArray(rendererID);
     }
+
     void GLVertexArray::unbind() const
     {
         OE_PROFILE_FUNCTION();
         glBindVertexArray(0);
     }
+
     void GLVertexArray::addVertexBuffer(const Ref<VertexBuffer> & buf)
     {
         OE_PROFILE_FUNCTION();
@@ -67,6 +71,7 @@ namespace OE
         }
         vertexBufs.push_back(buf);
     }
+
     void GLVertexArray::setIndexBuffer(const Ref<IndexBuffer> & buf)
     {
         OE_PROFILE_FUNCTION();

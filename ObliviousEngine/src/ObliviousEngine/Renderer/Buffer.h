@@ -2,7 +2,6 @@
 
 namespace OE
 {
-
     enum class ShaderType
     {
         None = 0,

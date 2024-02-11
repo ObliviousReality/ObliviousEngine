@@ -1,5 +1,7 @@
 #pragma once
+
 #include "ObliviousEngine/Core/Window.h"
+
 #include "ObliviousEngine/Renderer/RenderContext.h"
 
 #include <GLFW/glfw3.h>

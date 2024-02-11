@@ -1,33 +1,30 @@
 #pragma once
-#ifndef APPLICATION_H
-#define APPLICATION_H
 
 #include "Core.h"
-#include "ObliviousEngine/Core/Timestep.h"
+#include "Timestep.h"
+#include "Window.h"
+
+#include "ObliviousEngine/Events/AppEvent.h"
+#include "ObliviousEngine/Events/Event.h"
+
 #include "ObliviousEngine/imgui/ImGuiLayer.h"
 
-#include <ObliviousEngine/Core/Window.h>
-#include <ObliviousEngine/Events/AppEvent.h>
-#include <ObliviousEngine/Events/Event.h>
-#include <ObliviousEngine/Renderer/LayerStack.h>
+#include "ObliviousEngine/Renderer/LayerStack.h"
 
 namespace OE
 {
-
     class Application
     {
     public:
         Application();
         virtual ~Application();
-        static void Init(); // SDL
         static void Quit();
         void run();
-        virtual void loop();
 
         void onEvent(Event & e);
 
-        void pushLayer(Layer * l);
-        void pushOverlay(Layer * l);
+        void pushLayer(Layer * layer);
+        void pushOverlay(Layer * overlay);
 
         inline static Application & Get() { return *instance; }
         inline Window & getWindow() { return *window; }
@@ -41,7 +38,7 @@ namespace OE
         ImGuiLayer * imGuiLayer;
         bool crashed = false;
         bool minimised = false;
-        LayerStack ls;
+        LayerStack layerStack;
         float frameTime = 0.0f;
 
     private:
@@ -52,5 +49,3 @@ namespace OE
     Application * CreateApplication();
 
 } // namespace OE
-
-#endif // !APPLICATION_H

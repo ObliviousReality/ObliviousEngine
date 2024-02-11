@@ -1,4 +1,5 @@
 #pragma once
+
 #include <glm/glm.hpp>
 #include <string>
 #include <unordered_map>
@@ -21,8 +22,9 @@ namespace OE
         virtual const std::string & getName() const = 0;
 
         static Ref<Shader> Create(const std::string & path);
-        static Ref<Shader>
-            Create(const std::string & namein, const std::string & vertexSource, const std::string & fragmentSource);
+        static Ref<Shader> Create(const std::string & namein,
+            const std::string & vertexSource,
+            const std::string & fragmentSource);
     };
 
     class ShaderLib

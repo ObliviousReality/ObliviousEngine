@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ObliviousEngine/Events/Event.h"
 
 namespace OE

@@ -1,6 +1,9 @@
 #pragma once
+
 #include "Colour.h"
-#include "ObliviousEngine/Renderer/VertexArray.h"
+
+#include "VertexArray.h"
+
 namespace OE
 {
     class RenderAPI

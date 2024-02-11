@@ -1,7 +1,8 @@
 #include "oepch.h"
 
-#include "Platforms/OpenGL/GLRenderAPI.h"
 #include "RenderAPI.h"
+
+#include "Platforms/OpenGL/GLRenderAPI.h"
 
 namespace OE
 {
@@ -11,11 +12,13 @@ namespace OE
         switch (activeAPI)
         {
             case RenderAPI::API::None:
-                OE_CORE_ASSERT(false, "RenderAPI::None is not currently supported");
+            {
+                OE_CORE_ASSERT(false, "RenderAPI::None IS NOT CURRENTLY SUPPORTED");
                 return nullptr;
+            }
             case RenderAPI::API::OpenGL: return CreateScope<GLRenderAPI>();
         }
-        OE_CORE_ASSERT(false, "ERROR: Unkown RenderAPI!");
+        OE_CORE_ASSERT(false, "UNKNOWN RENDERER API");
         return nullptr;
     }
 } // namespace OE

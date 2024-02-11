@@ -3,11 +3,11 @@
 #include "ObliviousEngine/Events/AppEvent.h"
 #include "ObliviousEngine/Events/KeyEvent.h"
 #include "ObliviousEngine/Events/MouseEvent.h"
+
 #include "ObliviousEngine/Renderer/Layer.h"
 
 namespace OE
 {
-
     class ImGuiLayer : public Layer
     {
     public:

@@ -1,11 +1,10 @@
 #include "oepch.h"
 
-#include "ObliviousEngine/Renderer/Renderer.h"
-#include "ObliviousEngine/Renderer/Renderer2D.h"
+#include "Renderer.h"
+#include "Renderer2D.h"
 
 namespace OE
 {
-
     Scope<Renderer::SceneParams> Renderer::params = CreateScope<Renderer::SceneParams>();
 
     void Renderer::Init()
@@ -20,7 +19,9 @@ namespace OE
     void Renderer::WindowResize(uint32_t w, uint32_t h) { RenderCommand::SetViewport(0, 0, w, h); }
 
     void Renderer::BeginScene(OrthographicCamera & camera) { params->ViewProjMatrix = camera.getViewProjMatrix(); }
+
     void Renderer::EndScene() {}
+
     void Renderer::Draw(const Ref<Shader> & shader, const Ref<VertexArray> & vArray, const glm::mat4 & transform)
     {
         shader->bind();

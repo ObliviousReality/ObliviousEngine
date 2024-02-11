@@ -1,16 +1,18 @@
 #include "oepch.h"
 
-#include "ObliviousEngine/Core/Input.h"
-#include "ObliviousEngine/Events/KeyCodes.h"
 #include "OrthoCameraController.h"
+
+#include "ObliviousEngine/Core/Input.h"
+
+#include "ObliviousEngine/Events/KeyCodes.h"
 
 namespace OE
 {
-
     OrthographicCameraController::OrthographicCameraController(float ratio, bool rotation) :
         aspectRatio(ratio), camera(-ratio * zoom, ratio * zoom, -zoom, zoom), rotate(rotation)
     {
     }
+
     void OrthographicCameraController::onUpdate(Timestep ts)
     {
         OE_PROFILE_FUNCTION();
@@ -43,7 +45,6 @@ namespace OE
             }
             camera.setRot(cameraRot);
         }
-
         if (Input::isKeyPressed(KEY_R))
         {
             cameraRot = 0;
@@ -52,9 +53,9 @@ namespace OE
             zoom = 1.0f;
             camera.setProj(-aspectRatio * zoom, aspectRatio * zoom, -zoom, zoom);
         }
-
         camera.setPos(cameraPos);
     }
+
     void OrthographicCameraController::onEvent(Event & e)
     {
         OE_PROFILE_FUNCTION();
@@ -62,6 +63,7 @@ namespace OE
         d.dispatch<MouseScrollEvent>(OE_BIND_EVENT(OrthographicCameraController::onMouseScroll));
         d.dispatch<WindowResizeEvent>(OE_BIND_EVENT(OrthographicCameraController::onWindowResize));
     }
+
     bool OrthographicCameraController::onMouseScroll(MouseScrollEvent & mse)
     {
         OE_PROFILE_FUNCTION();
@@ -70,6 +72,7 @@ namespace OE
         camera.setProj(-aspectRatio * zoom, aspectRatio * zoom, -zoom, zoom);
         return false;
     }
+
     bool OrthographicCameraController::onWindowResize(WindowResizeEvent & rse)
     {
         OE_PROFILE_FUNCTION();

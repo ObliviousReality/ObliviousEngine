@@ -10,5 +10,4 @@ namespace OE
 
         static Scope<RenderContext> Create(void * window);
     };
-
 } // namespace OE

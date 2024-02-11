@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ObliviousEngine/Events/Event.h"
 
 namespace OE
@@ -60,5 +61,4 @@ namespace OE
         EVENT_CLASS_TYPE(AppRender);
         EVENT_CLASS_CAT(ECApp);
     };
-
 } // namespace OE

@@ -1,13 +1,11 @@
 #include "oepch.h"
 
+#include "Components.h"
 #include "Entity.h"
 #include "Scene.h"
 
-#include <ObliviousEngine/Scene/Components.h>
-
 namespace OE
 {
-
     Scene::Scene() {}
 
     Scene::~Scene() {}
@@ -58,5 +56,4 @@ namespace OE
         tag.tag = name.empty() ? "Unnamed Entity" : name;
         return temp;
     }
-
 } // namespace OE

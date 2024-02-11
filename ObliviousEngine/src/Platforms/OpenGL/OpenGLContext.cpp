@@ -1,9 +1,9 @@
 #include "oepch.h"
 
-#include "Platforms/OpenGL/OpenGLContext.h"
+#include "OpenGLContext.h"
 
-#include <GLFW/glfw3.h>
 #include <glad/glad.h>
+#include <GLFW/glfw3.h>
 
 namespace OE
 {
@@ -11,12 +11,13 @@ namespace OE
     {
         OE_CORE_ASSERT(window, "WINDOW DOES NOT EXIST");
     }
+
     void OpenGLContext::init()
     {
         OE_PROFILE_FUNCTION();
         glfwMakeContextCurrent(window);
         int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-        OE_CORE_ASSERT(status, "Failed to initialise Glad");
+        OE_CORE_ASSERT(status, "FAILED TO INITIALISE GLAD");
         OE_CORE_INFO("Glad initialised.");
 
         OE_CORE_INFO("Vendor: {0}", glGetString(GL_VENDOR));
@@ -30,9 +31,10 @@ namespace OE
         glGetIntegerv(GL_MINOR_VERSION, &versionMinor);
 
         OE_CORE_ASSERT(versionMajor > 4 || (versionMajor == 4 && versionMinor >= 5),
-                       "Hazel requires at least OpenGL version 4.5!");
+                       "OBLIVIOUS ENGINRE REQUIRES OPENGL VERSION >4.5!");
 #endif
     }
+
     void OpenGLContext::swapBuffers()
     {
         OE_PROFILE_FUNCTION();

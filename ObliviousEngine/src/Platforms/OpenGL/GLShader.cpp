@@ -1,6 +1,6 @@
 #include "oepch.h"
 
-#include "Platforms/OpenGL/GLShader.h"
+#include "GLShader.h"
 
 #include <fstream>
 #include <glad/glad.h>
@@ -36,6 +36,7 @@ namespace OE
         auto count = lastDot == std::string::npos ? path.size() - lastSlash : lastDot - lastSlash;
         name = path.substr(lastSlash, count);
     }
+
     GLShader::GLShader(const std::string & namein,
                        const std::string & vertexSource,
                        const std::string & fragmentSource) :
@@ -47,76 +48,91 @@ namespace OE
         sources[GL_FRAGMENT_SHADER] = fragmentSource;
         compile(sources);
     }
+
     GLShader::~GLShader()
     {
         OE_PROFILE_FUNCTION();
         glDeleteProgram(renderID);
     }
+
     void GLShader::bind() const
     {
         OE_PROFILE_FUNCTION();
         glUseProgram(renderID);
     }
+
     void GLShader::unbind() const
     {
         OE_PROFILE_FUNCTION();
         glUseProgram(0);
     }
+
     void GLShader::setInt(const std::string & name, int val)
     {
         OE_PROFILE_FUNCTION();
         uploadUniformInt(name, val);
     }
+
     void GLShader::setMat4(const std::string & name, const glm::mat4 & val)
     {
         OE_PROFILE_FUNCTION();
         uploadUniformMat4(name, val);
     }
+
     void GLShader::setFloat3(const std::string & name, const glm::vec3 & val)
     {
         OE_PROFILE_FUNCTION();
         uploadUniformFloat3(name, val);
     }
+
     void GLShader::setFloat4(const std::string & name, const glm::vec4 & val)
     {
         OE_PROFILE_FUNCTION();
         uploadUniformFloat4(name, val);
     }
+
     void GLShader::uploadUniformInt(const std::string & name, int value)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniform1i(loc, value);
     }
+
     void GLShader::uploadUniformFloat(const std::string & name, float value)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniform1f(loc, value);
     }
+
     void GLShader::uploadUniformFloat2(const std::string & name, const glm::vec2 & value)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniform2f(loc, value.x, value.y);
     }
+
     void GLShader::uploadUniformFloat3(const std::string & name, const glm::vec3 & value)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniform3f(loc, value.x, value.y, value.z);
     }
+
     void GLShader::uploadUniformFloat4(const std::string & name, const glm::vec4 & value)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniform4f(loc, value.x, value.y, value.z, value.w);
     }
+
     void GLShader::uploadUniformMat3(const std::string & name, const glm::mat3 & matrix)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniformMatrix3fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
     }
+
     void GLShader::uploadUniformMat4(const std::string & name, const glm::mat4 & matrix)
     {
         GLint loc = glGetUniformLocation(renderID, name.c_str());
         glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
     }
+
     std::string GLShader::readFile(const std::string & path)
     {
         OE_PROFILE_FUNCTION();
@@ -145,6 +161,7 @@ namespace OE
         }
         return result;
     }
+
     std::unordered_map<GLenum, std::string> GLShader::preprocessFile(const std::string & src)
     {
         OE_PROFILE_FUNCTION();
@@ -173,7 +190,7 @@ namespace OE
     {
         OE_PROFILE_FUNCTION();
         GLuint program = glCreateProgram();
-        OE_CORE_ASSERT(shaderSrcs.size() <= 2, "ERROR: Too Many Shader Sources (Only 2 Allowed)");
+        OE_CORE_ASSERT(shaderSrcs.size() <= 2, "TOO MANY SHADER SOURCES (Only 2 Allowed)");
         std::array<GLenum, 2> shaderIDs;
         int arrIndex = 0;
         for (auto & kv : shaderSrcs)

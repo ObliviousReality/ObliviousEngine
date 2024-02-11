@@ -1,13 +1,11 @@
 #pragma once
-#ifndef COLOUR_H
-#define COLOUR_H
 
 #include "Core.h"
 
 #include <glm/glm.hpp>
+
 namespace OE
 {
-
     class Colour
     {
     public:
@@ -38,10 +36,5 @@ namespace OE
         operator glm::vec3() const { return glm::vec3(r, g, b); }
 
         float r, g, b, a;
-
-    private:
     };
-
 } // namespace OE
-
-#endif // !COLOUR_H

@@ -6,7 +6,6 @@
 
 namespace OE
 {
-
     OrthographicCamera::OrthographicCamera(float l, float r, float b, float t) :
         projMatrix(glm::ortho(l, r, b, t, -1.0f, 1.0f)), viewMatrix(1.0f)
     {
@@ -29,5 +28,4 @@ namespace OE
         viewMatrix = glm::inverse(transform);
         viewProjMatrix = projMatrix * viewMatrix;
     }
-
 } // namespace OE

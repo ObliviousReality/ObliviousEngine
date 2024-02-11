@@ -1,6 +1,9 @@
 #pragma once
+
 #include "Core.h"
+
 #include "ObliviousEngine/Core/Timestep.h"
+
 #include "ObliviousEngine/Events/Event.h"
 
 namespace OE

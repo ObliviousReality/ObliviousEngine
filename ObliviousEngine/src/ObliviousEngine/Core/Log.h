@@ -25,10 +25,20 @@ namespace OE
 #define OE_CORE_ERROR(...) ::OE::Log::GetCoreLogger()->error(__VA_ARGS__)
 #define OE_CORE_WARN(...)  ::OE::Log::GetCoreLogger()->warn(__VA_ARGS__)
 #define OE_CORE_INFO(...)  ::OE::Log::GetCoreLogger()->info(__VA_ARGS__)
+#ifdef LOG_TRACES
 #define OE_CORE_TRACE(...) ::OE::Log::GetCoreLogger()->trace(__VA_ARGS__)
+#else
+#define OE_CORE_TRACE(...)
+#endif // LOG_TRACES
+
 
 #define OE_FATAL(...) ::OE::Log::GetClientLogger()->fatal(__VA_ARGS__)
 #define OE_ERROR(...) ::OE::Log::GetClientLogger()->error(__VA_ARGS__)
 #define OE_WARN(...)  ::OE::Log::GetClientLogger()->warn(__VA_ARGS__)
 #define OE_INFO(...)  ::OE::Log::GetClientLogger()->info(__VA_ARGS__)
 #define OE_TRACE(...) ::OE::Log::GetClientLogger()->trace(__VA_ARGS__)
+#ifdef LOG_TRACES
+#define OE_TRACE(...) ::OE::Log::GetClientLogger()->trace(__VA_ARGS__)
+#else
+#define OE_TRACE(...)
+#endif // LOG_TRACES

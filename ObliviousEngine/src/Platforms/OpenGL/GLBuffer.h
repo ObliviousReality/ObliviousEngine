@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ObliviousEngine/Renderer/Buffer.h"
 
 namespace OE

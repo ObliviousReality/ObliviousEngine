@@ -1,15 +1,15 @@
 #include "oepch.h"
 
+#include "Application.h"
+#include "Input.h"
 #include "Log.h"
-#include "ObliviousEngine/Core/Application.h"
-#include "ObliviousEngine/Core/Input.h"
+
 #include "ObliviousEngine/Renderer/Renderer.h"
 
 #include <GLFW/glfw3.h>
 
 namespace OE
 {
-
     Application * Application::instance = nullptr;
 
     Application::Application()
@@ -36,7 +36,6 @@ namespace OE
     void Application::run()
     {
         OE_PROFILE_FUNCTION();
-        // loop();
         while (!crashed)
         {
             OE_PROFILE_SCOPE("Individual Run Loop");
@@ -48,7 +47,7 @@ namespace OE
             {
                 {
                     OE_PROFILE_SCOPE("Layers Update");
-                    for (Layer * l : ls)
+                    for (Layer * l : layerStack)
                     {
                         l->onUpdate(ts);
                     }
@@ -57,7 +56,7 @@ namespace OE
                 imGuiLayer->begin();
                 {
                     OE_PROFILE_SCOPE("imGui Update");
-                    for (Layer * l : ls)
+                    for (Layer * l : layerStack)
                     {
                         l->onImGuiRender();
                     }
@@ -71,20 +70,17 @@ namespace OE
         }
     }
 
-    void Application::loop()
-    {
-        OE_CORE_WARN("This should not be visible - Application::loop() should be overrridden.");
-    }
-
     void Application::onEvent(Event & e)
     {
         OE_PROFILE_FUNCTION();
-        // OE_CORE_TRACE("{0}", e);
+#ifdef LOG_EVENTS
+        OE_CORE_TRACE("{0}", e);
+#endif // LOG_EVENTS
         EventDispatcher dispatcher(e);
         dispatcher.dispatch<WindowCloseEvent>(OE_BIND_EVENT(Application::onClose));
         dispatcher.dispatch<WindowResizeEvent>(OE_BIND_EVENT(Application::resizeEvent));
 
-        for (auto it = ls.end(); it != ls.begin();)
+        for (auto it = layerStack.end(); it != layerStack.begin();)
         {
             (*--it)->onEvent(e);
             if (e.handled)
@@ -94,24 +90,18 @@ namespace OE
         }
     }
 
-    void Application::pushLayer(Layer * l)
+    void Application::pushLayer(Layer * layer)
     {
         OE_PROFILE_FUNCTION();
-        ls.push(l);
-        l->onAttach();
+        layerStack.push(layer);
+        layer->onAttach();
     }
 
-    void Application::pushOverlay(Layer * l)
+    void Application::pushOverlay(Layer * overlay)
     {
         OE_PROFILE_FUNCTION();
-        ls.pushOverlay(l);
-        l->onAttach();
-    }
-
-    void Application::Init()
-    {
-        OE_PROFILE_FUNCTION();
-        OE_CORE_INFO("Oblivious Engine Online.");
+        layerStack.pushOverlay(overlay);
+        overlay->onAttach();
     }
 
     void Application::Quit()
@@ -126,6 +116,7 @@ namespace OE
         crashed = true;
         return true;
     }
+
     bool Application::resizeEvent(WindowResizeEvent & rse)
     {
         OE_PROFILE_FUNCTION();

@@ -1,8 +1,11 @@
 #include "oepch.h"
 
 #include "ObliviousEngine/Renderer/Buffer.h"
+
 #include "ObliviousEngine/Renderer/Renderer.h"
+
 #include "Platforms/OpenGL/GLBuffer.h"
+
 namespace OE
 {
     Ref<VertexBuffer> VertexBuffer::Create(float * vertexes, uint32_t size)

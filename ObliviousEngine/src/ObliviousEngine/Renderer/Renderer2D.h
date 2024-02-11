@@ -1,7 +1,7 @@
 #pragma once
 
-#include "ObliviousEngine/Renderer/OrthoCamera.h"
-#include "ObliviousEngine/Renderer/Texture.h"
+#include "OrthoCamera.h"
+#include "Texture.h"
 
 namespace OE
 {

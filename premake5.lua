@@ -88,7 +88,8 @@ project "ObliviousEngine"
 		defines 
 		{
 			"OE_DEBUG",
-			"PROFILING_ENABLED"
+			"PROFILING_ENABLED",
+			"LOG_TRACES"
 		}
 		runtime "Debug"
 		symbols "on"
@@ -146,7 +147,8 @@ project "Sandbox"
 		defines 
 		{
 			"OE_DEBUG",
-			"PROFILING_ENABLED"
+			"PROFILING_ENABLED",
+			"LOG_TRACES"
 		}
 		runtime "Debug"
 		symbols "on"

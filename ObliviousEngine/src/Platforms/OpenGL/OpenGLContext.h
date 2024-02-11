@@ -1,4 +1,5 @@
 #pragma once
+
 #include "ObliviousEngine/Renderer/RenderContext.h"
 
 struct GLFWwindow;

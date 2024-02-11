@@ -1,6 +1,8 @@
 #pragma once
+
 #include "Core.h"
-#include "entt.hpp"
+
+#include <entt.hpp>
 
 namespace OE
 {

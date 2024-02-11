@@ -6,7 +6,6 @@
 
 namespace OE
 {
-
     Ref<spdlog::logger> Log::coreLogger;
     Ref<spdlog::logger> Log::clientLogger;
 
@@ -18,5 +17,4 @@ namespace OE
         clientLogger = spdlog::stdout_color_mt("Application");
         clientLogger->set_level(spdlog::level::trace);
     }
-
 } // namespace OE

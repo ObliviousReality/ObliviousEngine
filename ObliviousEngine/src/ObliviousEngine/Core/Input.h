@@ -4,7 +4,6 @@
 
 namespace OE
 {
-
     class Input
     {
     public:
@@ -15,7 +14,7 @@ namespace OE
         inline static std::pair<float, float> GetMousePos() { return instance->getMousePosImp(); }
 
     protected:
-        virtual bool isKeyPressedImp(int KC) = 0;
+        virtual bool isKeyPressedImp(int code) = 0;
         virtual bool isMousePressedImp(int button) = 0;
         virtual float getMouseXImp() = 0;
         virtual float getMouseYImp() = 0;

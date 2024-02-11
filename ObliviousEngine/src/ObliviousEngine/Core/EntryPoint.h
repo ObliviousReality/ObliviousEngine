@@ -1,7 +1,8 @@
 #pragma once
-#include <Core.h>
-#include <ObliviousEngine/Core/Application.h>
-#include <ObliviousEngine/Core/Log.h>
+
+#include "Application.h"
+#include "Core.h"
+#include "Log.h"
 
 #ifdef OE_PLATFORM_WINDOWS
 
@@ -9,9 +10,9 @@ extern OE::Application * OE::CreateApplication();
 
 int wmain(int argc, char ** argv)
 {
-
     OE::Log::Init();
     OE::Maths::Init();
+
     std::string profilePath = "profiling";
     bool logCreateSuccess = false;
 #ifdef PROFILING_ENABLED
@@ -21,16 +22,18 @@ int wmain(int argc, char ** argv)
         OE_CORE_TRACE("Removing Profiling Folder");
     }
     logCreateSuccess = std::filesystem::create_directory(profilePath);
+
     if (!logCreateSuccess)
     {
-        OE_CORE_WARN("Warning: Could not create profiling folder. Profiling will be disabled for this run.");
+        OE_CORE_WARN("Warn: Could not create profiling folder. Profiling will be disabled for this run.");
     }
 #endif // PROFILING_ENABLED
+
     if (logCreateSuccess)
     {
         OE_START_PROFILER("Startup", profilePath + "/OEProfile-Startup.json");
     }
-    OE_CORE_INFO("Main Started");
+    OE_CORE_TRACE("Main Started");
     auto app = OE::CreateApplication();
     if (logCreateSuccess)
     {
@@ -50,8 +53,7 @@ int wmain(int argc, char ** argv)
     {
         OE_STOP_PROFILER();
     }
-    OE::Application::Quit();
-    OE_CORE_INFO("Engine shutting down.");
+    OE_CORE_WARN("Warn: Engine shutting down.");
 }
 
 #endif // OE_PLATFORM_WINDOWS
