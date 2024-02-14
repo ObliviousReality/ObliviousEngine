@@ -12,7 +12,10 @@ void Sandbox2D::onAttach()
     testTexture = OE::Texture2D::Create("assets/textures/OE mk3.png");
 }
 
-void Sandbox2D::onDetatch() { PROFILE_FUNCTION(); }
+void Sandbox2D::onDetatch()
+{
+    PROFILE_FUNCTION();
+}
 
 void Sandbox2D::onUpdate(OE::Timestep ts)
 {
@@ -29,10 +32,15 @@ void Sandbox2D::onUpdate(OE::Timestep ts)
         PROFILE_SCOPE("RenderDraw");
         OE::Renderer2D::BeginScene(cameraController.getCamera());
         {
-            OE::Renderer2D::DrawRect({ -1.0f, 0.0f }, { 1.0f, 1.5f }, squareColour, leftSquareAngle);
-            OE::Renderer2D::DrawRect({ 1.0f, 0.0f }, { 1.5f, 1.0f }, square2Colour, rightSquareAngle);
-            OE::Renderer2D::DrawRect(
-                { 0.0f, 0.0f, -0.1f }, { 10.5f, 10.5f }, testTexture, centerSquareAngle, centerSquareTint);
+            OE::Renderer2D::DrawRotatedRect({ -1.0f, 0.0f }, { 1.0f, 1.5f }, leftSquareAngle, squareColour);
+            OE::Renderer2D::DrawRotatedRect({ 1.0f, 0.0f }, { 1.5f, 1.0f }, rightSquareAngle, square2Colour);
+            OE::Renderer2D::DrawRotatedRect(
+                { 0.0f, 0.0f, -0.1f },
+                { 10.5f, 10.5f },
+                centerSquareAngle,
+                testTexture,
+                1.0f,
+                centerSquareTint);
         }
     }
     OE::Renderer2D::EndScene();
@@ -59,4 +67,7 @@ void Sandbox2D::onImGuiRender()
     ImGui::End();
 }
 
-void Sandbox2D::onEvent(OE::Event & e) { cameraController.onEvent(e); }
+void Sandbox2D::onEvent(OE::Event & e)
+{
+    cameraController.onEvent(e);
+}

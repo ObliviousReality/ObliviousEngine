@@ -73,6 +73,12 @@ namespace OE
         uploadUniformInt(name, val);
     }
 
+    void GLShader::setFloat(const std::string & name, float val)
+    {
+        PROFILE_FUNCTION();
+        uploadUniformFloat(name, val);
+    }
+
     void GLShader::setMat4(const std::string & name, const glm::mat4 & val)
     {
         PROFILE_FUNCTION();

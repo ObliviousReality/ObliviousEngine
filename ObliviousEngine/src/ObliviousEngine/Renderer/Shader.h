@@ -17,6 +17,7 @@ namespace OE
         virtual void setMat4(const std::string & name, const glm::mat4 & val) = 0;
         virtual void setFloat3(const std::string & name, const glm::vec3 & val) = 0;
         virtual void setFloat4(const std::string & name, const glm::vec4 & val) = 0;
+        virtual void setFloat(const std::string & name, float val) = 0;
         virtual void setInt(const std::string & name, int val) = 0;
 
         virtual const std::string & getName() const = 0;
